@@ -31,6 +31,11 @@ const HeroSection = () => {
                 </div>
 
                 <div className="w-12 h-px bg-foreground/20" />
+
+                {/* Mobile Profile Photo - shown only on small screens */}
+                <div className="lg:hidden w-48 h-48 mx-auto mt-4">
+                  <ProfilePhoto />
+                </div>
               </div>
 
               {/* Professional title + value statement */}
