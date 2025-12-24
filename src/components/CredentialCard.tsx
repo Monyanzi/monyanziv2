@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 interface CredentialCardProps {
   metric: string;
@@ -8,12 +8,18 @@ interface CredentialCardProps {
 }
 
 const CredentialCard = ({ metric, label, sublabel, delay = 0 }: CredentialCardProps) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
   return (
     <div
-      className={cn(
-        "executive-card p-8 lg:p-10 text-center animate-fade-in-up"
-      )}
-      style={{ animationDelay: `${delay}ms` }}
+      className={`p-8 lg:p-10 text-center border border-border bg-card transition-all duration-700 ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      }`}
     >
       <div className="font-display text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
         {metric}

@@ -1,33 +1,25 @@
 const ProfilePhoto = () => {
   return (
-    <div className="relative animate-slide-in-right">
-      {/* Main photo container - clean, minimal frame */}
-      <div className="relative w-72 h-72 lg:w-96 lg:h-96 bg-slate-100 border border-border overflow-hidden">
-        {/* Subtle gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200" />
+    <div className="relative animate-fade-in" style={{ animationDelay: '300ms' }}>
+      {/* Elegant geometric composition instead of placeholder photo */}
+      <div className="relative w-72 h-72 lg:w-[420px] lg:h-[420px]">
+        {/* Primary shape */}
+        <div className="absolute inset-0 border border-border" />
         
-        {/* Professional silhouette placeholder */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <svg
-            viewBox="0 0 100 100"
-            className="w-2/3 h-2/3 text-slate-300"
-            fill="currentColor"
-          >
-            <circle cx="50" cy="32" r="18" />
-            <ellipse cx="50" cy="80" rx="28" ry="22" />
-          </svg>
-        </div>
-
-        {/* Initials overlay */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-display text-7xl lg:text-8xl font-semibold text-foreground/10">
+        {/* Offset accent rectangle */}
+        <div className="absolute -bottom-3 -right-3 lg:-bottom-4 lg:-right-4 w-full h-full border border-foreground/10" />
+        
+        {/* Inner content - elegant monogram */}
+        <div className="absolute inset-0 flex items-center justify-center bg-muted/30">
+          <span className="font-display text-8xl lg:text-[10rem] font-semibold text-foreground/[0.06] select-none">
             MN
           </span>
         </div>
+        
+        {/* Subtle corner accent */}
+        <div className="absolute top-0 left-0 w-12 h-px bg-foreground/30" />
+        <div className="absolute top-0 left-0 w-px h-12 bg-foreground/30" />
       </div>
-
-      {/* Subtle decorative element */}
-      <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-border bg-background" />
     </div>
   );
 };

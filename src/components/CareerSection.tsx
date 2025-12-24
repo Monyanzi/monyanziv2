@@ -1,12 +1,12 @@
 const careerMilestones = [
   {
-    period: "Sep 2021 — Jul 2025",
+    period: "2021 — Present",
     role: "Senior Manager, Treaty Reinsurance",
     company: "Leading Reinsurance Firm",
     achievements: [
-      "Led M&A integration of acquired reinsurance portfolios worth $50M+",
+      "Led M&A integration of acquired portfolios worth $50M+",
       "Automated analytics workflows reducing reporting time by 60%",
-      "Deployed enterprise risk management systems across 3 markets"
+      "Deployed enterprise risk systems across 3 markets"
     ],
     isCurrent: true
   },
@@ -15,8 +15,8 @@ const careerMilestones = [
     role: "Manager, Actuarial Services",
     company: "Insurance Corporation",
     achievements: [
-      "Managed capital optimization initiatives for life & non-life portfolios",
-      "Developed pricing models for specialty lines products",
+      "Managed capital optimization for life & non-life portfolios",
+      "Developed pricing models for specialty products",
       "Led regulatory capital compliance projects"
     ]
   },
@@ -26,15 +26,14 @@ const careerMilestones = [
     company: "Global Insurance Group",
     achievements: [
       "Built reserving models for long-tail liability classes",
-      "Supported IFRS 17 implementation readiness assessments",
-      "Mentored junior actuarial team members"
+      "Supported IFRS 17 implementation readiness"
     ]
   }
 ];
 
 const CareerSection = () => {
   return (
-    <section id="track-record" className="py-24 lg:py-32 bg-muted/30 border-b border-border">
+    <section id="track-record" className="py-24 lg:py-32 bg-muted/20 border-b border-border">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="max-w-4xl">
           {/* Section header */}
@@ -42,95 +41,47 @@ const CareerSection = () => {
             Track Record
           </p>
           <h2 className="font-display text-3xl lg:text-4xl font-semibold tracking-tight text-foreground mb-6">
-            Career Excellence
+            Career
           </h2>
-          <div className="w-16 h-px bg-foreground/20 mb-16" />
+          <div className="w-12 h-px bg-foreground/20 mb-16" />
         </div>
 
         {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-0 lg:left-[140px] top-0 bottom-0 w-px bg-border" />
-
-          <div className="space-y-12">
-            {careerMilestones.map((milestone, index) => (
-              <div key={index} className="relative pl-8 lg:pl-0 lg:grid lg:grid-cols-[140px_1fr] lg:gap-12">
-                {/* Period */}
-                <div className="hidden lg:block text-right">
-                  <span className="text-sm text-muted-foreground font-medium">
-                    {milestone.period}
-                  </span>
-                </div>
-
-                {/* Dot marker */}
-                <div 
-                  className={`absolute left-0 lg:left-[140px] top-1 w-3 h-3 rounded-full border-2 -translate-x-1/2 ${
-                    milestone.isCurrent 
-                      ? 'bg-foreground border-foreground' 
-                      : 'bg-background border-muted-foreground'
-                  }`}
-                />
-
-                {/* Content */}
-                <div className="pl-0 lg:pl-8">
-                  {/* Mobile period */}
-                  <span className="lg:hidden text-xs text-muted-foreground font-medium block mb-2">
-                    {milestone.period}
-                  </span>
-
-                  <div className="executive-card p-6 lg:p-8">
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <div>
-                        <h3 className="font-display text-lg lg:text-xl font-semibold text-foreground">
-                          {milestone.role}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {milestone.company}
-                        </p>
-                      </div>
-                      {milestone.isCurrent && (
-                        <span className="px-3 py-1 text-xs font-medium tracking-wide uppercase bg-foreground text-background">
-                          Current
-                        </span>
-                      )}
-                    </div>
-
-                    <ul className="space-y-2">
-                      {milestone.achievements.map((achievement, i) => (
-                        <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
-                          <span className="w-1 h-1 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+        <div className="space-y-0">
+          {careerMilestones.map((milestone, index) => (
+            <div 
+              key={index} 
+              className="grid lg:grid-cols-[200px_1fr] gap-4 lg:gap-12 py-8 border-b border-border last:border-b-0"
+            >
+              {/* Period */}
+              <div className="flex items-start gap-3">
+                {milestone.isCurrent && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-foreground mt-2 flex-shrink-0" />
+                )}
+                <span className={`text-sm ${milestone.isCurrent ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>
+                  {milestone.period}
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Key achievements summary */}
-        <div className="mt-20 pt-12 border-t border-border">
-          <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-8">
-            Key Achievements
-          </p>
-          <div className="grid sm:grid-cols-3 gap-8">
-            {[
-              { metric: "M&A Integration", desc: "Successfully integrated acquired portfolios" },
-              { metric: "Analytics Automation", desc: "60% reduction in reporting cycles" },
-              { metric: "Systems Deployment", desc: "Enterprise risk platforms across markets" }
-            ].map((item, i) => (
-              <div key={i} className="text-center sm:text-left">
-                <p className="font-display text-lg font-semibold text-foreground mb-1">
-                  {item.metric}
+              {/* Content */}
+              <div>
+                <h3 className="text-lg font-medium text-foreground mb-1">
+                  {milestone.role}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {milestone.company}
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  {item.desc}
-                </p>
+
+                <ul className="space-y-1.5">
+                  {milestone.achievements.map((achievement, i) => (
+                    <li key={i} className="text-sm text-muted-foreground">
+                      {achievement}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
