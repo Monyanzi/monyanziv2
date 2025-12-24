@@ -7,60 +7,102 @@ const EngagementSection = () => {
 
   return (
     <>
-      <section id="contact" className="py-24 lg:py-32 bg-[hsl(160,45%,12%)] relative overflow-hidden">
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(160,45%,16%)] via-transparent to-[hsl(160,45%,10%)] pointer-events-none" />
+      <section id="contact" className="py-24 lg:py-32 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, hsl(140 18% 40%), hsl(140 18% 35%))' }}>
+        {/* Organic floating shapes */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div
+            className="absolute -top-32 -right-32 w-[500px] h-[500px] opacity-10 animate-float-slow"
+            style={{
+              background: 'radial-gradient(circle, hsl(20 55% 53%) 0%, transparent 70%)',
+              borderRadius: '60% 40% 50% 50% / 50% 60% 40% 50%'
+            }}
+          />
+          <div
+            className="absolute -bottom-32 -left-32 w-[400px] h-[400px] opacity-8 animate-float-slower"
+            style={{
+              background: 'radial-gradient(circle, hsl(38 82% 50%) 0%, transparent 70%)',
+              borderRadius: '40% 60% 55% 45% / 55% 45% 55% 45%'
+            }}
+          />
+        </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative">
           <div className="max-w-3xl mx-auto">
             {/* Section header */}
             <div className="text-center mb-12">
-              <p className="font-mono text-xs tracking-[0.3em] text-white/50 uppercase mb-4 inline-block">
+              <p className="font-mono text-xs tracking-[0.3em] text-[hsl(20,55%,53%)] uppercase mb-4 inline-block">
                 Let's Talk
               </p>
               <h2 className="font-display text-4xl md:text-5xl font-semibold text-white mb-6">
                 Ready to Start?
               </h2>
-              <div className="w-16 h-px bg-[hsl(38,82%,50%)] mx-auto mb-6" />
+              <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[hsl(20,55%,53%)] to-transparent mx-auto mb-6" />
               <p className="text-lg text-white/70 text-center mx-auto">
                 Clear analysis. Actionable recommendations. Decisions you can defend.
               </p>
             </div>
 
-            {/* Contact CTA card */}
-            <div className="p-10 lg:p-12 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 text-center">
-              <p className="text-xl text-white font-display font-semibold mb-2 text-center">
-                Tell me about your situation
-              </p>
-              <p className="text-sm text-white/60 mb-8 text-center">
-                Share your situation. I'll be in touch.
-              </p>
+            {/* Contact CTA card - enhanced with gradient border */}
+            <div className="p-10 lg:p-14 rounded-3xl relative overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))',
+                backdropFilter: 'blur(20px)'
+              }}>
+              {/* Gradient border effect */}
+              <div className="absolute inset-0 rounded-3xl p-[1px] pointer-events-none"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(140 18% 30%), hsl(20 55% 53%), hsl(38 82% 50%))',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude'
+                }} />
 
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center gap-3 bg-[hsl(38,82%,50%)] text-[hsl(160,45%,10%)] font-semibold tracking-wide uppercase text-sm px-10 py-5 rounded-full transition-all duration-300 hover:bg-[hsl(38,82%,55%)] hover:scale-[1.02] hover:shadow-xl"
-              >
-                Let's Talk
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              {/* Accent glow */}
+              <div className="absolute top-0 right-0 w-48 h-48 opacity-20 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle, hsl(38 82% 50%) 0%, transparent 70%)',
+                  borderRadius: '0 1.5rem 0 100%'
+                }} />
 
-              <p className="text-xs text-white/40 mt-6 text-center">
-                Or email directly: <a href="mailto:moses.k.nyanzi@gmail.com" className="text-white/70 hover:text-[hsl(38,82%,50%)] transition-colors">moses.k.nyanzi@gmail.com</a>
-              </p>
+              <div className="relative text-center">
+                <p className="text-xl text-white font-display font-semibold mb-2 text-center">
+                  Describe Your Challenge
+                </p>
+                <p className="text-sm text-white/60 mb-8 text-center">
+                  30-second diagnostic. Structured response to follow.
+                </p>
+
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="relative inline-flex items-center gap-3 font-semibold tracking-wide uppercase text-sm px-12 py-5 rounded-full transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_20px_50px_-12px_hsl(20,55%,53%,0.5)] group/btn overflow-hidden"
+                  style={{ background: 'linear-gradient(135deg, hsl(20 55% 53%), hsl(38 82% 50%))' }}
+                >
+                  {/* Shimmer effect */}
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 ease-in-out" />
+                  <span className="relative text-white">Let's Talk</span>
+                  <ArrowRight className="relative w-4 h-4 text-white group-hover/btn:translate-x-1 transition-transform duration-300" />
+                </button>
+
+                <p className="text-xs text-white/60 mt-8 text-center">
+                  Or email directly: <a href="mailto:moses.k.nyanzi@gmail.com" className="text-white/80 hover:text-[hsl(20,55%,53%)] transition-colors underline underline-offset-2">moses.k.nyanzi@gmail.com</a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Footer */}
+        {/* Footer - enhanced with organic styling */}
         <footer className="mt-24 pt-12 border-t border-white/10">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               {/* Brand column */}
               <div>
-                <p className="font-display text-xl font-semibold text-white">
+                <p className="font-display text-2xl font-semibold text-white">
                   Moses Nyanzi
                 </p>
-                <p className="text-sm text-[hsl(38,82%,50%)] mt-1">
+                <p className="text-sm mt-1"
+                  style={{ background: 'linear-gradient(135deg, hsl(38 82% 50%), hsl(20 55% 53%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                   Strategy. Logic. Results.
                 </p>
                 <p className="text-xs text-white/50 mt-4 max-w-xs">
@@ -70,34 +112,43 @@ const EngagementSection = () => {
                   href="https://www.linkedin.com/in/moses-nyanzi/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-[hsl(38,82%,50%)] transition-colors mt-4"
+                  className="inline-flex items-center gap-2 text-sm text-white/75 hover:text-[hsl(20,55%,53%)] transition-colors mt-4 group"
                 >
-                  <Linkedin className="w-4 h-4" />
+                  <Linkedin className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   LinkedIn
                 </a>
               </div>
 
               {/* Credentials column */}
               <div>
-                <p className="text-xs font-mono tracking-[0.2em] uppercase text-white/40 mb-4">
+                <p className="text-xs font-mono tracking-[0.2em] uppercase text-[hsl(20,55%,53%)] mb-4">
                   Credentials
                 </p>
-                <ul className="space-y-2 text-sm text-white/70">
-                  <li>Actuary</li>
-                  <li>Executive MBA</li>
-                  <li>$100M+ Portfolios Managed</li>
+                <ul className="space-y-2 text-sm text-white/80">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'linear-gradient(135deg, hsl(140 18% 30%), hsl(20 55% 53%))' }} />
+                    Actuary
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'linear-gradient(135deg, hsl(20 55% 53%), hsl(38 82% 50%))' }} />
+                    Executive MBA
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'linear-gradient(135deg, hsl(38 82% 50%), hsl(140 18% 30%))' }} />
+                    $100M+ Portfolios Managed
+                  </li>
                 </ul>
               </div>
 
               {/* Quick links column */}
               <div>
-                <p className="text-xs font-mono tracking-[0.2em] uppercase text-white/40 mb-4">
+                <p className="text-xs font-mono tracking-[0.2em] uppercase text-[hsl(20,55%,53%)] mb-4">
                   Quick Links
                 </p>
-                <div className="flex flex-col gap-2 text-sm text-white/70">
-                  <a href="#about" className="hover:text-[hsl(38,82%,50%)] transition-colors">Who You Work With</a>
-                  <a href="#expertise" className="hover:text-[hsl(38,82%,50%)] transition-colors">Expertise</a>
-                  <a href="#proof" className="hover:text-[hsl(38,82%,50%)] transition-colors">Track Record</a>
+                <div className="flex flex-col gap-2 text-sm text-white/80">
+                  <a href="#about" className="hover:text-[hsl(20,55%,53%)] transition-colors hover:translate-x-1 transform inline-block">Who You Work With</a>
+                  <a href="#expertise" className="hover:text-[hsl(20,55%,53%)] transition-colors hover:translate-x-1 transform inline-block">Expertise</a>
+                  <a href="#proof" className="hover:text-[hsl(20,55%,53%)] transition-colors hover:translate-x-1 transform inline-block">Track Record</a>
                 </div>
               </div>
             </div>

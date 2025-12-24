@@ -28,15 +28,15 @@ const achievements: Achievement[] = [
     },
     {
         headline: "M&A Ready",
-        description: "INSEAD-trained M&A analysis: Cash Flow Valuation, capital structure review, and risk assessment",
-        detail: "Enhanced deal structuring through actuarial lens",
-        context: "INSEAD GEMBA coursework + industry application"
+        description: "Delivered cash flow valuations and capital structure analysis for corporate transactions",
+        detail: "Deal structuring informed by actuarial risk quantification",
+        context: "Financial services M&A advisory"
     },
     {
-        headline: "AI Strategy Trained",
-        description: "INSEAD GenAI for Business: Framework for evaluating and deploying AI in enterprise contexts",
-        detail: "Identifying where AI adds value vs. hype",
-        context: "INSEAD Executive Education"
+        headline: "AI That Delivers",
+        description: "Built and deployed automation solutions that replaced manual processes with working systems",
+        detail: "Practical AI implementation, not just strategy decks",
+        context: "Enterprise automation projects"
     }
 ];
 
@@ -53,13 +53,13 @@ const ProofSection = () => {
             <div className="container mx-auto px-6 lg:px-12">
                 {/* Section header */}
                 <div className="text-center mb-16">
-                    <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-4 mx-auto w-fit">
+                    <p className="text-xs font-medium tracking-[0.2em] uppercase text-[hsl(20,55%,53%)] mb-4 mx-auto w-fit">
                         Why Clients Trust My Judgement
                     </p>
                     <h2 className="font-display text-3xl lg:text-4xl font-semibold tracking-tight text-foreground mb-6">
                         Results I've Delivered
                     </h2>
-                    <div className="w-12 h-px bg-foreground/20 mx-auto" />
+                    <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[hsl(20,55%,53%)] to-transparent mx-auto" />
                 </div>
 
                 {/* Achievement Cards - Top Row (3 cards) */}
@@ -67,11 +67,12 @@ const ProofSection = () => {
                     {achievements.slice(0, 3).map((achievement, index) => (
                         <div
                             key={achievement.headline}
-                            className={`group p-8 rounded-2xl border bg-card border-border hover:border-foreground/20 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                            className={`group p-8 rounded-2xl border bg-card border-border gradient-border-top hover:border-[hsl(20,55%,53%)]/30 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 cursor-default ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                                 }`}
                             style={{ transitionDelay: `${index * 100}ms` }}
                         >
-                            <div className="text-3xl font-display font-bold text-[hsl(38,82%,50%)] mb-4">
+                            <div className="text-3xl font-display font-bold mb-4 group-hover:scale-105 transition-transform duration-300"
+                                style={{ background: 'linear-gradient(135deg, hsl(38 82% 50%), hsl(20 55% 53%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                                 {achievement.headline}
                             </div>
                             <p className="text-sm text-foreground font-medium mb-3 leading-relaxed">
@@ -80,7 +81,7 @@ const ProofSection = () => {
                             <p className="text-xs text-muted-foreground mb-4">
                                 {achievement.detail}
                             </p>
-                            <p className="text-xs text-muted-foreground/60 italic">
+                            <p className="text-xs text-muted-foreground italic">
                                 {achievement.context}
                             </p>
                         </div>
@@ -92,11 +93,12 @@ const ProofSection = () => {
                     {achievements.slice(3).map((achievement, index) => (
                         <div
                             key={achievement.headline}
-                            className={`group p-8 rounded-2xl border bg-card border-border hover:border-foreground/20 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                            className={`group p-8 rounded-2xl border bg-card border-border gradient-border-top hover:border-[hsl(20,55%,53%)]/30 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 cursor-default ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                                 }`}
                             style={{ transitionDelay: `${(index + 3) * 100}ms` }}
                         >
-                            <div className="text-3xl font-display font-bold text-[hsl(38,82%,50%)] mb-4">
+                            <div className="text-3xl font-display font-bold mb-4 group-hover:scale-105 transition-transform duration-300"
+                                style={{ background: 'linear-gradient(135deg, hsl(38 82% 50%), hsl(20 55% 53%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                                 {achievement.headline}
                             </div>
                             <p className="text-sm text-foreground font-medium mb-3 leading-relaxed">
@@ -105,7 +107,7 @@ const ProofSection = () => {
                             <p className="text-xs text-muted-foreground mb-4">
                                 {achievement.detail}
                             </p>
-                            <p className="text-xs text-muted-foreground/60 italic">
+                            <p className="text-xs text-muted-foreground italic">
                                 {achievement.context}
                             </p>
                         </div>
@@ -113,7 +115,7 @@ const ProofSection = () => {
                 </div>
 
                 {/* Context footer */}
-                <p className="text-center text-xs text-muted-foreground/60 mt-8 italic">
+                <p className="text-center text-xs text-muted-foreground mt-8 italic">
                     Results from leadership roles and independent consulting. Client details confidential.
                 </p>
             </div>
@@ -122,3 +124,4 @@ const ProofSection = () => {
 };
 
 export default ProofSection;
+

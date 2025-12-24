@@ -31,28 +31,61 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section id="about" className="py-24 lg:py-32 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section id="about" className="py-28 lg:py-36 bg-background relative overflow-hidden">
+      {/* Organic floating shapes */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute -top-20 -left-20 w-[400px] h-[400px] opacity-[0.04] animate-float-slow"
+          style={{
+            background: 'radial-gradient(circle, hsl(140 18% 30%) 0%, transparent 70%)',
+            borderRadius: '60% 40% 50% 50% / 50% 60% 40% 50%'
+          }}
+        />
+        <div
+          className="absolute bottom-0 right-0 w-[350px] h-[350px] opacity-[0.05] animate-float-medium"
+          style={{
+            background: 'radial-gradient(circle, hsl(20 55% 53%) 0%, transparent 70%)',
+            borderRadius: '40% 60% 55% 45% / 55% 45% 55% 45%'
+          }}
+        />
+        {/* Subtle dot texture */}
+        <div
+          className="absolute inset-0 opacity-[0.012]"
+          style={{
+            backgroundImage: `radial-gradient(hsl(210 55% 12%) 1px, transparent 1px)`,
+            backgroundSize: '32px 32px'
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-6 lg:px-12 relative">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground uppercase mb-4 mx-auto w-fit">
+        <div className="text-center mb-20">
+          <p className="text-xs font-medium tracking-[0.3em] text-[hsl(20,55%,53%)] uppercase mb-5 mx-auto w-fit">
             Who You Work With
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground mb-6">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground mb-8 tracking-tight">
             Your Advisor
           </h2>
-          <div className="w-16 h-px bg-[hsl(38,82%,50%)] mx-auto" />
+          <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[hsl(20,55%,53%)] to-transparent mx-auto" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left column: What You Get + How I Deliver */}
           <div className={`space-y-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             {/* What You Get card */}
-            <div className="p-8 rounded-2xl bg-[hsl(160,15%,96%)] border border-border">
-              <h3 className="text-xl font-display font-semibold text-foreground mb-4 flex items-center gap-3">
-                <span className="text-[hsl(38,82%,50%)]">◈</span>
-                What You Get
-              </h3>
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-[hsl(40,35%,97%)] to-white border border-border gradient-border-top hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group cursor-default">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                  style={{ background: 'linear-gradient(135deg, hsl(140 18% 30%), hsl(38 82% 50%))' }}>
+                  <span className="text-xl text-white">◈</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-display font-semibold text-foreground">
+                    What You Get
+                  </h3>
+                </div>
+              </div>
               <p className="text-muted-foreground leading-relaxed">
                 Capital strategy, M&A due diligence, portfolio stress-testing, and pricing models.
                 Clear analysis. Fast turnaround. Decisions you can defend.
@@ -60,15 +93,23 @@ const AboutSection = () => {
             </div>
 
             {/* How I Deliver card */}
-            <div className="p-8 rounded-2xl bg-white border border-border hover:shadow-lg transition-all duration-300">
-              <h3 className="text-xl font-display font-semibold text-foreground mb-6 flex items-center gap-3">
-                <span className="text-[hsl(38,82%,50%)]">↗</span>
-                How I Deliver
-              </h3>
+            <div className="p-8 rounded-2xl bg-white border border-border hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group cursor-default">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                  style={{ background: 'linear-gradient(135deg, hsl(20 55% 53%), hsl(38 82% 50%))' }}>
+                  <span className="text-xl text-white">↗</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-display font-semibold text-foreground">
+                    How I Deliver
+                  </h3>
+                </div>
+              </div>
               <ul className="space-y-4">
                 {deliveryPoints.map((point, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-[hsl(38,82%,50%)] mt-2 flex-shrink-0" />
+                  <li key={index} className="flex items-start gap-3 group/item">
+                    <span className="w-2 h-2 rounded-full mt-2 flex-shrink-0 group-hover/item:scale-125 transition-transform"
+                      style={{ background: 'linear-gradient(135deg, hsl(140 18% 30%), hsl(20 55% 53%))' }} />
                     <div>
                       <strong className="text-foreground">{point.title}:</strong>
                       <span className="text-muted-foreground ml-1">{point.description}</span>
@@ -81,27 +122,42 @@ const AboutSection = () => {
 
           {/* Right column: Credibility + Services */}
           <div className={`space-y-8 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            {/* Credibility card */}
-            <div className="p-8 rounded-2xl bg-[hsl(160,45%,12%)] text-white">
-              <h3 className="text-xl font-display font-semibold mb-4 flex items-center gap-3">
-                <span className="text-[hsl(38,82%,50%)]">∑</span>
-                Why I'm Credible
-              </h3>
-              <p className="text-white/80 leading-relaxed mb-6">
-                Actuary with an MBA. I work at the intersection of
-                investment analysis, risk quantification, capital allocation, and technology, ensuring
-                your decisions are disciplined, data-driven, and defensible to your stakeholders.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 rounded-full bg-white/10 text-sm text-white/90">Actuary</span>
-                <span className="px-4 py-2 rounded-full bg-white/10 text-sm text-white/90">Executive MBA</span>
-                <span className="px-4 py-2 rounded-full bg-[hsl(38,82%,50%)]/20 text-sm text-[hsl(38,82%,50%)]">$100M+ Managed</span>
+            {/* Credibility card - enhanced with gradient overlay */}
+            <div className="p-8 rounded-2xl text-white relative overflow-hidden group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-default"
+              style={{ background: 'linear-gradient(135deg, hsl(140 18% 40%), hsl(140 18% 35%))' }}>
+              {/* Subtle gradient accent */}
+              <div className="absolute top-0 right-0 w-48 h-48 opacity-20 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle, hsl(20 55% 53%) 0%, transparent 70%)',
+                  borderRadius: '0 0 0 100%'
+                }} />
+              <div className="relative">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                    style={{ background: 'linear-gradient(135deg, hsl(38 82% 50%), hsl(20 55% 53%))' }}>
+                    <span className="text-xl text-white">∑</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-display font-semibold">
+                      Why I'm Credible
+                    </h3>
+                  </div>
+                </div>
+                <p className="text-white/80 leading-relaxed mb-6">
+                  I don't just advise. I <em className="text-white not-italic font-medium">execute</em>. Actuary training means I build the models myself: valuations, stress tests, pricing frameworks. MBA means I translate them into strategy your board will back. You get rigorous analysis <em className="text-white not-italic">and</em> clear recommendations from one advisor.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <span className="px-4 py-2 rounded-full bg-white/10 text-sm text-white/90 hover:bg-white/20 transition-colors cursor-default">Actuary</span>
+                  <span className="px-4 py-2 rounded-full bg-white/10 text-sm text-white/90 hover:bg-white/20 transition-colors cursor-default">Executive MBA</span>
+                  <span className="px-4 py-2 rounded-full text-sm hover:scale-105 transition-transform cursor-default"
+                    style={{ background: 'linear-gradient(135deg, hsl(38 82% 50% / 0.3), hsl(20 55% 53% / 0.3))', color: 'hsl(38 82% 60%)' }}>$100M+ Managed</span>
+                </div>
               </div>
             </div>
 
-            {/* Services */}
-            <div className="p-8 rounded-2xl border border-border bg-white">
-              <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground mb-6">
+            {/* Services - enhanced with hover effects */}
+            <div className="p-8 rounded-2xl border border-border bg-white gradient-border-top hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-default">
+              <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-[hsl(20,55%,53%)] mb-6">
                 Where Clients Bring Me In
               </h3>
               <div className="grid grid-cols-2 gap-3">
@@ -109,7 +165,7 @@ const AboutSection = () => {
                   <a
                     key={service}
                     href={`mailto:moses.k.nyanzi@gmail.com?subject=Enquiry: ${service}`}
-                    className="p-4 rounded-xl border border-border text-sm text-foreground hover:border-[hsl(38,82%,50%)]/50 hover:bg-[hsl(38,82%,50%)]/5 transition-all duration-300 text-center"
+                    className="p-4 rounded-xl border border-border text-sm text-foreground hover:border-[hsl(20,55%,53%)]/50 hover:bg-gradient-to-br hover:from-[hsl(20,55%,53%)]/5 hover:to-[hsl(38,82%,50%)]/5 hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-center"
                   >
                     {service}
                   </a>

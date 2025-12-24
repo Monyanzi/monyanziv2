@@ -84,20 +84,29 @@ const ExpertiseSection = () => {
   }, []);
 
   return (
-    <section id="expertise" className="py-24 lg:py-32 bg-[hsl(160,45%,12%)] relative overflow-hidden">
+    <section id="expertise" className="py-28 lg:py-36 bg-[hsl(210,55%,30%)] relative overflow-hidden">
       {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[hsl(160,45%,10%)/20] to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(210,60%,25%)] via-transparent to-[hsl(210,50%,35%)] opacity-50 pointer-events-none" />
+
+      {/* Subtle dot texture */}
+      <div
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(hsl(40 35% 98%) 1px, transparent 1px)`,
+          backgroundSize: '24px 24px'
+        }}
+      />
 
       <div className="container mx-auto px-6 lg:px-12 relative">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <p className="font-mono text-xs tracking-[0.3em] text-white/50 uppercase mb-4 mx-auto w-fit">
+        <div className="text-center mb-20">
+          <p className="text-xs font-medium tracking-[0.3em] text-white/40 uppercase mb-5 mx-auto w-fit">
             What I Bring Into the Room
           </p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-semibold mb-6">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-semibold mb-8 tracking-tight">
             Expertise That Delivers
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-white/50 max-w-2xl mx-auto font-light leading-relaxed">
             Spanning strategy, automation, risk, and analytics: each grounded in real-world execution.
           </p>
         </div>
@@ -107,24 +116,24 @@ const ExpertiseSection = () => {
           {expertiseCategories.map((category, index) => (
             <div
               key={category.title}
-              className={`group p-8 rounded-2xl border bg-white/5 border-white/10 hover:border-white/30 hover:bg-white/10 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${visibleCards[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`group p-8 rounded-2xl border bg-white/5 border-white/10 hover:border-[hsl(38,82%,50%)]/50 hover:bg-white/[0.12] transition-all duration-200 ease-out transform hover:-translate-y-3 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] will-change-transform ${visibleCards[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              style={{ transitionDelay: visibleCards[index] ? '0ms' : `${index * 100}ms` }}
             >
               <div className="flex items-start gap-4">
-                <span className="text-3xl text-[hsl(38,82%,50%)] group-hover:scale-110 transition-transform duration-300">
+                <span className="text-3xl text-[hsl(38,82%,50%)] group-hover:scale-125 transition-transform duration-200 ease-out">
                   {category.icon}
                 </span>
                 <div className="flex-1">
-                  <h3 className="font-display text-xl text-white font-semibold mb-2">
+                  <h3 className="font-display text-xl text-white font-semibold mb-2 group-hover:text-[hsl(38,82%,60%)] transition-colors duration-200">
                     {category.title}
                   </h3>
-                  <p className="text-sm text-white/50 mb-4">
+                  <p className="text-sm text-white/50 mb-4 group-hover:text-white/70 transition-colors duration-200">
                     {category.description}
                   </p>
-                  <ul className="space-y-1.5">
+                  <ul className="space-y-2">
                     {category.skills.map((skill, i) => (
-                      <li key={i} className="text-xs text-white/40 leading-relaxed">
+                      <li key={i} className="text-sm text-white/50 leading-relaxed group-hover:text-white/60 transition-colors duration-200">
                         {skill}
                       </li>
                     ))}

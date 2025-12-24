@@ -52,7 +52,7 @@ const ValuePropositionSection = () => {
       <div className="container mx-auto px-6 lg:px-12 relative">
         {/* Section header */}
         <div className="text-center mb-16">
-          <p className="font-mono text-xs tracking-[0.3em] text-[hsl(160,10%,50%)] uppercase mb-4 inline-block">
+          <p className="font-mono text-xs tracking-[0.3em] text-[hsl(20,55%,53%)] uppercase mb-4 inline-block">
             Where Clients Bring Me In
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground mb-6">
@@ -68,14 +68,18 @@ const ValuePropositionSection = () => {
           {valuePropositions.map((prop, index) => (
             <div
               key={index}
-              className={`group p-8 rounded-2xl bg-white border border-border hover:border-[hsl(38,82%,50%)]/30 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${visibleCards[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`group p-8 rounded-2xl bg-white border border-border hover:border-[hsl(20,55%,53%)]/30 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${visibleCards[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="flex items-start gap-4 mb-4">
-                <span className="text-2xl text-[hsl(38,82%,50%)] group-hover:scale-110 transition-transform duration-300">
-                  {prop.icon}
-                </span>
+                {/* Gradient icon background like HTML design */}
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                  style={{ background: 'linear-gradient(135deg, hsl(140 18% 30%), hsl(20 55% 53%))' }}>
+                  <span className="text-2xl text-white">
+                    {prop.icon}
+                  </span>
+                </div>
                 <span className="text-xs font-mono text-muted-foreground/50">
                   0{index + 1}
                 </span>

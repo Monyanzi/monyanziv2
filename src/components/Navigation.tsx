@@ -11,11 +11,17 @@ const navItems = [
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map(item => item.href.slice(1));
       const scrollPosition = window.scrollY + 100;
+
+      // Calculate scroll progress
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(Math.min(progress, 100));
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
@@ -37,24 +43,35 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
+        {/* Scroll progress indicator */}
+        <div
+          className="absolute bottom-0 left-0 h-[2px] bg-[hsl(38,82%,50%)] transition-all duration-150 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            <a href="#" className="font-display text-xl lg:text-2xl font-semibold tracking-tight text-foreground">
+            <a href="#" className="font-display text-2xl lg:text-3xl font-semibold tracking-tight text-foreground hover:text-[hsl(38,82%,50%)] transition-colors duration-300">
               MN
             </a>
 
-            <div className="hidden lg:flex items-center gap-10">
+            <div className="hidden lg:flex items-center gap-12">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className={`text-sm transition-colors duration-300 ${activeSection === item.href.slice(1)
+                  className={`text-sm tracking-wide transition-colors duration-300 relative group ${activeSection === item.href.slice(1)
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                     }`}
                 >
                   {item.label}
+                  {/* Animated underline */}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px bg-[hsl(38,82%,50%)] transition-all duration-300 ${activeSection === item.href.slice(1) ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`}
+                  />
                 </a>
               ))}
             </div>
@@ -62,7 +79,7 @@ const Navigation = () => {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(true)}
-              className="lg:hidden p-2 -mr-2 text-foreground"
+              className="lg:hidden p-2 -mr-2 text-foreground hover:text-[hsl(38,82%,50%)] transition-colors duration-300"
               aria-label="Open menu"
             >
               <svg
