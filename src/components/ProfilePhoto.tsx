@@ -1,29 +1,33 @@
 const ProfilePhoto = () => {
   return (
-    <div className="relative animate-slide-in-right group">
-      {/* Decorative frame - behind */}
-      <div className="absolute -bottom-6 -right-6 w-full h-full border border-foreground/10 transition-all duration-700 group-hover:border-foreground/20" />
-      
-      {/* Main photo container */}
-      <div className="relative w-72 h-72 lg:w-[420px] lg:h-[420px] bg-muted overflow-hidden">
-        {/* Refined gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-muted via-background to-muted" />
+    <div className="relative animate-slide-in-right">
+      {/* Main photo container - clean, minimal frame */}
+      <div className="relative w-72 h-72 lg:w-96 lg:h-96 bg-slate-100 border border-border overflow-hidden">
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200" />
         
-        {/* Elegant monogram */}
+        {/* Professional silhouette placeholder */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative">
-            <span className="font-display text-8xl lg:text-[140px] font-semibold text-foreground/[0.04] select-none">
-              MN
-            </span>
-            {/* Subtle accent line */}
-            <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-12 h-px bg-foreground/10" />
-          </div>
+          <svg
+            viewBox="0 0 100 100"
+            className="w-2/3 h-2/3 text-slate-300"
+            fill="currentColor"
+          >
+            <circle cx="50" cy="32" r="18" />
+            <ellipse cx="50" cy="80" rx="28" ry="22" />
+          </svg>
         </div>
-        
-        {/* Corner accents */}
-        <div className="absolute top-6 left-6 w-8 h-8 border-l border-t border-foreground/10" />
-        <div className="absolute bottom-6 right-6 w-8 h-8 border-r border-b border-foreground/10" />
+
+        {/* Initials overlay */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="font-display text-7xl lg:text-8xl font-semibold text-foreground/10">
+            MN
+          </span>
+        </div>
       </div>
+
+      {/* Subtle decorative element */}
+      <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-border bg-background" />
     </div>
   );
 };

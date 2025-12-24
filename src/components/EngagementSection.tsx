@@ -52,10 +52,10 @@ const EngagementSection = () => {
           </div>
 
           {/* Contact form */}
-          <form onSubmit={handleSubmit} className="bg-card border border-border/60 p-8 lg:p-12 shadow-sm">
+          <form onSubmit={handleSubmit} className="executive-card p-8 lg:p-12">
             <div className="grid sm:grid-cols-2 gap-6 mb-6">
               <div>
-                <label htmlFor="name" className="block text-xs font-medium text-foreground mb-3 tracking-wide uppercase">
+                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                   Name
                 </label>
                 <input
@@ -65,12 +65,12 @@ const EngagementSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3.5 bg-background border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground/40 focus:ring-1 focus:ring-foreground/10 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-xs font-medium text-foreground mb-3 tracking-wide uppercase">
+                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                   Email
                 </label>
                 <input
@@ -80,42 +80,35 @@ const EngagementSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3.5 bg-background border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground/40 focus:ring-1 focus:ring-foreground/10 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors"
                   placeholder="your@email.com"
                 />
               </div>
             </div>
 
             <div className="mb-6">
-              <label htmlFor="service" className="block text-xs font-medium text-foreground mb-3 tracking-wide uppercase">
+              <label htmlFor="service" className="block text-sm font-medium text-foreground mb-2">
                 Service Inquiry
               </label>
-              <div className="relative">
-                <select
-                  id="service"
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3.5 bg-background border border-border text-foreground focus:outline-none focus:border-foreground/40 focus:ring-1 focus:ring-foreground/10 transition-all duration-200 appearance-none cursor-pointer pr-10"
-                >
-                  <option value="" disabled>Select a service</option>
-                  {serviceOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="text-muted-foreground">
-                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-              </div>
+              <select
+                id="service"
+                name="service"
+                value={formData.service}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-background border border-border text-foreground focus:outline-none focus:border-foreground/50 transition-colors appearance-none cursor-pointer"
+              >
+                <option value="" disabled>Select a service</option>
+                {serviceOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="mb-8">
-              <label htmlFor="message" className="block text-xs font-medium text-foreground mb-3 tracking-wide uppercase">
+              <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                 Message
               </label>
               <textarea
@@ -125,40 +118,40 @@ const EngagementSection = () => {
                 onChange={handleChange}
                 rows={5}
                 required
-                className="w-full px-4 py-3.5 bg-background border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground/40 focus:ring-1 focus:ring-foreground/10 transition-all duration-200 resize-none"
+                className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors resize-none"
                 placeholder="Describe your project or inquiry..."
               />
             </div>
 
-            <Button type="submit" variant="executive" size="xl" className="w-full group shadow-lg shadow-foreground/5 hover:shadow-xl transition-shadow duration-300">
+            <Button type="submit" variant="executive" size="xl" className="w-full group">
               Schedule Consultation
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </form>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="mt-32 pt-16 border-t border-border bg-background">
+      <footer className="mt-24 pt-12 border-t border-border">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
               <p className="font-display text-xl font-semibold text-foreground">
                 Moses Nyanzi
               </p>
-              <p className="text-sm text-muted-foreground mt-2">
+              <p className="text-sm text-muted-foreground mt-1">
                 Actuarial Strategist & Capital Risk Advisor
               </p>
             </div>
             <div className="flex items-center gap-8 text-sm text-muted-foreground">
-              <a href="#about" className="hover:text-foreground transition-colors duration-200">About</a>
-              <a href="#expertise" className="hover:text-foreground transition-colors duration-200">Expertise</a>
-              <a href="#track-record" className="hover:text-foreground transition-colors duration-200">Track Record</a>
-              <a href="#contact" className="hover:text-foreground transition-colors duration-200">Contact</a>
+              <a href="#about" className="hover:text-foreground transition-colors">About</a>
+              <a href="#expertise" className="hover:text-foreground transition-colors">Expertise</a>
+              <a href="#track-record" className="hover:text-foreground transition-colors">Track Record</a>
+              <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-border/50 text-center">
-            <p className="text-xs text-muted-foreground/80">
+          <div className="mt-8 pt-8 border-t border-border text-center">
+            <p className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} Moses Nyanzi. All rights reserved.
             </p>
           </div>
