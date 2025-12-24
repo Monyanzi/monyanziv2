@@ -3,6 +3,7 @@ import { ArrowRight, MapPin, Linkedin } from "lucide-react";
 import CredentialCard from "./CredentialCard";
 import ProfilePhoto from "./ProfilePhoto";
 import DiagnosticFlow from "./DiagnosticFlow";
+import heroProfile from "../assets/hero-profile.jpg";
 
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,10 +32,16 @@ const HeroSection = () => {
                 </div>
 
                 <div className="w-12 h-px bg-foreground/20" />
+              </div>
 
-                {/* Mobile Profile Photo - shown only on small screens */}
-                <div className="lg:hidden w-48 h-48 mx-auto mt-4">
-                  <ProfilePhoto />
+              {/* Mobile Profile Photo - shown only on small screens */}
+              <div className="lg:hidden flex justify-center animate-fade-in" style={{ animationDelay: '150ms' }}>
+                <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shadow-lg border border-border">
+                  <img
+                    src={heroProfile}
+                    alt="Moses Nyanzi"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
