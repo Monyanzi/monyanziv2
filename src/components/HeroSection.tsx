@@ -6,15 +6,18 @@ import ProfilePhoto from "./ProfilePhoto";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-background overflow-hidden">
-      {/* Subtle grid pattern */}
+      {/* Refined grid pattern */}
       <div 
-        className="absolute inset-0 opacity-[0.015]" 
+        className="absolute inset-0 opacity-[0.02]" 
         style={{
           backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
                             linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px'
+          backgroundSize: '100px 100px'
         }} 
       />
+      
+      {/* Subtle radial gradient for depth */}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-muted/20" />
 
       <div className="container mx-auto px-6 lg:px-12 pt-32 lg:pt-40 pb-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
@@ -71,11 +74,11 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 pt-4 animate-fade-in-delay-3">
-              <Button variant="executive" size="xl" className="group">
+              <Button variant="executive" size="xl" className="group shadow-lg shadow-foreground/5 hover:shadow-xl hover:shadow-foreground/10 transition-shadow duration-300">
                 Engage for Consulting
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
-              <Button variant="executiveOutline" size="xl">
+              <Button variant="executiveOutline" size="xl" className="hover:bg-foreground/[0.03] transition-colors duration-300">
                 View Credentials
               </Button>
             </div>
