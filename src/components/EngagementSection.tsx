@@ -18,11 +18,16 @@ const EngagementSection = () => {
     service: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
+    setIsSubmitting(true);
+    // Simulate submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
     console.log("Form submitted:", formData);
+    setFormData({ name: "", email: "", service: "", message: "" });
+    setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -33,27 +38,26 @@ const EngagementSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-32 bg-muted/30">
+    <section id="contact" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           {/* Section header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-4">
-              Get in Touch
+              Contact
             </p>
-            <h2 className="font-display text-3xl lg:text-4xl font-semibold tracking-tight text-foreground mb-6">
+            <h2 className="font-display text-3xl lg:text-4xl font-semibold tracking-tight text-foreground mb-4">
               Ready to Engage
             </h2>
-            <div className="w-16 h-px bg-foreground/20 mx-auto mb-8" />
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Available for independent consulting engagements, strategic advisory, 
-              and capital strategy projects. Let's discuss how I can add value to your organization.
+            <div className="w-12 h-px bg-foreground/20 mx-auto mb-6" />
+            <p className="text-muted-foreground">
+              Available for consulting engagements and strategic advisory.
             </p>
           </div>
 
           {/* Contact form */}
-          <form onSubmit={handleSubmit} className="executive-card p-8 lg:p-12">
-            <div className="grid sm:grid-cols-2 gap-6 mb-6">
+          <form onSubmit={handleSubmit} className="border border-border p-8 lg:p-10">
+            <div className="grid sm:grid-cols-2 gap-5 mb-5">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                   Name
@@ -65,7 +69,7 @@ const EngagementSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors"
+                  className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground/40 transition-colors text-sm"
                   placeholder="Your name"
                 />
               </div>
@@ -80,15 +84,15 @@ const EngagementSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors"
+                  className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground/40 transition-colors text-sm"
                   placeholder="your@email.com"
                 />
               </div>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-5">
               <label htmlFor="service" className="block text-sm font-medium text-foreground mb-2">
-                Service Inquiry
+                Service
               </label>
               <select
                 id="service"
@@ -96,7 +100,7 @@ const EngagementSection = () => {
                 value={formData.service}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-background border border-border text-foreground focus:outline-none focus:border-foreground/50 transition-colors appearance-none cursor-pointer"
+                className="w-full px-4 py-3 bg-background border border-border text-foreground focus:outline-none focus:border-foreground/40 transition-colors appearance-none cursor-pointer text-sm"
               >
                 <option value="" disabled>Select a service</option>
                 {serviceOptions.map((option) => (
@@ -107,7 +111,7 @@ const EngagementSection = () => {
               </select>
             </div>
 
-            <div className="mb-8">
+            <div className="mb-6">
               <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                 Message
               </label>
@@ -116,16 +120,22 @@ const EngagementSection = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                rows={5}
+                rows={4}
                 required
-                className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/50 transition-colors resize-none"
-                placeholder="Describe your project or inquiry..."
+                className="w-full px-4 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground/40 transition-colors resize-none text-sm"
+                placeholder="Describe your project..."
               />
             </div>
 
-            <Button type="submit" variant="executive" size="xl" className="w-full group">
-              Schedule Consultation
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <Button 
+              type="submit" 
+              variant="executive" 
+              size="lg" 
+              className="w-full group"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Send Inquiry"}
+              {!isSubmitting && <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 transition-transform" />}
             </Button>
           </form>
         </div>
@@ -136,7 +146,7 @@ const EngagementSection = () => {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <p className="font-display text-xl font-semibold text-foreground">
+              <p className="font-display text-lg font-semibold text-foreground">
                 Moses Nyanzi
               </p>
               <p className="text-sm text-muted-foreground mt-1">
@@ -152,7 +162,7 @@ const EngagementSection = () => {
           </div>
           <div className="mt-8 pt-8 border-t border-border text-center">
             <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Moses Nyanzi. All rights reserved.
+              © {new Date().getFullYear()} Moses Nyanzi
             </p>
           </div>
         </div>

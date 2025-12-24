@@ -133,15 +133,14 @@
     @apply absolute bottom-0 left-0 w-12 h-px bg-foreground/20;
   }
 
-  /* Executive card style */
+  /* Executive card style - refined, no gimmicks */
   .executive-card {
-    @apply bg-card border border-border/60 shadow-sm;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    @apply bg-card border border-border;
+    transition: border-color 0.3s ease;
   }
 
   .executive-card:hover {
-    @apply border-border shadow-lg;
-    transform: translateY(-2px);
+    @apply border-foreground/20;
   }
 
   /* Gold accent text */

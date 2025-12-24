@@ -6,124 +6,101 @@ import ProfilePhoto from "./ProfilePhoto";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-background overflow-hidden">
-      {/* Subtle grid pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.015]" 
-        style={{
-          backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
-                            linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px'
-        }} 
-      />
-
-      <div className="container mx-auto px-6 lg:px-12 pt-32 lg:pt-40 pb-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+      <div className="container mx-auto px-6 lg:px-12 pt-28 lg:pt-36 pb-20 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left content */}
-          <div className="space-y-10">
+          <div className="space-y-8">
             {/* Positioning statement */}
-            <div className="space-y-6 animate-fade-in">
-              <p className="text-sm font-medium tracking-[0.2em] uppercase text-muted-foreground">
+            <div className="space-y-5 animate-fade-in">
+              <p className="text-xs font-medium tracking-[0.25em] uppercase text-muted-foreground">
                 Strategic Advisory
               </p>
               
-              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-foreground leading-[1.1]">
+              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-foreground leading-[1.05]">
                 Moses<br />
                 Nyanzi
               </h1>
 
-              <div className="w-16 h-px bg-foreground/20" />
+              <div className="w-12 h-px bg-foreground/20" />
             </div>
 
             {/* Professional title */}
-            <div className="space-y-4 animate-fade-in-delay-1">
-              <p className="text-xl lg:text-2xl text-foreground font-light leading-relaxed">
-                Actuarial Strategist & Capital Risk Advisor
+            <div className="space-y-4 animate-fade-in" style={{ animationDelay: '100ms' }}>
+              <p className="text-xl lg:text-2xl text-foreground font-light leading-snug">
+                Actuarial Strategist &<br className="hidden sm:block" /> Capital Risk Advisor
               </p>
-              <p className="text-base text-muted-foreground leading-relaxed max-w-lg">
-                Providing independent consulting in capital strategy, risk management, 
+              <p className="text-base text-muted-foreground leading-relaxed max-w-md">
+                Independent consulting in capital strategy, risk management, 
                 and portfolio optimization for global institutional clients.
               </p>
             </div>
 
             {/* Location & Availability */}
-            <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground animate-fade-in-delay-2">
+            <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: '200ms' }}>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                <span>Johannesburg, South Africa</span>
+                <span>Johannesburg</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="w-1.5 h-1.5 rounded-full bg-foreground/40" />
                 <span>Available for Engagements</span>
               </div>
             </div>
 
-            {/* Services offered */}
-            <div className="flex flex-wrap gap-3 animate-fade-in-delay-2">
-              {["Strategic Consulting", "Capital & Risk Advisory", "Portfolio Optimization"].map((service) => (
-                <span 
-                  key={service}
-                  className="px-4 py-2 text-xs font-medium tracking-wide uppercase border border-border text-muted-foreground"
-                >
-                  {service}
-                </span>
-              ))}
-            </div>
-
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4 animate-fade-in-delay-3">
-              <Button variant="executive" size="xl" className="group">
-                Engage for Consulting
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="flex flex-wrap gap-4 pt-2 animate-fade-in" style={{ animationDelay: '300ms' }}>
+              <Button variant="executive" size="lg" className="group" asChild>
+                <a href="#contact">
+                  Engage for Consulting
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 transition-transform" />
+                </a>
               </Button>
-              <Button variant="executiveOutline" size="xl">
-                View Credentials
+              <Button variant="executiveOutline" size="lg" asChild>
+                <a href="#about">Learn More</a>
               </Button>
             </div>
           </div>
 
-          {/* Right content - Photo */}
+          {/* Right content - Geometric composition */}
           <div className="flex justify-center lg:justify-end">
             <ProfilePhoto />
           </div>
         </div>
 
         {/* Credentials Section */}
-        <div className="mt-24 lg:mt-32">
-          <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-8 animate-fade-in-delay-3">
-            Professional Credentials
+        <div className="mt-20 lg:mt-28">
+          <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-8">
+            Credentials
           </p>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             <CredentialCard
               metric="8+"
               label="Years Experience"
               sublabel="Actuarial & Risk Strategy"
-              delay={400}
+              delay={100}
             />
             <CredentialCard
               metric="$100M+"
               label="Portfolios Managed"
               sublabel="Global Markets"
-              delay={500}
+              delay={200}
             />
             <CredentialCard
               metric="INSEAD"
               label="Executive MBA"
               sublabel="Class of 2026"
-              delay={600}
+              delay={300}
             />
             <CredentialCard
               metric="ASA"
               label="Associate Actuary"
               sublabel="Society of Actuaries"
-              delay={700}
+              delay={400}
             />
           </div>
         </div>
       </div>
-
-      {/* Bottom border accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-border" />
     </section>
   );
 };

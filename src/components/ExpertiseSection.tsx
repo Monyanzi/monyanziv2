@@ -4,9 +4,7 @@ const expertiseCategories = [
     skills: [
       "Reserving & IBNR Analysis",
       "Pricing & Product Development",
-      "Experience Studies",
       "IFRS 17 Implementation",
-      "Embedded Value Calculations",
       "Capital Modeling"
     ]
   },
@@ -14,10 +12,8 @@ const expertiseCategories = [
     title: "Financial",
     skills: [
       "Asset-Liability Management",
-      "Investment Strategy",
       "Portfolio Optimization",
       "Risk-Adjusted Returns",
-      "Capital Allocation",
       "Solvency Assessment"
     ]
   },
@@ -26,23 +22,27 @@ const expertiseCategories = [
     skills: [
       "M&A Due Diligence",
       "Market Entry Analysis",
-      "Business Case Development",
       "Regulatory Strategy",
-      "Growth Planning",
       "Stakeholder Management"
     ]
   },
   {
     title: "Technical",
     skills: [
-      "SQL & Database Design",
-      "Python (Pandas, NumPy)",
+      "SQL & Python",
       "Power BI & Visualization",
-      "Excel VBA & Macros",
       "Risk Management Systems",
       "Actuarial Software"
     ]
   }
+];
+
+const industries = [
+  "Life Insurance",
+  "Non-Life Insurance", 
+  "Reinsurance",
+  "Asset Management",
+  "Pension Funds"
 ];
 
 const ExpertiseSection = () => {
@@ -55,26 +55,26 @@ const ExpertiseSection = () => {
             Capabilities
           </p>
           <h2 className="font-display text-3xl lg:text-4xl font-semibold tracking-tight text-foreground mb-6">
-            Expertise Matrix
+            Expertise
           </h2>
-          <div className="w-16 h-px bg-foreground/20" />
+          <div className="w-12 h-px bg-foreground/20" />
         </div>
 
         {/* Skills grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
           {expertiseCategories.map((category, index) => (
             <div 
               key={index} 
-              className="bg-background p-8 lg:p-10"
+              className="bg-background p-8"
             >
-              <h3 className="font-display text-xl font-semibold text-foreground mb-6 pb-4 border-b border-border">
+              <h3 className="text-sm font-medium tracking-wide uppercase text-foreground mb-6">
                 {category.title}
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {category.skills.map((skill, i) => (
                   <li 
                     key={i} 
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    className="text-sm text-muted-foreground"
                   >
                     {skill}
                   </li>
@@ -85,22 +85,15 @@ const ExpertiseSection = () => {
         </div>
 
         {/* Industries served */}
-        <div className="mt-20 pt-12 border-t border-border">
-          <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-8">
-            Industries Served
+        <div className="mt-16 pt-12 border-t border-border">
+          <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-6">
+            Industries
           </p>
-          <div className="flex flex-wrap gap-4">
-            {[
-              "Life Insurance",
-              "Non-Life Insurance", 
-              "Reinsurance",
-              "Asset Management",
-              "Pension Funds",
-              "Financial Services"
-            ].map((industry, i) => (
+          <div className="flex flex-wrap gap-x-8 gap-y-2">
+            {industries.map((industry, i) => (
               <span 
                 key={i}
-                className="px-5 py-2.5 text-sm font-medium border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors duration-200"
+                className="text-sm text-muted-foreground"
               >
                 {industry}
               </span>
