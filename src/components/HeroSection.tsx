@@ -34,13 +34,13 @@ const HeroSection = () => {
                 <div className="w-12 h-px bg-foreground/20" />
               </div>
 
-              {/* Mobile Profile Photo - shown only on small screens */}
-              <div className="lg:hidden flex justify-center animate-fade-in" style={{ animationDelay: '150ms' }}>
-                <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-2xl overflow-hidden shadow-xl border border-border">
+              {/* Mobile Profile Photo - shown only on small screens, full image */}
+              <div className="lg:hidden flex justify-center animate-fade-in my-4" style={{ animationDelay: '150ms' }}>
+                <div className="w-full max-w-xs sm:max-w-sm rounded-2xl overflow-hidden shadow-xl border border-border">
                   <img
                     src={heroProfile}
                     alt="Moses Nyanzi"
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto object-contain"
                   />
                 </div>
               </div>
