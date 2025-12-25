@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 const services = [
   "Independent Consulting",
@@ -23,13 +23,6 @@ const deliveryPoints = [
 ];
 
 const AboutSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 200);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section id="about" className="py-28 lg:py-36 bg-background relative overflow-hidden">
       {/* Organic floating shapes */}
@@ -72,11 +65,18 @@ const AboutSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left column: What You Get + How I Deliver */}
-          <div className={`space-y-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="space-y-8">
             {/* What You Get card */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-[hsl(40,35%,97%)] to-white border border-border gradient-border-top hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group cursor-default">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              whileHover={{ y: -12, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="p-8 rounded-2xl bg-gradient-to-br from-[hsl(40,35%,97%)] to-white border border-border gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default will-change-transform group"
+            >
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200"
                   style={{ background: 'linear-gradient(135deg, hsl(140 18% 30%), hsl(38 82% 50%))' }}>
                   <span className="text-xl text-white">◈</span>
                 </div>
@@ -90,12 +90,19 @@ const AboutSection = () => {
                 Capital strategy, M&A due diligence, portfolio stress-testing, and pricing models.
                 Clear analysis. Fast turnaround. Decisions you can defend.
               </p>
-            </div>
+            </motion.div>
 
             {/* How I Deliver card */}
-            <div className="p-8 rounded-2xl bg-white border border-border hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group cursor-default">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
+              whileHover={{ y: -12, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="p-8 rounded-2xl bg-white border border-border hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default will-change-transform group"
+            >
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200"
                   style={{ background: 'linear-gradient(135deg, hsl(20 55% 53%), hsl(38 82% 50%))' }}>
                   <span className="text-xl text-white">↗</span>
                 </div>
@@ -117,14 +124,21 @@ const AboutSection = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right column: Credibility + Services */}
-          <div className={`space-y-8 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="space-y-8">
             {/* Credibility card - enhanced with gradient overlay */}
-            <div className="p-8 rounded-2xl text-white relative overflow-hidden group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-default"
-              style={{ background: 'linear-gradient(135deg, hsl(140 18% 40%), hsl(140 18% 35%))' }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.2, delay: 0.2, ease: "easeOut" }}
+              whileHover={{ y: -12, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="p-8 rounded-2xl text-white relative overflow-hidden hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] cursor-default will-change-transform group"
+              style={{ background: 'linear-gradient(135deg, hsl(140 18% 40%), hsl(140 18% 35%))' }}
+            >
               {/* Subtle gradient accent */}
               <div className="absolute top-0 right-0 w-48 h-48 opacity-20 pointer-events-none"
                 style={{
@@ -133,7 +147,7 @@ const AboutSection = () => {
                 }} />
               <div className="relative">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200"
                     style={{ background: 'linear-gradient(135deg, hsl(38 82% 50%), hsl(20 55% 53%))' }}>
                     <span className="text-xl text-white">∑</span>
                   </div>
@@ -153,10 +167,17 @@ const AboutSection = () => {
                     style={{ background: 'linear-gradient(135deg, hsl(38 82% 50% / 0.3), hsl(20 55% 53% / 0.3))', color: 'hsl(38 82% 60%)' }}>$100M+ Managed</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Services - enhanced with hover effects */}
-            <div className="p-8 rounded-2xl border border-border bg-white gradient-border-top hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-default">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.2, delay: 0.3, ease: "easeOut" }}
+              whileHover={{ y: -12, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="p-8 rounded-2xl border border-border bg-white gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default will-change-transform"
+            >
               <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-[hsl(20,55%,53%)] mb-6">
                 Where Clients Bring Me In
               </h3>
@@ -165,13 +186,13 @@ const AboutSection = () => {
                   <a
                     key={service}
                     href={`mailto:moses.k.nyanzi@gmail.com?subject=Enquiry: ${service}`}
-                    className="p-4 rounded-xl border border-border text-sm text-foreground hover:border-[hsl(20,55%,53%)]/50 hover:bg-gradient-to-br hover:from-[hsl(20,55%,53%)]/5 hover:to-[hsl(38,82%,50%)]/5 hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-center"
+                    className="p-4 rounded-xl border border-border text-sm text-foreground hover:border-[hsl(20,55%,53%)]/50 hover:bg-gradient-to-br hover:from-[hsl(20,55%,53%)]/5 hover:to-[hsl(38,82%,50%)]/5 hover:-translate-y-1 hover:shadow-md transition-all duration-200 text-center"
                   >
                     {service}
                   </a>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

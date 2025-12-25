@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 interface DiagnosticFlowProps {
     isOpen: boolean;
@@ -181,205 +182,213 @@ ${contactData.email}`;
 
     const isContactValid = contactData.firstName.trim() && contactData.email.trim();
 
-    if (!isOpen) return null;
-
     return (
-        <div
-            className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${isVisible ? "bg-[hsl(160,45%,10%)]/95 backdrop-blur-md" : "bg-transparent"
-                }`}
-        >
-            <div
-                className={`relative w-full max-w-2xl mx-6 transition-all duration-300 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-                    }`}
-            >
-                {/* Close / Skip button */}
-                <button
-                    onClick={onClose}
-                    className="absolute -top-12 right-0 text-white/50 hover:text-white transition-colors text-sm flex items-center gap-1"
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-[hsl(160,45%,10%)]/95 backdrop-blur-md"
                 >
-                    Skip <ArrowRight className="w-4 h-4" />
-                </button>
-
-                {!isComplete ? (
-                    <>
-                        {/* Progress bar */}
-                        <div className="mb-8">
-                            <div className="flex justify-between items-center mb-2">
-                                <span className="font-mono text-xs text-white/50">
-                                    Step {currentStep + 1} of {questions.length}
-                                </span>
-                                <span className="font-mono text-xs text-[hsl(38,82%,50%)]">
-                                    {Math.round(progress)}%
-                                </span>
-                            </div>
-                            <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                                <div
-                                    className="h-full bg-[hsl(38,82%,50%)] transition-all duration-300"
-                                    style={{ width: `${progress}%` }}
-                                />
-                            </div>
-                        </div>
-
-                        {/* Question */}
-                        <div className="transition-all duration-300">
-                            <h2 className="font-display text-3xl md:text-4xl text-white mb-8 leading-tight">
-                                {currentQuestion.question}
-                            </h2>
-
-                            {currentQuestion.type === "options" && currentQuestion.options && (
-                                <div className="space-y-3">
-                                    {currentQuestion.options.map((option, index) => (
-                                        <button
-                                            key={option.value}
-                                            onClick={() => handleSelect(option.value)}
-                                            className={`w-full text-left p-5 rounded-xl border transition-all duration-200 group ${answers[currentQuestion.id] === option.value
-                                                ? "bg-[hsl(38,82%,50%)]/20 border-[hsl(38,82%,50%)] text-white"
-                                                : "bg-white/5 border-white/10 text-white/80 hover:bg-white/10 hover:border-white/30"
-                                                }`}
-                                            style={{ animationDelay: `${index * 50}ms` }}
-                                        >
-                                            <div className="flex items-start gap-4">
-                                                <span
-                                                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${answers[currentQuestion.id] === option.value
-                                                        ? "border-[hsl(38,82%,50%)] bg-[hsl(38,82%,50%)]"
-                                                        : "border-white/30 group-hover:border-white/50"
-                                                        }`}
-                                                >
-                                                    {answers[currentQuestion.id] === option.value && (
-                                                        <span className="w-2 h-2 bg-[hsl(160,45%,10%)] rounded-full" />
-                                                    )}
-                                                </span>
-                                                <div>
-                                                    <span className="font-medium block mb-1">
-                                                        {option.label}
-                                                    </span>
-                                                    {option.sublabel && (
-                                                        <span className="text-sm text-white/50">
-                                                            {option.sublabel}
-                                                        </span>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-
-                            {currentQuestion.type === "form" && (
-                                <form onSubmit={handleContactSubmit} className="space-y-4">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm text-white/70 mb-2">
-                                                First name *
-                                            </label>
-                                            <input
-                                                type="text"
-                                                value={contactData.firstName}
-                                                onChange={(e) => setContactData(prev => ({ ...prev, firstName: e.target.value }))}
-                                                placeholder="John"
-                                                required
-                                                className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[hsl(38,82%,50%)] transition-colors"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm text-white/70 mb-2">
-                                                Last name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                value={contactData.lastName}
-                                                onChange={(e) => setContactData(prev => ({ ...prev, lastName: e.target.value }))}
-                                                placeholder="Smith"
-                                                className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[hsl(38,82%,50%)] transition-colors"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm text-white/70 mb-2">
-                                            Company
-                                        </label>
-                                        <input
-                                            type="text"
-                                            value={contactData.company}
-                                            onChange={(e) => setContactData(prev => ({ ...prev, company: e.target.value }))}
-                                            placeholder="Acme Corporation"
-                                            className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[hsl(38,82%,50%)] transition-colors"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm text-white/70 mb-2">
-                                            Email *
-                                        </label>
-                                        <input
-                                            type="email"
-                                            value={contactData.email}
-                                            onChange={(e) => setContactData(prev => ({ ...prev, email: e.target.value }))}
-                                            placeholder="john@company.com"
-                                            required
-                                            className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[hsl(38,82%,50%)] transition-colors"
-                                        />
-                                    </div>
-
-                                    <button
-                                        type="submit"
-                                        disabled={!isContactValid}
-                                        className={`w-full mt-4 inline-flex items-center justify-center gap-2 font-semibold tracking-wide uppercase text-sm py-4 rounded-full transition-all duration-300 ${isContactValid
-                                            ? "bg-[hsl(38,82%,50%)] text-[hsl(160,45%,10%)] hover:bg-[hsl(38,82%,55%)] hover:scale-[1.02]"
-                                            : "bg-white/10 text-white/30 cursor-not-allowed"
-                                            }`}
-                                    >
-                                        Continue
-                                        <ArrowRight className="w-4 h-4" />
-                                    </button>
-                                </form>
-                            )}
-                        </div>
-
-                        {/* Back button */}
-                        {currentStep > 0 && currentQuestion.type === "options" && (
-                            <button
-                                onClick={handleBack}
-                                className="mt-6 text-sm text-white/50 hover:text-white transition-colors"
-                            >
-                                ← Previous question
-                            </button>
-                        )}
-                    </>
-                ) : (
-                    /* Completion state */
-                    <div className="text-center py-12">
-                        <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-[hsl(38,82%,50%)]/20 flex items-center justify-center">
-                            <span className="text-4xl text-[hsl(38,82%,50%)]">✓</span>
-                        </div>
-
-                        <h2 className="font-display text-3xl text-white mb-4">
-                            Perfect, {contactData.firstName}.
-                        </h2>
-
-                        <p className="text-white/60 mb-8 max-w-md mx-auto">
-                            Click below to open your email client. I've drafted a structured message based on your answers. Just add a few details about your specific situation.
-                        </p>
-
-                        <button
-                            onClick={handleSendEmail}
-                            className="inline-flex items-center gap-2 bg-[hsl(38,82%,50%)] text-[hsl(160,45%,10%)] font-semibold tracking-wide uppercase text-sm px-10 py-5 rounded-full transition-all duration-300 hover:bg-[hsl(38,82%,55%)] hover:scale-[1.02]"
-                        >
-                            Draft My Email
-                            <ArrowRight className="w-4 h-4" />
-                        </button>
-
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        className="relative w-full max-w-2xl mx-6"
+                    >
+                        {/* Close / Skip button */}
                         <button
                             onClick={onClose}
-                            className="block w-full text-white/50 hover:text-white text-sm mt-6 transition-colors"
+                            className="absolute -top-12 right-0 text-white/50 hover:text-white transition-colors text-sm flex items-center gap-1"
                         >
-                            Maybe later
+                            Skip <ArrowRight className="w-4 h-4" />
                         </button>
-                    </div>
-                )}
-            </div>
-        </div>
+
+                        {!isComplete ? (
+                            <>
+                                {/* Progress bar */}
+                                <div className="mb-8">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <span className="font-mono text-xs text-white/50">
+                                            Step {currentStep + 1} of {questions.length}
+                                        </span>
+                                        <span className="font-mono text-xs text-[hsl(38,82%,50%)]">
+                                            {Math.round(progress)}%
+                                        </span>
+                                    </div>
+                                    <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                                        <div
+                                            className="h-full bg-[hsl(38,82%,50%)] transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Question */}
+                                <div className="transition-all duration-300">
+                                    <h2 className="font-display text-3xl md:text-4xl text-white mb-8 leading-tight">
+                                        {currentQuestion.question}
+                                    </h2>
+
+                                    {currentQuestion.type === "options" && currentQuestion.options && (
+                                        <div className="space-y-3">
+                                            {currentQuestion.options.map((option, index) => (
+                                                <button
+                                                    key={option.value}
+                                                    onClick={() => handleSelect(option.value)}
+                                                    className={`w-full text-left p-5 rounded-xl border transition-all duration-200 group ${answers[currentQuestion.id] === option.value
+                                                        ? "bg-[hsl(38,82%,50%)]/20 border-[hsl(38,82%,50%)] text-white"
+                                                        : "bg-white/5 border-white/10 text-white/80 hover:bg-white/10 hover:border-white/30"
+                                                        }`}
+                                                    style={{ animationDelay: `${index * 50}ms` }}
+                                                >
+                                                    <div className="flex items-start gap-4">
+                                                        <span
+                                                            className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${answers[currentQuestion.id] === option.value
+                                                                ? "border-[hsl(38,82%,50%)] bg-[hsl(38,82%,50%)]"
+                                                                : "border-white/30 group-hover:border-white/50"
+                                                                }`}
+                                                        >
+                                                            {answers[currentQuestion.id] === option.value && (
+                                                                <span className="w-2 h-2 bg-[hsl(160,45%,10%)] rounded-full" />
+                                                            )}
+                                                        </span>
+                                                        <div>
+                                                            <span className="font-medium block mb-1">
+                                                                {option.label}
+                                                            </span>
+                                                            {option.sublabel && (
+                                                                <span className="text-sm text-white/50">
+                                                                    {option.sublabel}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {currentQuestion.type === "form" && (
+                                        <form onSubmit={handleContactSubmit} className="space-y-4">
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div>
+                                                    <label className="block text-sm text-white/70 mb-2">
+                                                        First name *
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        value={contactData.firstName}
+                                                        onChange={(e) => setContactData(prev => ({ ...prev, firstName: e.target.value }))}
+                                                        placeholder="John"
+                                                        required
+                                                        className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[hsl(38,82%,50%)] transition-colors"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="block text-sm text-white/70 mb-2">
+                                                        Last name
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        value={contactData.lastName}
+                                                        onChange={(e) => setContactData(prev => ({ ...prev, lastName: e.target.value }))}
+                                                        placeholder="Smith"
+                                                        className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[hsl(38,82%,50%)] transition-colors"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label className="block text-sm text-white/70 mb-2">
+                                                    Company
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    value={contactData.company}
+                                                    onChange={(e) => setContactData(prev => ({ ...prev, company: e.target.value }))}
+                                                    placeholder="Acme Corporation"
+                                                    className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[hsl(38,82%,50%)] transition-colors"
+                                                />
+                                            </div>
+
+                                            <div>
+                                                <label className="block text-sm text-white/70 mb-2">
+                                                    Email *
+                                                </label>
+                                                <input
+                                                    type="email"
+                                                    value={contactData.email}
+                                                    onChange={(e) => setContactData(prev => ({ ...prev, email: e.target.value }))}
+                                                    placeholder="john@company.com"
+                                                    required
+                                                    className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[hsl(38,82%,50%)] transition-colors"
+                                                />
+                                            </div>
+
+                                            <button
+                                                type="submit"
+                                                disabled={!isContactValid}
+                                                className={`w-full mt-4 inline-flex items-center justify-center gap-2 font-semibold tracking-wide uppercase text-sm py-4 rounded-full transition-all duration-300 ${isContactValid
+                                                    ? "bg-[hsl(38,82%,50%)] text-[hsl(160,45%,10%)] hover:bg-[hsl(38,82%,55%)] hover:scale-[1.02]"
+                                                    : "bg-white/10 text-white/30 cursor-not-allowed"
+                                                    }`}
+                                            >
+                                                Continue
+                                                <ArrowRight className="w-4 h-4" />
+                                            </button>
+                                        </form>
+                                    )}
+                                </div>
+
+                                {/* Back button */}
+                                {currentStep > 0 && currentQuestion.type === "options" && (
+                                    <button
+                                        onClick={handleBack}
+                                        className="mt-6 text-sm text-white/50 hover:text-white transition-colors"
+                                    >
+                                        ← Previous question
+                                    </button>
+                                )}
+                            </>
+                        ) : (
+                            /* Completion state */
+                            <div className="text-center py-12">
+                                <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-[hsl(38,82%,50%)]/20 flex items-center justify-center">
+                                    <span className="text-4xl text-[hsl(38,82%,50%)]">✓</span>
+                                </div>
+
+                                <h2 className="font-display text-3xl text-white mb-4">
+                                    Perfect, {contactData.firstName}.
+                                </h2>
+
+                                <p className="text-white/60 mb-8 max-w-md mx-auto">
+                                    Click below to open your email client. I've drafted a structured message based on your answers. Just add a few details about your specific situation.
+                                </p>
+
+                                <button
+                                    onClick={handleSendEmail}
+                                    className="inline-flex items-center gap-2 bg-[hsl(38,82%,50%)] text-[hsl(160,45%,10%)] font-semibold tracking-wide uppercase text-sm px-10 py-5 rounded-full transition-all duration-300 hover:bg-[hsl(38,82%,55%)] hover:scale-[1.02]"
+                                >
+                                    Draft My Email
+                                    <ArrowRight className="w-4 h-4" />
+                                </button>
+
+                                <button
+                                    onClick={onClose}
+                                    className="block w-full text-white/50 hover:text-white text-sm mt-6 transition-colors"
+                                >
+                                    Maybe later
+                                </button>
+                            </div>
+                        )}
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
     );
 };
 

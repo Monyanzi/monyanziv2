@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, Linkedin } from "lucide-react";
+import { motion } from "motion/react";
 import DiagnosticFlow from "./DiagnosticFlow";
 
 const EngagementSection = () => {
@@ -44,11 +45,18 @@ const EngagementSection = () => {
             </div>
 
             {/* Contact CTA card - enhanced with gradient border */}
-            <div className="p-10 lg:p-14 rounded-3xl relative overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              whileHover={{ y: -6, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="p-10 lg:p-14 rounded-3xl relative overflow-hidden group hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] will-change-transform"
               style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))',
                 backdropFilter: 'blur(20px)'
-              }}>
+              }}
+            >
               {/* Gradient border effect */}
               <div className="absolute inset-0 rounded-3xl p-[1px] pointer-events-none"
                 style={{
@@ -73,22 +81,25 @@ const EngagementSection = () => {
                   30-second diagnostic. Structured response to follow.
                 </p>
 
-                <button
+                <motion.button
                   onClick={() => setIsModalOpen(true)}
-                  className="relative inline-flex items-center gap-3 font-semibold tracking-wide uppercase text-sm px-12 py-5 rounded-full transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_20px_50px_-12px_hsl(20,55%,53%,0.5)] group/btn overflow-hidden"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="relative inline-flex items-center gap-3 font-semibold tracking-wide uppercase text-sm px-12 py-5 rounded-full hover:shadow-[0_20px_50px_-12px_hsl(20,55%,53%,0.5)] group/btn overflow-hidden"
                   style={{ background: 'linear-gradient(135deg, hsl(20 55% 53%), hsl(38 82% 50%))' }}
                 >
                   {/* Shimmer effect */}
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 ease-in-out" />
                   <span className="relative text-white">Let's Talk</span>
-                  <ArrowRight className="relative w-4 h-4 text-white group-hover/btn:translate-x-1 transition-transform duration-300" />
-                </button>
+                  <ArrowRight className="relative w-4 h-4 text-white group-hover/btn:translate-x-1 transition-transform duration-200" />
+                </motion.button>
 
                 <p className="text-xs text-white/60 mt-8 text-center">
                   Or email directly: <a href="mailto:moses.k.nyanzi@gmail.com" className="text-white/80 hover:text-[hsl(20,55%,53%)] transition-colors underline underline-offset-2">moses.k.nyanzi@gmail.com</a>
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, MapPin, Linkedin } from "lucide-react";
+import { motion } from "motion/react";
 import CredentialCard from "./CredentialCard";
 import ProfilePhoto from "./ProfilePhoto";
 import DiagnosticFlow from "./DiagnosticFlow";
@@ -127,27 +128,30 @@ const HeroSection = () => {
                   href="https://www.linkedin.com/in/moses-nyanzi/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-foreground transition-colors duration-300 group"
+                  className="flex items-center gap-2 text-[hsl(20,55%,53%)] hover:text-[hsl(20,55%,45%)] transition-colors duration-200 group"
                 >
-                  <Linkedin className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                  <Linkedin className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
                   <span className="relative">
                     LinkedIn
-                    <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[hsl(38,82%,50%)] group-hover:w-full transition-all duration-300" />
+                    <span className="absolute -bottom-0.5 left-0 w-full h-px bg-[hsl(20,55%,53%)] opacity-40 group-hover:opacity-100 transition-opacity duration-200" />
                   </span>
                 </a>
               </div>
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-5 pt-3 animate-fade-in" style={{ animationDelay: '300ms' }}>
-                <button
+                <motion.button
                   onClick={() => setIsModalOpen(true)}
-                  className="relative inline-flex items-center gap-3 bg-[hsl(38,82%,50%)] text-[hsl(210,55%,12%)] font-semibold tracking-wide uppercase text-xs px-10 py-4 rounded-full transition-all duration-500 hover:bg-[hsl(38,82%,55%)] hover:scale-[1.02] hover:shadow-[0_20px_40px_-12px_hsl(38,82%,50%,0.4)] group overflow-hidden"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="relative inline-flex items-center gap-3 bg-[hsl(38,82%,50%)] text-[hsl(210,55%,12%)] font-semibold tracking-wide uppercase text-xs px-10 py-4 rounded-full hover:bg-[hsl(38,82%,55%)] hover:shadow-[0_20px_40px_-12px_hsl(38,82%,50%,0.4)] group overflow-hidden"
                 >
                   {/* Shimmer effect */}
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
                   <span className="relative">Let's Talk</span>
                   <ArrowRight className="relative w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
+                </motion.button>
                 <a
                   href="#proof"
                   className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 py-3 group"

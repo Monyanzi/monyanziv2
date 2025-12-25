@@ -96,15 +96,6 @@
     --text-4xl: 2.5rem;
     --text-5xl: 3.25rem;
     --text-6xl: 4rem;
-
-    --sidebar-background: 40 35% 98%;
-    --sidebar-foreground: 220 15% 8%;
-    --sidebar-primary: 210 55% 12%;
-    --sidebar-primary-foreground: 40 35% 98%;
-    --sidebar-accent: 210 20% 94%;
-    --sidebar-accent-foreground: 210 55% 12%;
-    --sidebar-border: 210 25% 88%;
-    --sidebar-ring: 210 55% 12%;
   }
 
   .dark {

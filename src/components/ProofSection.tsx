@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 interface Achievement {
     headline: string;
@@ -41,13 +41,6 @@ const achievements: Achievement[] = [
 ];
 
 const ProofSection = () => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), 200);
-        return () => clearTimeout(timer);
-    }, []);
-
     return (
         <section id="proof" className="py-24 lg:py-32 bg-background border-b border-border overflow-hidden">
             <div className="container mx-auto px-6 lg:px-12">
@@ -65,11 +58,18 @@ const ProofSection = () => {
                 {/* Achievement Cards - Top Row (3 cards) */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     {achievements.slice(0, 3).map((achievement, index) => (
-                        <div
+                        <motion.div
                             key={achievement.headline}
-                            className={`group p-8 rounded-2xl border bg-card border-border gradient-border-top hover:border-[hsl(20,55%,53%)]/30 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 cursor-default ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                                }`}
-                            style={{ transitionDelay: `${index * 100}ms` }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{
+                                duration: 0.2,
+                                delay: index * 0.1,
+                                ease: "easeOut"
+                            }}
+                            whileHover={{ y: -12, transition: { duration: 0.2, ease: "easeOut" } }}
+                            className="group p-8 rounded-2xl border bg-card border-border gradient-border-top hover:border-[hsl(20,55%,53%)]/30 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default will-change-transform"
                         >
                             <div className="text-3xl font-display font-bold mb-4 group-hover:scale-105 transition-transform duration-300"
                                 style={{ background: 'linear-gradient(135deg, hsl(38 82% 50%), hsl(20 55% 53%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
@@ -84,18 +84,25 @@ const ProofSection = () => {
                             <p className="text-xs text-muted-foreground italic">
                                 {achievement.context}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
                 {/* Achievement Cards - Bottom Row (2 cards, centered) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
                     {achievements.slice(3).map((achievement, index) => (
-                        <div
+                        <motion.div
                             key={achievement.headline}
-                            className={`group p-8 rounded-2xl border bg-card border-border gradient-border-top hover:border-[hsl(20,55%,53%)]/30 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 cursor-default ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                                }`}
-                            style={{ transitionDelay: `${(index + 3) * 100}ms` }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{
+                                duration: 0.2,
+                                delay: (index + 3) * 0.1,
+                                ease: "easeOut"
+                            }}
+                            whileHover={{ y: -12, transition: { duration: 0.2, ease: "easeOut" } }}
+                            className="group p-8 rounded-2xl border bg-card border-border gradient-border-top hover:border-[hsl(20,55%,53%)]/30 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default will-change-transform"
                         >
                             <div className="text-3xl font-display font-bold mb-4 group-hover:scale-105 transition-transform duration-300"
                                 style={{ background: 'linear-gradient(135deg, hsl(38 82% 50%), hsl(20 55% 53%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
@@ -110,7 +117,7 @@ const ProofSection = () => {
                             <p className="text-xs text-muted-foreground italic">
                                 {achievement.context}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 

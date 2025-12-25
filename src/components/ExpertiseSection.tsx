@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 interface ExpertiseCategory {
   icon: string;
@@ -68,21 +68,6 @@ const industries = [
 const softSkills = "Plus: Executive communication • Stakeholder alignment • Change leadership • Global market insight";
 
 const ExpertiseSection = () => {
-  const [visibleCards, setVisibleCards] = useState<boolean[]>([false, false, false, false]);
-
-  useEffect(() => {
-    const timers = expertiseCategories.map((_, index) =>
-      setTimeout(() => {
-        setVisibleCards(prev => {
-          const newState = [...prev];
-          newState[index] = true;
-          return newState;
-        });
-      }, 150 * index)
-    );
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
   return (
     <section id="expertise" className="py-28 lg:py-36 bg-[hsl(210,55%,30%)] relative overflow-hidden">
       {/* Subtle gradient overlay */}
@@ -114,11 +99,18 @@ const ExpertiseSection = () => {
         {/* Capability grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {expertiseCategories.map((category, index) => (
-            <div
+            <motion.div
               key={category.title}
-              className={`group p-8 rounded-2xl border bg-white/5 border-white/10 hover:border-[hsl(38,82%,50%)]/50 hover:bg-white/[0.12] transition-all duration-200 ease-out transform hover:-translate-y-3 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] will-change-transform ${visibleCards[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-              style={{ transitionDelay: visibleCards[index] ? '0ms' : `${index * 100}ms` }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.2,
+                delay: index * 0.1,
+                ease: "easeOut"
+              }}
+              whileHover={{ y: -12, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="group p-8 rounded-2xl border bg-white/5 border-white/10 hover:border-[hsl(38,82%,50%)]/50 hover:bg-white/[0.12] hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)] cursor-default will-change-transform"
             >
               <div className="flex items-start gap-4">
                 <span className="text-3xl text-[hsl(38,82%,50%)] group-hover:scale-125 transition-transform duration-200 ease-out">
@@ -140,7 +132,7 @@ const ExpertiseSection = () => {
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

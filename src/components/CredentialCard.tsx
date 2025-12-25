@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 interface CredentialCardProps {
   metric: string;
@@ -8,33 +8,29 @@ interface CredentialCardProps {
 }
 
 const CredentialCard = ({ metric, label, sublabel, delay = 0 }: CredentialCardProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
   return (
-    <div
-      className={`p-8 lg:p-10 text-center bg-card relative overflow-hidden group cursor-default transition-all duration-500 ease-out gradient-border-top ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        duration: 0.2,
+        delay: delay / 1000,
+        ease: "easeOut"
+      }}
+      whileHover={{
+        y: -12,
+        transition: { duration: 0.2, ease: "easeOut" }
+      }}
+      className="p-8 lg:p-10 text-center bg-card relative overflow-hidden group cursor-default gradient-border-top will-change-transform hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)]"
       style={{
         boxShadow: 'inset 0 0 0 1px hsl(210 20% 90%)'
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = 'inset 0 0 0 1px hsl(38 82% 50% / 0.3), 0 8px 24px -8px hsl(210 55% 12% / 0.08)';
-        e.currentTarget.style.transform = 'translateY(-6px)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = 'inset 0 0 0 1px hsl(210 20% 90%)';
-        e.currentTarget.style.transform = 'translateY(0)';
-      }}
     >
       {/* Subtle hover gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(38,82%,50%,0.02)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(38,82%,50%,0.02)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
 
-      <div className="font-display text-4xl lg:text-5xl font-semibold text-foreground tracking-tight transition-colors duration-500 group-hover:text-[hsl(38,82%,50%)] relative">
+      <div className="font-display text-4xl lg:text-5xl font-semibold text-foreground tracking-tight transition-colors duration-200 group-hover:text-[hsl(38,82%,50%)] relative">
         {metric}
       </div>
       <div className="mt-4 text-sm font-medium text-foreground tracking-[0.15em] uppercase relative">
@@ -45,9 +41,8 @@ const CredentialCard = ({ metric, label, sublabel, delay = 0 }: CredentialCardPr
           {sublabel}
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
 export default CredentialCard;
-

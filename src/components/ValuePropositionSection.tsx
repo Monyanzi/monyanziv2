@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 interface ValueProp {
   icon: string;
@@ -29,21 +29,6 @@ const valuePropositions: ValueProp[] = [
 ];
 
 const ValuePropositionSection = () => {
-  const [visibleCards, setVisibleCards] = useState<boolean[]>([false, false, false]);
-
-  useEffect(() => {
-    const timers = valuePropositions.map((_, index) =>
-      setTimeout(() => {
-        setVisibleCards(prev => {
-          const newState = [...prev];
-          newState[index] = true;
-          return newState;
-        });
-      }, 150 * index)
-    );
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
   return (
     <section className="py-24 lg:py-32 bg-[hsl(160,15%,96%)] relative overflow-hidden">
       {/* Subtle gradient */}
@@ -66,15 +51,22 @@ const ValuePropositionSection = () => {
         {/* Value props grid */}
         <div className="grid lg:grid-cols-3 gap-6">
           {valuePropositions.map((prop, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`group p-8 rounded-2xl bg-white border border-border hover:border-[hsl(20,55%,53%)]/30 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 ${visibleCards[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.2,
+                delay: index * 0.1,
+                ease: "easeOut"
+              }}
+              whileHover={{ y: -12, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="group p-8 rounded-2xl bg-white border border-border hover:border-[hsl(20,55%,53%)]/30 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default will-change-transform"
             >
               <div className="flex items-start gap-4 mb-4">
                 {/* Gradient icon background like HTML design */}
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200"
                   style={{ background: 'linear-gradient(135deg, hsl(140 18% 30%), hsl(20 55% 53%))' }}>
                   <span className="text-2xl text-white">
                     {prop.icon}
@@ -85,7 +77,7 @@ const ValuePropositionSection = () => {
                 </span>
               </div>
 
-              <h3 className="text-lg font-display font-semibold text-foreground leading-snug mb-4 group-hover:text-[hsl(160,45%,12%)] transition-colors">
+              <h3 className="text-lg font-display font-semibold text-foreground leading-snug mb-4 group-hover:text-[hsl(160,45%,12%)] transition-colors duration-200">
                 {prop.title}
               </h3>
 
@@ -96,7 +88,7 @@ const ValuePropositionSection = () => {
               <p className="text-xs font-medium tracking-wide text-[hsl(38,82%,50%)]">
                 {prop.metric}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
