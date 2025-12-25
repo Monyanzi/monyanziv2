@@ -84,8 +84,8 @@ const EngagementSection = () => {
                 <motion.button
                   onClick={() => setIsModalOpen(true)}
                   whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.1, ease: "easeOut" }}
                   className="relative inline-flex items-center gap-3 font-semibold tracking-wide uppercase text-sm px-12 py-5 rounded-full hover:shadow-[0_20px_50px_-12px_hsl(20,55%,53%,0.5)] group/btn overflow-hidden"
                   style={{ background: 'linear-gradient(135deg, hsl(20 55% 53%), hsl(38 82% 50%))' }}
                 >
@@ -95,8 +95,8 @@ const EngagementSection = () => {
                   <ArrowRight className="relative w-4 h-4 text-white group-hover/btn:translate-x-1 transition-transform duration-200" />
                 </motion.button>
 
-                <p className="text-xs text-white/60 mt-8 text-center">
-                  Or email directly: <a href="mailto:moses.k.nyanzi@gmail.com" className="text-white/80 hover:text-[hsl(20,55%,53%)] transition-colors underline underline-offset-2">moses.k.nyanzi@gmail.com</a>
+                <p className="text-sm text-white/70 mt-8 text-center">
+                  Or email directly: <a href="mailto:moses.k.nyanzi@gmail.com" className="text-white hover:text-[hsl(20,55%,53%)] transition-colors underline underline-offset-2">moses.k.nyanzi@gmail.com</a>
                 </p>
               </div>
             </motion.div>

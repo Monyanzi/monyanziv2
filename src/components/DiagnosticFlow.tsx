@@ -189,14 +189,14 @@ ${contactData.email}`;
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
                     className="fixed inset-0 z-50 flex items-center justify-center bg-[hsl(160,45%,10%)]/95 backdrop-blur-md"
                 >
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95, y: 10 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        transition={{ duration: 0.15, ease: "easeOut" }}
                         className="relative w-full max-w-2xl mx-6"
                     >
                         {/* Close / Skip button */}
@@ -221,14 +221,14 @@ ${contactData.email}`;
                                     </div>
                                     <div className="h-1 bg-white/10 rounded-full overflow-hidden">
                                         <div
-                                            className="h-full bg-[hsl(38,82%,50%)] transition-all duration-300"
+                                            className="h-full bg-[hsl(38,82%,50%)] transition-all duration-200"
                                             style={{ width: `${progress}%` }}
                                         />
                                     </div>
                                 </div>
 
                                 {/* Question */}
-                                <div className="transition-all duration-300">
+                                <div className="transition-all duration-200">
                                     <h2 className="font-display text-3xl md:text-4xl text-white mb-8 leading-tight">
                                         {currentQuestion.question}
                                     </h2>
@@ -332,7 +332,7 @@ ${contactData.email}`;
                                             <button
                                                 type="submit"
                                                 disabled={!isContactValid}
-                                                className={`w-full mt-4 inline-flex items-center justify-center gap-2 font-semibold tracking-wide uppercase text-sm py-4 rounded-full transition-all duration-300 ${isContactValid
+                                                className={`w-full mt-4 inline-flex items-center justify-center gap-2 font-semibold tracking-wide uppercase text-sm py-4 rounded-full transition-all duration-200 ${isContactValid
                                                     ? "bg-[hsl(38,82%,50%)] text-[hsl(160,45%,10%)] hover:bg-[hsl(38,82%,55%)] hover:scale-[1.02]"
                                                     : "bg-white/10 text-white/30 cursor-not-allowed"
                                                     }`}
@@ -371,7 +371,7 @@ ${contactData.email}`;
 
                                 <button
                                     onClick={handleSendEmail}
-                                    className="inline-flex items-center gap-2 bg-[hsl(38,82%,50%)] text-[hsl(160,45%,10%)] font-semibold tracking-wide uppercase text-sm px-10 py-5 rounded-full transition-all duration-300 hover:bg-[hsl(38,82%,55%)] hover:scale-[1.02]"
+                                    className="inline-flex items-center gap-2 bg-[hsl(38,82%,50%)] text-[hsl(160,45%,10%)] font-semibold tracking-wide uppercase text-sm px-10 py-5 rounded-full transition-all duration-200 hover:bg-[hsl(38,82%,55%)] hover:scale-[1.02]"
                                 >
                                     Draft My Email
                                     <ArrowRight className="w-4 h-4" />

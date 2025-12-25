@@ -143,8 +143,8 @@ const HeroSection = () => {
                 <motion.button
                   onClick={() => setIsModalOpen(true)}
                   whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.1, ease: "easeOut" }}
                   className="relative inline-flex items-center gap-3 bg-[hsl(38,82%,50%)] text-[hsl(210,55%,12%)] font-semibold tracking-wide uppercase text-xs px-10 py-4 rounded-full hover:bg-[hsl(38,82%,55%)] hover:shadow-[0_20px_40px_-12px_hsl(38,82%,50%,0.4)] group overflow-hidden"
                 >
                   {/* Shimmer effect */}
