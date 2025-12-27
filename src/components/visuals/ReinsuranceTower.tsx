@@ -66,7 +66,7 @@ const ReinsuranceTower = () => {
                         transition={{ delay: 1 }}
                         className="flex flex-col items-center"
                     >
-                        <span className="text-[10px] rotate-[-90deg] whitespace-nowrap mb-2 text-white/50">Premium</span>
+                        <span className="text-[10px] rotate-[-90deg] whitespace-nowrap mb-2 text-muted-foreground">Premium</span>
                         <motion.div
                             animate={{ y: [0, -5, 0] }}
                             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
@@ -94,7 +94,7 @@ const ReinsuranceTower = () => {
                         >
                             ↓
                         </motion.div>
-                        <span className="text-[10px] rotate-[90deg] whitespace-nowrap mt-2 text-white/50">Recoveries</span>
+                        <span className="text-[10px] rotate-[90deg] whitespace-nowrap mt-2 text-muted-foreground">Recoveries</span>
                     </motion.div>
                 </div>
 
