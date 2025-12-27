@@ -117,46 +117,32 @@ const AboutSection = () => {
                 {/* Credential rings */}
                 <div className="relative w-24 h-24">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
-                    {/* Outer ring - Actuary */}
-                    <motion.circle
+                    {/* Outer ring - Actuary - VISIBLE */}
+                    <circle
                       cx="50" cy="50" r="45"
                       fill="none"
                       stroke="white"
                       strokeOpacity="0.3"
                       strokeWidth="4"
-                      strokeDasharray="283"
-                      initial={{ strokeDashoffset: 283 }}
-                      whileInView={{ strokeDashoffset: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.5, delay: 0.3 }}
                     />
-                    {/* Inner ring - MBA */}
-                    <motion.circle
+                    {/* Inner ring - MBA - VISIBLE */}
+                    <circle
                       cx="50" cy="50" r="35"
                       fill="none"
                       stroke="hsl(var(--gold))"
                       strokeWidth="4"
-                      strokeDasharray="220"
-                      initial={{ strokeDashoffset: 220 }}
-                      whileInView={{ strokeDashoffset: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2, delay: 0.6 }}
                     />
-                    {/* Center value */}
-                    <motion.text
+                    {/* Center value - VISIBLE */}
+                    <text
                       x="50" y="50"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       fill="white"
                       fontSize="12"
                       fontWeight="600"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 1 }}
                     >
                       2-in-1
-                    </motion.text>
+                    </text>
                   </svg>
                 </div>
 
