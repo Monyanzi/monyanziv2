@@ -33,7 +33,7 @@ const ProofSection = () => {
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-6 flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 30%) 100%)" }}>
-                            {/* Speedometer gauge */}
+                            {/* Speedometer gauge - ALL VISIBLE */}
                             <svg className="w-32 h-20" viewBox="0 0 120 70">
                                 {/* Background arc */}
                                 <path
@@ -51,45 +51,32 @@ const ProofSection = () => {
                                         <stop offset="100%" stopColor="hsl(38 82% 50%)" />
                                     </linearGradient>
                                 </defs>
-                                <motion.path
+                                <path
                                     d="M 10 65 A 50 50 0 0 1 110 65"
                                     fill="none"
                                     stroke="url(#speedGrad)"
                                     strokeWidth="8"
                                     strokeLinecap="round"
                                     strokeDasharray="157"
-                                    initial={{ strokeDashoffset: 157 }}
-                                    whileInView={{ strokeDashoffset: 157 * 0.2 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.5, duration: 1.2, ease: "easeOut" }}
+                                    strokeDashoffset={157 * 0.2}
                                 />
-                                {/* Needle */}
-                                <motion.line
+                                {/* Needle - at 80% position */}
+                                <line
                                     x1="60" y1="65" x2="60" y2="25"
                                     stroke="white"
                                     strokeWidth="2"
                                     strokeLinecap="round"
-                                    initial={{ rotate: -80 }}
-                                    whileInView={{ rotate: 60 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-                                    style={{ transformOrigin: "60px 65px" }}
+                                    style={{ transform: "rotate(60deg)", transformOrigin: "60px 65px" }}
                                 />
                                 {/* Center dot */}
                                 <circle cx="60" cy="65" r="4" fill="white" />
                             </svg>
 
-                            {/* Big metric - Gold */}
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 1.2 }}
-                                className="absolute bottom-4 right-4 text-right"
-                            >
+                            {/* Big metric - Gold - VISIBLE */}
+                            <div className="absolute bottom-4 right-4 text-right">
                                 <span className="text-3xl font-bold" style={{ color: "hsl(var(--gold))" }}>80%</span>
                                 <span className="block text-xs text-white/50">faster</span>
-                            </motion.div>
+                            </div>
                         </div>
 
                         <div className="p-5">
