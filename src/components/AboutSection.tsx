@@ -158,7 +158,7 @@ const AboutSection = () => {
 
               {/* Description */}
               <p className="text-white/80 leading-relaxed text-lg mb-6">
-                I don't just advise - I <span className="text-white font-medium">execute</span>.
+                I don't just advise; I <span className="text-white font-medium">execute</span>.
                 I build the models myself: valuations, stress tests, pricing frameworks.
                 Then translate them into strategy your board will back.
               </p>

@@ -111,7 +111,7 @@ const TechnicalExpertiseSection = () => {
                                 Reinsurance Architecture
                             </h3>
                             <p className="text-sm text-white/80">
-                                Effective reinsurance isn't just buying cover - it's architectural design.
+                                Effective reinsurance isn't just buying cover; it's architectural design.
                             </p>
                         </div>
 
@@ -122,7 +122,7 @@ const TechnicalExpertiseSection = () => {
 
                         {/* Impact Caption */}
                         <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border">
-                            Fig 1. Schematic visualizing the interplay between Net Retention and Risk Transfer layers.
+                            Fig 1. Schematic visualising the interplay between Net Retention and Risk Transfer layers.
                         </figcaption>
                         {/* Executive Summary */}
                         <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)]">
@@ -178,7 +178,7 @@ const TechnicalExpertiseSection = () => {
                     transition={{ delay: 0.5 }}
                     className="text-center text-sm text-muted-foreground mt-10 max-w-xl mx-auto"
                 >
-                    These visualizations are built with pure CSS/React - demonstrating both domain knowledge
+                    These visualisations are built with pure CSS/React - demonstrating both domain knowledge
                     and technical implementation capability.
                 </motion.p>
             </div>

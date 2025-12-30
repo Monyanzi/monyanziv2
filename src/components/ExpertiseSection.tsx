@@ -182,9 +182,9 @@ const expertiseCategories: ExpertiseCategory[] = [
     ),
   },
   {
-    title: "Analytics & Modeling",
+    title: "Analytics & Modelling",
     tagline: "Data → Decisions you can defend",
-    skills: ["SQL, Python, Power BI", "Cash Flow Modeling", "Equity Analysis", "Scenario Modeling"],
+    skills: ["SQL, Python, Power BI", "Cash Flow Modelling", "Equity Analysis", "Scenario Modelling"],
     bgColor: "linear-gradient(135deg, hsl(210 45% 55%) 0%, hsl(210 45% 48%) 100%)",
     accentColor: "hsl(210 45% 55%)",
     visual: (
@@ -322,7 +322,7 @@ const ExpertiseSection = () => {
             transition={{ delay: 0.2 }}
             className="text-lg text-muted-foreground max-w-2xl mx-auto font-light"
           >
-            Spanning strategy, automation, risk, and analytics - grounded in real execution.
+            Spanning strategy, automation, risk, and analytics; grounded in real execution.
           </motion.p>
         </div>
 
