@@ -26,7 +26,6 @@ const MarqueeTicker = () => {
         "Munich Re",
         "Hannover Re",
         "SCOR",
-        "Lloyd's of London",
         "PartnerRe",
         "MAPFRE RE",
 
