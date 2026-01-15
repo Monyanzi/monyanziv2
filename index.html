@@ -4,9 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';" />
+  
   <!-- Font preconnect for faster loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://mosesnyanzi.com/" />
+  
   <title>Moses Nyanzi | Strategy. Logic. Results.</title>
   <meta name="description"
     content="Independent capital strategy and actuarial consulting for senior leaders. 9+ years optimising $100M+ programmes across insurance and reinsurance. INSEAD EMBA." />
@@ -14,17 +22,72 @@
   <meta name="keywords"
     content="Moses Nyanzi, Capital Strategy, Actuarial Consultant, Risk Advisory, Portfolio Optimisation, Independent Consultant, INSEAD" />
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mosesnyanzi.com/" />
   <meta property="og:title" content="Moses Nyanzi | Strategic Capital Advisor" />
   <meta property="og:description"
     content="Independent capital strategy and actuarial consulting. Direct access to a qualified actuary with an INSEAD MBA." />
-  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://mosesnyanzi.com/social-share.svg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Moses Nyanzi - Strategy. Logic. Results." />
 
-  <meta name="twitter:card" content="summary" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://mosesnyanzi.com/" />
   <meta name="twitter:title" content="Moses Nyanzi | Strategic Capital Advisor" />
   <meta name="twitter:description"
     content="Independent capital strategy and actuarial consulting for senior leaders." />
+  <meta name="twitter:image" content="https://mosesnyanzi.com/social-share.svg" />
+  <meta name="twitter:image:alt" content="Moses Nyanzi - Strategy. Logic. Results." />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Moses Nyanzi",
+    "jobTitle": "Strategic Capital Advisor",
+    "description": "Independent capital strategy and actuarial consulting for senior leaders. 9+ years optimising $100M+ programmes across insurance and reinsurance.",
+    "url": "https://mosesnyanzi.com/",
+    "sameAs": [
+      "https://www.linkedin.com/in/moses-nyanzi/"
+    ],
+    "knowsAbout": [
+      "Capital Strategy",
+      "Actuarial Science",
+      "Risk Advisory",
+      "Portfolio Optimisation",
+      "M&A Valuation",
+      "Reinsurance"
+    ],
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "degree",
+        "name": "Executive MBA",
+        "educationalLevel": "Master's Degree"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "certification",
+        "name": "Associate, Actuarial Society of South Africa"
+      }
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Independent Consultant"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Johannesburg",
+      "addressCountry": "ZA"
+    }
+  }
+  </script>
 </head>
 
 <body>

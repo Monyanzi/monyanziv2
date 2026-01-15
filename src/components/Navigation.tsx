@@ -12,7 +12,6 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  // Use Framer Motion for smooth scroll progress
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -21,21 +20,29 @@ const Navigation = () => {
   });
 
   useEffect(() => {
+    let timeoutId: number | undefined;
+    
     const handleScroll = () => {
-      const sections = navItems.map(item => item.href.slice(1));
-      const scrollPosition = window.scrollY + 100;
+      if (timeoutId) return; // Throttle - skip if already scheduled
+      
+      timeoutId = window.setTimeout(() => {
+        const sections = navItems.map(item => item.href.slice(1));
+        const scrollPosition = window.scrollY + 100;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          return;
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = document.getElementById(sections[i]);
+          if (section && section.offsetTop <= scrollPosition) {
+            setActiveSection(sections[i]);
+            timeoutId = undefined;
+            return;
+          }
         }
-      }
-      setActiveSection("");
+        setActiveSection("");
+        timeoutId = undefined;
+      }, 100); // Max 10 updates/second instead of 100+
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -46,7 +53,6 @@ const Navigation = () => {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
-        {/* Scroll progress indicator - smooth motion */}
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-[2px] bg-[hsl(38,82%,50%)] origin-left"
           style={{ scaleX }}
@@ -69,7 +75,6 @@ const Navigation = () => {
                     }`}
                 >
                   {item.label}
-                  {/* Animated underline */}
                   <span
                     className={`absolute -bottom-1 left-0 h-px bg-[hsl(38,82%,50%)] transition-all duration-300 ${activeSection === item.href.slice(1) ? 'w-full' : 'w-0 group-hover:w-full'
                       }`}
@@ -78,7 +83,6 @@ const Navigation = () => {
               ))}
             </div>
 
-            {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(true)}
               className="lg:hidden p-2 -mr-2 text-foreground hover:text-[hsl(38,82%,50%)] transition-colors duration-300"
@@ -104,14 +108,12 @@ const Navigation = () => {
         </div>
       </nav>
 
-      {/* Mobile menu overlay */}
       <div
         className={`fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         onClick={() => setIsOpen(false)}
       />
 
-      {/* Mobile menu drawer */}
       <div
         className={`fixed top-0 right-0 bottom-0 z-50 w-72 bg-background border-l border-border transition-transform duration-300 ease-out lg:hidden ${isOpen ? "translate-x-0" : "translate-x-full"
           }`}

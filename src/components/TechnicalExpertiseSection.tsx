@@ -1,14 +1,9 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import reinsuranceTowerImg from "../assets/reinsurance-tower.png";
-import valueStickImg from "../assets/value-stick.png";
-import theoryOfConstraintsImg from "../assets/theory-of-constraints.png";
+import reinsuranceTowerImg from "../assets/reinsurance-tower.webp";
+import valueStickImg from "../assets/value-stick.webp";
+import theoryOfConstraintsImg from "../assets/theory-of-constraints.webp";
 
-/**
- * Technical Expertise Section - Light theme version
- * Showcases domain-specific knowledge through visual diagrams
- * Now using premium generated images for cleaner presentation
- */
 const TechnicalExpertiseSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
 
@@ -94,7 +89,7 @@ const TechnicalExpertiseSection = () => {
                 </div>
 
                 {/* Bento Grid - 3 cards */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
                     {/* Reinsurance Architecture Card */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -102,36 +97,37 @@ const TechnicalExpertiseSection = () => {
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border"
+                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border flex flex-col"
                         style={{
                             boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)"
                         }}
                     >
-                        {/* Context Header */}
-                        <div className="p-6 pb-4" style={{ background: "linear-gradient(135deg, hsl(140 18% 40%) 0%, hsl(140 18% 35%) 100%)" }}>
+                        {/* Context Header - fixed height */}
+                        <div className="p-6 pb-4 h-[120px] flex flex-col justify-center" style={{ background: "linear-gradient(135deg, hsl(140 18% 40%) 0%, hsl(140 18% 35%) 100%)" }}>
                             <h3 className="font-display text-lg text-white font-semibold mb-2">
                                 Reinsurance Architecture
                             </h3>
-                            <p className="text-sm text-white/80">
+                            <p className="text-sm text-white/80 line-clamp-2">
                                 Effective reinsurance isn't just buying cover; it's architectural design.
                             </p>
                         </div>
 
-                        {/* The Visual */}
-                        <div className="py-4 px-6 bg-[hsl(210_45%_96%)]">
+                        {/* The Visual - flex grow with centered image */}
+                        <div className="flex-1 bg-[hsl(210_45%_96%)] flex items-center justify-center">
                             <img
                                 src={reinsuranceTowerImg}
                                 alt="Reinsurance program structure showing layered coverage from retention to catastrophe"
-                                className="w-full h-auto rounded-lg"
+                                className="w-full h-auto"
+                                loading="lazy"
                             />
                         </div>
 
-                        {/* Impact Caption */}
-                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border">
+                        {/* Impact Caption - fixed height */}
+                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border h-[60px] flex items-center justify-center">
                             Fig 1. Schematic visualising the interplay between Net Retention and Risk Transfer layers.
                         </figcaption>
-                        {/* Executive Summary */}
-                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)]">
+                        {/* Executive Summary - fixed height */}
+                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)] h-[72px] flex items-center justify-center">
                             <p className="text-xs font-medium text-foreground text-center">
                                 <span className="text-[hsl(var(--gold))] font-semibold">The Bottom Line:</span> Proper layering reduces volatility while freeing capital for growth.
                             </p>
@@ -145,34 +141,35 @@ const TechnicalExpertiseSection = () => {
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.5, delay: 0.15, ease: [0.34, 1.56, 0.64, 1] }}
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border"
+                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border flex flex-col"
                         style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
                     >
-                        {/* Context Header */}
-                        <div className="p-6 pb-4" style={{ background: "linear-gradient(135deg, hsl(210 45% 55%) 0%, hsl(210 45% 48%) 100%)" }}>
+                        {/* Context Header - fixed height */}
+                        <div className="p-6 pb-4 h-[120px] flex flex-col justify-center" style={{ background: "linear-gradient(135deg, hsl(210 45% 55%) 0%, hsl(210 45% 48%) 100%)" }}>
                             <h3 className="font-display text-lg text-white font-semibold mb-2">
                                 Pricing Strategy
                             </h3>
-                            <p className="text-sm text-white/80">
+                            <p className="text-sm text-white/80 line-clamp-2">
                                 Understanding value creation and capture is fundamental to sustainable pricing.
                             </p>
                         </div>
 
-                        {/* The Visual */}
-                        <div className="py-4 px-6 bg-[hsl(210_45%_96%)]">
+                        {/* The Visual - flex grow with centered image */}
+                        <div className="flex-1 bg-[hsl(210_45%_96%)] flex items-center justify-center">
                             <img
                                 src={valueStickImg}
                                 alt="Value Stick framework showing how value is divided between customers and firm"
-                                className="w-full h-auto rounded-lg"
+                                className="w-full h-auto"
+                                loading="lazy"
                             />
                         </div>
 
-                        {/* Impact Caption */}
-                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border">
+                        {/* Impact Caption - fixed height */}
+                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border h-[60px] flex items-center justify-center">
                             Fig 2. The Value Stick: visualising how total value created is distributed across stakeholders.
                         </figcaption>
-                        {/* Executive Summary */}
-                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)]">
+                        {/* Executive Summary - fixed height */}
+                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)] h-[72px] flex items-center justify-center">
                             <p className="text-xs font-medium text-foreground text-center">
                                 <span className="text-[hsl(var(--gold))] font-semibold">The Bottom Line:</span> Great pricing expands customer value while capturing firm margin.
                             </p>
@@ -186,34 +183,35 @@ const TechnicalExpertiseSection = () => {
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.5, delay: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border"
+                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border flex flex-col"
                         style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
                     >
-                        {/* Context Header */}
-                        <div className="p-6 pb-4" style={{ background: "linear-gradient(135deg, hsl(20 55% 53%) 0%, hsl(20 55% 45%) 100%)" }}>
+                        {/* Context Header - fixed height */}
+                        <div className="p-6 pb-4 h-[120px] flex flex-col justify-center" style={{ background: "linear-gradient(135deg, hsl(20 55% 53%) 0%, hsl(20 55% 45%) 100%)" }}>
                             <h3 className="font-display text-lg text-white font-semibold mb-2">
                                 Bottleneck Analysis
                             </h3>
-                            <p className="text-sm text-white/80">
+                            <p className="text-sm text-white/80 line-clamp-2">
                                 Every system has a constraint. Find it, fix it, repeat.
                             </p>
                         </div>
 
-                        {/* The Visual */}
-                        <div className="py-4 px-6 bg-[hsl(210_45%_96%)]">
+                        {/* The Visual - flex grow with centered image */}
+                        <div className="flex-1 bg-[hsl(210_45%_96%)] flex items-center justify-center">
                             <img
                                 src={theoryOfConstraintsImg}
                                 alt="Theory of Constraints showing the 5 focusing steps for continuous improvement"
-                                className="w-full h-auto rounded-lg"
+                                className="w-full h-auto"
+                                loading="lazy"
                             />
                         </div>
 
-                        {/* Impact Caption */}
-                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border">
+                        {/* Impact Caption - fixed height */}
+                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border h-[60px] flex items-center justify-center">
                             Fig 3. The 5 Focusing Steps: a systematic approach to throughput improvement.
                         </figcaption>
-                        {/* Executive Summary */}
-                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)]">
+                        {/* Executive Summary - fixed height */}
+                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)] h-[72px] flex items-center justify-center">
                             <p className="text-xs font-medium text-foreground text-center">
                                 <span className="text-[hsl(var(--gold))] font-semibold">The Bottom Line:</span> Focus on the constraint—everything else is noise.
                             </p>

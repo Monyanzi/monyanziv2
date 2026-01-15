@@ -1,20 +1,19 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { ArrowRight, MapPin, Linkedin, TrendingUp, DollarSign, Clock, Settings, Search, Users } from "lucide-react";
 import { motion } from "motion/react";
-import DiagnosticFlow from "./DiagnosticFlow";
-import heroProfile from "../assets/hero-profile.jpg";
+import heroProfile from "../assets/hero-profile.webp";
+
+const DiagnosticFlow = lazy(() => import("./DiagnosticFlow"));
 
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Core expertise items with unique icons
   const coreExpertise = [
     { icon: <Settings className="w-5 h-5" />, title: "Strategic Analysis", subtitle: "& Modeling" },
     { icon: <TrendingUp className="w-5 h-5" />, title: "Process", subtitle: "Optimisation" },
     { icon: <Search className="w-5 h-5" />, title: "M&A Due", subtitle: "Diligence" },
   ];
 
-  // Key results - unique metrics not repeated elsewhere
   const keyResults = [
     { label: "Efficiency Gains", icon: <TrendingUp className="w-4 h-4" /> },
     { label: "Cost Savings", icon: <DollarSign className="w-4 h-4" /> },
@@ -23,21 +22,17 @@ const HeroSection = () => {
 
   return (
     <>
-      {/* Light cream background for Hero */}
       <section className="relative min-h-screen overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
 
-        {/* Mobile Background Photo - visible only on mobile */}
         <div className="lg:hidden absolute inset-0 z-0">
           <img
             src={heroProfile}
             alt="Moses Nyanzi"
             className="w-full h-full object-cover object-top"
           />
-          {/* Gradient overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-[hsl(40_35%_98%)]" />
         </div>
 
-        {/* Subtle background elements - desktop only */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden hidden lg:block">
           {/* Subtle gradient orbs */}
           <motion.div
@@ -55,7 +50,6 @@ const HeroSection = () => {
             style={{ background: 'radial-gradient(circle, hsl(140 18% 40%) 0%, transparent 70%)' }}
           />
 
-          {/* Dot pattern */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.02 }}
@@ -88,7 +82,6 @@ const HeroSection = () => {
                 Strategy · Logic · Results
               </motion.p>
 
-              {/* Name and Title */}
               <div className="space-y-2">
                 <div className="flex items-baseline gap-4 flex-wrap">
                   <motion.h1
@@ -292,7 +285,11 @@ const HeroSection = () => {
 
       </section>
 
-      <DiagnosticFlow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {isModalOpen && (
+        <Suspense fallback={null}>
+          <DiagnosticFlow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        </Suspense>
+      )}
     </>
   );
 };

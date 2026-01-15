@@ -1,13 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 
-/**
- * ValuePropositionSection - Visual-first with correct color palette
- * Using Navy, Gold, Forest, Terracotta from design system
- * Background: Cream (alternating pattern position 2)
- * FIXED: All SVG elements visible immediately for mobile compatibility
- */
-
 const ValuePropositionSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
 

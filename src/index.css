@@ -5,115 +5,83 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =============================================================================
-   PREMIUM DESIGN SYSTEM v3.0 — "Swiss Gravitas" Edition
-   Swiss Modernism meets Financial Trust.
-   Every pixel intentional. Every interaction earned.
-   ============================================================================= */
+/* PREMIUM DESIGN SYSTEM v3.0 */
 
 @layer base {
   :root {
-    /* =========================================================================
-       COLOR SYSTEM — Semantic Tokens with Full Card Support
-       ========================================================================= */
-
-    /* Base Surfaces */
+    /* COLOR SYSTEM */
     --background: 40 30% 97%;
-    /* #FAF8F5 - Warm off-white */
+    /* Warm off-white #FAF8F5 */
     --foreground: 0 0% 10%;
-    /* #1A1A1A - Deep charcoal */
+    /* Deep charcoal #1A1A1A */
 
-    /* Card System — Explicit tokens for legibility */
+    /* Card System */
     --card: 0 0% 100%;
-    /* Pure white cards */
     --card-foreground: 0 0% 10%;
-    /* Matches foreground */
     --card-muted: 0 0% 48%;
-    /* For card subtitles/captions */
     --card-border: 40 20% 90%;
-    /* Subtle warm border */
     --card-hover: 40 25% 98%;
-    /* Slight warmth on hover */
 
-    /* Popover/Modal */
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    /* Primary Action */
+    /* Actions */
     --primary: 212 52% 24%;
-    /* #1E3A5F - Deep navy */
+    /* Deep navy #1E3A5F */
     --primary-foreground: 0 0% 100%;
-    /* White text on navy */
-
-    /* Secondary Elements */
     --secondary: 40 25% 94%;
-    /* Warm gray */
     --secondary-foreground: 0 0% 15%;
-    /* Near-black text */
 
-    /* Muted/Disabled States */
+    /* States */
     --muted: 40 15% 92%;
     --muted-foreground: 0 0% 48%;
     /* #7A7A7A */
-
-    /* Accent Colors */
     --accent: 43 92% 38%;
-    /* #B8860B - Rich gold */
+    /* Rich gold #B8860B */
     --accent-foreground: 0 0% 100%;
 
-    /* Semantic Status Colors */
+    /* Semantic */
     --destructive: 358 47% 45%;
     /* #A63D40 */
     --destructive-foreground: 0 0% 100%;
     --success: 155 40% 30%;
-    /* #2D6A4F - Forest green */
+    /* Forest green #2D6A4F */
     --success-foreground: 0 0% 100%;
     --warning: 30 55% 50%;
-    /* #C77A38 - Warm amber */
+    /* Warm amber #C77A38 */
     --warning-foreground: 0 0% 10%;
 
-    /* Form Elements */
+    /* Forms */
     --border: 40 20% 88%;
     --input: 40 15% 96%;
     --ring: 43 92% 38%;
-    /* Gold focus ring */
 
     --radius: 0.5rem;
 
-    /* =========================================================================
-       SIGNATURE ACCENT PALETTE — Use Sparingly
-       ========================================================================= */
+    /* ACCENT PALETTE */
     --gold: 43 92% 38%;
-    /* Primary accent #B8860B */
+    /* #B8860B */
     --gold-light: 43 85% 48%;
-    /* Lighter gold for hovers */
     --gold-muted: 43 60% 45%;
-    /* Subdued gold */
     --navy: 212 52% 24%;
     /* #1E3A5F */
     --navy-deep: 212 60% 18%;
-    /* Darker navy */
     --navy-light: 212 45% 35%;
-    /* Lighter navy for text */
     --terracotta: 15 55% 50%;
-    /* #C75D3A - Warm accent */
+    /* #C75D3A */
     --terracotta-light: 15 60% 58%;
     --forest: 155 40% 30%;
     /* #2D6A4F */
     --forest-light: 155 35% 40%;
     --stone: 40 10% 52%;
-    /* Neutral stone */
     --cream: 40 30% 97%;
-    /* Background cream */
 
-    /* =========================================================================
-       TYPOGRAPHY — Distinctive Font Pairing
-       ========================================================================= */
+    /* TYPOGRAPHY */
     --font-display: 'Fraunces', Georgia, serif;
     --font-body: 'Manrope', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', Consolas, monospace;
 
-    /* Type Scale — 8px Baseline Grid */
+    /* Type Scale (8px baseline) */
     --text-xs: 0.75rem;
     /* 12px */
     --text-sm: 0.875rem;
@@ -135,15 +103,12 @@
     --text-6xl: 4rem;
     /* 64px */
 
-    /* Line Heights */
     --leading-tight: 1.15;
     --leading-snug: 1.3;
     --leading-normal: 1.5;
     --leading-relaxed: 1.65;
 
-    /* =========================================================================
-       SPACING SCALE — 4px Base Unit
-       ========================================================================= */
+    /* SPACING SCALE (4px base) */
     --space-1: 0.25rem;
     /* 4px */
     --space-2: 0.5rem;
@@ -171,9 +136,7 @@
     --space-32: 8rem;
     /* 128px */
 
-    /* =========================================================================
-       MOTION SYSTEM — Cinematic Feel
-       ========================================================================= */
+    /* MOTION SYSTEM */
     --transition-smooth: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     --transition-snap: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -182,40 +145,23 @@
     --easing-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
     --easing-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-    /* Animation Durations */
     --duration-fast: 150ms;
     --duration-normal: 300ms;
     --duration-slow: 500ms;
     --duration-slower: 800ms;
 
-    /* =========================================================================
-       SHADOWS — Layered Depth System
-       ========================================================================= */
+    /* SHADOWS */
     --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.03);
-    --shadow-md:
-      0 2px 4px -1px hsl(0 0% 0% / 0.04),
-      0 4px 8px -2px hsl(0 0% 0% / 0.06);
-    --shadow-lg:
-      0 4px 6px -1px hsl(0 0% 0% / 0.05),
-      0 12px 24px -4px hsl(0 0% 0% / 0.08);
-    --shadow-xl:
-      0 8px 16px -4px hsl(0 0% 0% / 0.06),
-      0 24px 48px -12px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 2px 4px -1px hsl(0 0% 0% / 0.04), 0 4px 8px -2px hsl(0 0% 0% / 0.06);
+    --shadow-lg: 0 4px 6px -1px hsl(0 0% 0% / 0.05), 0 12px 24px -4px hsl(0 0% 0% / 0.08);
+    --shadow-xl: 0 8px 16px -4px hsl(0 0% 0% / 0.06), 0 24px 48px -12px hsl(0 0% 0% / 0.1);
     --shadow-glow-gold: 0 0 60px -15px hsl(43 92% 50% / 0.25);
     --shadow-glow-navy: 0 0 60px -15px hsl(212 52% 24% / 0.2);
-
-    /* Card-Specific Shadows */
-    --shadow-card:
-      0 1px 3px 0 hsl(0 0% 0% / 0.04),
-      0 4px 12px -2px hsl(0 0% 0% / 0.06);
-    --shadow-card-hover:
-      0 8px 16px -4px hsl(0 0% 0% / 0.06),
-      0 20px 40px -8px hsl(0 0% 0% / 0.1);
+    --shadow-card: 0 1px 3px 0 hsl(0 0% 0% / 0.04), 0 4px 12px -2px hsl(0 0% 0% / 0.06);
+    --shadow-card-hover: 0 8px 16px -4px hsl(0 0% 0% / 0.06), 0 20px 40px -8px hsl(0 0% 0% / 0.1);
   }
 
-  /* =========================================================================
-     DARK MODE — Deep, Rich, Professional
-     ========================================================================= */
+  /* DARK MODE */
   .dark {
     --background: 220 20% 7%;
     /* #0D1117 */
@@ -249,13 +195,8 @@
     --input: 220 15% 16%;
     --ring: 43 85% 55%;
 
-    /* Adjusted shadows for dark mode */
-    --shadow-card:
-      0 1px 3px 0 hsl(0 0% 0% / 0.2),
-      0 4px 12px -2px hsl(0 0% 0% / 0.3);
-    --shadow-card-hover:
-      0 8px 16px -4px hsl(0 0% 0% / 0.3),
-      0 20px 40px -8px hsl(0 0% 0% / 0.4);
+    --shadow-card: 0 1px 3px 0 hsl(0 0% 0% / 0.2), 0 4px 12px -2px hsl(0 0% 0% / 0.3);
+    --shadow-card-hover: 0 8px 16px -4px hsl(0 0% 0% / 0.3), 0 20px 40px -8px hsl(0 0% 0% / 0.4);
   }
 }
 
@@ -568,101 +509,7 @@
     left: 100%;
   }
 
-  /* =========================================================================
-     LINK STYLES
-     ========================================================================= */
 
-  .link-underline {
-    position: relative;
-    color: hsl(var(--foreground));
-    text-decoration: none;
-  }
-
-  .link-underline::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: hsl(var(--gold));
-    transition: width 0.3s var(--easing-cinematic);
-  }
-
-  .link-underline:hover::after {
-    width: 100%;
-  }
-
-  .link-underline:hover {
-    color: hsl(var(--gold));
-  }
-
-  /* Accent line below element */
-  .accent-line {
-    @apply relative;
-  }
-
-  .accent-line::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-12 h-px;
-    background: hsl(var(--gold));
-  }
-
-  /* =========================================================================
-     GLASS EFFECTS
-     ========================================================================= */
-
-  .glass {
-    @apply bg-white/70 backdrop-blur-lg border border-white/20;
-  }
-
-  .glass-dark {
-    @apply bg-black/30 backdrop-blur-xl border border-white/10;
-    box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgb(255 255 255 / 0.1);
-  }
-
-  .glass-subtle {
-    @apply bg-white/5 backdrop-blur-md border border-white/5;
-  }
-
-  .glass-card {
-    @apply bg-white/80 backdrop-blur-xl border border-white/40;
-    box-shadow:
-      0 4px 24px rgba(0, 0, 0, 0.08),
-      inset 0 1px 0 rgb(255 255 255 / 0.5);
-  }
-
-  .glass-gold {
-    @apply backdrop-blur-xl border border-white/20;
-    background: linear-gradient(135deg, hsl(43 92% 50% / 0.1), hsl(43 92% 50% / 0.05));
-  }
-
-  .glass-navy {
-    @apply backdrop-blur-xl border border-white/10;
-    background: linear-gradient(135deg, hsl(212 52% 24% / 0.15), hsl(212 52% 24% / 0.05));
-  }
-
-  /* =========================================================================
-     SHADOWS
-     ========================================================================= */
-
-  .shadow-elevated {
-    box-shadow: var(--shadow-xl);
-  }
-
-  .shadow-soft {
-    box-shadow: var(--shadow-md);
-  }
-
-  .shadow-glow {
-    box-shadow: var(--shadow-glow-gold);
-  }
-
-  /* =========================================================================
-     DECORATIVE ELEMENTS
-     ========================================================================= */
 
   /* Gradient border top */
   .gradient-border-top {
@@ -848,11 +695,7 @@
     }
   }
 
-  /* Marquee animation for scrolling ticker
-   * - Uses -25% because we have 4 identical copies
-   * - When it translates 25%, copy 2 is where copy 1 was = seamless loop
-   * - will-change for GPU acceleration
-   * - Linear timing for consistent speed */
+  /* Marquee animation (scrolling ticker) */
   @keyframes marquee {
     0% {
       transform: translateX(0);

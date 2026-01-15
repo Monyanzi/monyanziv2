@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { ArrowRight, Linkedin } from "lucide-react";
 import { motion } from "motion/react";
-import DiagnosticFlow from "./DiagnosticFlow";
+import { getEmail } from "@/utils/email";
+
+const DiagnosticFlow = lazy(() => import("./DiagnosticFlow"));
 
 const EngagementSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -119,7 +121,7 @@ const EngagementSection = () => {
                 </motion.button>
 
                 <p className="text-sm text-muted-foreground mt-8 text-center">
-                  Or email directly: <a href="mailto:moses.k.nyanzi@gmail.com" className="text-foreground hover:text-[hsl(var(--terracotta))] transition-colors underline underline-offset-2">moses.k.nyanzi@gmail.com</a>
+                  Or email directly: <a href={`mailto:${getEmail()}`} className="text-foreground hover:text-[hsl(var(--terracotta))] transition-colors underline underline-offset-2">{getEmail()}</a>
                 </p>
               </div>
             </motion.div>
@@ -170,10 +172,10 @@ const EngagementSection = () => {
                     LinkedIn
                   </a>
                   <a
-                    href="mailto:moses.k.nyanzi@gmail.com"
+                    href={`mailto:${getEmail()}`}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    moses.k.nyanzi@gmail.com
+                    {getEmail()}
                   </a>
                 </div>
               </div>
@@ -189,7 +191,11 @@ const EngagementSection = () => {
         </footer>
       </section>
 
-      <DiagnosticFlow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {isModalOpen && (
+        <Suspense fallback={null}>
+          <DiagnosticFlow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        </Suspense>
+      )}
     </>
   );
 };

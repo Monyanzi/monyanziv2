@@ -1,16 +1,3 @@
-/**
- * MarqueeTicker - Displays a continuous scrolling list of companies
- * the consultant has worked with or completed projects for.
- * 
- * Designed for a premium, understated aesthetic.
- * Uses pure CSS animation for best performance.
- * 
- * Architecture:
- * - 4 identical text copies placed side-by-side
- * - Animation translates by -25% (one copy width)
- * - When animation resets, position looks identical (seamless loop)
- * - No gaps between copies for continuous flow
- */
 const MarqueeTicker = () => {
     const companies = [
         // Direct Experience

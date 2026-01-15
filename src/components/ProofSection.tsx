@@ -1,10 +1,5 @@
 import { motion } from "motion/react";
 
-/**
- * ProofSection - Visual-first with correct color palette
- * Using design system: Navy, Gold, Forest, Terracotta
- */
-
 const ProofSection = () => {
     return (
         <section id="proof" className="py-12 lg:py-16 overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
