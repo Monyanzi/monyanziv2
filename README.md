@@ -4,7 +4,7 @@ Personal consulting website for Moses Nyanzi - Actuary | MBA. Strategic advisory
 
 ## Live Site
 
-[mosesnyanzi.com](https://mosesnyanzi.com) *(or your deployed URL)*
+[mosesnyanzi.co.za](https://mosesnyanzi.co.za) *(or your deployed URL)*
 
 ## Tech Stack
 

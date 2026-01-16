@@ -14,4 +14,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://mosesnyanzi.com/sitemap.xml
+Sitemap: https://mosesnyanzi.co.za/sitemap.xml
