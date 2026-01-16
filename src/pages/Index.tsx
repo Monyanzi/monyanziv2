@@ -20,7 +20,7 @@ const Index = () => {
           content="Independent actuarial consultant in Johannesburg, South Africa. ASSA-qualified actuary & INSEAD MBA. Capital strategy, M&A due diligence, reinsurance optimization. 9+ years | $100M+ portfolios."
         />
         <meta name="keywords" content="actuarial consultant south africa, capital strategy consultant, independent actuarial advisor johannesburg, M&A due diligence, reinsurance consulting, portfolio optimization, Moses Nyanzi, ASSA actuary, INSEAD MBA, fractional actuary" />
-        <link rel="canonical" href="https://mosesnyanzi.com/" />
+        <link rel="canonical" href="https://mosesnyanzi.co.za/" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
