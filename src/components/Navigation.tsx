@@ -11,6 +11,7 @@ const navItems = [
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -21,10 +22,13 @@ const Navigation = () => {
 
   useEffect(() => {
     let timeoutId: number | undefined;
-    
+
     const handleScroll = () => {
+      // Track if scrolled for nav background
+      setIsScrolled(window.scrollY > 50);
+
       if (timeoutId) return; // Throttle - skip if already scheduled
-      
+
       timeoutId = window.setTimeout(() => {
         const sections = navItems.map(item => item.href.slice(1));
         const scrollPosition = window.scrollY + 100;
@@ -52,7 +56,10 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+          ? "bg-background/90 backdrop-blur-md border-b border-border/50 py-3"
+          : "bg-transparent py-5"
+        }`}>
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-[2px] bg-[hsl(38,82%,50%)] origin-left"
           style={{ scaleX }}

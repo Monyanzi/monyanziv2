@@ -63,8 +63,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-medium tracking-[0.3em] uppercase mb-5 mx-auto w-fit"
-            style={{ color: "hsl(var(--terracotta))" }}
+            className="text-xs font-semibold tracking-[0.3em] uppercase mb-5 mx-auto w-fit text-foreground/60"
           >
             Who You Work With
           </motion.p>
@@ -291,7 +290,7 @@ const AboutSection = () => {
               className="p-8 rounded-3xl border border-border bg-gradient-to-br from-white to-[hsl(40,35%,98%)]"
               style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
             >
-              <h3 className="text-xs font-mono tracking-[0.2em] uppercase mb-6" style={{ color: "hsl(var(--terracotta))" }}>
+              <h3 className="text-xs font-mono font-semibold tracking-[0.2em] uppercase mb-6 text-foreground/60">
                 Where Clients Bring Me In
               </h3>
               <div className="grid grid-cols-2 gap-4">

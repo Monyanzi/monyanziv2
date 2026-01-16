@@ -301,8 +301,7 @@ const ExpertiseSection = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-medium tracking-[0.3em] uppercase mb-4 mx-auto w-fit"
-            style={{ color: "hsl(38 82% 50%)" }}
+            className="text-xs font-semibold tracking-[0.3em] uppercase mb-4 mx-auto w-fit text-foreground/60"
           >
             What I Bring Into the Room
           </motion.p>
@@ -372,7 +371,7 @@ const ExpertiseSection = () => {
                         type: "spring",
                         stiffness: 200
                       }}
-                      className="px-3 py-1 rounded-full text-xs text-muted-foreground border border-border hover:border-[hsl(38_82%_50%)]/50 transition-colors"
+                      className="px-3 py-1.5 rounded-full text-xs text-foreground/80 font-medium bg-gray-50 border border-gray-200 hover:border-[hsl(38_82%_50%)]/50 hover:bg-white transition-colors"
                     >
                       {skill}
                     </motion.span>

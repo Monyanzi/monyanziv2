@@ -123,7 +123,7 @@ const TechnicalExpertiseSection = () => {
                         </div>
 
                         {/* Impact Caption - fixed height */}
-                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border h-[60px] flex items-center justify-center">
+                        <figcaption className="text-xs text-foreground/60 text-center py-3 px-6 border-t border-border h-[60px] flex items-center justify-center">
                             Fig 1. Schematic visualising the interplay between Net Retention and Risk Transfer layers.
                         </figcaption>
                         {/* Executive Summary - fixed height */}
@@ -165,7 +165,7 @@ const TechnicalExpertiseSection = () => {
                         </div>
 
                         {/* Impact Caption - fixed height */}
-                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border h-[60px] flex items-center justify-center">
+                        <figcaption className="text-xs text-foreground/60 text-center py-3 px-6 border-t border-border h-[60px] flex items-center justify-center">
                             Fig 2. The Value Stick: visualising how total value created is distributed across stakeholders.
                         </figcaption>
                         {/* Executive Summary - fixed height */}
@@ -207,7 +207,7 @@ const TechnicalExpertiseSection = () => {
                         </div>
 
                         {/* Impact Caption - fixed height */}
-                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border h-[60px] flex items-center justify-center">
+                        <figcaption className="text-xs text-foreground/60 text-center py-3 px-6 border-t border-border h-[60px] flex items-center justify-center">
                             Fig 3. The 5 Focusing Steps: a systematic approach to throughput improvement.
                         </figcaption>
                         {/* Executive Summary - fixed height */}

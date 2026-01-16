@@ -359,7 +359,7 @@ const ProofSection = () => {
                 </div>
 
                 {/* Context footer */}
-                <p className="text-center text-xs text-muted-foreground mt-8 italic">
+                <p className="text-center text-xs text-foreground/50 mt-8 italic">
                     Results from leadership roles and independent consulting. Client details confidential.
                 </p>
             </div>

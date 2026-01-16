@@ -72,15 +72,6 @@ const HeroSection = () => {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              {/* Tagline */}
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-xs font-semibold tracking-[0.3em] uppercase text-white lg:text-muted-foreground"
-              >
-                Strategy · Logic · Results
-              </motion.p>
 
               <div className="space-y-2">
                 <div className="flex items-baseline gap-4 flex-wrap">
@@ -103,14 +94,14 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              {/* Tagline */}
+              {/* Description */}
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="text-lg md:text-xl text-white/90 lg:text-muted-foreground max-w-md leading-relaxed"
+                className="text-lg md:text-xl text-white/90 lg:text-muted-foreground max-w-md leading-relaxed text-justify"
               >
-                Independent actuarial consultant in South Africa. For senior leaders who need clarity on complex decisions, fast.
+                Helping senior leaders get clarity on complex decisions, quickly.
               </motion.p>
 
               {/* Core Expertise Cards */}

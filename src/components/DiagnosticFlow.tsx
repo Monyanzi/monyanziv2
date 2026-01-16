@@ -201,7 +201,7 @@ ${contactData.email}`;
                     >
                         <button
                             onClick={onClose}
-                            className="absolute -top-12 right-0 text-white/50 hover:text-white transition-colors text-sm flex items-center gap-1"
+                            className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors text-sm flex items-center gap-1 underline underline-offset-2"
                         >
                             Skip <ArrowRight className="w-4 h-4" />
                         </button>
