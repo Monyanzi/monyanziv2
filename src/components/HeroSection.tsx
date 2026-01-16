@@ -34,7 +34,7 @@ const HeroSection = () => {
         </div>
 
         <div className="absolute inset-0 pointer-events-none overflow-hidden hidden lg:block">
-          {/* Subtle gradient orbs */}
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.04 }}
@@ -65,7 +65,7 @@ const HeroSection = () => {
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
           <div className="min-h-screen grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-20 lg:py-24">
 
-            {/* Left Column - Content */}
+            {/* Left Column */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -94,7 +94,7 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              {/* Description */}
+
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -145,7 +145,7 @@ const HeroSection = () => {
                 transition={{ delay: 1 }}
                 className="space-y-3"
               >
-                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">
+                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-white/70 lg:text-muted-foreground">
                   Key Results
                 </p>
                 <div className="flex flex-wrap gap-4">
@@ -164,12 +164,12 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* Location & LinkedIn */}
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.3 }}
-                className="flex items-center gap-4 text-sm text-muted-foreground"
+                className="flex items-center gap-4 text-sm text-white/70 lg:text-muted-foreground"
               >
                 <div className="flex items-center gap-1.5">
                   <MapPin className="w-4 h-4" />
@@ -216,7 +216,7 @@ const HeroSection = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Photo */}
+            {/* Right Column */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -224,7 +224,7 @@ const HeroSection = () => {
               className="relative hidden lg:block"
             >
               <div className="relative">
-                {/* Photo container with subtle styling */}
+                {/* Photo container */}
                 <motion.div
                   initial={{ scale: 0.95 }}
                   animate={{ scale: 1 }}
@@ -237,11 +237,11 @@ const HeroSection = () => {
                     alt="Moses Nyanzi"
                     className="w-full h-full object-cover object-top"
                   />
-                  {/* Subtle gradient overlay at bottom */}
+                  {/* Gradient overlay */}
                   <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/20 to-transparent" />
                 </motion.div>
 
-                {/* Floating accent elements */}
+
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}

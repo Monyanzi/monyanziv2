@@ -65,19 +65,19 @@ const DiagnosticFlow = ({ isOpen, onClose }: DiagnosticFlowProps) => {
         company: "",
         email: "",
     });
-    const [isVisible, setIsVisible] = useState(false);
+
     const [isComplete, setIsComplete] = useState(false);
 
     useEffect(() => {
         if (isOpen) {
-            setTimeout(() => setIsVisible(true), 10);
+
             document.body.style.overflow = "hidden";
             setCurrentStep(0);
             setAnswers({});
             setContactData({ firstName: "", lastName: "", company: "", email: "" });
             setIsComplete(false);
         } else {
-            setIsVisible(false);
+
             document.body.style.overflow = "";
         }
         return () => {

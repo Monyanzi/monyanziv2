@@ -21,7 +21,7 @@ const AboutSection = () => {
 
   return (
     <section id="about" ref={sectionRef} className="py-12 lg:py-16 relative overflow-hidden" style={{ background: "hsl(210 45% 96%)" }}>
-      {/* Organic floating shapes with parallax */}
+      {/* Background shapes */}
       <motion.div
         style={{ y: y1 }}
         className="absolute -top-10 -left-10 w-[500px] h-[500px] opacity-[0.06] will-change-transform pointer-events-none"
@@ -47,7 +47,7 @@ const AboutSection = () => {
         />
       </motion.div>
 
-      {/* Dot texture */}
+
       <div
         className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{
@@ -57,7 +57,7 @@ const AboutSection = () => {
       />
 
       <div className="container mx-auto px-6 lg:px-12 relative">
-        {/* Section header */}
+
         <div className="text-center mb-16">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -87,7 +87,7 @@ const AboutSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-10">
-          {/* Left column: Big visual credential card */}
+          {/* Left column: Visual credential card */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -100,9 +100,9 @@ const AboutSection = () => {
               boxShadow: "0 20px 60px -20px hsl(var(--forest) / 0.4)"
             }}
           >
-            {/* Visual header area */}
+
             <div className="p-10 pb-8 relative">
-              {/* Accent glow */}
+
               <div
                 className="absolute top-0 right-0 w-48 h-48 opacity-25 pointer-events-none"
                 style={{
@@ -111,12 +111,12 @@ const AboutSection = () => {
                 }}
               />
 
-              {/* Animated metrics visual */}
+
               <div className="flex items-center gap-8 mb-8">
                 {/* Credential rings */}
                 <div className="relative w-24 h-24">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
-                    {/* Outer ring - Actuary - VISIBLE */}
+                    {/* Outer ring - Actuary */}
                     <circle
                       cx="50" cy="50" r="45"
                       fill="none"
@@ -124,14 +124,14 @@ const AboutSection = () => {
                       strokeOpacity="0.3"
                       strokeWidth="4"
                     />
-                    {/* Inner ring - MBA - VISIBLE */}
+                    {/* Inner ring - MBA */}
                     <circle
                       cx="50" cy="50" r="35"
                       fill="none"
                       stroke="hsl(var(--gold))"
                       strokeWidth="4"
                     />
-                    {/* Center value - VISIBLE */}
+                    {/* Center value */}
                     <text
                       x="50" y="50"
                       textAnchor="middle"
@@ -155,14 +155,14 @@ const AboutSection = () => {
                 </div>
               </div>
 
-              {/* Description */}
+
               <p className="text-white/80 leading-relaxed text-lg mb-6">
                 I don't just advise; I <span className="text-white font-medium">execute</span>.
                 I build the models myself: valuations, stress tests, pricing frameworks.
                 Then translate them into strategy your board will back.
               </p>
 
-              {/* Stats row - to fill empty space */}
+              {/* Stats row */}
               <div className="grid grid-cols-3 gap-4 mb-8">
                 {[
                   { value: "9+", label: "Years" },
@@ -212,9 +212,9 @@ const AboutSection = () => {
             </div>
           </motion.div>
 
-          {/* Right column: Services + Delivery */}
+          {/* Right column */}
           <div className="space-y-8">
-            {/* What You Get - visual-first */}
+            {/* What You Get */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -224,7 +224,7 @@ const AboutSection = () => {
               className="p-8 rounded-3xl bg-white border border-border cursor-default will-change-transform group"
               style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
             >
-              {/* Visual: animated checkline */}
+
               <div className="mb-6 h-16 flex items-center">
                 <svg className="w-full h-12" viewBox="0 0 300 48">
                   {/* Animated line */}
@@ -281,7 +281,7 @@ const AboutSection = () => {
               </p>
             </motion.div>
 
-            {/* Services grid - bigger cards */}
+            {/* Services grid */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

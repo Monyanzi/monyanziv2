@@ -20,7 +20,7 @@ const TechnicalExpertiseSection = () => {
             className="py-12 lg:py-16 relative overflow-hidden"
             style={{ background: "hsl(210 45% 96%)" }}
         >
-            {/* Parallax gradient overlay */}
+
             <motion.div
                 style={{ y: gradientY }}
                 className="absolute inset-0 pointer-events-none will-change-transform"
@@ -47,7 +47,7 @@ const TechnicalExpertiseSection = () => {
                 style={{ background: "radial-gradient(circle, hsl(var(--forest)) 0%, transparent 70%)" }}
             />
 
-            {/* Dot texture */}
+
             <div
                 className="absolute inset-0 opacity-[0.02] pointer-events-none"
                 style={{
@@ -57,7 +57,7 @@ const TechnicalExpertiseSection = () => {
             />
 
             <div className="container mx-auto px-6 lg:px-12 relative">
-                {/* Section header */}
+
                 <div className="text-center mb-12">
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
@@ -88,7 +88,7 @@ const TechnicalExpertiseSection = () => {
                     </motion.p>
                 </div>
 
-                {/* Bento Grid - 3 cards */}
+                {/* Bento Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
                     {/* Reinsurance Architecture Card */}
                     <motion.div
@@ -102,7 +102,7 @@ const TechnicalExpertiseSection = () => {
                             boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)"
                         }}
                     >
-                        {/* Context Header - fixed height */}
+                        {/* Context Header */}
                         <div className="p-6 pb-4 h-[120px] flex flex-col justify-center" style={{ background: "linear-gradient(135deg, hsl(140 18% 40%) 0%, hsl(140 18% 35%) 100%)" }}>
                             <h3 className="font-display text-lg text-white font-semibold mb-2">
                                 Reinsurance Architecture
@@ -112,7 +112,7 @@ const TechnicalExpertiseSection = () => {
                             </p>
                         </div>
 
-                        {/* The Visual - flex grow with centered image */}
+                        {/* The Visual */}
                         <div className="flex-1 bg-[hsl(210_45%_96%)] flex items-center justify-center">
                             <img
                                 src={reinsuranceTowerImg}
@@ -122,11 +122,11 @@ const TechnicalExpertiseSection = () => {
                             />
                         </div>
 
-                        {/* Impact Caption - fixed height */}
+                        {/* Impact Caption */}
                         <figcaption className="text-xs text-foreground/60 text-center py-3 px-6 border-t border-border h-[60px] flex items-center justify-center">
                             Fig 1. Schematic visualising the interplay between Net Retention and Risk Transfer layers.
                         </figcaption>
-                        {/* Executive Summary - fixed height */}
+                        {/* Executive Summary */}
                         <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)] h-[72px] flex items-center justify-center">
                             <p className="text-xs font-medium text-foreground text-center">
                                 <span className="text-[hsl(var(--gold))] font-semibold">The Bottom Line:</span> Proper layering reduces volatility while freeing capital for growth.
@@ -144,7 +144,7 @@ const TechnicalExpertiseSection = () => {
                         className="rounded-2xl overflow-hidden cursor-default bg-white border border-border flex flex-col"
                         style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
                     >
-                        {/* Context Header - fixed height */}
+                        {/* Context Header */}
                         <div className="p-6 pb-4 h-[120px] flex flex-col justify-center" style={{ background: "linear-gradient(135deg, hsl(210 45% 55%) 0%, hsl(210 45% 48%) 100%)" }}>
                             <h3 className="font-display text-lg text-white font-semibold mb-2">
                                 Pricing Strategy
@@ -154,7 +154,7 @@ const TechnicalExpertiseSection = () => {
                             </p>
                         </div>
 
-                        {/* The Visual - flex grow with centered image */}
+                        {/* The Visual */}
                         <div className="flex-1 bg-[hsl(210_45%_96%)] flex items-center justify-center">
                             <img
                                 src={valueStickImg}
@@ -164,11 +164,11 @@ const TechnicalExpertiseSection = () => {
                             />
                         </div>
 
-                        {/* Impact Caption - fixed height */}
+                        {/* Impact Caption */}
                         <figcaption className="text-xs text-foreground/60 text-center py-3 px-6 border-t border-border h-[60px] flex items-center justify-center">
                             Fig 2. The Value Stick: visualising how total value created is distributed across stakeholders.
                         </figcaption>
-                        {/* Executive Summary - fixed height */}
+                        {/* Executive Summary */}
                         <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)] h-[72px] flex items-center justify-center">
                             <p className="text-xs font-medium text-foreground text-center">
                                 <span className="text-[hsl(var(--gold))] font-semibold">The Bottom Line:</span> Great pricing expands customer value while capturing firm margin.
@@ -186,7 +186,7 @@ const TechnicalExpertiseSection = () => {
                         className="rounded-2xl overflow-hidden cursor-default bg-white border border-border flex flex-col"
                         style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
                     >
-                        {/* Context Header - fixed height */}
+                        {/* Context Header */}
                         <div className="p-6 pb-4 h-[120px] flex flex-col justify-center" style={{ background: "linear-gradient(135deg, hsl(20 55% 53%) 0%, hsl(20 55% 45%) 100%)" }}>
                             <h3 className="font-display text-lg text-white font-semibold mb-2">
                                 Bottleneck Analysis
@@ -196,7 +196,7 @@ const TechnicalExpertiseSection = () => {
                             </p>
                         </div>
 
-                        {/* The Visual - flex grow with centered image */}
+                        {/* The Visual */}
                         <div className="flex-1 bg-[hsl(210_45%_96%)] flex items-center justify-center">
                             <img
                                 src={theoryOfConstraintsImg}
@@ -206,11 +206,11 @@ const TechnicalExpertiseSection = () => {
                             />
                         </div>
 
-                        {/* Impact Caption - fixed height */}
+                        {/* Impact Caption */}
                         <figcaption className="text-xs text-foreground/60 text-center py-3 px-6 border-t border-border h-[60px] flex items-center justify-center">
                             Fig 3. The 5 Focusing Steps: a systematic approach to throughput improvement.
                         </figcaption>
-                        {/* Executive Summary - fixed height */}
+                        {/* Executive Summary */}
                         <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)] h-[72px] flex items-center justify-center">
                             <p className="text-xs font-medium text-foreground text-center">
                                 <span className="text-[hsl(var(--gold))] font-semibold">The Bottom Line:</span> Focus on the constraint—everything else is noise.

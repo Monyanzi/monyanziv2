@@ -13,7 +13,7 @@ const ValuePropositionSection = () => {
 
   return (
     <section ref={sectionRef} className="py-12 lg:py-16 relative overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
-      {/* Parallax gradient background */}
+
       <motion.div
         style={{ y: gradientY }}
         className="absolute inset-0 pointer-events-none will-change-transform"
@@ -22,7 +22,7 @@ const ValuePropositionSection = () => {
       </motion.div>
 
       <div className="container mx-auto px-6 lg:px-12 relative">
-        {/* Section header */}
+
         <div className="text-center mb-16">
           <p className="font-mono text-xs tracking-[0.3em] text-[hsl(var(--terracotta))] uppercase mb-4 inline-block">
             Where Clients Bring Me In
@@ -38,7 +38,7 @@ const ValuePropositionSection = () => {
         {/* Visual-first cards */}
         <div className="grid lg:grid-cols-3 gap-8">
 
-          {/* Card 1: Pattern Recognition - Scatter with Regression */}
+          {/* Card 1: Pattern Recognition */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -47,11 +47,11 @@ const ValuePropositionSection = () => {
             whileHover={{ y: -8, transition: { duration: 0.2 } }}
             className="group rounded-2xl bg-white border border-border overflow-hidden hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
           >
-            {/* Visual area - Forest gradient */}
+            {/* Visual area */}
             <div className="h-56 p-6 relative overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 30%) 100%)" }}>
-              {/* Scatter plot with regression curve */}
+
               <svg className="w-full h-full" viewBox="0 0 200 120">
-                {/* Grid lines */}
+
                 {[20, 40, 60, 80, 100].map(y => (
                   <line key={y} x1="20" y1={y} x2="190" y2={y} stroke="white" strokeOpacity="0.08" />
                 ))}
@@ -59,7 +59,7 @@ const ValuePropositionSection = () => {
                   <line key={x} x1={x} y1="10" x2={x} y2="110" stroke="white" strokeOpacity="0.08" />
                 ))}
 
-                {/* Scattered data points - Gold color - ALL VISIBLE */}
+                {/* Scattered data points */}
                 {[
                   [30, 85], [45, 78], [55, 70], [65, 62], [80, 55],
                   [95, 48], [110, 42], [125, 38], [140, 32], [155, 28],
@@ -76,7 +76,7 @@ const ValuePropositionSection = () => {
                   />
                 ))}
 
-                {/* Regression curve - Forest color - VISIBLE */}
+                {/* Regression curve */}
                 <path
                   d="M 25 92 Q 60 65, 100 45 T 185 20"
                   fill="none"
@@ -89,7 +89,7 @@ const ValuePropositionSection = () => {
                 <text x="105" y="118" fill="white" fillOpacity="0.4" fontSize="8" textAnchor="middle">complexity</text>
               </svg>
 
-              {/* Insight badge - Forest - VISIBLE */}
+              {/* Insight badge */}
               <div
                 className="absolute top-4 right-4 px-3 py-1.5 rounded-full text-xs font-medium text-white"
                 style={{ background: "hsl(var(--forest))" }}
@@ -98,7 +98,7 @@ const ValuePropositionSection = () => {
               </div>
             </div>
 
-            {/* Minimal text below */}
+
             <div className="p-6">
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">
                 Find the signal in the noise
@@ -109,7 +109,7 @@ const ValuePropositionSection = () => {
             </div>
           </motion.div>
 
-          {/* Card 2: Risk Quantification - Confidence Intervals */}
+          {/* Card 2: Risk Quantification */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -119,9 +119,9 @@ const ValuePropositionSection = () => {
             className="group rounded-2xl bg-white border border-border overflow-hidden hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
           >
             <div className="h-56 p-6 relative overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(210 45% 55%) 0%, hsl(210 45% 45%) 100%)" }}>
-              {/* Distribution / confidence interval visual - ALL VISIBLE */}
+              {/* Distribution visual */}
               <svg className="w-full h-full" viewBox="0 0 200 120">
-                {/* Probability distribution curve area - Gold gradient */}
+
                 <defs>
                   <linearGradient id="distGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stopColor="hsl(38 82% 50%)" />
@@ -135,7 +135,7 @@ const ValuePropositionSection = () => {
                   fillOpacity="0.3"
                 />
 
-                {/* Distribution curve line - Gold */}
+                {/* Distribution curve line */}
                 <path
                   d="M 20 100 Q 50 100, 70 80 Q 90 40, 100 25 Q 110 40, 130 80 Q 150 100, 180 100"
                   fill="none"
@@ -143,20 +143,20 @@ const ValuePropositionSection = () => {
                   strokeWidth="2"
                 />
 
-                {/* Confidence interval markers - Forest */}
+                {/* Confidence interval markers */}
                 <line x1="60" y1="20" x2="60" y2="105" stroke="hsl(140 18% 55%)" strokeWidth="1.5" strokeDasharray="4 2" />
                 <line x1="140" y1="20" x2="140" y2="105" stroke="hsl(140 18% 55%)" strokeWidth="1.5" strokeDasharray="4 2" />
 
-                {/* Mean line */}
+
                 <line x1="100" y1="20" x2="100" y2="105" stroke="white" strokeWidth="2" />
 
-                {/* Labels */}
+
                 <text x="60" y="115" fill="hsl(140 18% 55%)" fontSize="7" textAnchor="middle">P5</text>
                 <text x="100" y="115" fill="white" fontSize="7" textAnchor="middle">μ</text>
                 <text x="140" y="115" fill="hsl(140 18% 55%)" fontSize="7" textAnchor="middle">P95</text>
               </svg>
 
-              {/* Insight badge - Gold - VISIBLE */}
+              {/* Insight badge */}
               <div
                 className="absolute top-4 right-4 px-3 py-1.5 rounded-full text-xs font-medium"
                 style={{ background: "hsl(var(--gold))", color: "hsl(var(--navy))" }}
@@ -175,7 +175,7 @@ const ValuePropositionSection = () => {
             </div>
           </motion.div>
 
-          {/* Card 3: Data to Decision - Clean Pipeline */}
+          {/* Card 3: Data to Decision */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -185,9 +185,9 @@ const ValuePropositionSection = () => {
             className="group rounded-2xl bg-white border border-border overflow-hidden hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
           >
             <div className="h-56 p-6 relative overflow-hidden flex items-center justify-center" style={{ background: "linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(210 55% 20%) 100%)" }}>
-              {/* Data transformation pipeline - ALL VISIBLE */}
+              {/* Data transformation pipeline */}
               <div className="flex items-center gap-3">
-                {/* Raw data - messy grid */}
+                {/* Raw data */}
                 <div className="relative">
                   <div className="w-14 h-14 rounded-lg bg-white/10 flex items-center justify-center overflow-hidden border border-white/10">
                     <div className="grid grid-cols-3 gap-0.5">
@@ -203,13 +203,13 @@ const ValuePropositionSection = () => {
                   <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] text-white/50">raw</span>
                 </div>
 
-                {/* Arrow 1 - VISIBLE */}
+                {/* Arrow 1 */}
                 <div
                   className="w-8 h-0.5"
                   style={{ background: "linear-gradient(90deg, rgba(255,255,255,0.3), hsl(var(--forest)))" }}
                 />
 
-                {/* Process - gear icon in Forest */}
+                {/* Process */}
                 <div className="relative">
                   <div className="w-14 h-14 rounded-lg flex items-center justify-center border border-white/20" style={{ background: "hsl(var(--forest))" }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -220,13 +220,13 @@ const ValuePropositionSection = () => {
                   <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] text-white/50">model</span>
                 </div>
 
-                {/* Arrow 2 - Gold gradient - VISIBLE */}
+                {/* Arrow 2 */}
                 <div
                   className="w-8 h-0.5"
                   style={{ background: "linear-gradient(90deg, hsl(var(--forest)), hsl(var(--gold)))" }}
                 />
 
-                {/* Output - Gold chart icon */}
+                {/* Output */}
                 <div className="relative">
                   <div
                     className="w-14 h-14 rounded-lg flex items-center justify-center"
@@ -244,7 +244,7 @@ const ValuePropositionSection = () => {
                 </div>
               </div>
 
-              {/* Insight badge - Terracotta - VISIBLE */}
+              {/* Insight badge */}
               <div
                 className="absolute top-4 right-4 px-3 py-1.5 rounded-full text-xs font-medium text-white"
                 style={{ background: "hsl(var(--terracotta))" }}

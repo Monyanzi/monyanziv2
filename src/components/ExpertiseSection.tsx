@@ -10,7 +10,7 @@ interface ExpertiseCategory {
   visual: JSX.Element;
 }
 
-// Categories with UNIQUE visuals (different from ProofSection)
+// Categories with unique visuals
 const expertiseCategories: ExpertiseCategory[] = [
   {
     title: "Strategy & Growth",
@@ -20,7 +20,7 @@ const expertiseCategories: ExpertiseCategory[] = [
     accentColor: "hsl(38 82% 50%)",
     visual: (
       <svg className="w-full h-full" viewBox="0 0 200 120">
-        {/* Chess board pattern - strategic thinking */}
+
         <defs>
           <pattern id="chess" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
             <rect x="0" y="0" width="10" height="10" fill="white" fillOpacity="0.15" />
@@ -29,7 +29,7 @@ const expertiseCategories: ExpertiseCategory[] = [
         </defs>
         <rect x="50" y="30" width="60" height="60" fill="url(#chess)" rx="4" />
 
-        {/* Chess piece (king) - strategic leadership with floating animation */}
+        {/* Chess piece (king) */}
         <motion.g
           animate={{ y: [0, -12, 0], rotate: [0, 3, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
@@ -38,7 +38,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           <path d="M130 45 L130 55 M125 50 L135 50 M122 68 L138 68 L135 58 L125 58 Z" stroke="white" strokeWidth="2.5" fill="none" />
         </motion.g>
 
-        {/* Growth arrow */}
+
         <motion.path
           d="M155 75 L175 45"
           stroke="white"
@@ -63,7 +63,7 @@ const expertiseCategories: ExpertiseCategory[] = [
     accentColor: "hsl(140 18% 40%)",
     visual: (
       <svg className="w-full h-full" viewBox="0 0 200 120">
-        {/* Gear icons - automation */}
+        {/* Gear icons */}
         <motion.g
           initial={{ rotate: 0 }}
           animate={{ rotate: 360 }}
@@ -87,7 +87,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           ))}
         </motion.g>
 
-        {/* Smaller connected gear */}
+
         <motion.g
           initial={{ rotate: 0 }}
           animate={{ rotate: -360 }}
@@ -111,7 +111,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           ))}
         </motion.g>
 
-        {/* Flow arrow to result - VISIBLE */}
+        {/* Flow arrow to result */}
         <path
           d="M115 60 L145 60"
           stroke="hsl(38 82% 50%)"
@@ -119,7 +119,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           strokeDasharray="4 3"
         />
 
-        {/* Checkmark result - VISIBLE */}
+        {/* Checkmark result */}
         <g>
           <circle cx="165" cy="60" r="18" fill="hsl(38 82% 50%)" />
           <path d="M156 60 L162 66 L174 54" stroke="hsl(140 18% 25%)" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -135,7 +135,7 @@ const expertiseCategories: ExpertiseCategory[] = [
     accentColor: "hsl(20 55% 55%)",
     visual: (
       <svg className="w-full h-full" viewBox="0 0 200 120">
-        {/* Balance scale - risk/reward balance */}
+        {/* Balance scale */}
         <line
           x1="100"
           y1="25"
@@ -146,7 +146,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           strokeWidth="3"
         />
 
-        {/* Scale beam - with gentle rocking animation */}
+        {/* Scale beam */}
         <motion.line
           x1="50"
           y1="45"
@@ -176,7 +176,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           <text x="150" y="85" fill="white" fontSize="9" textAnchor="middle">Capital</text>
         </g>
 
-        {/* Balance indicator */}
+
         <circle cx="100" cy="25" r="6" fill="hsl(38 82% 50%)" />
       </svg>
     ),
@@ -189,7 +189,7 @@ const expertiseCategories: ExpertiseCategory[] = [
     accentColor: "hsl(210 45% 55%)",
     visual: (
       <svg className="w-full h-full" viewBox="0 0 200 120">
-        {/* Database/data layers with pulsing glow */}
+        {/* Database/data layers */}
         <g>
           <motion.ellipse
             cx="45" cy="40" rx="20" ry="8"
@@ -225,7 +225,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           strokeDasharray="3 2"
         />
 
-        {/* Insight output with pulsing animation */}
+        {/* Insight output */}
         <g>
           <motion.rect
             x="165" y="38" width="28" height="24" rx="12"
@@ -325,7 +325,7 @@ const ExpertiseSection = () => {
           </motion.p>
         </div>
 
-        {/* Visual-first cards - 2x2 grid */}
+        {/* Visual-first cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {expertiseCategories.map((category, index) => (
             <motion.div
@@ -358,7 +358,7 @@ const ExpertiseSection = () => {
                   {category.tagline}
                 </p>
 
-                {/* Skills as tags - with staggered animation */}
+                {/* Skills as tags */}
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.span

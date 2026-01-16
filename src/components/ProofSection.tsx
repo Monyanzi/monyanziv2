@@ -4,7 +4,7 @@ const ProofSection = () => {
     return (
         <section id="proof" className="py-12 lg:py-16 overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
             <div className="container mx-auto px-6 lg:px-12">
-                {/* Section header */}
+
                 <div className="text-center mb-16">
                     <p className="text-xs font-medium tracking-[0.2em] uppercase text-[hsl(var(--terracotta))] mb-4 mx-auto w-fit">
                         Why Clients Trust My Judgement
@@ -15,10 +15,10 @@ const ProofSection = () => {
                     <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[hsl(var(--terracotta))] to-transparent mx-auto" />
                 </div>
 
-                {/* Achievement Cards - Top Row (3 cards) */}
+                {/* Achievement Cards - Top Row */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 
-                    {/* 80% Faster - Speedometer visual */}
+                    {/* 80% Faster */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -28,9 +28,9 @@ const ProofSection = () => {
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-6 flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 30%) 100%)" }}>
-                            {/* Speedometer gauge - ALL VISIBLE */}
+                            {/* Speedometer gauge */}
                             <svg className="w-32 h-20" viewBox="0 0 120 70">
-                                {/* Background arc */}
+
                                 <path
                                     d="M 10 65 A 50 50 0 0 1 110 65"
                                     fill="none"
@@ -39,7 +39,7 @@ const ProofSection = () => {
                                     strokeWidth="8"
                                     strokeLinecap="round"
                                 />
-                                {/* Progress arc - Forest to Gold gradient */}
+
                                 <defs>
                                     <linearGradient id="speedGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                                         <stop offset="0%" stopColor="hsl(140 18% 50%)" />
@@ -55,7 +55,7 @@ const ProofSection = () => {
                                     strokeDasharray="157"
                                     strokeDashoffset={157 * 0.2}
                                 />
-                                {/* Needle - at 80% position */}
+
                                 <line
                                     x1="60" y1="65" x2="60" y2="25"
                                     stroke="white"
@@ -63,11 +63,11 @@ const ProofSection = () => {
                                     strokeLinecap="round"
                                     style={{ transform: "rotate(60deg)", transformOrigin: "60px 65px" }}
                                 />
-                                {/* Center dot */}
+
                                 <circle cx="60" cy="65" r="4" fill="white" />
                             </svg>
 
-                            {/* Big metric - Gold - VISIBLE */}
+
                             <div className="absolute bottom-4 right-4 text-right">
                                 <span className="text-3xl font-bold" style={{ color: "hsl(var(--gold))" }}>80%</span>
                                 <span className="block text-xs text-white/50">faster</span>
@@ -84,7 +84,7 @@ const ProofSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* 6 Months → 24 Hours - Time compression */}
+                    {/* 6 Months -> 24 Hours */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -95,9 +95,9 @@ const ProofSection = () => {
                     >
                         <div className="h-44 p-6 flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(210 55% 20%) 100%)" }}>
                             <div className="flex items-center gap-4">
-                                {/* Before: Multiple calendar pages - VISIBLE */}
+                                {/* Before: Multiple calendar pages */}
                                 <div className="relative w-16 h-16">
-                                    {/* Before: Calendar pages - VISIBLE */}
+
                                     {[0, 1, 2, 3, 4].map((i) => (
                                         <div
                                             key={i}
@@ -114,7 +114,7 @@ const ProofSection = () => {
                                     <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-white/40 whitespace-nowrap">6 months</span>
                                 </div>
 
-                                {/* Arrow - Gold - VISIBLE */}
+
                                 <div
                                     className="text-2xl"
                                     style={{ color: "hsl(var(--gold))" }}
@@ -122,7 +122,7 @@ const ProofSection = () => {
                                     →
                                 </div>
 
-                                {/* After: Single glowing circle - VISIBLE */}
+                                {/* After: Single glowing circle */}
                                 <div className="relative">
                                     <div
                                         className="w-14 h-14 rounded-full flex items-center justify-center font-bold"
@@ -149,7 +149,7 @@ const ProofSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* $100M+ Managed - Portfolio treemap */}
+                    {/* $100M+ Managed */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -159,7 +159,7 @@ const ProofSection = () => {
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-4 flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 30%) 100%)" }}>
-                            {/* Treemap - using color palette - ALL VISIBLE */}
+                            {/* Treemap */}
                             <div className="grid grid-cols-4 grid-rows-3 gap-1 w-full h-full max-w-[180px]">
                                 {[
                                     { span: "col-span-2 row-span-2", color: "hsl(var(--forest))", label: "Property" },
@@ -181,7 +181,7 @@ const ProofSection = () => {
                                 ))}
                             </div>
 
-                            {/* Value badge - Gold with Navy text - VISIBLE */}
+
                             <div
                                 className="absolute top-3 right-3 px-2 py-1 rounded font-bold text-lg"
                                 style={{ background: "hsl(var(--gold))", color: "hsl(var(--navy))" }}
@@ -201,10 +201,10 @@ const ProofSection = () => {
                     </motion.div>
                 </div>
 
-                {/* Achievement Cards - Bottom Row (2 cards, centered) */}
+                {/* Achievement Cards - Bottom Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
 
-                    {/* M&A Ready - Deal funnel */}
+                    {/* M&A Ready */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -214,9 +214,9 @@ const ProofSection = () => {
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-6 flex items-center justify-center" style={{ background: "linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(210 55% 20%) 100%)" }}>
-                            {/* Deal flow funnel - palette colors */}
+                            {/* Deal flow funnel */}
                             <svg className="w-full h-full max-w-[240px]" viewBox="0 0 200 100">
-                                {/* Funnel segments - ALL VISIBLE */}
+
                                 <path
                                     d="M 10 10 L 60 10 L 55 28 L 15 28 Z"
                                     fill="hsl(210 40% 50%)"
@@ -237,7 +237,7 @@ const ProofSection = () => {
                                     fill="hsl(var(--terracotta))"
                                 />
 
-                                {/* Labels - VISIBLE */}
+
                                 <text x="75" y="22" fill="white" fillOpacity="0.5" fontSize="9">
                                     Screen
                                 </text>
@@ -251,7 +251,7 @@ const ProofSection = () => {
                                     Close ✓
                                 </text>
 
-                                {/* Output document - VISIBLE */}
+
                                 <g>
                                     <rect x="150" y="30" width="40" height="50" rx="4" fill="white" fillOpacity="0.1" stroke="white" strokeOpacity="0.2" />
                                     <line x1="156" y1="43" x2="184" y2="43" stroke="white" strokeOpacity="0.4" strokeWidth="2" />
@@ -272,7 +272,7 @@ const ProofSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* AI That Delivers - System transformation */}
+                    {/* AI That Delivers */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -283,7 +283,7 @@ const ProofSection = () => {
                     >
                         <div className="h-44 p-6 flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 28%) 100%)" }}>
                             <div className="flex items-center gap-6">
-                                {/* Before: Chaos - ALL VISIBLE */}
+                                {/* Before: Chaos */}
                                 <div className="relative w-20 h-20" style={{ opacity: 0.5 }}>
                                     {[
                                         { x: 5, y: 8, size: 10 },
@@ -307,7 +307,7 @@ const ProofSection = () => {
                                     <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] text-white/40">manual</span>
                                 </div>
 
-                                {/* Arrow - Gold - VISIBLE */}
+
                                 <div
                                     className="text-2xl"
                                     style={{ color: "hsl(var(--gold))" }}
@@ -315,7 +315,7 @@ const ProofSection = () => {
                                     →
                                 </div>
 
-                                {/* After: Clean system - VISIBLE */}
+                                {/* After: Clean system */}
                                 <div className="relative w-20 h-20 flex items-center justify-center">
                                     <div
                                         className="w-16 h-16 rounded-xl flex items-center justify-center"
@@ -339,7 +339,7 @@ const ProofSection = () => {
                                 </div>
                             </div>
 
-                            {/* Label - VISIBLE */}
+                            {/* Label */}
                             <div
                                 className="absolute top-3 right-3 px-2 py-1 rounded text-[10px] font-medium text-white/80 bg-white/10"
                             >
@@ -358,7 +358,7 @@ const ProofSection = () => {
                     </motion.div>
                 </div>
 
-                {/* Context footer */}
+
                 <p className="text-center text-xs text-foreground/50 mt-8 italic">
                     Results from leadership roles and independent consulting. Client details confidential.
                 </p>
