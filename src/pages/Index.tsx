@@ -24,17 +24,17 @@ const Index = () => {
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mosesnyanzi.com/" />
+        <meta property="og:url" content="https://mosesnyanzi.co.za/" />
         <meta property="og:title" content="Actuarial Consultant South Africa | Moses Nyanzi" />
         <meta property="og:description" content="Independent actuarial consultant in Johannesburg. ASSA-qualified & INSEAD MBA. Solving complex capital, pricing, and M&A problems for insurers and investors." />
-        <meta property="og:image" content="https://mosesnyanzi.com/og-image.jpg" />
+        <meta property="og:image" content="https://mosesnyanzi.co.za/og-image.jpg" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://mosesnyanzi.com/" />
+        <meta property="twitter:url" content="https://mosesnyanzi.co.za/" />
         <meta property="twitter:title" content="Actuarial Consultant South Africa | Moses Nyanzi" />
         <meta property="twitter:description" content="Independent actuarial consultant in Johannesburg. ASSA-qualified & INSEAD MBA. Solving complex capital, pricing, and M&A problems for insurers and investors." />
-        <meta property="twitter:image" content="https://mosesnyanzi.com/og-image.jpg" />
+        <meta property="twitter:image" content="https://mosesnyanzi.co.za/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
