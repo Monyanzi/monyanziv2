@@ -110,7 +110,7 @@ const HeroSection = () => {
                 transition={{ delay: 0.6 }}
                 className="text-lg md:text-xl text-white/90 lg:text-muted-foreground max-w-md leading-relaxed"
               >
-                For senior leaders who need clarity on complex decisions, fast.
+                Independent actuarial consultant in South Africa. For senior leaders who need clarity on complex decisions, fast.
               </motion.p>
 
               {/* Core Expertise Cards */}

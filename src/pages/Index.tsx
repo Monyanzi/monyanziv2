@@ -14,12 +14,12 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Moses Nyanzi | Strategy. Logic. Results.</title>
+        <title>Actuarial Consultant South Africa | Moses Nyanzi</title>
         <meta
           name="description"
-          content="Independent consulting for senior leaders. I help organizations grow faster through AI, automation, and smarter strategy, with the rigor to make it stick."
+          content="Independent actuarial consultant in Johannesburg, South Africa. ASSA-qualified actuary & INSEAD MBA. Capital strategy, M&A due diligence, reinsurance optimization. 9+ years | $100M+ portfolios."
         />
-        <meta name="keywords" content="Moses Nyanzi, Capital Strategy, Actuarial Consultant, Risk Advisory, Portfolio Optimization, Independent Consultant, M&A Valuation" />
+        <meta name="keywords" content="actuarial consultant south africa, capital strategy consultant, independent actuarial advisor johannesburg, M&A due diligence, reinsurance consulting, portfolio optimization, Moses Nyanzi, ASSA actuary, INSEAD MBA" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
