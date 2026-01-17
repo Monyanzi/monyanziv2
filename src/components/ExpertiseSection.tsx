@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { useScrollColorShift, scrollAnimationStyles } from "../utils/useScrollColorShift";
 
 interface ExpertiseCategory {
   title: string;
@@ -258,6 +259,20 @@ const industries = [
 const ExpertiseSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
+  // GTA 6-style dramatic color shift
+  const headingColor = useScrollColorShift(sectionRef, {
+    start: "hsl(38 82% 50%)",         // Gold - expertise warmth
+    mid: "hsl(20 55% 53%)",            // Terracotta - energy
+    end: "hsl(140 18% 40%)",           // Forest - trust
+  });
+
+  // Subtitle color shift
+  const subtitleColor = useScrollColorShift(sectionRef, {
+    start: "hsl(210 55% 45%)",
+    mid: "hsl(38 82% 55%)",
+    end: "hsl(210 55% 45%)",
+  });
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
@@ -301,7 +316,8 @@ const ExpertiseSection = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-semibold tracking-[0.3em] uppercase mb-4 mx-auto w-fit text-foreground/60"
+            className="text-xs font-semibold tracking-[0.3em] uppercase mb-4 mx-auto w-fit"
+            style={scrollAnimationStyles.colorShift(subtitleColor)}
           >
             What I Bring Into the Room
           </motion.p>
@@ -310,7 +326,8 @@ const ExpertiseSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground font-semibold mb-4 tracking-tight"
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight"
+            style={scrollAnimationStyles.colorShift(headingColor)}
           >
             Expertise That Delivers
           </motion.h2>

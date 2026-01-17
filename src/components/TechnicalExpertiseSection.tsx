@@ -1,11 +1,28 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { useScrollColorShift, scrollAnimationStyles } from "../utils/useScrollColorShift";
 import reinsuranceTowerImg from "../assets/reinsurance-tower.webp";
 import valueStickImg from "../assets/value-stick.webp";
 import theoryOfConstraintsImg from "../assets/theory-of-constraints.webp";
 
 const TechnicalExpertiseSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+
+    // GTA 6-inspired scroll color shift
+    // Using headerRef ensures the color shift happens while the text is visible,
+    // rather than based on the entire section's progress.
+    const headingColor = useScrollColorShift(headerRef, {
+        start: "hsl(210 55% 25%)",      // Navy
+        mid: "hsl(38 82% 50%)",          // Gold
+        end: "hsl(20 55% 53%)",          // Terracotta
+    });
+
+    const subtitleColor = useScrollColorShift(headerRef, {
+        start: "hsl(20 55% 53%)",
+        mid: "hsl(38 82% 55%)",
+        end: "hsl(20 55% 53%)",
+    });
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -58,13 +75,13 @@ const TechnicalExpertiseSection = () => {
 
             <div className="container mx-auto px-6 lg:px-12 relative">
 
-                <div className="text-center mb-12">
+                <div ref={headerRef} className="text-center mb-12">
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         className="text-xs font-medium tracking-[0.3em] uppercase mb-4 mx-auto w-fit"
-                        style={{ color: "hsl(var(--gold))" }}
+                        style={scrollAnimationStyles.colorShift(subtitleColor)}
                     >
                         Domain Expertise
                     </motion.p>
@@ -73,7 +90,8 @@ const TechnicalExpertiseSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground font-semibold mb-4 tracking-tight"
+                        className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight"
+                        style={scrollAnimationStyles.colorShift(headingColor)}
                     >
                         Technical Depth
                     </motion.h2>

@@ -2,11 +2,13 @@ import { useState, lazy, Suspense } from "react";
 import { ArrowRight, MapPin, Linkedin, TrendingUp, DollarSign, Clock, Settings, Search, Users } from "lucide-react";
 import { motion } from "motion/react";
 import heroProfile from "../assets/hero-profile.webp";
+import { springBounceConfig } from "../utils/useAdvancedScroll";
 
 const DiagnosticFlow = lazy(() => import("./DiagnosticFlow"));
 
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const coreExpertise = [
     { icon: <Settings className="w-5 h-5" />, title: "Strategic Analysis", subtitle: "& Modeling" },
@@ -243,9 +245,9 @@ const HeroSection = () => {
 
 
                 <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1, type: "spring" }}
+                  initial={{ opacity: 0, scale: 0, rotate: -15 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ ...springBounceConfig, delay: 1 }}
                   className="absolute -bottom-4 -left-4 w-24 h-24 rounded-2xl flex items-center justify-center"
                   style={{
                     background: "linear-gradient(135deg, hsl(var(--forest)), hsl(140 18% 35%))",
@@ -256,9 +258,9 @@ const HeroSection = () => {
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.2, type: "spring" }}
+                  initial={{ opacity: 0, scale: 0, rotate: 10 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ ...springBounceConfig, delay: 1.2 }}
                   className="absolute -top-4 -right-4 px-4 py-2 rounded-full text-sm font-semibold"
                   style={{
                     background: "hsl(38 82% 50%)",

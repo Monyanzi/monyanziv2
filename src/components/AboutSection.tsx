@@ -1,5 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { useScrollColorShift, scrollAnimationStyles } from "../utils/useScrollColorShift";
+import { springBounceConfig } from "../utils/useAdvancedScroll";
 
 const services = [
   { name: "Independent Consulting", icon: "◈" },
@@ -10,6 +12,13 @@ const services = [
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+
+  // GTA 6-style dramatic color shift
+  const headingColor = useScrollColorShift(sectionRef, {
+    start: "hsl(140 18% 40%)",       // Forest - nature theme
+    mid: "hsl(38 82% 50%)",           // Gold - premium accent
+    end: "hsl(210 55% 25%)",          // Navy - professional
+  });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -72,7 +81,8 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground mb-6 tracking-tight"
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 tracking-tight"
+            style={scrollAnimationStyles.colorShift(headingColor)}
           >
             Your Advisor
           </motion.h2>
@@ -162,7 +172,7 @@ const AboutSection = () => {
                 Then translate them into strategy your board will back.
               </p>
 
-              {/* Stats row */}
+              {/* Stats row - Enhanced with GTA 6 stagger */}
               <div className="grid grid-cols-3 gap-4 mb-8">
                 {[
                   { value: "9+", label: "Years" },
@@ -171,11 +181,15 @@ const AboutSection = () => {
                 ].map((stat, i) => (
                   <motion.div
                     key={stat.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 30, scale: 0.5, rotate: i % 2 === 0 ? -10 : 10 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.6 + i * 0.1 }}
-                    className="text-center p-3 rounded-xl bg-white/10"
+                    transition={{
+                      ...springBounceConfig,
+                      delay: 0.2 + i * 0.1,
+                    }}
+                    whileHover={{ scale: 1.1, rotate: i % 2 === 0 ? 5 : -5, transition: { duration: 0.2 } }}
+                    className="text-center p-3 rounded-xl bg-white/10 hover:bg-white/15 transition-colors cursor-default"
                   >
                     <p className="text-2xl font-bold text-white">{stat.value}</p>
                     <p className="text-xs text-white/60">{stat.label}</p>
