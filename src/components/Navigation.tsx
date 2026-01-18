@@ -57,8 +57,8 @@ const Navigation = () => {
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? "bg-background/90 backdrop-blur-md border-b border-border/50 py-3"
-          : "bg-transparent py-5"
+        ? "bg-background/90 backdrop-blur-md border-b border-border/50 py-3"
+        : "bg-transparent py-5"
         }`}>
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-[2px] bg-[hsl(38,82%,50%)] origin-left"
@@ -92,7 +92,7 @@ const Navigation = () => {
 
             <button
               onClick={() => setIsOpen(true)}
-              className="lg:hidden p-2 -mr-2 text-foreground hover:text-[hsl(38,82%,50%)] transition-colors duration-300"
+              className="hidden p-2 -mr-2 text-foreground hover:text-[hsl(38,82%,50%)] transition-colors duration-300"
               aria-label="Open menu"
             >
               <svg
