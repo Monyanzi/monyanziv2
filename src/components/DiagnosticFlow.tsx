@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { getEmail } from "@/utils/email";
 
 interface DiagnosticFlowProps {
     isOpen: boolean;
@@ -64,20 +65,19 @@ const DiagnosticFlow = ({ isOpen, onClose }: DiagnosticFlowProps) => {
         company: "",
         email: "",
     });
-    const [isVisible, setIsVisible] = useState(false);
+
     const [isComplete, setIsComplete] = useState(false);
 
     useEffect(() => {
         if (isOpen) {
-            setTimeout(() => setIsVisible(true), 10);
+
             document.body.style.overflow = "hidden";
-            // Reset state when opening
             setCurrentStep(0);
             setAnswers({});
             setContactData({ firstName: "", lastName: "", company: "", email: "" });
             setIsComplete(false);
         } else {
-            setIsVisible(false);
+
             document.body.style.overflow = "";
         }
         return () => {
@@ -109,7 +109,6 @@ const DiagnosticFlow = ({ isOpen, onClose }: DiagnosticFlowProps) => {
     };
 
     const handleSendEmail = () => {
-        // Map answers to readable text for the email
         const stageMap: Record<string, string> = {
             exploring: "I'm exploring options and curious about a better way to approach things",
             planning: "I'm planning something significant: an M&A transaction, new strategy, or major investment decision",
@@ -130,7 +129,6 @@ const DiagnosticFlow = ({ isOpen, onClose }: DiagnosticFlowProps) => {
 
         const fullName = `${contactData.firstName} ${contactData.lastName}`.trim();
 
-        // Dynamic subject based on urgency
         let subject = "Let's talk";
         if (answers.stage === "firefighting") {
             subject = "Urgent: Need help now";
@@ -144,7 +142,6 @@ const DiagnosticFlow = ({ isOpen, onClose }: DiagnosticFlowProps) => {
             subject = `${subject} - ${contactData.company}`;
         }
 
-        // Build a more professional, structured email
         const emailBody = `Hi Moses,
 
 I found your profile and completed the diagnostic. Here's my situation:
@@ -173,7 +170,7 @@ Best regards,
 ${fullName}${contactData.company ? `\n${contactData.company}` : ""}
 ${contactData.email}`;
 
-        const mailtoUrl = `mailto:moses.k.nyanzi@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+        const mailtoUrl = `mailto:${getEmail()}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
 
         window.location.href = mailtoUrl;
 
@@ -198,18 +195,19 @@ ${contactData.email}`;
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
                         className="relative w-full max-w-2xl mx-6"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="diagnostic-flow-title"
                     >
-                        {/* Close / Skip button */}
                         <button
                             onClick={onClose}
-                            className="absolute -top-12 right-0 text-white/50 hover:text-white transition-colors text-sm flex items-center gap-1"
+                            className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors text-sm flex items-center gap-1 underline underline-offset-2"
                         >
                             Skip <ArrowRight className="w-4 h-4" />
                         </button>
 
                         {!isComplete ? (
                             <>
-                                {/* Progress bar */}
                                 <div className="mb-8">
                                     <div className="flex justify-between items-center mb-2">
                                         <span className="font-mono text-xs text-white/50">
@@ -227,9 +225,8 @@ ${contactData.email}`;
                                     </div>
                                 </div>
 
-                                {/* Question */}
                                 <div className="transition-all duration-200">
-                                    <h2 className="font-display text-3xl md:text-4xl text-white mb-8 leading-tight">
+                                    <h2 id="diagnostic-flow-title" className="font-display text-3xl md:text-4xl text-white mb-8 leading-tight">
                                         {currentQuestion.question}
                                     </h2>
 
@@ -344,7 +341,6 @@ ${contactData.email}`;
                                     )}
                                 </div>
 
-                                {/* Back button */}
                                 {currentStep > 0 && currentQuestion.type === "options" && (
                                     <button
                                         onClick={handleBack}
@@ -355,7 +351,6 @@ ${contactData.email}`;
                                 )}
                             </>
                         ) : (
-                            /* Completion state */
                             <div className="text-center py-12">
                                 <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-[hsl(38,82%,50%)]/20 flex items-center justify-center">
                                     <span className="text-4xl text-[hsl(38,82%,50%)]">✓</span>

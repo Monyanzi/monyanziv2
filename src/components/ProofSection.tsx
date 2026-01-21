@@ -1,41 +1,76 @@
 import { motion } from "motion/react";
-
-/**
- * ProofSection - Visual-first with correct color palette
- * Using design system: Navy, Gold, Forest, Terracotta
- */
+import { useRef } from "react";
+import { useScrollColorShift, useScrollPulse, scrollAnimationStyles } from "../utils/useScrollColorShift";
+import { useSVGDraw, springBounceConfig } from "../utils/useAdvancedScroll";
 
 const ProofSection = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const stat1Ref = useRef<HTMLDivElement>(null);
+    const stat2Ref = useRef<HTMLDivElement>(null);
+    const stat3Ref = useRef<HTMLDivElement>(null);
+
+    // GTA 6-style dramatic color shift for the heading
+    const headingColor = useScrollColorShift(sectionRef, {
+        start: "hsl(20 55% 53%)",     // Terracotta - starting dramatic
+        mid: "hsl(38 82% 50%)",        // Gold - accent pop
+        end: "hsl(210 55% 25%)",       // Navy - settled
+    });
+
+    // Color shift for subtitle
+    const subtitleColor = useScrollColorShift(sectionRef, {
+        start: "hsl(20 55% 53%)",
+        mid: "hsl(38 82% 55%)",
+        end: "hsl(20 55% 53%)",
+    });
+
+    // Pulsing effects for stat badges
+    const pulse1 = useScrollPulse(stat1Ref);
+    const pulse2 = useScrollPulse(stat2Ref);
+    const pulse3 = useScrollPulse(stat3Ref);
+
+    // SVG drawing animation for speedometer
+    const speedometerDraw = useSVGDraw({ threshold: 0.3, duration: 1200, delay: 200 });
+
     return (
-        <section id="proof" className="py-12 lg:py-16 overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
+        <section ref={sectionRef} id="proof" className="py-12 lg:py-16 overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
             <div className="container mx-auto px-6 lg:px-12">
-                {/* Section header */}
+
                 <div className="text-center mb-16">
-                    <p className="text-xs font-medium tracking-[0.2em] uppercase text-[hsl(var(--terracotta))] mb-4 mx-auto w-fit">
+                    <p
+                        className="text-xs font-medium tracking-[0.2em] uppercase mb-4 mx-auto w-fit"
+                        style={scrollAnimationStyles.colorShift(subtitleColor)}
+                    >
                         Why Clients Trust My Judgement
                     </p>
-                    <h2 className="font-display text-3xl lg:text-4xl font-semibold tracking-tight text-foreground mb-6">
+                    <h2
+                        className="font-display text-3xl lg:text-4xl font-semibold tracking-tight mb-6"
+                        style={scrollAnimationStyles.colorShift(headingColor)}
+                    >
                         Results I've Delivered
                     </h2>
                     <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[hsl(var(--terracotta))] to-transparent mx-auto" />
                 </div>
 
-                {/* Achievement Cards - Top Row (3 cards) */}
+                {/* Achievement Cards - Top Row with enhanced stagger */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 
-                    {/* 80% Faster - Speedometer visual */}
+                    {/* 80% Faster - with SVG drawing animation */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.5, delay: 0 }}
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-6 flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 30%) 100%)" }}>
-                            {/* Speedometer gauge - ALL VISIBLE */}
-                            <svg className="w-32 h-20" viewBox="0 0 120 70">
-                                {/* Background arc */}
+                            {/* Speedometer gauge with drawing animation */}
+                            <svg
+                                ref={speedometerDraw.ref as React.RefObject<SVGSVGElement>}
+                                className="w-32 h-20"
+                                viewBox="0 0 120 70"
+                            >
+                                {/* Background arc (static) */}
                                 <path
                                     d="M 10 65 A 50 50 0 0 1 110 65"
                                     fill="none"
@@ -44,39 +79,58 @@ const ProofSection = () => {
                                     strokeWidth="8"
                                     strokeLinecap="round"
                                 />
-                                {/* Progress arc - Forest to Gold gradient */}
+
                                 <defs>
                                     <linearGradient id="speedGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                                         <stop offset="0%" stopColor="hsl(140 18% 50%)" />
                                         <stop offset="100%" stopColor="hsl(38 82% 50%)" />
                                     </linearGradient>
                                 </defs>
+
+                                {/* Animated arc - draws on scroll */}
                                 <path
                                     d="M 10 65 A 50 50 0 0 1 110 65"
                                     fill="none"
                                     stroke="url(#speedGrad)"
                                     strokeWidth="8"
                                     strokeLinecap="round"
-                                    strokeDasharray="157"
-                                    strokeDashoffset={157 * 0.2}
+                                    pathLength="1"
+                                    strokeDasharray="1"
+                                    strokeDashoffset={1 - (speedometerDraw.progress * 0.8)}
                                 />
-                                {/* Needle - at 80% position */}
+
+                                {/* Animated needle - rotates with progress */}
                                 <line
                                     x1="60" y1="65" x2="60" y2="25"
                                     stroke="white"
                                     strokeWidth="2"
                                     strokeLinecap="round"
-                                    style={{ transform: "rotate(60deg)", transformOrigin: "60px 65px" }}
+                                    style={{
+                                        transform: `rotate(${-60 + speedometerDraw.progress * 120}deg)`,
+                                        transformOrigin: "60px 65px",
+                                        transition: "transform 0.1s ease-out"
+                                    }}
                                 />
-                                {/* Center dot */}
+
                                 <circle cx="60" cy="65" r="4" fill="white" />
                             </svg>
 
-                            {/* Big metric - Gold - VISIBLE */}
-                            <div className="absolute bottom-4 right-4 text-right">
+
+                            {/* Spring bounce stat badge */}
+                            <motion.div
+                                ref={stat1Ref}
+                                className="absolute bottom-4 right-4 text-right rounded-lg px-2 py-1"
+                                initial={{ scale: 0.5, opacity: 0, rotate: -10 }}
+                                whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+                                viewport={{ once: true }}
+                                transition={springBounceConfig}
+                                style={{
+                                    ...scrollAnimationStyles.pulseGlow(pulse1.isPulsing, pulse1.pulseIntensity, "hsl(38 82% 50% / 0.5)"),
+                                }}
+                            >
                                 <span className="text-3xl font-bold" style={{ color: "hsl(var(--gold))" }}>80%</span>
                                 <span className="block text-xs text-white/50">faster</span>
-                            </div>
+                            </motion.div>
                         </div>
 
                         <div className="p-5">
@@ -89,20 +143,20 @@ const ProofSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* 6 Months → 24 Hours - Time compression */}
+                    {/* 6 Months -> 24 Hours */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.3, delay: 0.1 }}
+                        transition={{ duration: 0.5, delay: 0.12 }}
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-6 flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(210 55% 20%) 100%)" }}>
                             <div className="flex items-center gap-4">
-                                {/* Before: Multiple calendar pages - VISIBLE */}
+                                {/* Before: Multiple calendar pages */}
                                 <div className="relative w-16 h-16">
-                                    {/* Before: Calendar pages - VISIBLE */}
+
                                     {[0, 1, 2, 3, 4].map((i) => (
                                         <div
                                             key={i}
@@ -119,7 +173,7 @@ const ProofSection = () => {
                                     <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-white/40 whitespace-nowrap">6 months</span>
                                 </div>
 
-                                {/* Arrow - Gold - VISIBLE */}
+
                                 <div
                                     className="text-2xl"
                                     style={{ color: "hsl(var(--gold))" }}
@@ -127,8 +181,16 @@ const ProofSection = () => {
                                     →
                                 </div>
 
-                                {/* After: Single glowing circle - VISIBLE */}
-                                <div className="relative">
+                                {/* After: Spring bounce glowing circle */}
+                                <motion.div
+                                    ref={stat2Ref}
+                                    className="relative"
+                                    initial={{ scale: 0.5, opacity: 0, rotate: 15 }}
+                                    whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ ...springBounceConfig, delay: 0.3 }}
+                                    style={scrollAnimationStyles.pulseGlow(pulse2.isPulsing, pulse2.pulseIntensity, "hsl(38 82% 50% / 0.4)")}
+                                >
                                     <div
                                         className="w-14 h-14 rounded-full flex items-center justify-center font-bold"
                                         style={{
@@ -140,7 +202,7 @@ const ProofSection = () => {
                                         24h
                                     </div>
                                     <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] whitespace-nowrap font-medium" style={{ color: "hsl(var(--gold))" }}>real-time</span>
-                                </div>
+                                </motion.div>
                             </div>
                         </div>
 
@@ -154,17 +216,17 @@ const ProofSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* $100M+ Managed - Portfolio treemap */}
+                    {/* $100M+ Managed */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.3, delay: 0.2 }}
+                        transition={{ duration: 0.5, delay: 0.24 }}
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-4 flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 30%) 100%)" }}>
-                            {/* Treemap - using color palette - ALL VISIBLE */}
+                            {/* Treemap */}
                             <div className="grid grid-cols-4 grid-rows-3 gap-1 w-full h-full max-w-[180px]">
                                 {[
                                     { span: "col-span-2 row-span-2", color: "hsl(var(--forest))", label: "Property" },
@@ -186,13 +248,21 @@ const ProofSection = () => {
                                 ))}
                             </div>
 
-                            {/* Value badge - Gold with Navy text - VISIBLE */}
-                            <div
+                            <motion.div
+                                ref={stat3Ref}
                                 className="absolute top-3 right-3 px-2 py-1 rounded font-bold text-lg"
-                                style={{ background: "hsl(var(--gold))", color: "hsl(var(--navy))" }}
+                                initial={{ scale: 0.5, opacity: 0, rotate: -12 }}
+                                whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ ...springBounceConfig, delay: 0.4 }}
+                                style={{
+                                    background: "hsl(var(--gold))",
+                                    color: "hsl(var(--navy))",
+                                    ...scrollAnimationStyles.pulseGlow(pulse3.isPulsing, pulse3.pulseIntensity, "hsl(38 82% 50% / 0.5)")
+                                }}
                             >
                                 $100M+
-                            </div>
+                            </motion.div>
                         </div>
 
                         <div className="p-5">
@@ -206,10 +276,10 @@ const ProofSection = () => {
                     </motion.div>
                 </div>
 
-                {/* Achievement Cards - Bottom Row (2 cards, centered) */}
+                {/* Achievement Cards - Bottom Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
 
-                    {/* M&A Ready - Deal funnel */}
+                    {/* M&A Ready */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -219,9 +289,9 @@ const ProofSection = () => {
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-6 flex items-center justify-center" style={{ background: "linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(210 55% 20%) 100%)" }}>
-                            {/* Deal flow funnel - palette colors */}
+                            {/* Deal flow funnel */}
                             <svg className="w-full h-full max-w-[240px]" viewBox="0 0 200 100">
-                                {/* Funnel segments - ALL VISIBLE */}
+
                                 <path
                                     d="M 10 10 L 60 10 L 55 28 L 15 28 Z"
                                     fill="hsl(210 40% 50%)"
@@ -242,7 +312,7 @@ const ProofSection = () => {
                                     fill="hsl(var(--terracotta))"
                                 />
 
-                                {/* Labels - VISIBLE */}
+
                                 <text x="75" y="22" fill="white" fillOpacity="0.5" fontSize="9">
                                     Screen
                                 </text>
@@ -256,12 +326,36 @@ const ProofSection = () => {
                                     Close ✓
                                 </text>
 
-                                {/* Output document - VISIBLE */}
+
                                 <g>
                                     <rect x="150" y="30" width="40" height="50" rx="4" fill="white" fillOpacity="0.1" stroke="white" strokeOpacity="0.2" />
-                                    <line x1="156" y1="43" x2="184" y2="43" stroke="white" strokeOpacity="0.4" strokeWidth="2" />
-                                    <line x1="156" y1="51" x2="180" y2="51" stroke="white" strokeOpacity="0.3" strokeWidth="2" />
-                                    <line x1="156" y1="59" x2="176" y2="59" stroke="white" strokeOpacity="0.2" strokeWidth="2" />
+                                    <line
+                                        x1="156" y1="43" x2="184" y2="43"
+                                        stroke="white"
+                                        strokeOpacity="0.4"
+                                        strokeWidth="2"
+                                        pathLength="1"
+                                        strokeDasharray="1"
+                                        strokeDashoffset={1 - speedometerDraw.progress}
+                                    />
+                                    <line
+                                        x1="156" y1="51" x2="180" y2="51"
+                                        stroke="white"
+                                        strokeOpacity="0.3"
+                                        strokeWidth="2"
+                                        pathLength="1"
+                                        strokeDasharray="1"
+                                        strokeDashoffset={1 - speedometerDraw.progress}
+                                    />
+                                    <line
+                                        x1="156" y1="59" x2="176" y2="59"
+                                        stroke="white"
+                                        strokeOpacity="0.2"
+                                        strokeWidth="2"
+                                        pathLength="1"
+                                        strokeDasharray="1"
+                                        strokeDashoffset={1 - speedometerDraw.progress}
+                                    />
                                     <text x="170" y="74" fill="hsl(var(--gold))" fontSize="8" textAnchor="middle" fontWeight="600">Ready</text>
                                 </g>
                             </svg>
@@ -277,7 +371,7 @@ const ProofSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* AI That Delivers - System transformation */}
+                    {/* AI That Delivers */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -288,7 +382,7 @@ const ProofSection = () => {
                     >
                         <div className="h-44 p-6 flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 28%) 100%)" }}>
                             <div className="flex items-center gap-6">
-                                {/* Before: Chaos - ALL VISIBLE */}
+                                {/* Before: Chaos */}
                                 <div className="relative w-20 h-20" style={{ opacity: 0.5 }}>
                                     {[
                                         { x: 5, y: 8, size: 10 },
@@ -312,7 +406,7 @@ const ProofSection = () => {
                                     <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] text-white/40">manual</span>
                                 </div>
 
-                                {/* Arrow - Gold - VISIBLE */}
+
                                 <div
                                     className="text-2xl"
                                     style={{ color: "hsl(var(--gold))" }}
@@ -320,7 +414,7 @@ const ProofSection = () => {
                                     →
                                 </div>
 
-                                {/* After: Clean system - VISIBLE */}
+                                {/* After: Clean system */}
                                 <div className="relative w-20 h-20 flex items-center justify-center">
                                     <div
                                         className="w-16 h-16 rounded-xl flex items-center justify-center"
@@ -344,7 +438,7 @@ const ProofSection = () => {
                                 </div>
                             </div>
 
-                            {/* Label - VISIBLE */}
+                            {/* Label */}
                             <div
                                 className="absolute top-3 right-3 px-2 py-1 rounded text-[10px] font-medium text-white/80 bg-white/10"
                             >
@@ -363,8 +457,8 @@ const ProofSection = () => {
                     </motion.div>
                 </div>
 
-                {/* Context footer */}
-                <p className="text-center text-xs text-muted-foreground mt-8 italic">
+
+                <p className="text-center text-xs text-foreground/50 mt-8 italic">
                     Results from leadership roles and independent consulting. Client details confidential.
                 </p>
             </div>

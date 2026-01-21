@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { useScrollColorShift, scrollAnimationStyles } from "../utils/useScrollColorShift";
 
 interface ExpertiseCategory {
   title: string;
@@ -10,7 +11,7 @@ interface ExpertiseCategory {
   visual: JSX.Element;
 }
 
-// Categories with UNIQUE visuals (different from ProofSection)
+// Categories with unique visuals
 const expertiseCategories: ExpertiseCategory[] = [
   {
     title: "Strategy & Growth",
@@ -20,7 +21,7 @@ const expertiseCategories: ExpertiseCategory[] = [
     accentColor: "hsl(38 82% 50%)",
     visual: (
       <svg className="w-full h-full" viewBox="0 0 200 120">
-        {/* Chess board pattern - strategic thinking */}
+
         <defs>
           <pattern id="chess" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
             <rect x="0" y="0" width="10" height="10" fill="white" fillOpacity="0.15" />
@@ -29,7 +30,7 @@ const expertiseCategories: ExpertiseCategory[] = [
         </defs>
         <rect x="50" y="30" width="60" height="60" fill="url(#chess)" rx="4" />
 
-        {/* Chess piece (king) - strategic leadership with floating animation */}
+        {/* Chess piece (king) */}
         <motion.g
           animate={{ y: [0, -12, 0], rotate: [0, 3, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
@@ -38,7 +39,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           <path d="M130 45 L130 55 M125 50 L135 50 M122 68 L138 68 L135 58 L125 58 Z" stroke="white" strokeWidth="2.5" fill="none" />
         </motion.g>
 
-        {/* Growth arrow */}
+
         <motion.path
           d="M155 75 L175 45"
           stroke="white"
@@ -63,7 +64,7 @@ const expertiseCategories: ExpertiseCategory[] = [
     accentColor: "hsl(140 18% 40%)",
     visual: (
       <svg className="w-full h-full" viewBox="0 0 200 120">
-        {/* Gear icons - automation */}
+        {/* Gear icons */}
         <motion.g
           initial={{ rotate: 0 }}
           animate={{ rotate: 360 }}
@@ -87,7 +88,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           ))}
         </motion.g>
 
-        {/* Smaller connected gear */}
+
         <motion.g
           initial={{ rotate: 0 }}
           animate={{ rotate: -360 }}
@@ -111,7 +112,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           ))}
         </motion.g>
 
-        {/* Flow arrow to result - VISIBLE */}
+        {/* Flow arrow to result */}
         <path
           d="M115 60 L145 60"
           stroke="hsl(38 82% 50%)"
@@ -119,7 +120,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           strokeDasharray="4 3"
         />
 
-        {/* Checkmark result - VISIBLE */}
+        {/* Checkmark result */}
         <g>
           <circle cx="165" cy="60" r="18" fill="hsl(38 82% 50%)" />
           <path d="M156 60 L162 66 L174 54" stroke="hsl(140 18% 25%)" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -135,7 +136,7 @@ const expertiseCategories: ExpertiseCategory[] = [
     accentColor: "hsl(20 55% 55%)",
     visual: (
       <svg className="w-full h-full" viewBox="0 0 200 120">
-        {/* Balance scale - risk/reward balance */}
+        {/* Balance scale */}
         <line
           x1="100"
           y1="25"
@@ -146,7 +147,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           strokeWidth="3"
         />
 
-        {/* Scale beam - with gentle rocking animation */}
+        {/* Scale beam */}
         <motion.line
           x1="50"
           y1="45"
@@ -176,7 +177,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           <text x="150" y="85" fill="white" fontSize="9" textAnchor="middle">Capital</text>
         </g>
 
-        {/* Balance indicator */}
+
         <circle cx="100" cy="25" r="6" fill="hsl(38 82% 50%)" />
       </svg>
     ),
@@ -189,7 +190,7 @@ const expertiseCategories: ExpertiseCategory[] = [
     accentColor: "hsl(210 45% 55%)",
     visual: (
       <svg className="w-full h-full" viewBox="0 0 200 120">
-        {/* Database/data layers with pulsing glow */}
+        {/* Database/data layers */}
         <g>
           <motion.ellipse
             cx="45" cy="40" rx="20" ry="8"
@@ -225,7 +226,7 @@ const expertiseCategories: ExpertiseCategory[] = [
           strokeDasharray="3 2"
         />
 
-        {/* Insight output with pulsing animation */}
+        {/* Insight output */}
         <g>
           <motion.rect
             x="165" y="38" width="28" height="24" rx="12"
@@ -257,6 +258,20 @@ const industries = [
 
 const ExpertiseSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+
+  // GTA 6-style dramatic color shift
+  const headingColor = useScrollColorShift(sectionRef, {
+    start: "hsl(38 82% 50%)",         // Gold - expertise warmth
+    mid: "hsl(20 55% 53%)",            // Terracotta - energy
+    end: "hsl(140 18% 40%)",           // Forest - trust
+  });
+
+  // Subtitle color shift
+  const subtitleColor = useScrollColorShift(sectionRef, {
+    start: "hsl(210 55% 45%)",
+    mid: "hsl(38 82% 55%)",
+    end: "hsl(210 55% 45%)",
+  });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -301,8 +316,8 @@ const ExpertiseSection = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-medium tracking-[0.3em] uppercase mb-4 mx-auto w-fit"
-            style={{ color: "hsl(38 82% 50%)" }}
+            className="text-xs font-semibold tracking-[0.3em] uppercase mb-4 mx-auto w-fit"
+            style={scrollAnimationStyles.colorShift(subtitleColor)}
           >
             What I Bring Into the Room
           </motion.p>
@@ -311,7 +326,8 @@ const ExpertiseSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground font-semibold mb-4 tracking-tight"
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight"
+            style={scrollAnimationStyles.colorShift(headingColor)}
           >
             Expertise That Delivers
           </motion.h2>
@@ -326,7 +342,7 @@ const ExpertiseSection = () => {
           </motion.p>
         </div>
 
-        {/* Visual-first cards - 2x2 grid */}
+        {/* Visual-first cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {expertiseCategories.map((category, index) => (
             <motion.div
@@ -359,7 +375,7 @@ const ExpertiseSection = () => {
                   {category.tagline}
                 </p>
 
-                {/* Skills as tags - with staggered animation */}
+                {/* Skills as tags */}
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.span
@@ -372,7 +388,7 @@ const ExpertiseSection = () => {
                         type: "spring",
                         stiffness: 200
                       }}
-                      className="px-3 py-1 rounded-full text-xs text-muted-foreground border border-border hover:border-[hsl(38_82%_50%)]/50 transition-colors"
+                      className="px-3 py-1.5 rounded-full text-xs text-foreground/80 font-medium bg-gray-50 border border-gray-200 hover:border-[hsl(38_82%_50%)]/50 hover:bg-white transition-colors"
                     >
                       {skill}
                     </motion.span>

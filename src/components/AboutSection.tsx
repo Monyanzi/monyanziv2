@@ -1,5 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { useScrollColorShift, scrollAnimationStyles } from "../utils/useScrollColorShift";
+import { springBounceConfig } from "../utils/useAdvancedScroll";
 
 const services = [
   { name: "Independent Consulting", icon: "◈" },
@@ -11,6 +13,13 @@ const services = [
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
+  // GTA 6-style dramatic color shift
+  const headingColor = useScrollColorShift(sectionRef, {
+    start: "hsl(140 18% 40%)",       // Forest - nature theme
+    mid: "hsl(38 82% 50%)",           // Gold - premium accent
+    end: "hsl(210 55% 25%)",          // Navy - professional
+  });
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
@@ -21,7 +30,7 @@ const AboutSection = () => {
 
   return (
     <section id="about" ref={sectionRef} className="py-12 lg:py-16 relative overflow-hidden" style={{ background: "hsl(210 45% 96%)" }}>
-      {/* Organic floating shapes with parallax */}
+      {/* Background shapes */}
       <motion.div
         style={{ y: y1 }}
         className="absolute -top-10 -left-10 w-[500px] h-[500px] opacity-[0.06] will-change-transform pointer-events-none"
@@ -47,7 +56,7 @@ const AboutSection = () => {
         />
       </motion.div>
 
-      {/* Dot texture */}
+
       <div
         className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{
@@ -57,14 +66,13 @@ const AboutSection = () => {
       />
 
       <div className="container mx-auto px-6 lg:px-12 relative">
-        {/* Section header */}
+
         <div className="text-center mb-16">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-medium tracking-[0.3em] uppercase mb-5 mx-auto w-fit"
-            style={{ color: "hsl(var(--terracotta))" }}
+            className="text-xs font-semibold tracking-[0.3em] uppercase mb-5 mx-auto w-fit text-foreground/60"
           >
             Who You Work With
           </motion.p>
@@ -73,7 +81,8 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground mb-6 tracking-tight"
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 tracking-tight"
+            style={scrollAnimationStyles.colorShift(headingColor)}
           >
             Your Advisor
           </motion.h2>
@@ -88,7 +97,7 @@ const AboutSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-10">
-          {/* Left column: Big visual credential card */}
+          {/* Left column: Visual credential card */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -101,9 +110,9 @@ const AboutSection = () => {
               boxShadow: "0 20px 60px -20px hsl(var(--forest) / 0.4)"
             }}
           >
-            {/* Visual header area */}
+
             <div className="p-10 pb-8 relative">
-              {/* Accent glow */}
+
               <div
                 className="absolute top-0 right-0 w-48 h-48 opacity-25 pointer-events-none"
                 style={{
@@ -112,12 +121,12 @@ const AboutSection = () => {
                 }}
               />
 
-              {/* Animated metrics visual */}
+
               <div className="flex items-center gap-8 mb-8">
                 {/* Credential rings */}
                 <div className="relative w-24 h-24">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
-                    {/* Outer ring - Actuary - VISIBLE */}
+                    {/* Outer ring - Actuary */}
                     <circle
                       cx="50" cy="50" r="45"
                       fill="none"
@@ -125,14 +134,14 @@ const AboutSection = () => {
                       strokeOpacity="0.3"
                       strokeWidth="4"
                     />
-                    {/* Inner ring - MBA - VISIBLE */}
+                    {/* Inner ring - MBA */}
                     <circle
                       cx="50" cy="50" r="35"
                       fill="none"
                       stroke="hsl(var(--gold))"
                       strokeWidth="4"
                     />
-                    {/* Center value - VISIBLE */}
+                    {/* Center value */}
                     <text
                       x="50" y="50"
                       textAnchor="middle"
@@ -156,14 +165,14 @@ const AboutSection = () => {
                 </div>
               </div>
 
-              {/* Description */}
+
               <p className="text-white/80 leading-relaxed text-lg mb-6">
                 I don't just advise; I <span className="text-white font-medium">execute</span>.
                 I build the models myself: valuations, stress tests, pricing frameworks.
                 Then translate them into strategy your board will back.
               </p>
 
-              {/* Stats row - to fill empty space */}
+              {/* Stats row - Enhanced with GTA 6 stagger */}
               <div className="grid grid-cols-3 gap-4 mb-8">
                 {[
                   { value: "9+", label: "Years" },
@@ -172,11 +181,15 @@ const AboutSection = () => {
                 ].map((stat, i) => (
                   <motion.div
                     key={stat.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 30, scale: 0.5, rotate: i % 2 === 0 ? -10 : 10 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.6 + i * 0.1 }}
-                    className="text-center p-3 rounded-xl bg-white/10"
+                    transition={{
+                      ...springBounceConfig,
+                      delay: 0.2 + i * 0.1,
+                    }}
+                    whileHover={{ scale: 1.1, rotate: i % 2 === 0 ? 5 : -5, transition: { duration: 0.2 } }}
+                    className="text-center p-3 rounded-xl bg-white/10 hover:bg-white/15 transition-colors cursor-default"
                   >
                     <p className="text-2xl font-bold text-white">{stat.value}</p>
                     <p className="text-xs text-white/60">{stat.label}</p>
@@ -213,9 +226,9 @@ const AboutSection = () => {
             </div>
           </motion.div>
 
-          {/* Right column: Services + Delivery */}
+          {/* Right column */}
           <div className="space-y-8">
-            {/* What You Get - visual-first */}
+            {/* What You Get */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -225,7 +238,7 @@ const AboutSection = () => {
               className="p-8 rounded-3xl bg-white border border-border cursor-default will-change-transform group"
               style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
             >
-              {/* Visual: animated checkline */}
+
               <div className="mb-6 h-16 flex items-center">
                 <svg className="w-full h-12" viewBox="0 0 300 48">
                   {/* Animated line */}
@@ -282,7 +295,7 @@ const AboutSection = () => {
               </p>
             </motion.div>
 
-            {/* Services grid - bigger cards */}
+            {/* Services grid */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -291,7 +304,7 @@ const AboutSection = () => {
               className="p-8 rounded-3xl border border-border bg-gradient-to-br from-white to-[hsl(40,35%,98%)]"
               style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
             >
-              <h3 className="text-xs font-mono tracking-[0.2em] uppercase mb-6" style={{ color: "hsl(var(--terracotta))" }}>
+              <h3 className="text-xs font-mono font-semibold tracking-[0.2em] uppercase mb-6 text-foreground/60">
                 Where Clients Bring Me In
               </h3>
               <div className="grid grid-cols-2 gap-4">

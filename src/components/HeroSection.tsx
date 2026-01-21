@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { ArrowRight, MapPin, Linkedin, TrendingUp, DollarSign, Clock, Settings, Search, Users } from "lucide-react";
 import { motion } from "motion/react";
-import DiagnosticFlow from "./DiagnosticFlow";
-import heroProfile from "../assets/hero-profile.jpg";
+import heroProfile from "../assets/hero-profile.webp";
+import { springBounceConfig } from "../utils/useAdvancedScroll";
+
+const DiagnosticFlow = lazy(() => import("./DiagnosticFlow"));
 
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Core expertise items with unique icons
+
   const coreExpertise = [
     { icon: <Settings className="w-5 h-5" />, title: "Strategic Analysis", subtitle: "& Modeling" },
     { icon: <TrendingUp className="w-5 h-5" />, title: "Process", subtitle: "Optimisation" },
     { icon: <Search className="w-5 h-5" />, title: "M&A Due", subtitle: "Diligence" },
   ];
 
-  // Key results - unique metrics not repeated elsewhere
   const keyResults = [
     { label: "Efficiency Gains", icon: <TrendingUp className="w-4 h-4" /> },
     { label: "Cost Savings", icon: <DollarSign className="w-4 h-4" /> },
@@ -23,23 +24,19 @@ const HeroSection = () => {
 
   return (
     <>
-      {/* Light cream background for Hero */}
       <section className="relative min-h-screen overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
 
-        {/* Mobile Background Photo - visible only on mobile */}
         <div className="lg:hidden absolute inset-0 z-0">
           <img
             src={heroProfile}
             alt="Moses Nyanzi"
             className="w-full h-full object-cover object-top"
           />
-          {/* Gradient overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-[hsl(40_35%_98%)]" />
         </div>
 
-        {/* Subtle background elements - desktop only */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden hidden lg:block">
-          {/* Subtle gradient orbs */}
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.04 }}
@@ -55,7 +52,6 @@ const HeroSection = () => {
             style={{ background: 'radial-gradient(circle, hsl(140 18% 40%) 0%, transparent 70%)' }}
           />
 
-          {/* Dot pattern */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.02 }}
@@ -71,24 +67,14 @@ const HeroSection = () => {
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
           <div className="min-h-screen grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-20 lg:py-24">
 
-            {/* Left Column - Content */}
+            {/* Left Column */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              {/* Tagline */}
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-xs font-semibold tracking-[0.3em] uppercase text-white lg:text-muted-foreground"
-              >
-                Strategy · Logic · Results
-              </motion.p>
 
-              {/* Name and Title */}
               <div className="space-y-2">
                 <div className="flex items-baseline gap-4 flex-wrap">
                   <motion.h1
@@ -105,19 +91,19 @@ const HeroSection = () => {
                     transition={{ delay: 0.5 }}
                     className="text-sm font-medium text-[hsl(38_82%_50%)] whitespace-nowrap"
                   >
-                    Actuary | MBA
+                    Actuary | INSEAD MBA
                   </motion.span>
                 </div>
               </div>
 
-              {/* Tagline */}
+
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="text-lg md:text-xl text-white/90 lg:text-muted-foreground max-w-md leading-relaxed"
+                className="text-lg md:text-xl text-white/90 lg:text-muted-foreground max-w-md leading-relaxed text-justify"
               >
-                For senior leaders who need clarity on complex decisions, fast.
+                Helping senior leaders get clarity on complex decisions, quickly.
               </motion.p>
 
               {/* Core Expertise Cards */}
@@ -161,7 +147,7 @@ const HeroSection = () => {
                 transition={{ delay: 1 }}
                 className="space-y-3"
               >
-                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">
+                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-white/70 lg:text-muted-foreground">
                   Key Results
                 </p>
                 <div className="flex flex-wrap gap-4">
@@ -180,12 +166,12 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* Location & LinkedIn */}
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.3 }}
-                className="flex items-center gap-4 text-sm text-muted-foreground"
+                className="flex items-center gap-4 text-sm text-white/70 lg:text-muted-foreground"
               >
                 <div className="flex items-center gap-1.5">
                   <MapPin className="w-4 h-4" />
@@ -232,7 +218,7 @@ const HeroSection = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Photo */}
+            {/* Right Column */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -240,7 +226,7 @@ const HeroSection = () => {
               className="relative hidden lg:block"
             >
               <div className="relative">
-                {/* Photo container with subtle styling */}
+                {/* Photo container */}
                 <motion.div
                   initial={{ scale: 0.95 }}
                   animate={{ scale: 1 }}
@@ -253,15 +239,15 @@ const HeroSection = () => {
                     alt="Moses Nyanzi"
                     className="w-full h-full object-cover object-top"
                   />
-                  {/* Subtle gradient overlay at bottom */}
+                  {/* Gradient overlay */}
                   <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/20 to-transparent" />
                 </motion.div>
 
-                {/* Floating accent elements */}
+
                 <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1, type: "spring" }}
+                  initial={{ opacity: 0, scale: 0, rotate: -15 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ ...springBounceConfig, delay: 1 }}
                   className="absolute -bottom-4 -left-4 w-24 h-24 rounded-2xl flex items-center justify-center"
                   style={{
                     background: "linear-gradient(135deg, hsl(var(--forest)), hsl(140 18% 35%))",
@@ -272,9 +258,9 @@ const HeroSection = () => {
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.2, type: "spring" }}
+                  initial={{ opacity: 0, scale: 0, rotate: 10 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ ...springBounceConfig, delay: 1.2 }}
                   className="absolute -top-4 -right-4 px-4 py-2 rounded-full text-sm font-semibold"
                   style={{
                     background: "hsl(38 82% 50%)",
@@ -292,7 +278,11 @@ const HeroSection = () => {
 
       </section>
 
-      <DiagnosticFlow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {isModalOpen && (
+        <Suspense fallback={null}>
+          <DiagnosticFlow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        </Suspense>
+      )}
     </>
   );
 };

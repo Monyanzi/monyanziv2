@@ -1,14 +1,28 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { ReinsuranceTower, SamWaterfall } from "./visuals";
+import { useScrollColorShift, scrollAnimationStyles } from "../utils/useScrollColorShift";
+import reinsuranceTowerImg from "../assets/reinsurance-tower.webp";
+import valueStickImg from "../assets/value-stick.webp";
+import theoryOfConstraintsImg from "../assets/theory-of-constraints.webp";
 
-/**
- * Technical Expertise Section - Light theme version
- * Showcases domain-specific knowledge in SAM and Reinsurance through visual diagrams
- * Following the "Insight Sandwich" pattern: Context → Visual → Impact
- */
 const TechnicalExpertiseSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+
+    // GTA 6-inspired scroll color shift
+    // Using headerRef ensures the color shift happens while the text is visible,
+    // rather than based on the entire section's progress.
+    const headingColor = useScrollColorShift(headerRef, {
+        start: "hsl(210 55% 25%)",      // Navy
+        mid: "hsl(38 82% 50%)",          // Gold
+        end: "hsl(20 55% 53%)",          // Terracotta
+    });
+
+    const subtitleColor = useScrollColorShift(headerRef, {
+        start: "hsl(20 55% 53%)",
+        mid: "hsl(38 82% 55%)",
+        end: "hsl(20 55% 53%)",
+    });
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -23,7 +37,7 @@ const TechnicalExpertiseSection = () => {
             className="py-12 lg:py-16 relative overflow-hidden"
             style={{ background: "hsl(210 45% 96%)" }}
         >
-            {/* Parallax gradient overlay */}
+
             <motion.div
                 style={{ y: gradientY }}
                 className="absolute inset-0 pointer-events-none will-change-transform"
@@ -50,7 +64,7 @@ const TechnicalExpertiseSection = () => {
                 style={{ background: "radial-gradient(circle, hsl(var(--forest)) 0%, transparent 70%)" }}
             />
 
-            {/* Dot texture */}
+
             <div
                 className="absolute inset-0 opacity-[0.02] pointer-events-none"
                 style={{
@@ -60,14 +74,14 @@ const TechnicalExpertiseSection = () => {
             />
 
             <div className="container mx-auto px-6 lg:px-12 relative">
-                {/* Section header */}
-                <div className="text-center mb-12">
+
+                <div ref={headerRef} className="text-center mb-12">
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         className="text-xs font-medium tracking-[0.3em] uppercase mb-4 mx-auto w-fit"
-                        style={{ color: "hsl(var(--gold))" }}
+                        style={scrollAnimationStyles.colorShift(subtitleColor)}
                     >
                         Domain Expertise
                     </motion.p>
@@ -76,7 +90,8 @@ const TechnicalExpertiseSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground font-semibold mb-4 tracking-tight"
+                        className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight"
+                        style={scrollAnimationStyles.colorShift(headingColor)}
                     >
                         Technical Depth
                     </motion.h2>
@@ -91,8 +106,8 @@ const TechnicalExpertiseSection = () => {
                     </motion.p>
                 </div>
 
-                {/* Two-column visual cards */}
-                <div className="grid lg:grid-cols-2 gap-8">
+                {/* Bento Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
                     {/* Reinsurance Architecture Card */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -100,32 +115,37 @@ const TechnicalExpertiseSection = () => {
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border"
+                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border flex flex-col"
                         style={{
                             boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)"
                         }}
                     >
                         {/* Context Header */}
-                        <div className="p-6 pb-4" style={{ background: "linear-gradient(135deg, hsl(140 18% 40%) 0%, hsl(140 18% 35%) 100%)" }}>
+                        <div className="p-6 pb-4 h-[120px] flex flex-col justify-center" style={{ background: "linear-gradient(135deg, hsl(140 18% 40%) 0%, hsl(140 18% 35%) 100%)" }}>
                             <h3 className="font-display text-lg text-white font-semibold mb-2">
                                 Reinsurance Architecture
                             </h3>
-                            <p className="text-sm text-white/80">
+                            <p className="text-sm text-white/80 line-clamp-2">
                                 Effective reinsurance isn't just buying cover; it's architectural design.
                             </p>
                         </div>
 
                         {/* The Visual */}
-                        <div className="py-4 px-6 bg-[hsl(210_45%_96%)]">
-                            <ReinsuranceTower />
+                        <div className="flex-1 bg-[hsl(210_45%_96%)] flex items-center justify-center">
+                            <img
+                                src={reinsuranceTowerImg}
+                                alt="Reinsurance program structure showing layered coverage from retention to catastrophe"
+                                className="w-full h-auto"
+                                loading="lazy"
+                            />
                         </div>
 
                         {/* Impact Caption */}
-                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border">
+                        <figcaption className="text-xs text-foreground/60 text-center py-3 px-6 border-t border-border h-[60px] flex items-center justify-center">
                             Fig 1. Schematic visualising the interplay between Net Retention and Risk Transfer layers.
                         </figcaption>
                         {/* Executive Summary */}
-                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)]">
+                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)] h-[72px] flex items-center justify-center">
                             <p className="text-xs font-medium text-foreground text-center">
                                 <span className="text-[hsl(var(--gold))] font-semibold">The Bottom Line:</span> Proper layering reduces volatility while freeing capital for growth.
                             </p>
@@ -139,32 +159,79 @@ const TechnicalExpertiseSection = () => {
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.5, delay: 0.15, ease: [0.34, 1.56, 0.64, 1] }}
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border"
+                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border flex flex-col"
                         style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
                     >
                         {/* Context Header */}
-                        <div className="p-6 pb-4" style={{ background: "linear-gradient(135deg, hsl(210 45% 55%) 0%, hsl(210 45% 48%) 100%)" }}>
+                        <div className="p-6 pb-4 h-[120px] flex flex-col justify-center" style={{ background: "linear-gradient(135deg, hsl(210 45% 55%) 0%, hsl(210 45% 48%) 100%)" }}>
                             <h3 className="font-display text-lg text-white font-semibold mb-2">
-                                Capital Efficiency
+                                Pricing Strategy
                             </h3>
-                            <p className="text-sm text-white/80">
-                                I model the balance sheet dynamically to show where capital is trapped vs efficient.
+                            <p className="text-sm text-white/80 line-clamp-2">
+                                Understanding value creation and capture is fundamental to sustainable pricing.
                             </p>
                         </div>
 
                         {/* The Visual */}
-                        <div className="py-4 px-6 bg-[hsl(210_45%_96%)]">
-                            <SamWaterfall />
+                        <div className="flex-1 bg-[hsl(210_45%_96%)] flex items-center justify-center">
+                            <img
+                                src={valueStickImg}
+                                alt="Value Stick framework showing how value is divided between customers and firm"
+                                className="w-full h-auto"
+                                loading="lazy"
+                            />
                         </div>
 
                         {/* Impact Caption */}
-                        <figcaption className="text-xs text-muted-foreground text-center py-3 px-6 italic border-t border-border">
-                            Fig 2. Derivation of Eligible Own Funds vs. SCR, highlighting deployable capital buffers.
+                        <figcaption className="text-xs text-foreground/60 text-center py-3 px-6 border-t border-border h-[60px] flex items-center justify-center">
+                            Fig 2. The Value Stick: visualising how total value created is distributed across stakeholders.
                         </figcaption>
                         {/* Executive Summary */}
-                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)]">
+                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)] h-[72px] flex items-center justify-center">
                             <p className="text-xs font-medium text-foreground text-center">
-                                <span className="text-[hsl(var(--gold))] font-semibold">The Bottom Line:</span> Know exactly how much capital is deployable vs trapped in reserves.
+                                <span className="text-[hsl(var(--gold))] font-semibold">The Bottom Line:</span> Great pricing expands customer value while capturing firm margin.
+                            </p>
+                        </div>
+                    </motion.div>
+
+                    {/* Theory of Constraints Card */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.5, delay: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                        whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                        className="rounded-2xl overflow-hidden cursor-default bg-white border border-border flex flex-col"
+                        style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
+                    >
+                        {/* Context Header */}
+                        <div className="p-6 pb-4 h-[120px] flex flex-col justify-center" style={{ background: "linear-gradient(135deg, hsl(20 55% 53%) 0%, hsl(20 55% 45%) 100%)" }}>
+                            <h3 className="font-display text-lg text-white font-semibold mb-2">
+                                Bottleneck Analysis
+                            </h3>
+                            <p className="text-sm text-white/80 line-clamp-2">
+                                Every system has a constraint. Find it, fix it, repeat.
+                            </p>
+                        </div>
+
+                        {/* The Visual */}
+                        <div className="flex-1 bg-[hsl(210_45%_96%)] flex items-center justify-center">
+                            <img
+                                src={theoryOfConstraintsImg}
+                                alt="Theory of Constraints showing the 5 focusing steps for continuous improvement"
+                                className="w-full h-auto"
+                                loading="lazy"
+                            />
+                        </div>
+
+                        {/* Impact Caption */}
+                        <figcaption className="text-xs text-foreground/60 text-center py-3 px-6 border-t border-border h-[60px] flex items-center justify-center">
+                            Fig 3. The 5 Focusing Steps: a systematic approach to throughput improvement.
+                        </figcaption>
+                        {/* Executive Summary */}
+                        <div className="px-6 py-4 bg-[hsl(var(--gold)/0.08)] border-t border-[hsl(var(--gold)/0.2)] h-[72px] flex items-center justify-center">
+                            <p className="text-xs font-medium text-foreground text-center">
+                                <span className="text-[hsl(var(--gold))] font-semibold">The Bottom Line:</span> Focus on the constraint—everything else is noise.
                             </p>
                         </div>
                     </motion.div>
@@ -178,8 +245,7 @@ const TechnicalExpertiseSection = () => {
                     transition={{ delay: 0.5 }}
                     className="text-center text-sm text-muted-foreground mt-10 max-w-xl mx-auto"
                 >
-                    These visualisations are built with pure CSS/React - demonstrating both domain knowledge
-                    and technical implementation capability.
+                    These frameworks guide my approach to solving complex business problems.
                 </motion.p>
             </div>
         </section>
