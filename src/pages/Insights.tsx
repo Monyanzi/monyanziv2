@@ -90,10 +90,6 @@ const Insights = () => {
                   />
                 </span>
               </h1>
-
-              <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed text-justify">
-                Sharp diagnostics for leaders who refuse to automate dysfunction at scale.
-              </p>
             </header>
 
             {/* Filters and Sort */}
