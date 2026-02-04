@@ -28,49 +28,124 @@ const articles: Record<string, ArticleContent> = {
     image: automateWrongProcessImage,
     content: (
       <>
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             1. The Shadow Excel Is Still Being Updated
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            Your team assures you they've migrated to the new system. Yet the file properties on that critical spreadsheet show activity from this morning. The documented process is live in the system. The actual process is live in the spreadsheet. You are about to automate the documentation while the work continues elsewhere.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Your team claims they have migrated to the new system</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The critical spreadsheet shows activity from this morning</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The documented process lives in the system; the actual process lives in the spreadsheet</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You are about to automate documentation while work continues elsewhere</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             2. Three Departments Describe the Same Process Differently
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            Ask Operations, Risk, and Finance to walk you through invoice approval. If you get three different answers, you do not have one process—you have three negotiated compromises. Automating any one of them will break the other two, and the shadow workflow will absorb the work.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Ask Operations, Risk, and Finance to walk through invoice approval</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Three different answers means three negotiated compromises, not one process</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Automating any one version will break the other two</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The shadow workflow will absorb the work</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            3. Nobody Can Explain Why the "Approval Step" Exists
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            3. Nobody Can Explain Why the Approval Step Exists
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            "Who approves this?" "The department lead." "Why?" "They have always done it." If the authority for a critical decision rests on institutional memory rather than documented criteria, your automation will encode randomness as structure, and exceptions will proliferate.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>"Who approves this?" "The department lead." "Why?" "They have always done it."</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Authority rests on institutional memory, not documented criteria</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Your automation will encode randomness as structure</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Exceptions will proliferate</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             4. The SOP Has Not Been Updated Since the Last System Migration
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            The document references a validation step in a platform you sunset 18 months ago. The current workaround—known only to legacy staff—is now the actual process. You are automating archaeology, not operations.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The document references a validation step in a platform you sunset 18 months ago</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The current workaround is known only to legacy staff</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>That workaround is now the actual process</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You are automating archaeology, not operations</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             5. Your ROI Calculation Assumes Zero Exception Handling
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            The business case promises 95% straight-through processing. It does not model what happens when 40% of transactions hit exceptions requiring human judgement. The exceptions will not disappear. They will metastasise into a queue that requires three FTEs to clear, and your efficiency gain will be negative.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The business case promises 95% straight-through processing</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>It does not model what happens when 40% of transactions hit exceptions</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Exceptions will not disappear; they will metastasise into a queue requiring three FTEs to clear</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Your efficiency gain will be negative</span>
+            </li>
+          </ul>
         </section>
       </>
     ),
@@ -83,49 +158,124 @@ const articles: Record<string, ArticleContent> = {
     image: automatingShadowProjectImage,
     content: (
       <>
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             1. The Go-Live Date Passed, But the Legacy Process Is Still Operating
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            The steering committee signed off. The vendor confirmed deployment. Yet the operations team maintains the same manual checklist they used before, "just in case." The new system exists. The old system persists. You are funding two parallel operations.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The steering committee signed off; the vendor confirmed deployment</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The operations team maintains the same manual checklist "just in case"</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The new system exists; the old system persists</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You are funding two parallel operations</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            2. Your AI Handles the Easy Cases, But the Exceptions Consume More Labour Than Before
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            2. Your AI Handles Easy Cases, But Exceptions Consume More Labour
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            The pilot shows 80% automation rate. The reality is your staff now manage the AI's exception queue alongside the original workload. The automation shifted the burden to the messy middle—where regulatory risk lives—and made it harder to resolve because the context is now split between two systems.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The pilot shows 80% automation rate</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Staff now manage the AI's exception queue alongside the original workload</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The automation shifted burden to the messy middle, where regulatory risk lives</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Resolution is harder because context is split between two systems</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             3. The Process Map Changes, But the Conversation Does Not
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            You implemented new workflow software. But when you listen to the operations team, they still describe the work in terms of the old steps. "Then I check with Sarah." "Then I wait for the Thursday batch." The language has not shifted. The mental model has not shifted. The work has not shifted.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You implemented new workflow software</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The operations team still describes work in terms of the old steps</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>"Then I check with Sarah." "Then I wait for the Thursday batch."</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The language has not shifted; the mental model has not shifted; the work has not shifted</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            4. The Data in the New System Does Not Match the Data in the Business
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            4. The Data in the New System Does Not Match the Business
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            The dashboard shows 247 transactions processed. The business knows there are 312. The gap is the shadow pipeline—transactions that bypass the automation because they are too complex, too urgent, or too politically sensitive to fit the new rules.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The dashboard shows 247 transactions processed</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The business knows there are 312</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The gap is the shadow pipeline: transactions too complex, too urgent, or too politically sensitive</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>These bypass automation because they do not fit the new rules</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             5. The Business Case Assumptions Are Revised Downward Every Quarter
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            First it was 40% efficiency gain. Then 25%. Then 15%. Now the conversation is about "foundational investment for future capabilities." The shadow project is consuming budget and delivering theatre, whilst the real work continues in the shadows.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>First it was 40% efficiency gain, then 25%, then 15%</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Now the conversation is about "foundational investment for future capabilities"</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The shadow project is consuming budget and delivering theatre</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The real work continues in the shadows</span>
+            </li>
+          </ul>
         </section>
       </>
     ),
@@ -138,49 +288,124 @@ const articles: Record<string, ArticleContent> = {
     image: processMapsLyingImage,
     content: (
       <>
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             1. The Map Is Symmetrical, But the Workload Is Not
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            Your diagram shows clean handoffs between equal departments. Reality: one team is flooded, another is starving. The map shows geometry; the work shows bottlenecks. The diagram implies capacity equilibrium that does not exist.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Your diagram shows clean handoffs between equal departments</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Reality: one team is flooded, another is starving</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The map shows geometry; the work shows bottlenecks</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The diagram implies capacity equilibrium that does not exist</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            2. The "Wait" Steps Are Not on the Map
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            2. The Wait Steps Are Not on the Map
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            The diagram shows five steps. It does not show that Step 2 waits three days for a weekly batch run, or that Step 4 waits for someone to return from leave. A map that does not show waiting time is a map of potential, not performance.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The diagram shows five steps</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>It does not show that Step 2 waits three days for a weekly batch run</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>It does not show that Step 4 waits for someone to return from leave</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>A map without waiting time is a map of potential, not performance</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            3. Exceptions Are Labelled "Edge Cases" But Happen Daily
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            3. Exceptions Are Labelled Edge Cases But Happen Daily
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            Thirty per cent of your transactions are "exceptions" according to the map. That is not an edge—that is a significant portion of the process. If your map has a happy path and a tiny "exceptions" box, you are mapping fantasy, not operation.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>30% of your transactions are "exceptions" according to the map</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>That is not an edge; that is a significant portion of the process</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If your map has a happy path and a tiny "exceptions" box</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You are mapping fantasy, not operation</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             4. Nobody Can Walk the Map with a Real Transaction
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            Ask someone to trace last Tuesday's Invoice #2847 through your flowchart. If they cannot—if they say "well, actually" or "in that case" more than twice—the map does not describe the process. It describes the process the mapper wished existed.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Ask someone to trace last Tuesday's Invoice #2847 through your flowchart</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If they say "well, actually" or "in that case" more than twice</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The map does not describe the process</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>It describes the process the mapper wished existed</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             5. The Map Was Created in a Conference Room, Not at the Gemba
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            If the process map was drawn by consultants interviewing managers, it is a map of authority, not reality. The people who do the work were not observed. The workarounds were not witnessed. The shadow workflows were not surfaced. Toyota's Genchi Genbutsu—"go and see"—was ignored.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The process map was drawn by consultants interviewing managers</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The people who do the work were not observed</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Workarounds were not witnessed; shadow workflows were not surfaced</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Toyota's Genchi Genbutsu ("go and see") was ignored</span>
+            </li>
+          </ul>
         </section>
       </>
     ),
@@ -193,49 +418,124 @@ const articles: Record<string, ArticleContent> = {
     image: alwaysDoneThisWayImage,
     content: (
       <>
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             1. The Reason for the Process Is a Person Who Left Three Years Ago
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            "Why do we do this?" "Because the previous director insisted on it." They retired in 2022. The constraint they managed may have expired, but the process persists—now encoded in "policy" that nobody dares challenge because the rationale is lost.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>"Why do we do this?" "Because the previous director insisted on it."</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>They retired in 2022</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The constraint they managed may have expired</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The process persists, now encoded in "policy" that nobody dares challenge</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            2. New Employees Learn the "Real Way" From Colleagues, Not the Manual
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            2. New Employees Learn the Real Way From Colleagues, Not the Manual
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            The onboarding programme teaches the SOP. But after week one, the new hire's buddy shows them "how we actually do it." If the shadow workflow is the primary curriculum, the official process is ceremonial—and the organisation knows it.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The onboarding programme teaches the SOP</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>After week one, the new hire's buddy shows them "how we actually do it"</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The shadow workflow is the primary curriculum</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The official process is ceremonial, and the organisation knows it</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            3. Suggesting "This Might Be Outdated" Starts an Argument, Not a Conversation
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            3. Suggesting "This Might Be Outdated" Starts an Argument
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            Propose that a process needs review. Watch the room. If the response is defensive—if the first instinct is to defend rather than examine—you have found a sacred cow. The process is protected not by logic but by identity.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Propose that a process needs review</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Watch the room: the response is defensive</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The first instinct is to defend rather than examine</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You have found a sacred cow, protected by identity rather than logic</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            4. The "Risk" of Changing Is Cited, But Never Quantified
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            4. The Risk of Changing Is Cited, But Never Quantified
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            "We cannot change that—it is too risky." What risk? How likely? What is the impact? If the risk of change always outweighs the risk of stagnation, but neither is measured, you are not managing risk. You are managing fear.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>"We cannot change that; it is too risky."</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>What risk? How likely? What is the impact?</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The risk of change always outweighs the risk of stagnation, but neither is measured</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You are not managing risk; you are managing fear</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            5. The Last "Process Improvement" Added Steps, But Never Removed Them
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            5. The Last Process Improvement Added Steps, Never Removed Them
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            Process improvement is supposed to simplify. But your history shows only accretion: new checks, new approvals, new reviews. Nothing is ever eliminated. The process is not being optimised—it is being encrusted.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Process improvement is supposed to simplify</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Your history shows only accretion: new checks, new approvals, new reviews</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Nothing is ever eliminated</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The process is not being optimised; it is being encrusted</span>
+            </li>
+          </ul>
         </section>
       </>
     ),
@@ -248,49 +548,124 @@ const articles: Record<string, ArticleContent> = {
     image: automateWasteImage,
     content: (
       <>
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            1. You Cannot Explain Why the Process Exists Without Saying "Compliance"
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            1. You Cannot Explain Why the Process Exists Without Saying Compliance
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            Some processes exist solely to create audit trails. That is valid—but it changes the automation approach. If you are automating "efficiency" but the process exists for "evidence," you will destroy the value whilst optimising the cost.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Some processes exist solely to create audit trails</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>That is valid, but it changes the automation approach</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If you are automating "efficiency" but the process exists for "evidence"</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You will destroy value whilst optimising cost</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
-            2. The "Automated" Version Still Requires the Same Number of People
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            2. The Automated Version Still Requires the Same Number of People
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            The business case promises headcount reduction. But the reality is: automation handles the 60% of cases that were already easy, whilst humans handle the 40% of exceptions that got more complex. You have automated the wrong 60%.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The business case promises headcount reduction</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Automation handles the 60% of cases that were already easy</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Humans handle the 40% of exceptions that got more complex</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You have automated the wrong 60%</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             3. You Are Solving for Speed, But the Customer Values Judgement
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            Not every process should be "touchless." Sometimes the manual step builds trust, catches the edge case, or differentiates your service. Automating for speed when the customer values care is optimising the wrong metric.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Not every process should be "touchless"</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Sometimes the manual step builds trust, catches the edge case, or differentiates your service</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Automating for speed when the customer values care</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Is optimising the wrong metric</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             4. The ROI Calculation Ignores the Cost of Rigidity
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            Automation makes processes faster—and less flexible. If your market changes, a manual process adapts in a week. An automated process requires Change Requests, testing windows, and regression analysis. The business case rarely includes the cost of this rigidity.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Automation makes processes faster and less flexible</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If your market changes, a manual process adapts in a week</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>An automated process requires Change Requests, testing windows, and regression analysis</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The business case rarely includes the cost of this rigidity</span>
+            </li>
+          </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
             5. Nobody Has Asked "What If We Just Stopped Doing This?"
           </h2>
-          <p className="text-lg lg:text-xl text-foreground/85 leading-relaxed">
-            The automation question assumes the process must continue. But many processes are heritage, not necessity. The question "how do we automate this?" should always be preceded by "should we still be doing this at all?" If that second question is never asked, you are automating waste.
-          </p>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The automation question assumes the process must continue</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Many processes are heritage, not necessity</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>"How do we automate this?" should always be preceded by "Should we still be doing this at all?"</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If that second question is never asked, you are automating waste</span>
+            </li>
+          </ul>
         </section>
       </>
     ),
@@ -315,13 +690,13 @@ const InsightArticle = ({ slug }: InsightArticleProps) => {
     return (
       <>
         <Navigation />
-        <main className="min-h-screen bg-background pt-32 pb-24">
-          <div className="container mx-auto px-6 lg:px-12 text-center">
-            <h1 className="font-display text-3xl font-semibold text-foreground mb-4">Article not found</h1>
-            <p className="text-muted-foreground mb-8">The article you're looking for doesn't exist.</p>
+        <main className="min-h-screen bg-background pt-28 pb-20">
+          <div className="container mx-auto px-5 lg:px-12 text-center">
+            <h1 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-4">Article not found</h1>
+            <p className="text-muted-foreground mb-6">The article you are looking for does not exist.</p>
             <a
               href="/insights"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm"
               style={{ background: "hsl(var(--gold))", color: "hsl(var(--navy))" }}
             >
               <ArrowLeft className="w-4 h-4" />
@@ -344,15 +719,15 @@ const InsightArticle = ({ slug }: InsightArticleProps) => {
 
       <main className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="relative pt-28 lg:pt-36 pb-12 lg:pb-16">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="pt-24 lg:pt-32 pb-8 lg:pb-12">
+          <div className="container mx-auto px-5 lg:px-12">
             {/* Back Link */}
             <motion.a
               href="/insights"
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-10 group"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6 lg:mb-8 group"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               <span className="text-sm font-medium">All Insights</span>
@@ -363,20 +738,20 @@ const InsightArticle = ({ slug }: InsightArticleProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="max-w-4xl"
+              className="max-w-3xl"
             >
               <span
-                className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-5"
+                className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-4"
                 style={{ color: "hsl(var(--gold))" }}
               >
                 {article.category}
               </span>
 
-              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground leading-[1.15] mb-6">
+              <h1 className="font-display text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground leading-tight mb-4 lg:mb-5">
                 {article.title}
               </h1>
 
-              <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-3xl">
+              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-5 lg:mb-6">
                 {article.description}
               </p>
 
@@ -390,18 +765,17 @@ const InsightArticle = ({ slug }: InsightArticleProps) => {
 
         {/* Featured Image */}
         <motion.section
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="container mx-auto px-6 lg:px-12 mb-16 lg:mb-20"
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="container mx-auto px-5 lg:px-12 mb-10 lg:mb-14"
         >
-          <div className="relative aspect-[21/9] rounded-2xl overflow-hidden bg-muted">
+          <div className="relative aspect-[2/1] lg:aspect-[21/9] rounded-xl lg:rounded-2xl overflow-hidden bg-muted">
             <img
               src={article.image}
               alt=""
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
           </div>
         </motion.section>
 
@@ -409,22 +783,22 @@ const InsightArticle = ({ slug }: InsightArticleProps) => {
         <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="container mx-auto px-6 lg:px-12 pb-20"
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="container mx-auto px-5 lg:px-12 pb-16 lg:pb-20"
         >
-          <article className="max-w-3xl mx-auto">
+          <article className="max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
             {article.content}
           </article>
         </motion.section>
 
         {/* Related Articles */}
-        <section className="border-t border-border py-20 lg:py-28">
-          <div className="container mx-auto px-6 lg:px-12">
-            <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-12">
+        <section className="border-t border-border py-14 lg:py-20">
+          <div className="container mx-auto px-5 lg:px-12">
+            <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-8 lg:mb-10">
               Continue Reading
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-10">
               {relatedSlugs.map((relatedSlug) => {
                 const relatedArticle = articles[relatedSlug];
                 return (
@@ -433,22 +807,22 @@ const InsightArticle = ({ slug }: InsightArticleProps) => {
                     href={`/insights/${relatedSlug}`}
                     className="group block"
                   >
-                    <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-muted mb-5">
+                    <div className="relative aspect-[16/10] rounded-lg lg:rounded-xl overflow-hidden bg-muted mb-4">
                       <img
                         src={relatedArticle.image}
                         alt=""
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
 
                     <span
-                      className="inline-block text-xs font-semibold tracking-[0.15em] uppercase mb-3"
+                      className="inline-block text-xs font-semibold tracking-[0.15em] uppercase mb-2"
                       style={{ color: "hsl(var(--gold))" }}
                     >
                       {relatedArticle.category}
                     </span>
 
-                    <h3 className="font-display text-xl font-semibold text-foreground leading-snug mb-3 group-hover:text-[hsl(var(--gold))] transition-colors duration-300">
+                    <h3 className="font-display text-lg lg:text-xl font-semibold text-foreground leading-snug mb-2 group-hover:text-[hsl(var(--gold))] transition-colors duration-300">
                       {relatedArticle.title}
                     </h3>
 
