@@ -232,6 +232,61 @@ const articles: Record<string, ArticleContent> = {
       </>
     ),
   },
+  "5-signs-automate-waste": {
+    title: "5 Signs You Are About to Automate Waste (Not Value)",
+    category: "AUTOMATION",
+    readTime: "4 min read",
+    description: "Automation can entrench inefficiency at higher speed. Five signals that you are about to spend money encoding broken processes.",
+    image: "/insights/automate-waste.png",
+    content: (
+      <>
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            1. You Cannot Explain Why the Process Exists Without Saying "Compliance"
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            Some processes exist solely to create audit trails. That is valid—but it changes the automation approach. If you are automating "efficiency" but the process exists for "evidence," you will destroy the value whilst optimising the cost.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            2. The "Automated" Version Still Requires the Same Number of People
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            The business case promises headcount reduction. But the reality is: automation handles the 60% of cases that were already easy, whilst humans handle the 40% of exceptions that got more complex. You have automated the wrong 60%.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            3. You Are Solving for Speed, But the Customer Values Judgement
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            Not every process should be "touchless." Sometimes the manual step builds trust, catches the edge case, or differentiates your service. Automating for speed when the customer values care is optimising the wrong metric.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            4. The ROI Calculation Ignores the Cost of Rigidity
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            Automation makes processes faster—and less flexible. If your market changes, a manual process adapts in a week. An automated process requires Change Requests, testing windows, and regression analysis. The business case rarely includes the cost of this rigidity.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            5. Nobody Has Asked "What If We Just Stopped Doing This?"
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            The automation question assumes the process must continue. But many processes are heritage, not necessity. The question "how do we automate this?" should always be preceded by "should we still be doing this at all?" If that second question is never asked, you are automating waste.
+          </p>
+        </section>
+      </>
+    ),
+  },
 };
 
 interface InsightArticleProps {
