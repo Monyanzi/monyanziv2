@@ -13,6 +13,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isInsightsPage, setIsInsightsPage] = useState(false);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -20,6 +21,11 @@ const Navigation = () => {
     damping: 30,
     restDelta: 0.001
   });
+
+  useEffect(() => {
+    // Check if on insights page
+    setIsInsightsPage(window.location.pathname.startsWith('/insights'));
+  }, []);
 
   useEffect(() => {
     let timeoutId: number | undefined;
@@ -31,7 +37,7 @@ const Navigation = () => {
       if (timeoutId) return; // Throttle - skip if already scheduled
 
       timeoutId = window.setTimeout(() => {
-        const sections = navItems.map(item => item.href.slice(1));
+        const sections = navItems.filter(item => item.href.startsWith('#')).map(item => item.href.slice(1));
         const scrollPosition = window.scrollY + 100;
 
         for (let i = sections.length - 1; i >= 0; i--) {
@@ -44,7 +50,7 @@ const Navigation = () => {
         }
         setActiveSection("");
         timeoutId = undefined;
-      }, 100); // Max 10 updates/second instead of 100+
+      }, 100);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -55,6 +61,13 @@ const Navigation = () => {
     setIsOpen(false);
   };
 
+  const isActiveLink = (href: string) => {
+    if (href === "/insights") {
+      return isInsightsPage;
+    }
+    return activeSection === href.slice(1);
+  };
+
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
@@ -62,38 +75,52 @@ const Navigation = () => {
         : "bg-transparent py-5"
         }`}>
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-[2px] bg-[hsl(38,82%,50%)] origin-left"
-          style={{ scaleX }}
+          className="absolute bottom-0 left-0 right-0 h-[2px] origin-left"
+          style={{ scaleX, background: "hsl(var(--gold))" }}
         />
 
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            <a href="#" className="font-display text-2xl lg:text-3xl font-semibold tracking-tight text-foreground hover:text-[hsl(38,82%,50%)] transition-colors duration-300">
+            <a
+              href="/"
+              className="font-display text-2xl lg:text-3xl font-semibold tracking-tight text-foreground transition-colors duration-300"
+              style={{ "--hover-color": "hsl(var(--gold))" } as React.CSSProperties}
+              onMouseEnter={(e) => e.currentTarget.style.color = "hsl(var(--gold))"}
+              onMouseLeave={(e) => e.currentTarget.style.color = ""}
+            >
               MN
             </a>
 
+            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-12">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className={`text-sm tracking-wide transition-colors duration-300 relative group ${activeSection === item.href.slice(1)
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                    }`}
+                  className={`text-sm tracking-wide transition-colors duration-300 relative group ${
+                    isActiveLink(item.href)
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {item.label}
                   <span
-                    className={`absolute -bottom-1 left-0 h-px bg-[hsl(38,82%,50%)] transition-all duration-300 ${activeSection === item.href.slice(1) ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`}
+                    className={`absolute -bottom-1 left-0 h-px transition-all duration-300 ${
+                      isActiveLink(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                    style={{ background: "hsl(var(--gold))" }}
                   />
                 </a>
               ))}
             </div>
 
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(true)}
-              className="hidden p-2 -mr-2 text-foreground hover:text-[hsl(38,82%,50%)] transition-colors duration-300"
+              className="lg:hidden p-2 -mr-2 text-foreground transition-colors duration-300"
+              style={{ "--hover-color": "hsl(var(--gold))" } as React.CSSProperties}
+              onMouseEnter={(e) => e.currentTarget.style.color = "hsl(var(--gold))"}
+              onMouseLeave={(e) => e.currentTarget.style.color = ""}
               aria-label="Open menu"
             >
               <svg
@@ -116,15 +143,19 @@ const Navigation = () => {
         </div>
       </nav>
 
+      {/* Mobile Overlay */}
       <div
-        className={`fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
+        className={`fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
         onClick={() => setIsOpen(false)}
       />
 
+      {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-50 w-72 bg-background border-l border-border transition-transform duration-300 ease-out lg:hidden ${isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed top-0 right-0 bottom-0 z-50 w-72 bg-background border-l border-border transition-transform duration-300 ease-out lg:hidden ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="flex items-center justify-between p-6 border-b border-border">
           <span className="font-display text-lg font-semibold text-foreground">Menu</span>
@@ -144,7 +175,12 @@ const Navigation = () => {
                 <a
                   href={item.href}
                   onClick={handleNavClick}
-                  className="block py-3 text-lg text-muted-foreground hover:text-foreground transition-colors"
+                  className={`block py-3 text-lg transition-colors ${
+                    isActiveLink(item.href)
+                      ? "text-foreground font-medium"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  style={isActiveLink(item.href) ? { color: "hsl(var(--gold))" } : {}}
                 >
                   {item.label}
                 </a>
