@@ -1,5 +1,5 @@
 import { useState, lazy, Suspense } from "react";
-import { ArrowRight, MapPin, Linkedin, TrendingUp, DollarSign, Clock, Settings, Search, Users } from "lucide-react";
+import { ArrowRight, MapPin, Linkedin, TrendingUp, Settings, Search, Users } from "lucide-react";
 import { motion } from "motion/react";
 import heroProfile from "../assets/hero-profile.webp";
 import { springBounceConfig } from "../utils/useAdvancedScroll";
@@ -9,17 +9,10 @@ const DiagnosticFlow = lazy(() => import("./DiagnosticFlow"));
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
   const coreExpertise = [
     { icon: <Settings className="w-5 h-5" />, title: "Strategic Analysis", subtitle: "& Modeling" },
     { icon: <TrendingUp className="w-5 h-5" />, title: "Process", subtitle: "Optimisation" },
     { icon: <Search className="w-5 h-5" />, title: "M&A Due", subtitle: "Diligence" },
-  ];
-
-  const keyResults = [
-    { label: "Efficiency Gains", icon: <TrendingUp className="w-4 h-4" /> },
-    { label: "Cost Savings", icon: <DollarSign className="w-4 h-4" /> },
-    { label: "Faster Decisions", icon: <Clock className="w-4 h-4" /> },
   ];
 
   return (
@@ -135,32 +128,6 @@ const HeroSection = () => {
                         <p className="font-semibold text-foreground leading-tight">{item.title}</p>
                         <p className="text-muted-foreground text-xs">{item.subtitle}</p>
                       </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Key Results */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1 }}
-                className="space-y-3"
-              >
-                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-white/70 lg:text-muted-foreground">
-                  Key Results
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  {keyResults.map((result, i) => (
-                    <motion.div
-                      key={result.label}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1.1 + i * 0.1 }}
-                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/80 border border-border/50"
-                    >
-                      <div style={{ color: "hsl(38 82% 50%)" }}>{result.icon}</div>
-                      <span className="text-sm text-foreground font-medium">{result.label}</span>
                     </motion.div>
                   ))}
                 </div>

@@ -93,31 +93,34 @@ const Navigation = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-12">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={`text-sm tracking-wide transition-colors duration-300 relative group ${
-                    isActiveLink(item.href)
+              {navItems.map((item) => {
+                const isAnchor = item.href.startsWith('#');
+                const href = isAnchor && isInsightsPage ? `/${item.href}` : item.href;
+
+                return (
+                  <a
+                    key={item.label}
+                    href={href}
+                    className={`text-sm tracking-wide transition-colors duration-300 relative group ${isActiveLink(item.href)
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {item.label}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-px transition-all duration-300 ${
-                      isActiveLink(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`}
-                    style={{ background: "hsl(var(--gold))" }}
-                  />
-                </a>
-              ))}
+                      }`}
+                  >
+                    {item.label}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-px transition-all duration-300 ${isActiveLink(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}
+                      style={{ background: "hsl(var(--gold))" }}
+                    />
+                  </a>
+                );
+              })}
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(true)}
-              className="lg:hidden p-2 -mr-2 text-foreground transition-colors duration-300"
+              className="lg:hidden p-3 -mr-3 text-foreground transition-colors duration-300"
               style={{ "--hover-color": "hsl(var(--gold))" } as React.CSSProperties}
               onMouseEnter={(e) => e.currentTarget.style.color = "hsl(var(--gold))"}
               onMouseLeave={(e) => e.currentTarget.style.color = ""}
@@ -125,8 +128,8 @@ const Navigation = () => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -145,17 +148,15 @@ const Navigation = () => {
 
       {/* Mobile Overlay */}
       <div
-        className={`fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         onClick={() => setIsOpen(false)}
       />
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-50 w-72 bg-background border-l border-border transition-transform duration-300 ease-out lg:hidden ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 bottom-0 z-50 w-72 bg-background border-l border-border transition-transform duration-300 ease-out lg:hidden ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex items-center justify-between p-6 border-b border-border">
           <span className="font-display text-lg font-semibold text-foreground">Menu</span>
@@ -170,22 +171,26 @@ const Navigation = () => {
 
         <nav className="p-6">
           <ul className="space-y-1">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={handleNavClick}
-                  className={`block py-3 text-lg transition-colors ${
-                    isActiveLink(item.href)
+            {navItems.map((item) => {
+              const isAnchor = item.href.startsWith('#');
+              const href = isAnchor && isInsightsPage ? `/${item.href}` : item.href;
+
+              return (
+                <li key={item.label}>
+                  <a
+                    href={href}
+                    onClick={handleNavClick}
+                    className={`block py-3 text-lg transition-colors ${isActiveLink(item.href)
                       ? "text-foreground font-medium"
                       : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  style={isActiveLink(item.href) ? { color: "hsl(var(--gold))" } : {}}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+                      }`}
+                    style={isActiveLink(item.href) ? { color: "hsl(var(--gold))" } : {}}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>

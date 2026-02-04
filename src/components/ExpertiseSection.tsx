@@ -281,7 +281,7 @@ const ExpertiseSection = () => {
   const gradientY = useTransform(scrollYProgress, [0, 1], [150, -150]);
 
   return (
-    <section id="expertise" ref={sectionRef} className="py-12 lg:py-16 relative overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
+    <section id="expertise" ref={sectionRef} className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
       {/* Parallax gradient overlay */}
       <motion.div
         style={{ y: gradientY }}
@@ -388,7 +388,7 @@ const ExpertiseSection = () => {
                         type: "spring",
                         stiffness: 200
                       }}
-                      className="px-3 py-1.5 rounded-full text-xs text-foreground/80 font-medium bg-gray-50 border border-gray-200 hover:border-[hsl(38_82%_50%)]/50 hover:bg-white transition-colors"
+                      className="px-3 py-1.5 rounded-full text-xs text-foreground/80 font-medium bg-secondary border border-border hover:border-[hsl(38_82%_50%)]/50 hover:bg-white transition-colors"
                     >
                       {skill}
                     </motion.span>

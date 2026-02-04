@@ -11,7 +11,7 @@ const EngagementSection = () => {
   return (
     <>
       {/* Light navy background */}
-      <section id="contact" className="py-12 lg:py-16 relative overflow-hidden"
+      <section id="contact" className="py-20 lg:py-28 relative overflow-hidden"
         style={{ background: 'hsl(210 45% 96%)' }}>
         {/* Organic floating shapes */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">

@@ -32,7 +32,7 @@ const ProofSection = () => {
     const speedometerDraw = useSVGDraw({ threshold: 0.3, duration: 1200, delay: 200 });
 
     return (
-        <section ref={sectionRef} id="proof" className="py-12 lg:py-16 overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
+        <section ref={sectionRef} id="proof" className="py-20 lg:py-28 overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
             <div className="container mx-auto px-6 lg:px-12">
 
                 <div className="text-center mb-16">

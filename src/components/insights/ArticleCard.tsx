@@ -38,7 +38,7 @@ const ArticleCard = memo(({ id, category, title, description, image, featured = 
                 {title}
               </h2>
 
-              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-5">
+              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-5 text-justify">
                 {description}
               </p>
 
@@ -80,7 +80,7 @@ const ArticleCard = memo(({ id, category, title, description, image, featured = 
           {title}
         </h2>
 
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2 text-justify">
           {description}
         </p>
 

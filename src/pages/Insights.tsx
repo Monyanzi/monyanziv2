@@ -47,29 +47,51 @@ const Insights = () => {
 
       <main className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="pt-28 pb-12 lg:pt-36 lg:pb-16">
-          <div className="container mx-auto px-6 lg:px-12">
-            <header className="max-w-3xl mb-10 lg:mb-12">
-              <span
-                className="inline-block text-xs font-semibold tracking-[0.25em] uppercase mb-4"
-                style={{ color: "hsl(var(--gold))" }}
-              >
-                Insights & Diagnostics
-              </span>
+        <section className="pt-28 pb-12 lg:pt-36 lg:pb-16 relative overflow-hidden">
+          {/* Subtle gradient background */}
+          <div
+            className="absolute inset-0 -z-10"
+            style={{
+              background: "linear-gradient(135deg, hsl(40 35% 98%) 0%, hsl(210 45% 98%) 50%, hsl(40 35% 98%) 100%)"
+            }}
+          />
 
-              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground leading-[1.15] mb-5">
-                Signals in{" "}
+          <div className="container mx-auto px-6 lg:px-12">
+            {/* Back to Home */}
+            <a
+              href="/"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 group"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="group-hover:-translate-x-1 transition-transform"
+              >
+                <path d="m12 19-7-7 7-7" />
+                <path d="M19 12H5" />
+              </svg>
+              Back to Home
+            </a>
+
+            <header className="max-w-3xl mb-10 lg:mb-12">
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-[1.1] mb-5">
                 <span className="relative inline-block">
-                  <span className="relative z-10">complex</span>
+                  <span className="relative z-10">Insights</span>
                   <span
-                    className="absolute bottom-1 left-0 right-0 h-2.5 -z-0"
-                    style={{ background: "hsl(var(--gold) / 0.2)" }}
+                    className="absolute bottom-2 left-0 right-0 h-3 -z-0"
+                    style={{ background: "hsl(var(--gold) / 0.25)" }}
                   />
-                </span>{" "}
-                operations
+                </span>
               </h1>
 
-              <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
+              <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed text-justify">
                 Sharp diagnostics for leaders who refuse to automate dysfunction at scale.
               </p>
             </header>
