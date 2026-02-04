@@ -11,6 +11,14 @@ const articles = [
     readTime: "4 min read",
     image: "/insights/automate-wrong-process.png",
   },
+  {
+    id: "5-signs-automating-shadow-project",
+    category: "AUTOMATION",
+    title: "5 Signs You're Automating a Shadow Project",
+    description: "The automation is live, but reality has not changed. Five signals that your project is running parallel to the actual business.",
+    readTime: "4 min read",
+    image: "/insights/automating-shadow-project.png",
+  },
 ];
 
 const Insights = () => {
