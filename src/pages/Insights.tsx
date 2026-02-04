@@ -19,6 +19,14 @@ const articles = [
     readTime: "4 min read",
     image: "/insights/automating-shadow-project.png",
   },
+  {
+    id: "5-signs-process-maps-lying",
+    category: "PROCESS DESIGN",
+    title: "5 Signs Your Process Maps Are Hiding the Real Work",
+    description: "Flowcharts capture sequence, not significance. Five signals that your diagrams are fiction.",
+    readTime: "4 min read",
+    image: "/insights/process-maps-lying.png",
+  },
 ];
 
 const Insights = () => {
