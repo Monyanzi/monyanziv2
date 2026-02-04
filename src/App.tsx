@@ -5,9 +5,16 @@ import Insights from "./pages/Insights";
 import InsightArticle from "./pages/InsightArticle";
 import NotFound from "./pages/NotFound";
 import { SmoothScrollProvider } from "./components/SmoothScrollProvider";
+import CookieConsent from "./components/CookieConsent";
+import GoogleAnalytics from "./components/GoogleAnalytics";
+import { hasAnalyticsConsent } from "./utils/cookieConsent";
+
+// Replace with your actual Google Analytics Measurement ID
+const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
 
 const App = () => {
   const [path, setPath] = useState(window.location.pathname);
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(hasAnalyticsConsent());
 
   useEffect(() => {
     const handleLocationChange = () => {
@@ -58,6 +65,11 @@ const App = () => {
     };
   }, []);
 
+  const handleConsentChange = () => {
+    // Re-check analytics consent when user updates preferences
+    setAnalyticsEnabled(hasAnalyticsConsent());
+  };
+
   const getPage = () => {
     if (path === "/" || path === "") return <Index />;
     if (path === "/insights" || path === "/insights/") return <Insights />;
@@ -74,9 +86,11 @@ const App = () => {
   return (
     <>
       <Analytics />
+      {analyticsEnabled && <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />}
       <SmoothScrollProvider>
         {getPage()}
       </SmoothScrollProvider>
+      <CookieConsent onConsentChange={handleConsentChange} />
     </>
   );
 };
