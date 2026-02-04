@@ -4,36 +4,12 @@ import Navigation from "@/components/Navigation";
 // Placeholder article data
 const articles = [
   {
-    id: 1,
+    id: "5-signs-automate-wrong-process",
     category: "AUTOMATION",
-    title: "Why Most Automation Projects Fail Before They Start",
-    description: "The hidden assumptions that derail digital transformation initiatives—and how to surface them early.",
+    title: "5 Signs You're About to Automate the Wrong Process",
+    description: "Five diagnostic signals that the process you plan to automate is only the documented version, not the work your people actually do.",
     readTime: "4 min read",
-    image: "/insights/automation-systems.png",
-  },
-  {
-    id: 2,
-    category: "OPERATIONS",
-    title: "Constraint Mapping in Manufacturing Networks",
-    description: "A systematic approach to identifying bottlenecks across multi-site production environments.",
-    readTime: "6 min read",
-    image: "/insights/constraint-mapping.png",
-  },
-  {
-    id: 3,
-    category: "STRATEGY",
-    title: "The Value Stick in Practice",
-    description: "Translating academic pricing frameworks into operational decisions that compound.",
-    readTime: "5 min read",
-    image: "/insights/value-framework.png",
-  },
-  {
-    id: 4,
-    category: "TECHNOLOGY",
-    title: "When to Build vs. When to Buy",
-    description: "A decision framework for technology investments in asset-heavy industries.",
-    readTime: "4 min read",
-    image: "/insights/build-buy.png",
+    image: "/insights/automate-wrong-process.png",
   },
 ];
 
