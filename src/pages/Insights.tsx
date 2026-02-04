@@ -35,6 +35,14 @@ const articles = [
     readTime: "4 min read",
     image: "/insights/always-done-this-way.png",
   },
+  {
+    id: "5-signs-automate-waste",
+    category: "AUTOMATION",
+    title: "5 Signs You Are About to Automate Waste (Not Value)",
+    description: "Automation can entrench inefficiency at higher speed. Five signals that you are about to spend money encoding broken processes.",
+    readTime: "4 min read",
+    image: "/insights/automate-waste.png",
+  },
 ];
 
 const Insights = () => {
