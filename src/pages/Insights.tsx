@@ -9,8 +9,26 @@ import automatingShadowProjectImage from "@/assets/insights/automating-shadow-pr
 import processMapsLyingImage from "@/assets/insights/process-maps-lying.webp";
 import alwaysDoneThisWayImage from "@/assets/insights/always-done-this-way.webp";
 import automateWasteImage from "@/assets/insights/automate-waste.webp";
+import whyAiProjectFailingImage from "@/assets/insights/why-ai-project-failing.webp";
+import aiWarningSignsImage from "@/assets/insights/ai-warning-signs.webp";
 
 const articles = [
+  {
+    id: "why-your-ai-project-is-about-to-fail",
+    category: "AI STRATEGY",
+    title: "Why Your AI Project Is About to Fail",
+    description: "Most AI projects don't fail because the tech is weak. They fail because the business can't absorb them.",
+    readTime: "6 min read",
+    image: whyAiProjectFailingImage,
+  },
+  {
+    id: "is-your-ai-project-failing-5-warning-signs",
+    category: "AI STRATEGY",
+    title: "Is Your AI Project Failing? 5 Warning Signs",
+    description: "Five clear signals your AI initiative is going nowhere; and what to look for before you spend more.",
+    readTime: "5 min read",
+    image: aiWarningSignsImage,
+  },
   {
     id: "5-signs-automate-wrong-process",
     category: "AUTOMATION",
