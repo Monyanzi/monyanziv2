@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet";
-import { motion } from "motion/react";
 import Navigation from "@/components/Navigation";
-import { ArrowLeft, Clock, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 // Import premium images
 import automateWrongProcessImage from "@/assets/insights/automate-wrong-process.webp";
@@ -15,7 +14,6 @@ import aiWarningSignsImage from "@/assets/insights/ai-warning-signs.webp";
 interface ArticleContent {
   title: string;
   category: string;
-  readTime: string;
   description: string;
   image: string;
   content: React.ReactNode;
@@ -25,7 +23,6 @@ const articles: Record<string, ArticleContent> = {
   "5-signs-automate-wrong-process": {
     title: "5 Signs You're About to Automate the Wrong Process",
     category: "AUTOMATION",
-    readTime: "4 min read",
     description: "Five diagnostic signals that the process you plan to automate is only the documented version, not the work your people actually do.",
     image: automateWrongProcessImage,
     content: (
@@ -155,7 +152,6 @@ const articles: Record<string, ArticleContent> = {
   "5-signs-automating-shadow-project": {
     title: "5 Signs You're Automating a Shadow Project",
     category: "AUTOMATION",
-    readTime: "4 min read",
     description: "The automation is live, but reality has not changed. Five signals that your project is running parallel to the actual business.",
     image: automatingShadowProjectImage,
     content: (
@@ -285,7 +281,6 @@ const articles: Record<string, ArticleContent> = {
   "5-signs-process-maps-lying": {
     title: "5 Signs Your Process Maps Are Hiding the Real Work",
     category: "PROCESS DESIGN",
-    readTime: "4 min read",
     description: "Flowcharts capture sequence, not significance. Five signals that your diagrams are fiction.",
     image: processMapsLyingImage,
     content: (
@@ -415,7 +410,6 @@ const articles: Record<string, ArticleContent> = {
   "5-signs-always-done-this-way": {
     title: "5 Signs Your Organisation Is Trapped in \"We Have Always Done It This Way\"",
     category: "ORGANISATIONAL CHANGE",
-    readTime: "4 min read",
     description: "Sacred processes persist long after their rationale expires. Five signals that history is driving your operations.",
     image: alwaysDoneThisWayImage,
     content: (
@@ -545,7 +539,6 @@ const articles: Record<string, ArticleContent> = {
   "5-signs-automate-waste": {
     title: "5 Signs You Are About to Automate Waste (Not Value)",
     category: "AUTOMATION",
-    readTime: "4 min read",
     description: "Automation can entrench inefficiency at higher speed. Five signals that you are about to spend money encoding broken processes.",
     image: automateWasteImage,
     content: (
@@ -675,7 +668,6 @@ const articles: Record<string, ArticleContent> = {
   "why-your-ai-project-is-about-to-fail": {
     title: "Why Your AI Project Is About to Fail",
     category: "AI STRATEGY",
-    readTime: "6 min read",
     description: "Most AI projects don't fail because the tech is weak. They fail because the business can't absorb them. Here's what breaks them in the real world.",
     image: whyAiProjectFailingImage,
     content: (
@@ -906,7 +898,6 @@ const articles: Record<string, ArticleContent> = {
   "is-your-ai-project-failing-5-warning-signs": {
     title: "Is Your AI Project Failing? 5 Warning Signs It's Not Delivering Value",
     category: "AI STRATEGY",
-    readTime: "5 min read",
     description: "Five clear signals your AI initiative is going nowhere; and what to look for before you spend more time, money, and attention.",
     image: aiWarningSignsImage,
     content: (
@@ -1115,24 +1106,16 @@ const InsightArticle = ({ slug }: InsightArticleProps) => {
         <section className="pt-24 lg:pt-32 pb-8 lg:pb-12">
           <div className="container mx-auto px-5 lg:px-12">
             {/* Back Link */}
-            <motion.a
+            <a
               href="/insights"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4 }}
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6 lg:mb-8 group"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               <span className="text-sm font-medium">All Insights</span>
-            </motion.a>
+            </a>
 
             {/* Article Header */}
-            <motion.header
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-              className="max-w-3xl"
-            >
+            <header className="max-w-3xl">
               <span
                 className="inline-block text-xs font-semibold tracking-[0.2em] uppercase mb-4"
                 style={{ color: "hsl(var(--gold))" }}
@@ -1144,45 +1127,32 @@ const InsightArticle = ({ slug }: InsightArticleProps) => {
                 {article.title}
               </h1>
 
-              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-5 lg:mb-6">
+              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
                 {article.description}
               </p>
-
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Clock className="w-4 h-4" />
-                <span>{article.readTime}</span>
-              </div>
-            </motion.header>
+            </header>
           </div>
         </section>
 
         {/* Featured Image */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="container mx-auto px-5 lg:px-12 mb-10 lg:mb-14"
-        >
+        <section className="container mx-auto px-5 lg:px-12 mb-10 lg:mb-14">
           <div className="relative aspect-[2/1] lg:aspect-[21/9] rounded-xl lg:rounded-2xl overflow-hidden bg-muted">
             <img
               src={article.image}
               alt=""
+              loading="eager"
+              decoding="async"
               className="w-full h-full object-cover"
             />
           </div>
-        </motion.section>
+        </section>
 
         {/* Article Content */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="container mx-auto px-5 lg:px-12 pb-16 lg:pb-20"
-        >
+        <section className="container mx-auto px-5 lg:px-12 pb-16 lg:pb-20">
           <article className="max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
             {article.content}
           </article>
-        </motion.section>
+        </section>
 
         {/* Related Articles */}
         <section className="border-t border-border py-14 lg:py-20">
