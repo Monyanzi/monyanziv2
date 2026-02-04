@@ -9,7 +9,7 @@ const articles = [
     title: "Why Most Automation Projects Fail Before They Start",
     description: "The hidden assumptions that derail digital transformation initiatives—and how to surface them early.",
     readTime: "4 min read",
-    image: "/insights/automation-systems.svg",
+    image: "/insights/automation-systems.png",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const articles = [
     title: "Constraint Mapping in Manufacturing Networks",
     description: "A systematic approach to identifying bottlenecks across multi-site production environments.",
     readTime: "6 min read",
-    image: "/insights/constraint-mapping.svg",
+    image: "/insights/constraint-mapping.png",
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const articles = [
     title: "The Value Stick in Practice",
     description: "Translating academic pricing frameworks into operational decisions that compound.",
     readTime: "5 min read",
-    image: "/insights/value-framework.svg",
+    image: "/insights/value-framework.png",
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const articles = [
     title: "When to Build vs. When to Buy",
     description: "A decision framework for technology investments in asset-heavy industries.",
     readTime: "4 min read",
-    image: "/insights/build-buy.svg",
+    image: "/insights/build-buy.png",
   },
 ];
 
