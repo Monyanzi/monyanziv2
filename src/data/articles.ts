@@ -21,8 +21,8 @@ export const articles: Article[] = [
   {
     id: "why-ai-projects-fail",
     category: "AI STRATEGY",
-    title: "Why Your AI Project Is Failing: 8 Warning Signs and How to Fix Them",
-    description: "AI projects do not crash. They fade quietly while everyone stays busy. 8 signs your project is drifting and how to fix it.",
+    title: "Why Your AI Project Is Failing: 8 Warning Signs",
+    description: "AI projects do not crash. They fade quietly while everyone stays busy. 8 signs your project is drifting.",
     image: aiWarningSignsHero,
   },
   {
