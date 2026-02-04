@@ -6,6 +6,7 @@ const navItems = [
   { label: "Who You Work With", href: "#about" },
   { label: "Expertise", href: "#expertise" },
   { label: "Track Record", href: "#proof" },
+  { label: "Insights", href: "/insights" },
 ];
 
 const Navigation = () => {
