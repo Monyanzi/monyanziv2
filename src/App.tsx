@@ -1,19 +1,25 @@
 import { Analytics } from "@vercel/analytics/react";
 import Index from "./pages/Index";
+import Insights from "./pages/Insights";
 import NotFound from "./pages/NotFound";
 import { SmoothScrollProvider } from "./components/SmoothScrollProvider";
 
 const App = () => {
-  // Simple path check - no router needed for single page site
-  const isValidPath = window.location.pathname === "/" || window.location.pathname === "";
+  const path = window.location.pathname;
+  
+  const getPage = () => {
+    if (path === "/" || path === "") return <Index />;
+    if (path === "/insights" || path === "/insights/") return <Insights />;
+    return <NotFound />;
+  };
 
   return (
-        <>
+    <>
       <Analytics />
-    <SmoothScrollProvider>
-      {isValidPath ? <Index /> : <NotFound />}
-    </SmoothScrollProvider>
-          </>
+      <SmoothScrollProvider>
+        {getPage()}
+      </SmoothScrollProvider>
+    </>
   );
 };
 
