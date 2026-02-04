@@ -1,15 +1,25 @@
 import { useState, useEffect, useCallback } from "react";
-import { Home, User, Briefcase, Trophy } from "lucide-react";
+import { Home, User, Briefcase, Trophy, FileText } from "lucide-react";
 
 const navItems = [
   { icon: Home, href: "#", label: "Home" },
   { icon: User, href: "#about", label: "About" },
   { icon: Briefcase, href: "#expertise", label: "Expertise" },
   { icon: Trophy, href: "#proof", label: "Track Record" },
+  { icon: FileText, href: "/insights", label: "Insights" },
 ];
 
 const BottomNavigation = () => {
   const [activeSection, setActiveSection] = useState("");
+  const [isInsightsPage, setIsInsightsPage] = useState(false);
+
+  useEffect(() => {
+    // Check if on insights page
+    const checkPath = () => {
+      setIsInsightsPage(window.location.pathname.startsWith('/insights'));
+    };
+    checkPath();
+  }, []);
 
   useEffect(() => {
     let timeoutId: number | undefined;
@@ -47,6 +57,11 @@ const BottomNavigation = () => {
   }, []);
 
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Don't prevent default for external links
+    if (href === "/insights") {
+      return;
+    }
+
     e.preventDefault();
 
     if (href === "#") {
@@ -62,7 +77,10 @@ const BottomNavigation = () => {
   }, []);
 
   const isActive = (href: string) => {
-    if (href === "#") return activeSection === "";
+    if (href === "/insights") {
+      return isInsightsPage;
+    }
+    if (href === "#") return activeSection === "" && !isInsightsPage;
     return activeSection === href.slice(1);
   };
 
@@ -81,14 +99,31 @@ const BottomNavigation = () => {
             aria-label={label}
           >
             <Icon
-              className={`w-6 h-6 transition-all duration-200 ${isActive(href)
-                  ? "stroke-[hsl(38,82%,55%)] scale-110"
-                  : "stroke-[hsl(38,82%,45%)] group-hover:stroke-[hsl(38,82%,55%)] group-hover:scale-105"
-                }`}
+              className={`w-5 h-5 transition-all duration-200 ${
+                isActive(href)
+                  ? "scale-110"
+                  : "group-hover:scale-105"
+              }`}
+              style={{
+                stroke: isActive(href) ? "hsl(var(--gold))" : "hsl(var(--gold) / 0.6)"
+              }}
               strokeWidth={1.5}
             />
+            <span
+              className={`text-[10px] mt-1 transition-colors duration-200 ${
+                isActive(href) ? "font-medium" : ""
+              }`}
+              style={{
+                color: isActive(href) ? "hsl(var(--gold))" : "hsl(var(--muted-foreground))"
+              }}
+            >
+              {label}
+            </span>
             {isActive(href) && (
-              <span className="absolute bottom-1 w-6 h-0.5 bg-[hsl(38,82%,50%)] rounded-full" />
+              <span
+                className="absolute bottom-0.5 w-6 h-0.5 rounded-full"
+                style={{ background: "hsl(var(--gold))" }}
+              />
             )}
           </a>
         ))}
