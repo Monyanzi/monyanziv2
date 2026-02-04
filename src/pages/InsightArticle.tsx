@@ -67,6 +67,61 @@ const articles: Record<string, ArticleContent> = {
       </>
     ),
   },
+  "5-signs-automating-shadow-project": {
+    title: "5 Signs You're Automating a Shadow Project",
+    category: "AUTOMATION",
+    readTime: "4 min read",
+    description: "The automation is live, but reality has not changed. Five signals that your project is running parallel to the actual business.",
+    image: "/insights/automating-shadow-project.png",
+    content: (
+      <>
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            1. The Go-Live Date Passed, But the Legacy Process Is Still Operating
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            The steering committee signed off. The vendor confirmed deployment. Yet the operations team maintains the same manual checklist they used before, "just in case." The new system exists. The old system persists. You are funding two parallel operations.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            2. Your AI Handles the Easy Cases, But the Exceptions Consume More Labour Than Before
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            The pilot shows 80% automation rate. The reality is your staff now manage the AI's exception queue alongside the original workload. The automation shifted the burden to the messy middle—where regulatory risk lives—and made it harder to resolve because the context is now split between two systems.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            3. The Process Map Changes, But the Conversation Does Not
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            You implemented new workflow software. But when you listen to the operations team, they still describe the work in terms of the old steps. "Then I check with Sarah." "Then I wait for the Thursday batch." The language has not shifted. The mental model has not shifted. The work has not shifted.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            4. The Data in the New System Does Not Match the Data in the Business
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            The dashboard shows 247 transactions processed. The business knows there are 312. The gap is the shadow pipeline—transactions that bypass the automation because they are too complex, too urgent, or too politically sensitive to fit the new rules.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            5. The Business Case Assumptions Are Revised Downward Every Quarter
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            First it was 40% efficiency gain. Then 25%. Then 15%. Now the conversation is about "foundational investment for future capabilities." The shadow project is consuming budget and delivering theatre, whilst the real work continues in the shadows.
+          </p>
+        </section>
+      </>
+    ),
+  },
 };
 
 interface InsightArticleProps {
