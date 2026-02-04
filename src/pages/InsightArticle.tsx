@@ -122,6 +122,61 @@ const articles: Record<string, ArticleContent> = {
       </>
     ),
   },
+  "5-signs-process-maps-lying": {
+    title: "5 Signs Your Process Maps Are Hiding the Real Work",
+    category: "PROCESS DESIGN",
+    readTime: "4 min read",
+    description: "Flowcharts capture sequence, not significance. Five signals that your diagrams are fiction.",
+    image: "/insights/process-maps-lying.png",
+    content: (
+      <>
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            1. The Map Is Symmetrical, But the Workload Is Not
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            Your diagram shows clean handoffs between equal departments. Reality: one team is flooded, another is starving. The map shows geometry; the work shows bottlenecks. The diagram implies capacity equilibrium that does not exist.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            2. The "Wait" Steps Are Not on the Map
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            The diagram shows five steps. It does not show that Step 2 waits three days for a weekly batch run, or that Step 4 waits for someone to return from leave. A map that does not show waiting time is a map of potential, not performance.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            3. Exceptions Are Labelled "Edge Cases" But Happen Daily
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            Thirty per cent of your transactions are "exceptions" according to the map. That is not an edge—that is a significant portion of the process. If your map has a happy path and a tiny "exceptions" box, you are mapping fantasy, not operation.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            4. Nobody Can Walk the Map with a Real Transaction
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            Ask someone to trace last Tuesday's Invoice #2847 through your flowchart. If they cannot—if they say "well, actually" or "in that case" more than twice—the map does not describe the process. It describes the process the mapper wished existed.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            5. The Map Was Created in a Conference Room, Not at the Gemba
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            If the process map was drawn by consultants interviewing managers, it is a map of authority, not reality. The people who do the work were not observed. The workarounds were not witnessed. The shadow workflows were not surfaced. Toyota's Genchi Genbutsu—"go and see"—was ignored.
+          </p>
+        </section>
+      </>
+    ),
+  },
 };
 
 interface InsightArticleProps {
