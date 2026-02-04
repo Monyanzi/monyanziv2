@@ -9,6 +9,8 @@ import automatingShadowProjectImage from "@/assets/insights/automating-shadow-pr
 import processMapsLyingImage from "@/assets/insights/process-maps-lying.webp";
 import alwaysDoneThisWayImage from "@/assets/insights/always-done-this-way.webp";
 import automateWasteImage from "@/assets/insights/automate-waste.webp";
+import whyAiProjectFailingImage from "@/assets/insights/why-ai-project-failing.webp";
+import aiWarningSignsImage from "@/assets/insights/ai-warning-signs.webp";
 
 interface ArticleContent {
   title: string;
@@ -664,6 +666,397 @@ const articles: Record<string, ArticleContent> = {
             <li className="flex gap-3">
               <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
               <span>If that second question is never asked, you are automating waste</span>
+            </li>
+          </ul>
+        </section>
+      </>
+    ),
+  },
+  "why-your-ai-project-is-about-to-fail": {
+    title: "Why Your AI Project Is About to Fail",
+    category: "AI STRATEGY",
+    readTime: "6 min read",
+    description: "Most AI projects don't fail because the tech is weak. They fail because the business can't absorb them. Here's what breaks them in the real world.",
+    image: whyAiProjectFailingImage,
+    content: (
+      <>
+        <section className="mb-10 lg:mb-14">
+          <p className="text-foreground/85 mb-6">
+            AI projects rarely fail with a dramatic crash. They fail quietly. The updates keep coming. The meetings continue. The dashboard looks impressive. And yet the business doesn't feel any different.
+          </p>
+          <p className="text-foreground/85">
+            If you want the real reasons, they're not glamorous. They're organisational. They live in red tape, silos, and the everyday reality of how work actually gets done.
+          </p>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            Red Tape Turns a Small Change into a Long Delay
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>AI only creates value when something changes: a decision gets faster, a task disappears, a handover becomes smoother</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Many businesses treat even small workflow changes like a major event</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>A simple adjustment becomes a chain of approvals, sign-offs, meetings, and delayed release windows</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The AI ends up stuck on the side, producing suggestions that never make it into day-to-day work</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>When change moves slowly, AI becomes decoration</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            Silos Mean No One Owns the Full Problem
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>AI projects usually sit across multiple teams; that's where they die</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>One team owns the work, another owns the systems, another owns the rules, another owns the reporting</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>People disagree on what the "real" process is; teams argue about definitions instead of outcomes</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Issues get bounced around because they're "not in scope"</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>When ownership is split, delivery is split. And split delivery is slow delivery</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            The People Doing the Real Work Don't Trust It
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>This is the part leaders underestimate</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>People don't reject AI because they hate technology; they reject it because they've seen what happens when tools are built far away from the work</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>It creates extra admin, ignores obvious real-life cases, makes simple tasks harder</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Even if the AI is "available", you'll get quiet resistance: people keep using the old way, double-check everything, work around it</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>No trust means no adoption. And no adoption means no value</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            Real Work Is Messy; Your AI Plan Assumes It's Tidy
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Most daily work is messy for good reasons: customers don't behave consistently, information arrives late or incomplete</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Exceptions are normal; rules conflict; people adapt just to keep things moving</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Many AI projects assume the process is stable and predictable</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>On the ground, people are constantly making judgement calls and trade-offs</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If your AI only works in a clean world, it won't survive in the world you actually operate in</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            "Data Problems" Become a Hiding Place for Delivery Problems
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Yes, data matters. But "data quality" can also become a comfortable loop: a reason to keep the project running without ever landing it</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>A common pattern: the AI meets reality and doesn't fit; adoption is harder than expected; trust is low</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>So the conversation retreats into data debates; weeks become months; work becomes meetings</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If "data issues" become the main story for too long, it usually means the harder work is being avoided</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            Nobody Wants to Be Responsible When the AI Is Wrong
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Here's the question people ask even if they don't say it out loud: "If this goes wrong, who gets blamed?"</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If the answer is unclear, people protect themselves</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>They add approvals "just to be safe", reintroduce manual checks, and push decisions upward</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>That's not stubbornness; it's self-preservation</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>AI requires clear responsibility. If responsibility is blurry, usage will be timid; and value will shrink</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            It Works in Meetings, Then Dies in Daily Routines
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>This is the final failure mode</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The AI looks great in a demo; it performs well in a controlled test; it produces outputs that impress people in a room</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>But it fails to survive the daily rhythm of work: interruptions, competing priorities, staff shortages, urgent requests, constant exceptions</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If the AI doesn't fit how people actually work; not how the organisation wishes they worked; it will be bypassed</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            The Reality Check
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If your business is slowed down by red tape, divided by silos, and disconnected from day-to-day work, your AI project is fighting the business itself</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>That doesn't mean you shouldn't do AI. It means the first challenge isn't building something clever</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The first challenge is making sure the organisation can absorb it: clear ownership, fewer handovers, less friction</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If that foundation isn't handled, the project won't fail loudly. It will fail quietly; while everyone stays busy</span>
+            </li>
+          </ul>
+        </section>
+      </>
+    ),
+  },
+  "is-your-ai-project-failing-5-warning-signs": {
+    title: "Is Your AI Project Failing? 5 Warning Signs It's Not Delivering Value",
+    category: "AI STRATEGY",
+    readTime: "5 min read",
+    description: "Five clear signals your AI initiative is going nowhere; and what to look for before you spend more time, money, and attention.",
+    image: aiWarningSignsImage,
+    content: (
+      <>
+        <section className="mb-10 lg:mb-14">
+          <p className="text-foreground/85">
+            AI projects don't usually fail with a dramatic crash. They fade. The updates keep coming, the meetings keep happening, and the word "progress" gets used a lot; but the business doesn't feel any different. If you're wondering whether your AI initiative is actually helping, these warning signs are a strong indicator that it's not delivering value yet.
+          </p>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            1. The Project Can't Be Explained Without Saying "AI"
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If the pitch collapses the moment you remove the word "AI", that's a problem</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>A useful project can be described in plain language: reduce late deliveries, cut customer waiting time, stop repeat mistakes, speed up quotes, catch issues earlier</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If nobody can clearly say what will improve; and for whom; you're not building a solution</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You're buying a label</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            2. It Produces Reports, But Nothing Changes in How Work Gets Done
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Many stalled AI projects look "busy" on paper: charts, dashboards, weekly updates, model scores</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>But the day-to-day stays the same: people still chase the same information, approvals still take the same time</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Mistakes still get found at the same late stage; customers still wait</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If the output doesn't change a decision or remove a task, it isn't delivering value. It's creating noise</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            3. It Adds a New Step Instead of Removing an Old One
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>A failing project doesn't replace work; it adds work</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You end up with a pattern like this: do the process the usual way, check what the AI suggests, fix mismatches manually, keep both "just in case"</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>When AI becomes an extra box to tick, it's not helping</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>It's slowing things down and spreading responsibility thinner</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            4. It Has No "Success Line" You Can Agree On
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If you ask, "How will we know this worked?", and the answer is vague, the project is already drifting</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>A serious project can name: the one thing that should improve; a starting point; a target; a date</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If success is described as "more insight" or "future capability" with no agreed target</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You're not managing a project. You're funding a hope</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            5. Progress Depends on One Exhausted Person and a Pile of Messy Files
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>AI projects often get stuck because the basic information isn't reliable</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>Signs you're in trouble: someone is constantly cleaning spreadsheets; numbers don't match across teams</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The same question gets different answers depending on who you ask; the system can't be trusted without manual checking</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If the project survives only because a few people keep patching it together, it won't scale; and it won't last</span>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 lg:mb-14">
+          <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+            The Reality Check
+          </h2>
+          <ul className="space-y-2 text-foreground/85">
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>If three of these apply, you don't necessarily have an "AI problem"</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>You have a focus and foundations problem: unclear goals, unchanged workflows, and shaky information</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>The good news is this is fixable</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[hsl(var(--gold))] mt-1.5">•</span>
+              <span>But the fix starts with being honest about what's missing: a clear outcome, a real workflow change, and information you can trust</span>
             </li>
           </ul>
         </section>
