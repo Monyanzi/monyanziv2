@@ -177,6 +177,61 @@ const articles: Record<string, ArticleContent> = {
       </>
     ),
   },
+  "5-signs-always-done-this-way": {
+    title: "5 Signs Your Organisation Is Trapped in \"We Have Always Done It This Way\"",
+    category: "ORGANISATIONAL CHANGE",
+    readTime: "4 min read",
+    description: "Sacred processes persist long after their rationale expires. Five signals that history is driving your operations.",
+    image: "/insights/always-done-this-way.png",
+    content: (
+      <>
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            1. The Reason for the Process Is a Person Who Left Three Years Ago
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            "Why do we do this?" "Because the previous director insisted on it." They retired in 2022. The constraint they managed may have expired, but the process persists—now encoded in "policy" that nobody dares challenge because the rationale is lost.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            2. New Employees Learn the "Real Way" From Colleagues, Not the Manual
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            The onboarding programme teaches the SOP. But after week one, the new hire's buddy shows them "how we actually do it." If the shadow workflow is the primary curriculum, the official process is ceremonial—and the organisation knows it.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            3. Suggesting "This Might Be Outdated" Starts an Argument, Not a Conversation
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            Propose that a process needs review. Watch the room. If the response is defensive—if the first instinct is to defend rather than examine—you have found a sacred cow. The process is protected not by logic but by identity.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            4. The "Risk" of Changing Is Cited, But Never Quantified
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            "We cannot change that—it is too risky." What risk? How likely? What is the impact? If the risk of change always outweighs the risk of stagnation, but neither is measured, you are not managing risk. You are managing fear.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-6">
+            5. The Last "Process Improvement" Added Steps, But Never Removed Them
+          </h2>
+          <p className="text-lg text-foreground/85 leading-relaxed mb-4">
+            Process improvement is supposed to simplify. But your history shows only accretion: new checks, new approvals, new reviews. Nothing is ever eliminated. The process is not being optimised—it is being encrusted.
+          </p>
+        </section>
+      </>
+    ),
+  },
 };
 
 interface InsightArticleProps {
