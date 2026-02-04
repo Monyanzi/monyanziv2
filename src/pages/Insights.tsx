@@ -27,6 +27,14 @@ const articles = [
     readTime: "4 min read",
     image: "/insights/process-maps-lying.png",
   },
+  {
+    id: "5-signs-always-done-this-way",
+    category: "ORGANISATIONAL CHANGE",
+    title: "5 Signs Your Organisation Is Trapped in \"We Have Always Done It This Way\"",
+    description: "Sacred processes persist long after their rationale expires. Five signals that history is driving your operations.",
+    readTime: "4 min read",
+    image: "/insights/always-done-this-way.png",
+  },
 ];
 
 const Insights = () => {
