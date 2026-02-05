@@ -54,15 +54,28 @@ const BottomNavigation = () => {
 
     e.preventDefault();
 
+    const isHome = window.location.pathname === "/" || window.location.pathname === "";
+
+    // If clicking Home icon
     if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (isHome) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        window.location.href = "/";
+      }
       return;
     }
 
-    const targetId = href.slice(1);
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    // If on home page, scroll to section
+    if (isHome) {
+      const targetId = href.slice(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Navigate to home page with anchor
+      window.location.href = "/" + href;
     }
   }, []);
 
@@ -90,8 +103,8 @@ const BottomNavigation = () => {
           >
             <Icon
               className={`w-5 h-5 transition-all duration-200 ${isActive(href)
-                  ? "scale-110"
-                  : "group-hover:scale-105"
+                ? "scale-110"
+                : "group-hover:scale-105"
                 }`}
               style={{
                 stroke: isActive(href) ? "hsl(var(--gold))" : "hsl(var(--gold) / 0.6)"
