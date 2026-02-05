@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { Home, User, Briefcase, Trophy, FileText } from "lucide-react";
+import { useThrottledScroll } from "@/utils/useThrottledScroll";
 
 const navItems = [
   { icon: Home, href: "#", label: "Home" },
-  { icon: User, href: "#about", label: "About" },
+  { icon: User, href: "#about", label: "Who I Am" },
   { icon: Briefcase, href: "#expertise", label: "Expertise" },
   { icon: Trophy, href: "#proof", label: "Track Record" },
   { icon: FileText, href: "/insights", label: "Insights" },
@@ -14,47 +15,36 @@ const BottomNavigation = () => {
   const [isInsightsPage, setIsInsightsPage] = useState(false);
 
   useEffect(() => {
-    // Check if on insights page
     const checkPath = () => {
       setIsInsightsPage(window.location.pathname.startsWith('/insights'));
     };
     checkPath();
   }, []);
 
-  useEffect(() => {
-    let timeoutId: number | undefined;
+  const updateActiveSection = useCallback(() => {
+    const scrollPosition = window.scrollY + 100;
+    const sections = ["proof", "expertise", "about"];
 
-    const handleScroll = () => {
-      if (timeoutId) return;
+    if (window.scrollY < 100) {
+      setActiveSection("");
+      return;
+    }
 
-      timeoutId = window.setTimeout(() => {
-        const scrollPosition = window.scrollY + 100;
-        const sections = ["proof", "expertise", "about"];
-
-        // Check if near top
-        if (window.scrollY < 100) {
-          setActiveSection("");
-          timeoutId = undefined;
-          return;
-        }
-
-        for (const sectionId of sections) {
-          const section = document.getElementById(sectionId);
-          if (section && section.offsetTop <= scrollPosition) {
-            setActiveSection(sectionId);
-            timeoutId = undefined;
-            return;
-          }
-        }
-        setActiveSection("");
-        timeoutId = undefined;
-      }, 100);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial check
-    return () => window.removeEventListener("scroll", handleScroll);
+    for (const sectionId of sections) {
+      const section = document.getElementById(sectionId);
+      if (section && section.offsetTop <= scrollPosition) {
+        setActiveSection(sectionId);
+        return;
+      }
+    }
+    setActiveSection("");
   }, []);
+
+  useThrottledScroll({
+    delay: 100,
+    onThrottle: updateActiveSection,
+    runOnMount: true,
+  });
 
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     // Don't prevent default for external links
@@ -99,20 +89,18 @@ const BottomNavigation = () => {
             aria-label={label}
           >
             <Icon
-              className={`w-5 h-5 transition-all duration-200 ${
-                isActive(href)
+              className={`w-5 h-5 transition-all duration-200 ${isActive(href)
                   ? "scale-110"
                   : "group-hover:scale-105"
-              }`}
+                }`}
               style={{
                 stroke: isActive(href) ? "hsl(var(--gold))" : "hsl(var(--gold) / 0.6)"
               }}
               strokeWidth={1.5}
             />
             <span
-              className={`text-[10px] mt-1 transition-colors duration-200 ${
-                isActive(href) ? "font-medium" : ""
-              }`}
+              className={`text-[10px] mt-1 transition-colors duration-200 ${isActive(href) ? "font-medium" : ""
+                }`}
               style={{
                 color: isActive(href) ? "hsl(var(--gold))" : "hsl(var(--muted-foreground))"
               }}

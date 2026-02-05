@@ -1,16 +1,11 @@
-import { useEffect, useRef, ReactNode } from 'react';
+import { useEffect, ReactNode } from 'react';
 import Lenis from 'lenis';
 
 interface SmoothScrollProviderProps {
     children: ReactNode;
 }
 
-/**
- * SmoothScrollProvider - Wraps the app with Lenis for smooth momentum scrolling
- */
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
-    const lenisRef = useRef<Lenis | null>(null);
-
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.2,
@@ -20,8 +15,6 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
             smoothWheel: true,
             touchMultiplier: 2,
         });
-
-        lenisRef.current = lenis;
 
         function raf(time: number) {
             lenis.raf(time);

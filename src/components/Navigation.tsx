@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { X } from "lucide-react";
+import { useThrottledScroll } from "@/utils/useThrottledScroll";
 
 const navItems = [
   { label: "Who You Work With", href: "#about" },
@@ -23,39 +24,32 @@ const Navigation = () => {
   });
 
   useEffect(() => {
-    // Check if on insights page
     setIsInsightsPage(window.location.pathname.startsWith('/insights'));
   }, []);
 
-  useEffect(() => {
-    let timeoutId: number | undefined;
-
-    const handleScroll = () => {
-      // Track if scrolled for nav background
-      setIsScrolled(window.scrollY > 50);
-
-      if (timeoutId) return; // Throttle - skip if already scheduled
-
-      timeoutId = window.setTimeout(() => {
-        const sections = navItems.filter(item => item.href.startsWith('#')).map(item => item.href.slice(1));
-        const scrollPosition = window.scrollY + 100;
-
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const section = document.getElementById(sections[i]);
-          if (section && section.offsetTop <= scrollPosition) {
-            setActiveSection(sections[i]);
-            timeoutId = undefined;
-            return;
-          }
-        }
-        setActiveSection("");
-        timeoutId = undefined;
-      }, 100);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+  const updateScrolled = useCallback(() => {
+    setIsScrolled(window.scrollY > 50);
   }, []);
+
+  const updateActiveSection = useCallback(() => {
+    const sections = navItems.filter(item => item.href.startsWith('#')).map(item => item.href.slice(1));
+    const scrollPosition = window.scrollY + 100;
+
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const section = document.getElementById(sections[i]);
+      if (section && section.offsetTop <= scrollPosition) {
+        setActiveSection(sections[i]);
+        return;
+      }
+    }
+    setActiveSection("");
+  }, []);
+
+  useThrottledScroll({
+    delay: 100,
+    onScroll: updateScrolled,
+    onThrottle: updateActiveSection,
+  });
 
   const handleNavClick = () => {
     setIsOpen(false);
@@ -116,32 +110,6 @@ const Navigation = () => {
                 );
               })}
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(true)}
-              className="lg:hidden p-3 -mr-3 text-foreground transition-colors duration-300"
-              style={{ "--hover-color": "hsl(var(--gold))" } as React.CSSProperties}
-              onMouseEnter={(e) => e.currentTarget.style.color = "hsl(var(--gold))"}
-              onMouseLeave={(e) => e.currentTarget.style.color = ""}
-              aria-label="Open menu"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="4" x2="20" y1="12" y2="12" />
-                <line x1="4" x2="20" y1="6" y2="6" />
-                <line x1="4" x2="20" y1="18" y2="18" />
-              </svg>
-            </button>
           </div>
         </div>
       </nav>

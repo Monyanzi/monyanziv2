@@ -1,13 +1,10 @@
-import { useState, lazy, Suspense } from "react";
 import { ArrowRight, MapPin, Linkedin, TrendingUp, Settings, Search, Users } from "lucide-react";
 import { motion } from "motion/react";
 import heroProfile from "../assets/hero-profile.webp";
 import { springBounceConfig } from "../utils/useAdvancedScroll";
 
-const DiagnosticFlow = lazy(() => import("./DiagnosticFlow"));
 
 const HeroSection = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const coreExpertise = [
     { icon: <Settings className="w-5 h-5" />, title: "Strategic Analysis", subtitle: "& Modeling" },
@@ -25,7 +22,8 @@ const HeroSection = () => {
             alt="Moses Nyanzi"
             className="w-full h-full object-cover object-top"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-[hsl(40_35%_98%)]" />
+          {/* Enhanced gradient overlay for better text contrast while preserving face visibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-[hsl(40_35%_98%)]" />
         </div>
 
         <div className="absolute inset-0 pointer-events-none overflow-hidden hidden lg:block">
@@ -162,8 +160,8 @@ const HeroSection = () => {
                 transition={{ delay: 1.4 }}
                 className="flex flex-wrap items-center gap-4 pt-2"
               >
-                <motion.button
-                  onClick={() => setIsModalOpen(true)}
+                <motion.a
+                  href="#contact"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-sm uppercase tracking-wide text-white shadow-lg hover:shadow-xl transition-shadow"
@@ -173,14 +171,14 @@ const HeroSection = () => {
                 >
                   Let's Talk
                   <ArrowRight className="w-4 h-4" />
-                </motion.button>
+                </motion.a>
 
                 <a
                   href="#proof"
                   className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-[hsl(38_82%_50%)] transition-colors"
                 >
                   See results I've delivered
-                  <ArrowRight className="w-4 h-4" />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14" /><path d="m19 12-7 7-7-7" /></svg>
                 </a>
               </motion.div>
             </motion.div>
@@ -245,11 +243,6 @@ const HeroSection = () => {
 
       </section>
 
-      {isModalOpen && (
-        <Suspense fallback={null}>
-          <DiagnosticFlow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-        </Suspense>
-      )}
     </>
   );
 };

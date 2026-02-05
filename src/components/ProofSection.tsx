@@ -32,7 +32,7 @@ const ProofSection = () => {
     const speedometerDraw = useSVGDraw({ threshold: 0.3, duration: 1200, delay: 200 });
 
     return (
-        <section ref={sectionRef} id="proof" className="py-20 lg:py-28 overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
+        <section ref={sectionRef} id="proof" className="py-20 lg:py-28 pb-28 overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
             <div className="container mx-auto px-6 lg:px-12">
 
                 <div className="text-center mb-16">
@@ -461,6 +461,31 @@ const ProofSection = () => {
                 <p className="text-center text-xs text-foreground/50 mt-8 italic">
                     Results from leadership roles and independent consulting. Client details confidential.
                 </p>
+
+                {/* Insights CTA */}
+                <motion.a
+                    href="/insights"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
+                    whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                    className="block max-w-md mx-auto mt-12 p-6 rounded-2xl border border-border bg-white text-center group cursor-pointer"
+                    style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.08)" }}
+                >
+                    <p
+                        className="text-xs font-semibold tracking-[0.2em] uppercase mb-2"
+                        style={{ color: "hsl(var(--gold))" }}
+                    >
+                        Explore
+                    </p>
+                    <p className="font-display text-xl font-semibold text-foreground mb-2 group-hover:text-[hsl(var(--gold))] transition-colors">
+                        Insights & Articles
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                        Frameworks, case studies, and strategic thinking →
+                    </p>
+                </motion.a>
             </div>
         </section>
     );

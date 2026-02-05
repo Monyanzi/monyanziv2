@@ -1,24 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { ChevronUp } from "lucide-react";
+import { useThrottledScroll } from "@/utils/useThrottledScroll";
 
 const BackToTop = () => {
-    const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-    useEffect(() => {
-        let timeoutId: number | undefined;
+  const updateVisibility = useCallback(() => {
+    setIsVisible(window.scrollY > 500);
+  }, []);
 
-        const toggleVisibility = () => {
-            if (timeoutId) return; // Throttle
-
-            timeoutId = window.setTimeout(() => {
-                setIsVisible(window.scrollY > 500);
-                timeoutId = undefined;
-            }, 150); // Check every 150ms instead of every scroll event
-        };
-
-        window.addEventListener("scroll", toggleVisibility, { passive: true });
-        return () => window.removeEventListener("scroll", toggleVisibility);
-    }, []);
+  useThrottledScroll({
+    delay: 150,
+    onThrottle: updateVisibility,
+  });
 
     const scrollToTop = useCallback(() => {
         window.scrollTo({

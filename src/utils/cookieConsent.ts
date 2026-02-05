@@ -1,9 +1,7 @@
-// Cookie consent utilities for GDPR compliance
-
 export type ConsentCategory = 'essential' | 'analytics' | 'marketing';
 
 export interface ConsentPreferences {
-    essential: boolean; // Always true, cannot be disabled
+    essential: boolean;
     analytics: boolean;
     marketing: boolean;
     timestamp: number;
@@ -18,14 +16,14 @@ export const getConsentPreferences = (): ConsentPreferences | null => {
             return JSON.parse(stored);
         }
     } catch {
-        // localStorage not available or parsing failed
+        return null;
     }
     return null;
 };
 
 export const setConsentPreferences = (preferences: Omit<ConsentPreferences, 'essential' | 'timestamp'>): void => {
     const fullPreferences: ConsentPreferences = {
-        essential: true, // Always enabled
+        essential: true,
         analytics: preferences.analytics,
         marketing: preferences.marketing,
         timestamp: Date.now(),
@@ -34,7 +32,7 @@ export const setConsentPreferences = (preferences: Omit<ConsentPreferences, 'ess
     try {
         localStorage.setItem(CONSENT_KEY, JSON.stringify(fullPreferences));
     } catch {
-        // localStorage not available
+        return;
     }
 };
 
@@ -56,11 +54,10 @@ export const clearConsent = (): void => {
     try {
         localStorage.removeItem(CONSENT_KEY);
     } catch {
-        // localStorage not available
+        return;
     }
 };
 
-// Accept all cookies
 export const acceptAllCookies = (): void => {
     setConsentPreferences({
         analytics: true,
@@ -68,7 +65,6 @@ export const acceptAllCookies = (): void => {
     });
 };
 
-// Reject all non-essential cookies
 export const rejectAllCookies = (): void => {
     setConsentPreferences({
         analytics: false,

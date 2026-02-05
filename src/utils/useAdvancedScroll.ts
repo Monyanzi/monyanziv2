@@ -1,9 +1,4 @@
 import { useRef, useEffect, useState } from 'react';
-
-/**
- * Hook for SVG path drawing animation on scroll
- * Uses stroke-dasharray/dashoffset technique for "drawing" effect
- */
 export function useSVGDraw(options: {
     threshold?: number;
     duration?: number;
@@ -22,7 +17,6 @@ export function useSVGDraw(options: {
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setIsInView(true);
-                    // Animate progress from 0 to 1
                     const duration = options.duration ?? 1000;
                     const delay = options.delay ?? 0;
                     const startTime = performance.now() + delay;
@@ -60,9 +54,6 @@ export function useSVGDraw(options: {
     return { ref, isInView, progress };
 }
 
-/**
- * Framer Motion spring config for bouncy animations
- */
 export const springBounceConfig = {
     type: "spring" as const,
     stiffness: 400,

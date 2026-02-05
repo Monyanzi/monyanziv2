@@ -1,12 +1,8 @@
-import { useState, lazy, Suspense } from "react";
 import { ArrowRight, Linkedin } from "lucide-react";
 import { motion } from "motion/react";
 import { getEmail } from "@/utils/email";
 
-const DiagnosticFlow = lazy(() => import("./DiagnosticFlow"));
-
 const EngagementSection = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
@@ -98,14 +94,14 @@ const EngagementSection = () => {
 
               <div className="relative text-center">
                 <p className="text-xl text-foreground font-display font-semibold mb-2 text-center">
-                  Describe Your Challenge
+                  Get Professional Advice
                 </p>
                 <p className="text-sm text-muted-foreground mb-8 text-center">
-                  30-second diagnostic. Structured response to follow.
+                  Quick response guaranteed. Structured analysis to follow.
                 </p>
 
-                <motion.button
-                  onClick={() => setIsModalOpen(true)}
+                <motion.a
+                  href="#contact"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className="relative inline-flex items-center gap-3 font-semibold tracking-wide uppercase text-sm px-12 py-5 rounded-full group/btn overflow-hidden"
@@ -118,7 +114,7 @@ const EngagementSection = () => {
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
                   <span className="relative">Let's Talk</span>
                   <ArrowRight className="relative w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </motion.button>
+                </motion.a>
 
                 <p className="text-sm text-muted-foreground mt-8 text-center">
                   Or email directly: <a href={`mailto:${getEmail()}`} className="text-foreground hover:text-[hsl(var(--terracotta))] transition-colors underline underline-offset-2">{getEmail()}</a>
@@ -173,7 +169,7 @@ const EngagementSection = () => {
                   </a>
                   <a
                     href={`mailto:${getEmail()}`}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-foreground hover:text-[hsl(var(--terracotta))] transition-colors"
                   >
                     {getEmail()}
                   </a>
@@ -182,7 +178,7 @@ const EngagementSection = () => {
             </div>
 
             {/* Copyright */}
-            <div className="pt-6 border-t border-border/30">
+            <div className="pt-6 pb-20 border-t border-border/30">
               <p className="text-xs text-muted-foreground text-center">
                 © {new Date().getFullYear()} Moses Nyanzi. All rights reserved.
               </p>
@@ -191,11 +187,6 @@ const EngagementSection = () => {
         </footer>
       </section>
 
-      {isModalOpen && (
-        <Suspense fallback={null}>
-          <DiagnosticFlow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-        </Suspense>
-      )}
     </>
   );
 };

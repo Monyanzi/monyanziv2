@@ -247,15 +247,6 @@ const expertiseCategories: ExpertiseCategory[] = [
   },
 ];
 
-const industries = [
-  "Private Equity & VC",
-  "Banks & Lenders",
-  "Asset Managers",
-  "Insurance & Reinsurance",
-  "Family Offices",
-  "Corporates"
-];
-
 const ExpertiseSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -398,37 +389,6 @@ const ExpertiseSection = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Industries */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center pt-8 border-t border-border/50"
-        >
-          <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground mb-4">
-            Industries I Work With
-          </p>
-          <div className="flex flex-wrap justify-center gap-x-2 gap-y-2 max-w-3xl mx-auto">
-            {industries.map((industry, i) => (
-              <motion.span
-                key={industry}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 + i * 0.06 }}
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-[hsl(38_82%_50%)] transition-colors cursor-default"
-              >
-                <span
-                  className="w-1.5 h-1.5 rounded-full"
-                  style={{ background: "hsl(38 82% 50%)" }}
-                />
-                {industry}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

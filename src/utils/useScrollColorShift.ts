@@ -1,8 +1,4 @@
 import { useState, useEffect, RefObject } from 'react';
-
-/**
- * Hook for scroll-based color transitions (dramatic version)
- */
 export function useScrollColorShift(
   sectionRef: RefObject<HTMLElement | null>,
   colors: {
@@ -47,9 +43,6 @@ export function useScrollColorShift(
   return currentColor;
 }
 
-/**
- * Hook for pulsing effect on scroll (for stats/badges)
- */
 export function useScrollPulse(elementRef: RefObject<HTMLElement | null>) {
   const [isPulsing, setIsPulsing] = useState(false);
   const [pulseIntensity, setPulseIntensity] = useState(0);
@@ -90,47 +83,12 @@ export const scrollAnimationStyles = {
     transition: 'color 0.5s ease-out',
   }),
 
-  fadeInUp: (isVisible: boolean, delay: number = 0): React.CSSProperties => ({
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-    transition: `opacity 0.7s ease-out ${delay}s, transform 0.7s ease-out ${delay}s`,
-  }),
-
-  fadeInLeft: (isVisible: boolean, delay: number = 0): React.CSSProperties => ({
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateX(0)' : 'translateX(-50px)',
-    transition: `opacity 0.7s ease-out ${delay}s, transform 0.7s ease-out ${delay}s`,
-  }),
-
-  fadeInRight: (isVisible: boolean, delay: number = 0): React.CSSProperties => ({
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateX(0)' : 'translateX(50px)',
-    transition: `opacity 0.7s ease-out ${delay}s, transform 0.7s ease-out ${delay}s`,
-  }),
-
-  scaleIn: (isVisible: boolean, delay: number = 0): React.CSSProperties => ({
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'scale(1)' : 'scale(0.85)',
-    transition: `opacity 0.6s ease-out ${delay}s, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}s`,
-  }),
-
   pulseGlow: (isPulsing: boolean, intensity: number, glowColor: string): React.CSSProperties => ({
     transform: isPulsing ? `scale(${1 + intensity * 0.08})` : 'scale(1)',
     boxShadow: isPulsing
       ? `0 0 ${20 + intensity * 30}px ${glowColor}`
       : `0 0 0px transparent`,
     transition: 'transform 0.4s ease-out, box-shadow 0.4s ease-out',
-  }),
-
-  staggerChild: (isVisible: boolean, index: number, baseDelay: number = 0.1): React.CSSProperties => ({
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-    transition: `opacity 0.5s ease-out ${baseDelay + index * 0.08}s, transform 0.5s ease-out ${baseDelay + index * 0.08}s`,
-  }),
-
-  backgroundShift: (color: string): React.CSSProperties => ({
-    backgroundColor: color,
-    transition: 'background-color 1.2s ease-out',
   }),
 };
 

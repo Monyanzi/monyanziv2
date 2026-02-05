@@ -88,7 +88,7 @@ const ArticleCard = memo(({ id, category, title, description, image, featured = 
           className="inline-flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all duration-300"
           style={{ color: "hsl(var(--gold))" }}
         >
-          Read
+          Read article
           <ArrowRight className="w-4 h-4" />
         </span>
       </a>

@@ -1,6 +1,4 @@
 import type { Config } from "tailwindcss";
-import tailwindcssAnimate from "tailwindcss-animate";
-
 export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
@@ -93,14 +91,6 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
         "float-slow": {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
           "50%": { transform: "translate(20px, -30px) scale(1.05)" },
@@ -115,14 +105,12 @@ export default {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
         "float-slow": "float-slow 20s ease-in-out infinite",
         "float-slower": "float-slower 25s ease-in-out infinite",
         "float-medium": "float-medium 18s ease-in-out infinite",
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [],
 } satisfies Config;
 

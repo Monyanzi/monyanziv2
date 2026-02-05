@@ -29,7 +29,7 @@ const AboutSection = () => {
   const y2 = useTransform(scrollYProgress, [0, 1], [80, -200]);
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "hsl(210 45% 96%)" }}>
+    <section id="about" ref={sectionRef} className="py-12 lg:py-16 relative overflow-hidden" style={{ background: "hsl(210 45% 96%)" }}>
       {/* Background shapes */}
       <motion.div
         style={{ y: y1 }}
