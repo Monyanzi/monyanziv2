@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { X } from "lucide-react";
 import { useThrottledScroll } from "@/utils/useThrottledScroll";
+import { useLenis } from "@/components/SmoothScrollProvider";
 
 const navItems = [
   { label: "Who You Work With", href: "#about" },
@@ -11,6 +12,7 @@ const navItems = [
 ];
 
 const Navigation = () => {
+  const lenis = useLenis();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -77,6 +79,16 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-16 lg:h-20">
             <a
               href="/"
+              onClick={(e) => {
+                if (window.location.pathname === "/" || window.location.pathname === "") {
+                  e.preventDefault();
+                  if (lenis) {
+                    lenis.scrollTo(0, { immediate: true });
+                  } else {
+                    window.scrollTo(0, 0);
+                  }
+                }
+              }}
               className="font-display text-2xl lg:text-3xl font-semibold tracking-tight text-foreground transition-colors duration-300"
               style={{ "--hover-color": "hsl(var(--gold))" } as React.CSSProperties}
               onMouseEnter={(e) => e.currentTarget.style.color = "hsl(var(--gold))"}
