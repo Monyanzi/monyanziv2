@@ -29,7 +29,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const handleLocationChange = () => setPath(window.location.pathname);
+    const handleLocationChange = () => {
+      setPath(window.location.pathname);
+      window.scrollTo(0, 0);
+    };
     window.addEventListener("popstate", handleLocationChange);
 
     // Intercept pushState for internal navigation

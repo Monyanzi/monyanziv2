@@ -272,7 +272,7 @@ const ExpertiseSection = () => {
   const gradientY = useTransform(scrollYProgress, [0, 1], [150, -150]);
 
   return (
-    <section id="expertise" ref={sectionRef} className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
+    <section id="expertise" ref={sectionRef} className="pt-20 lg:pt-28 pb-10 lg:pb-14 relative overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
       {/* Parallax gradient overlay */}
       <motion.div
         style={{ y: gradientY }}

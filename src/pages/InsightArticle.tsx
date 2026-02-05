@@ -1,10 +1,22 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { articles } from "@/data/insights";
+import { useLenis } from "@/components/SmoothScrollProvider";
 
 // Article layout component
 const InsightArticle = ({ slug }: { slug: string }) => {
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [slug, lenis]);
+
   const article = articles[slug];
 
   // Get related articles (excluding current)
