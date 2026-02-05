@@ -83,7 +83,7 @@ const App = () => {
       <SmoothScrollProvider>
         {getPage()}
       </SmoothScrollProvider>
-      <BottomNavigation />
+      <BottomNavigation currentPath={path} />
       <CookieConsent onConsentChange={() => setAnalyticsEnabled(hasAnalyticsConsent())} />
       {isContactOpen && (
         <Suspense fallback={null}>

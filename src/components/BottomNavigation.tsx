@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Home, User, Briefcase, Trophy, FileText } from "lucide-react";
 import { useThrottledScroll } from "@/utils/useThrottledScroll";
 
@@ -10,16 +10,9 @@ const navItems = [
   { icon: FileText, href: "/insights", label: "Insights" },
 ];
 
-const BottomNavigation = () => {
+const BottomNavigation = ({ currentPath }: { currentPath: string }) => {
   const [activeSection, setActiveSection] = useState("");
-  const [isInsightsPage, setIsInsightsPage] = useState(false);
-
-  useEffect(() => {
-    const checkPath = () => {
-      setIsInsightsPage(window.location.pathname.startsWith('/insights'));
-    };
-    checkPath();
-  }, []);
+  const isInsightsPage = currentPath.startsWith('/insights');
 
   const updateActiveSection = useCallback(() => {
     const scrollPosition = window.scrollY + 100;
