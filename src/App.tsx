@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import { SmoothScrollProvider } from "./components/SmoothScrollProvider";
 import CookieConsent from "./components/CookieConsent";
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import BottomNavigation from "./components/BottomNavigation";
 import { hasAnalyticsConsent } from "./utils/cookieConsent";
 
 const ContactForm = lazy(() => import("./components/ContactForm"));
@@ -82,6 +83,7 @@ const App = () => {
       <SmoothScrollProvider>
         {getPage()}
       </SmoothScrollProvider>
+      <BottomNavigation />
       <CookieConsent onConsentChange={() => setAnalyticsEnabled(hasAnalyticsConsent())} />
       {isContactOpen && (
         <Suspense fallback={null}>

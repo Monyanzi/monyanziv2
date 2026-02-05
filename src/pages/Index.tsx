@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
-import BottomNavigation from "@/components/BottomNavigation";
 import HeroSection from "@/components/HeroSection";
 import MarqueeTicker from "@/components/MarqueeTicker";
 import AboutSection from "@/components/AboutSection";
@@ -47,7 +46,6 @@ const Index = () => {
         <ProofSection />
         <EngagementSection />
         <BackToTop />
-        <BottomNavigation />
       </div>
     </>
   );
