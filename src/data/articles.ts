@@ -11,6 +11,7 @@ export interface Article {
 }
 
 export const articles: Article[] = [
+
   {
     id: "the-automation-trap",
     category: "AUTOMATION & PROCESS",
@@ -35,3 +36,4 @@ export const articles: Article[] = [
 ];
 
 export const categories = [...new Set(articles.map((a) => a.category))];
+

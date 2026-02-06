@@ -114,7 +114,10 @@ const Navigation = () => {
               href="/"
               onClick={handleLogoClick}
               className="font-display text-2xl lg:text-3xl font-semibold tracking-tight text-foreground transition-colors duration-300"
-              style={{ "--hover-color": "hsl(var(--gold))" } as React.CSSProperties}
+              style={{
+                "--hover-color": "hsl(var(--gold))",
+                fontFamily: "'Monotype Corsiva', cursive"
+              } as React.CSSProperties}
               onMouseEnter={(e) => e.currentTarget.style.color = "hsl(var(--gold))"}
               onMouseLeave={(e) => e.currentTarget.style.color = ""}
             >
@@ -133,8 +136,8 @@ const Navigation = () => {
                     key={item.label}
                     href={href}
                     className={`text-sm tracking-wide transition-colors duration-300 relative group ${isActive
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                       }`}
                   >
                     {item.label}
@@ -187,8 +190,8 @@ const Navigation = () => {
                     href={href}
                     onClick={handleNavClick}
                     className={`block py-3 text-lg transition-colors ${isActive
-                        ? "text-foreground font-medium"
-                        : "text-muted-foreground hover:text-foreground"
+                      ? "text-foreground font-medium"
+                      : "text-muted-foreground hover:text-foreground"
                       }`}
                     style={isActive ? { color: "hsl(var(--gold))" } : undefined}
                   >
