@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
     hasConsentBeenGiven,
@@ -11,40 +11,58 @@ interface CookieConsentProps {
     onConsentChange?: () => void;
 }
 
+// Pre-computed style objects
+const cardStyle = {
+    background: "hsl(var(--card) / 0.95)",
+    borderColor: "hsl(var(--border))",
+} as const;
+
+const borderStyle = { borderColor: "hsl(var(--border))" } as const;
+const goldButtonStyle = {
+    background: "hsl(var(--gold))",
+    color: "hsl(var(--navy))",
+} as const;
+
 const CookieConsent = ({ onConsentChange }: CookieConsentProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
 
     useEffect(() => {
-        // Show banner if consent hasn't been given
         if (!hasConsentBeenGiven()) {
-            // Small delay for smoother page load
             const timer = setTimeout(() => setIsVisible(true), 1000);
             return () => clearTimeout(timer);
         }
     }, []);
 
-    const handleAcceptAll = () => {
+    const handleAcceptAll = useCallback(() => {
         acceptAllCookies();
         setIsVisible(false);
         onConsentChange?.();
-    };
+    }, [onConsentChange]);
 
-    const handleRejectAll = () => {
+    const handleRejectAll = useCallback(() => {
         rejectAllCookies();
         setIsVisible(false);
         onConsentChange?.();
-    };
+    }, [onConsentChange]);
 
-    const handleSavePreferences = () => {
+    const handleSavePreferences = useCallback(() => {
         setConsentPreferences({
             analytics: analyticsEnabled,
-            marketing: false, // Not using marketing cookies
+            marketing: false,
         });
         setIsVisible(false);
         onConsentChange?.();
-    };
+    }, [analyticsEnabled, onConsentChange]);
+
+    const toggleDetails = useCallback(() => {
+        setShowDetails(prev => !prev);
+    }, []);
+
+    const toggleAnalytics = useCallback(() => {
+        setAnalyticsEnabled(prev => !prev);
+    }, []);
 
     return (
         <AnimatePresence>
@@ -58,13 +76,9 @@ const CookieConsent = ({ onConsentChange }: CookieConsentProps) => {
                 >
                     <div
                         className="max-w-4xl mx-auto rounded-2xl border shadow-xl backdrop-blur-md"
-                        style={{
-                            background: "hsl(var(--card) / 0.95)",
-                            borderColor: "hsl(var(--border))",
-                        }}
+                        style={cardStyle}
                     >
                         <div className="p-5 lg:p-6">
-                            {/* Main Content */}
                             <div className="flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-6">
                                 <div className="flex-1">
                                     <h3 className="font-display text-lg font-semibold text-foreground mb-2">
@@ -76,36 +90,31 @@ const CookieConsent = ({ onConsentChange }: CookieConsentProps) => {
                                     </p>
                                 </div>
 
-                                {/* Buttons - Equal Prominence */}
                                 <div className="flex flex-col sm:flex-row gap-3 lg:flex-shrink-0">
                                     <button
                                         onClick={handleRejectAll}
                                         className="px-5 py-2.5 rounded-full text-sm font-medium border transition-all hover:bg-secondary"
-                                        style={{ borderColor: "hsl(var(--border))" }}
+                                        style={borderStyle}
                                     >
                                         Reject All
                                     </button>
                                     <button
-                                        onClick={() => setShowDetails(!showDetails)}
+                                        onClick={toggleDetails}
                                         className="px-5 py-2.5 rounded-full text-sm font-medium border transition-all hover:bg-secondary"
-                                        style={{ borderColor: "hsl(var(--border))" }}
+                                        style={borderStyle}
                                     >
                                         Customise
                                     </button>
                                     <button
                                         onClick={handleAcceptAll}
                                         className="px-5 py-2.5 rounded-full text-sm font-medium transition-all"
-                                        style={{
-                                            background: "hsl(var(--gold))",
-                                            color: "hsl(var(--navy))",
-                                        }}
+                                        style={goldButtonStyle}
                                     >
                                         Accept All
                                     </button>
                                 </div>
                             </div>
 
-                            {/* Expandable Details */}
                             <AnimatePresence>
                                 {showDetails && (
                                     <motion.div
@@ -115,9 +124,8 @@ const CookieConsent = ({ onConsentChange }: CookieConsentProps) => {
                                         transition={{ duration: 0.2 }}
                                         className="overflow-hidden"
                                     >
-                                        <div className="pt-5 mt-5 border-t" style={{ borderColor: "hsl(var(--border))" }}>
+                                        <div className="pt-5 mt-5 border-t" style={borderStyle}>
                                             <div className="space-y-4">
-                                                {/* Essential Cookies */}
                                                 <div className="flex items-center justify-between">
                                                     <div>
                                                         <p className="text-sm font-medium text-foreground">Essential Cookies</p>
@@ -131,14 +139,13 @@ const CookieConsent = ({ onConsentChange }: CookieConsentProps) => {
                                                     </div>
                                                 </div>
 
-                                                {/* Analytics Cookies */}
                                                 <div className="flex items-center justify-between">
                                                     <div>
                                                         <p className="text-sm font-medium text-foreground">Analytics Cookies</p>
                                                         <p className="text-xs text-muted-foreground">Help us improve the site (Google Analytics)</p>
                                                     </div>
                                                     <button
-                                                        onClick={() => setAnalyticsEnabled(!analyticsEnabled)}
+                                                        onClick={toggleAnalytics}
                                                         className="w-10 h-6 rounded-full flex items-center px-1 transition-colors"
                                                         style={{
                                                             background: analyticsEnabled
@@ -159,10 +166,7 @@ const CookieConsent = ({ onConsentChange }: CookieConsentProps) => {
                                             <button
                                                 onClick={handleSavePreferences}
                                                 className="mt-5 px-5 py-2.5 rounded-full text-sm font-medium transition-all"
-                                                style={{
-                                                    background: "hsl(var(--gold))",
-                                                    color: "hsl(var(--navy))",
-                                                }}
+                                                style={goldButtonStyle}
                                             >
                                                 Save Preferences
                                             </button>
@@ -178,13 +182,11 @@ const CookieConsent = ({ onConsentChange }: CookieConsentProps) => {
     );
 };
 
-// Settings link component for footer/settings page
 export const CookieSettingsLink = () => {
-    const handleOpenSettings = () => {
-        // Clear consent to show banner again
+    const handleOpenSettings = useCallback(() => {
         localStorage.removeItem('cookie_consent');
         window.location.reload();
-    };
+    }, []);
 
     return (
         <button

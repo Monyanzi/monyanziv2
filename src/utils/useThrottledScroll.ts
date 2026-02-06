@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 interface ThrottledScrollOptions {
   delay?: number;
@@ -7,6 +7,10 @@ interface ThrottledScrollOptions {
   runOnMount?: boolean;
 }
 
+/**
+ * Optimized throttled scroll hook.
+ * Uses refs to avoid stale closures and ensures proper cleanup.
+ */
 export const useThrottledScroll = ({
   delay = 100,
   onScroll,
@@ -15,7 +19,10 @@ export const useThrottledScroll = ({
 }: ThrottledScrollOptions) => {
   const onScrollRef = useRef(onScroll);
   const onThrottleRef = useRef(onThrottle);
+  const timeoutIdRef = useRef<number | undefined>();
+  const mountedRef = useRef(true);
 
+  // Keep refs updated with latest callbacks
   useEffect(() => {
     onScrollRef.current = onScroll;
   }, [onScroll]);
@@ -24,32 +31,38 @@ export const useThrottledScroll = ({
     onThrottleRef.current = onThrottle;
   }, [onThrottle]);
 
-  useEffect(() => {
-    let timeoutId: number | undefined;
+  // Memoized handler that won't change between renders
+  const handler = useCallback(() => {
+    onScrollRef.current?.();
 
-    const handler = () => {
-      onScrollRef.current?.();
+    if (!onThrottleRef.current || timeoutIdRef.current) {
+      return;
+    }
 
-      if (!onThrottleRef.current || timeoutId) {
-        return;
-      }
-
-      timeoutId = window.setTimeout(() => {
+    timeoutIdRef.current = window.setTimeout(() => {
+      if (mountedRef.current) {
         onThrottleRef.current?.();
-        timeoutId = undefined;
-      }, delay);
-    };
+      }
+      timeoutIdRef.current = undefined;
+    }, delay);
+  }, [delay]);
+
+  useEffect(() => {
+    mountedRef.current = true;
 
     window.addEventListener("scroll", handler, { passive: true });
+
     if (runOnMount) {
       handler();
     }
 
     return () => {
+      mountedRef.current = false;
       window.removeEventListener("scroll", handler);
-      if (timeoutId) {
-        window.clearTimeout(timeoutId);
+      if (timeoutIdRef.current) {
+        window.clearTimeout(timeoutIdRef.current);
+        timeoutIdRef.current = undefined;
       }
     };
-  }, [delay, runOnMount]);
+  }, [handler, runOnMount]);
 };

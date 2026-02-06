@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { X, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useFocusTrap } from "@/utils/useFocusTrap";
@@ -8,13 +8,16 @@ interface ContactFormProps {
     onClose: () => void;
 }
 
+// Initial form state - stable reference
+const initialFormData = {
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+} as const;
+
 const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-    });
+    const [formData, setFormData] = useState({ ...initialFormData });
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const dialogRef = useRef<HTMLDivElement | null>(null);
 
@@ -24,13 +27,13 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
             setStatus("idle");
-            setFormData({ name: "", email: "", subject: "", message: "" });
+            setFormData({ ...initialFormData });
         } else {
             document.body.style.overflow = "";
         }
     }, [isOpen]);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = useCallback((e: React.FormEvent) => {
         e.preventDefault();
 
         const recipient = "moses.k.nyanzi@gmail.com";
@@ -41,9 +44,36 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
 
         window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
         setStatus("success");
-    };
+    }, [formData]);
 
-    const isFormValid = formData.name && formData.email && formData.message;
+    const handleNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData(p => ({ ...p, name: e.target.value }));
+    }, []);
+
+    const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData(p => ({ ...p, email: e.target.value }));
+    }, []);
+
+    const handleSubjectChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData(p => ({ ...p, subject: e.target.value }));
+    }, []);
+
+    const handleMessageChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setFormData(p => ({ ...p, message: e.target.value }));
+    }, []);
+
+    const isFormValid = useMemo(() =>
+        Boolean(formData.name && formData.email && formData.message),
+        [formData.name, formData.email, formData.message]
+    );
+
+    const submitButtonClass = useMemo(() =>
+        `w-full inline-flex items-center justify-center gap-2 font-bold tracking-widest uppercase text-xs py-5 rounded-full transition-all ${isFormValid && status !== "submitting"
+            ? "bg-[hsl(var(--gold))] text-[hsl(var(--navy))] hover:scale-[1.02] shadow-lg shadow-[hsl(var(--gold)/0.15)]"
+            : "bg-muted text-muted-foreground cursor-not-allowed border border-border/50"
+        }`,
+        [isFormValid, status]
+    );
 
     return (
         <AnimatePresence>
@@ -105,7 +135,7 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                                                 type="text"
                                                 required
                                                 value={formData.name}
-                                                onChange={(e) => setFormData(p => ({ ...p, name: e.target.value }))}
+                                                onChange={handleNameChange}
                                                 className="w-full bg-muted/30 border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-[hsl(var(--gold))] transition-colors placeholder:text-muted-foreground/50"
                                                 placeholder="John Smith"
                                             />
@@ -116,7 +146,7 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                                                 type="email"
                                                 required
                                                 value={formData.email}
-                                                onChange={(e) => setFormData(p => ({ ...p, email: e.target.value }))}
+                                                onChange={handleEmailChange}
                                                 className="w-full bg-muted/30 border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-[hsl(var(--gold))] transition-colors placeholder:text-muted-foreground/50"
                                                 placeholder="john@company.com"
                                             />
@@ -128,7 +158,7 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                                         <input
                                             type="text"
                                             value={formData.subject}
-                                            onChange={(e) => setFormData(p => ({ ...p, subject: e.target.value }))}
+                                            onChange={handleSubjectChange}
                                             className="w-full bg-muted/30 border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-[hsl(var(--gold))] transition-colors placeholder:text-muted-foreground/50"
                                             placeholder="Pricing Model Inquiry"
                                         />
@@ -139,7 +169,7 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                                         <textarea
                                             required
                                             value={formData.message}
-                                            onChange={(e) => setFormData(p => ({ ...p, message: e.target.value }))}
+                                            onChange={handleMessageChange}
                                             rows={4}
                                             className="w-full bg-muted/30 border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-[hsl(var(--gold))] transition-colors resize-none placeholder:text-muted-foreground/50"
                                             placeholder="How can I help?"
@@ -149,16 +179,13 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                                     {status === "error" && (
                                         <div className="flex items-center gap-2 text-red-400 text-sm mt-2">
                                             <AlertCircle className="w-4 h-4" />
-                                            <span>Something went wrong. Please try again or email moses trực tiếp.</span>
+                                            <span>Something went wrong. Please try again or email directly.</span>
                                         </div>
                                     )}
 
                                     <button
                                         type="submit"
-                                        className={`w-full inline-flex items-center justify-center gap-2 font-bold tracking-widest uppercase text-xs py-5 rounded-full transition-all ${isFormValid && status !== "submitting"
-                                            ? "bg-[hsl(var(--gold))] text-[hsl(var(--navy))] hover:scale-[1.02] shadow-lg shadow-[hsl(var(--gold)/0.15)]"
-                                            : "bg-muted text-muted-foreground cursor-not-allowed border border-border/50"
-                                            }`}
+                                        className={submitButtonClass}
                                     >
                                         {status === "submitting" ? (
                                             <span className="flex items-center gap-2">
