@@ -1,7 +1,43 @@
 {
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/insights",
+            "destination": "/"
+        },
+        {
+            "source": "/insights/",
+            "destination": "/"
+        },
+        {
+            "source": "/insights/12-ai-tools-in-my-tech-stack",
+            "destination": "/"
+        },
+        {
+            "source": "/insights/12-ai-tools-in-my-tech-stack/",
+            "destination": "/"
+        },
+        {
+            "source": "/insights/the-automation-trap",
+            "destination": "/"
+        },
+        {
+            "source": "/insights/the-automation-trap/",
+            "destination": "/"
+        },
+        {
+            "source": "/insights/why-ai-projects-fail",
+            "destination": "/"
+        },
+        {
+            "source": "/insights/why-ai-projects-fail/",
+            "destination": "/"
+        },
+        {
+            "source": "/insights/5-signs-always-done-this-way",
+            "destination": "/"
+        },
+        {
+            "source": "/insights/5-signs-always-done-this-way/",
             "destination": "/"
         }
     ],

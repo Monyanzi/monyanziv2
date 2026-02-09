@@ -19,7 +19,7 @@ const ArticleCard = memo(({ id, category, title, description, image, featured = 
             <div className="relative aspect-[16/10] lg:aspect-[4/3] rounded-xl overflow-hidden bg-muted">
               <img
                 src={image}
-                alt=""
+                alt={`${title} cover image`}
                 loading="eager"
                 decoding="async"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
@@ -62,7 +62,7 @@ const ArticleCard = memo(({ id, category, title, description, image, featured = 
         <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-muted mb-4">
           <img
             src={image}
-            alt=""
+            alt={`${title} cover image`}
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"

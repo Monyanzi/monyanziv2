@@ -1,8 +1,13 @@
+import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
 
 const NotFound = () => {
   return (
     <>
+      <Helmet>
+        <title>Page Not Found | Moses Nyanzi</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <Navigation />
       <div className="min-h-screen flex items-center justify-center bg-background pt-20">
         <div className="text-center">

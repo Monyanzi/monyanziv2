@@ -5,6 +5,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { articles } from "@/data/insights";
 import { useLenis } from "@/components/SmoothScrollProvider";
 
+const SITE_URL = "https://mosesnyanzi.co.za";
+
 // Article layout component
 const InsightArticle = ({ slug }: { slug: string }) => {
   const lenis = useLenis();
@@ -18,6 +20,8 @@ const InsightArticle = ({ slug }: { slug: string }) => {
   }, [slug, lenis]);
 
   const article = articles[slug];
+  const articlePath = `/insights/${slug}`;
+  const articleUrl = `${SITE_URL}${articlePath}`;
 
   // Get related articles (excluding current)
   const relatedSlugs = Object.keys(articles)
@@ -27,6 +31,10 @@ const InsightArticle = ({ slug }: { slug: string }) => {
   if (!article) {
     return (
       <>
+        <Helmet>
+          <title>Article Not Found | Moses Nyanzi</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Helmet>
         <Navigation />
         <main className="min-h-screen bg-background pt-28 pb-20">
           <div className="container mx-auto px-5 lg:px-12 text-center">
@@ -51,6 +59,25 @@ const InsightArticle = ({ slug }: { slug: string }) => {
       <Helmet>
         <title>{article.title} | Moses Nyanzi</title>
         <meta name="description" content={article.description} />
+        <link rel="canonical" href={articleUrl} />
+
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={articleUrl} />
+        <meta property="og:title" content={`${article.title} | Moses Nyanzi`} />
+        <meta property="og:description" content={article.description} />
+        <meta
+          property="og:image"
+          content={article.image.startsWith("http") ? article.image : `${SITE_URL}${article.image}`}
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={articleUrl} />
+        <meta name="twitter:title" content={`${article.title} | Moses Nyanzi`} />
+        <meta name="twitter:description" content={article.description} />
+        <meta
+          name="twitter:image"
+          content={article.image.startsWith("http") ? article.image : `${SITE_URL}${article.image}`}
+        />
       </Helmet>
 
       <Navigation />
@@ -89,7 +116,7 @@ const InsightArticle = ({ slug }: { slug: string }) => {
           <div className="relative aspect-[2/1] lg:aspect-[21/9] rounded-xl lg:rounded-2xl overflow-hidden bg-muted">
             <img
               src={article.image}
-              alt=""
+              alt={`${article.title} cover image`}
               loading="eager"
               decoding="async"
               className="w-full h-full object-cover"
@@ -131,7 +158,7 @@ const InsightArticle = ({ slug }: { slug: string }) => {
                     <div className="relative aspect-[16/10] rounded-lg lg:rounded-xl overflow-hidden bg-muted mb-4">
                       <img
                         src={relatedArticle.image}
-                        alt=""
+                        alt={`${relatedArticle.title} cover image`}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>

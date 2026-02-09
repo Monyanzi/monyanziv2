@@ -6,6 +6,10 @@ import CategoryFilter from "@/components/insights/CategoryFilter";
 import SortSelect, { type SortOption } from "@/components/insights/SortSelect";
 import { articles, categories } from "@/data/articles";
 
+const SITE_URL = "https://mosesnyanzi.co.za";
+const INSIGHTS_URL = `${SITE_URL}/insights`;
+const INSIGHTS_OG_IMAGE_URL = `${SITE_URL}/social-share.svg`;
+
 const Insights = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [sortOption, setSortOption] = useState<SortOption>("default");
@@ -36,11 +40,30 @@ const Insights = () => {
   return (
     <>
       <Helmet>
-        <title>Insights | Moses Nyanzi</title>
+        <title>Insights on AI, Automation & Strategy | Moses Nyanzi</title>
         <meta
           name="description"
           content="Strategic diagnostics for leaders navigating automation, process design, and organisational change."
         />
+        <link rel="canonical" href={INSIGHTS_URL} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={INSIGHTS_URL} />
+        <meta property="og:title" content="Insights on AI, Automation & Strategy | Moses Nyanzi" />
+        <meta
+          property="og:description"
+          content="Strategic diagnostics for leaders navigating automation, process design, and organisational change."
+        />
+        <meta property="og:image" content={INSIGHTS_OG_IMAGE_URL} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={INSIGHTS_URL} />
+        <meta name="twitter:title" content="Insights on AI, Automation & Strategy | Moses Nyanzi" />
+        <meta
+          name="twitter:description"
+          content="Strategic diagnostics for leaders navigating automation, process design, and organisational change."
+        />
+        <meta name="twitter:image" content={INSIGHTS_OG_IMAGE_URL} />
       </Helmet>
 
       <Navigation />
