@@ -32,7 +32,7 @@ const ValuePropositionSection = () => {
   const gradientY = useTransform(scrollYProgress, [0, 1], [200, -200]);
 
   return (
-    <section ref={sectionRef} className="py-12 lg:py-16 relative overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
+    <section ref={sectionRef} className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
 
       <motion.div
         style={{ y: gradientY }}
@@ -51,7 +51,7 @@ const ValuePropositionSection = () => {
             Where Clients Bring Me In
           </p>
           <h2
-            className="font-display text-4xl md:text-5xl font-semibold mb-6"
+            className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold mb-6"
             style={scrollAnimationStyles.colorShift(headingColor)}
           >
             Problems I Solve
