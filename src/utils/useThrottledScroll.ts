@@ -7,6 +7,31 @@ interface ThrottledScrollOptions {
   runOnMount?: boolean;
 }
 
+const listeners = new Set<() => void>();
+let isListening = false;
+
+const sharedScrollHandler = () => {
+  listeners.forEach((listener) => listener());
+};
+
+const subscribeToSharedScroll = (listener: () => void) => {
+  listeners.add(listener);
+
+  if (!isListening) {
+    window.addEventListener("scroll", sharedScrollHandler, { passive: true });
+    isListening = true;
+  }
+
+  return () => {
+    listeners.delete(listener);
+
+    if (listeners.size === 0 && isListening) {
+      window.removeEventListener("scroll", sharedScrollHandler);
+      isListening = false;
+    }
+  };
+};
+
 /**
  * Optimized throttled scroll hook.
  * Uses refs to avoid stale closures and ensures proper cleanup.
@@ -50,7 +75,7 @@ export const useThrottledScroll = ({
   useEffect(() => {
     mountedRef.current = true;
 
-    window.addEventListener("scroll", handler, { passive: true });
+    const unsubscribe = subscribeToSharedScroll(handler);
 
     if (runOnMount) {
       handler();
@@ -58,7 +83,7 @@ export const useThrottledScroll = ({
 
     return () => {
       mountedRef.current = false;
-      window.removeEventListener("scroll", handler);
+      unsubscribe();
       if (timeoutIdRef.current) {
         window.clearTimeout(timeoutIdRef.current);
         timeoutIdRef.current = undefined;

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -21,10 +21,13 @@ const InsightArticle = ({ slug }: { slug: string }) => {
   const article = articles[slug];
   const articlePath = `/insights/${slug}`;
   const articleUrl = `${SITE_URL}${articlePath}`;
-
-  const relatedSlugs = Object.keys(articles)
-    .filter(s => s !== slug)
-    .slice(0, 2);
+  const relatedSlugs = useMemo(
+    () =>
+      Object.keys(articles)
+        .filter((s) => s !== slug)
+        .slice(0, 2),
+    [slug],
+  );
 
   if (!article) {
     return (
@@ -52,30 +55,50 @@ const InsightArticle = ({ slug }: { slug: string }) => {
     );
   }
 
+  const articleImageUrl = article.image.startsWith("http")
+    ? article.image
+    : `${SITE_URL}${article.image}`;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    image: [articleImageUrl],
+    author: {
+      "@type": "Person",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Person",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    mainEntityOfPage: articleUrl,
+  };
+
   return (
     <>
       <Helmet>
         <title>{article.title} | Moses Nyanzi</title>
         <meta name="description" content={article.description} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href={articleUrl} />
 
         <meta property="og:type" content="article" />
+        <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:url" content={articleUrl} />
         <meta property="og:title" content={`${article.title} | ${SITE_NAME}`} />
         <meta property="og:description" content={article.description} />
-        <meta
-          property="og:image"
-          content={article.image.startsWith("http") ? article.image : `${SITE_URL}${article.image}`}
-        />
+        <meta property="og:image" content={articleImageUrl} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={articleUrl} />
         <meta name="twitter:title" content={`${article.title} | ${SITE_NAME}`} />
         <meta name="twitter:description" content={article.description} />
-        <meta
-          name="twitter:image"
-          content={article.image.startsWith("http") ? article.image : `${SITE_URL}${article.image}`}
-        />
+        <meta name="twitter:image" content={articleImageUrl} />
+        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
       </Helmet>
 
       <Navigation />
@@ -117,6 +140,7 @@ const InsightArticle = ({ slug }: { slug: string }) => {
               alt={`${article.title} cover image`}
               loading="eager"
               decoding="async"
+              fetchPriority="high"
               className="w-full h-full object-cover"
             />
           </div>
@@ -157,6 +181,8 @@ const InsightArticle = ({ slug }: { slug: string }) => {
                       <img
                         src={relatedArticle.image}
                         alt={`${relatedArticle.title} cover image`}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>

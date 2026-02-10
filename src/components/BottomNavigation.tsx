@@ -1,13 +1,10 @@
-import { useState, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { Home, FileText } from "lucide-react";
-import { useThrottledScroll } from "@/utils/useThrottledScroll";
 
 const navItems = [
   { icon: Home, href: "#", label: "Home" },
   { icon: FileText, href: "/insights", label: "Insights" },
 ] as const;
-
-const sectionIds = [] as const;
 
 const activeColor = "hsl(var(--gold))" as const;
 const inactiveColor = "hsl(var(--gold) / 0.6)" as const;
@@ -15,32 +12,7 @@ const mutedColor = "hsl(var(--muted-foreground))" as const;
 const indicatorStyle = { background: activeColor } as const;
 
 const BottomNavigation = ({ currentPath }: { currentPath: string }) => {
-  const [activeSection, setActiveSection] = useState("");
   const isInsightsPage = currentPath.startsWith('/insights');
-
-  const updateActiveSection = useCallback(() => {
-    const scrollPosition = window.scrollY + 100;
-
-    if (window.scrollY < 100) {
-      setActiveSection("");
-      return;
-    }
-
-    for (const sectionId of sectionIds) {
-      const section = document.getElementById(sectionId);
-      if (section && section.offsetTop <= scrollPosition) {
-        setActiveSection(sectionId);
-        return;
-      }
-    }
-    setActiveSection("");
-  }, []);
-
-  useThrottledScroll({
-    delay: 100,
-    onThrottle: updateActiveSection,
-    runOnMount: true,
-  });
 
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href === "/insights") {
@@ -60,13 +32,7 @@ const BottomNavigation = ({ currentPath }: { currentPath: string }) => {
       return;
     }
 
-    if (isHome) {
-      const targetId = href.slice(1);
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
+    if (!isHome) {
       window.location.href = "/" + href;
     }
   }, []);
@@ -75,9 +41,8 @@ const BottomNavigation = ({ currentPath }: { currentPath: string }) => {
     if (href === "/insights") {
       return isInsightsPage;
     }
-    if (href === "#") return activeSection === "" && !isInsightsPage;
-    return activeSection === href.slice(1);
-  }, [activeSection, isInsightsPage]);
+    return href === "#" && !isInsightsPage;
+  }, [isInsightsPage]);
 
   const navStyle = useMemo(() => ({
     paddingBottom: "env(safe-area-inset-bottom)"

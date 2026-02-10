@@ -1,5 +1,5 @@
 import { ArrowRight, MapPin, Linkedin, TrendingUp, Settings, Search, Users } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import heroProfile from "../assets/hero-profile.webp";
 import { springBounceConfig } from "../utils/useAdvancedScroll";
 
@@ -48,6 +48,8 @@ const yearsBadgeStyle = {
 } as const;
 
 const HeroSection = () => {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <>
       <section className="relative min-h-screen overflow-hidden" style={heroBackgroundStyle}>
@@ -56,6 +58,9 @@ const HeroSection = () => {
           <img
             src={heroProfile}
             alt="Moses Nyanzi"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover object-top"
           />
           {/* Enhanced gradient overlay for better text contrast while preserving face visibility */}
@@ -67,14 +72,14 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.04 }}
-            transition={{ duration: 1.5 }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 1.5 }}
             className="absolute -top-20 -left-20 w-[600px] h-[600px] rounded-full"
             style={goldGradientStyle}
           />
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.03 }}
-            transition={{ duration: 1.5, delay: 0.2 }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 1.5, delay: prefersReducedMotion ? 0 : 0.2 }}
             className="absolute -bottom-32 right-1/4 w-[400px] h-[400px] rounded-full"
             style={forestGradientStyle}
           />
@@ -82,7 +87,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.02 }}
-            transition={{ delay: 0.5, duration: 1 }}
+            transition={{ delay: prefersReducedMotion ? 0 : 0.5, duration: prefersReducedMotion ? 0.01 : 1 }}
             className="absolute inset-0"
             style={dotPatternStyle}
           />
@@ -236,6 +241,9 @@ const HeroSection = () => {
                   <img
                     src={heroProfile}
                     alt="Moses Nyanzi"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
                     className="w-full h-full object-cover object-top"
                   />
                   {/* Gradient overlay */}

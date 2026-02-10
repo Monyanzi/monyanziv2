@@ -1,6 +1,5 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
-import { X } from "lucide-react";
 import { useThrottledScroll } from "@/utils/useThrottledScroll";
 import { useLenis } from "@/components/lenisContext";
 
@@ -22,36 +21,20 @@ const underlineStyle = { background: "hsl(var(--gold))" } as const;
 
 const Navigation = () => {
   const lenis = useLenis();
-  const [isOpen, setIsOpen] = useState(false);
-
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isInsightsPage, setIsInsightsPage] = useState(false);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, springConfig);
 
-  useEffect(() => {
-    setIsInsightsPage(window.location.pathname.startsWith('/insights'));
-  }, []);
+  const isInsightsPage = window.location.pathname.startsWith("/insights");
 
   const updateScrolled = useCallback(() => {
     setIsScrolled(window.scrollY > 50);
   }, []);
-
-
-
   useThrottledScroll({
     delay: 100,
     onScroll: updateScrolled,
   });
-
-  const handleNavClick = useCallback(() => {
-    setIsOpen(false);
-  }, []);
-
-  const closeMenu = useCallback(() => {
-    setIsOpen(false);
-  }, []);
 
   const handleLogoClick = useCallback((e: React.MouseEvent) => {
     if (window.location.pathname === "/" || window.location.pathname === "") {
@@ -132,52 +115,6 @@ const Navigation = () => {
           </div>
         </div>
       </nav>
-
-      <div
-        className={`fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        onClick={closeMenu}
-      />
-
-      <div
-        className={`fixed top-0 right-0 bottom-0 z-50 w-72 bg-background border-l border-border transition-transform duration-300 ease-out lg:hidden ${isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-      >
-        <div className="flex items-center justify-between p-6 border-b border-border">
-          <span className="font-display text-lg font-semibold text-foreground">Menu</span>
-          <button
-            onClick={closeMenu}
-            className="p-1 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Close menu"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <nav className="p-6">
-          <ul className="space-y-1">
-            {navItems.map((item) => {
-              const isActive = isActiveLink(item.href);
-
-              return (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    onClick={handleNavClick}
-                    className={`block py-3 text-lg transition-colors ${isActive
-                      ? "text-foreground font-medium"
-                      : "text-muted-foreground hover:text-foreground"
-                      }`}
-                    style={isActive ? { color: "hsl(var(--gold))" } : undefined}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      </div>
     </>
   );
 };

@@ -81,6 +81,7 @@ const ProofSection = () => {
 
     // SVG drawing animation for speedometer
     const speedometerDraw = useSVGDraw({ threshold: 0.3, duration: 1200, delay: 200 });
+    const dealFlowDraw = useSVGDraw({ threshold: 0.3, duration: 900, delay: 150 });
 
     // Memoize pulse glow styles to avoid recreation
     const pulse1Style = useMemo(() =>
@@ -335,7 +336,11 @@ const ProofSection = () => {
                     >
                         <div className="h-44 p-6 flex items-center justify-center" style={navyGradientStyle}>
                             {/* Deal flow funnel */}
-                            <svg className="w-full h-full max-w-[240px]" viewBox="0 0 200 100">
+                            <svg
+                                ref={dealFlowDraw.ref as React.RefObject<SVGSVGElement>}
+                                className="w-full h-full max-w-[240px]"
+                                viewBox="0 0 200 100"
+                            >
 
                                 <path
                                     d="M 10 10 L 60 10 L 55 28 L 15 28 Z"
@@ -381,7 +386,7 @@ const ProofSection = () => {
                                         strokeWidth="2"
                                         pathLength="1"
                                         strokeDasharray="1"
-                                        strokeDashoffset={1 - speedometerDraw.progress}
+                                        strokeDashoffset={1 - dealFlowDraw.progress}
                                     />
                                     <line
                                         x1="156" y1="51" x2="180" y2="51"
@@ -390,7 +395,7 @@ const ProofSection = () => {
                                         strokeWidth="2"
                                         pathLength="1"
                                         strokeDasharray="1"
-                                        strokeDashoffset={1 - speedometerDraw.progress}
+                                        strokeDashoffset={1 - dealFlowDraw.progress}
                                     />
                                     <line
                                         x1="156" y1="59" x2="176" y2="59"
@@ -399,7 +404,7 @@ const ProofSection = () => {
                                         strokeWidth="2"
                                         pathLength="1"
                                         strokeDasharray="1"
-                                        strokeDashoffset={1 - speedometerDraw.progress}
+                                        strokeDashoffset={1 - dealFlowDraw.progress}
                                     />
                                     <text x="170" y="74" fill="hsl(var(--gold))" fontSize="8" textAnchor="middle" fontWeight="600">Ready</text>
                                 </g>

@@ -1,5 +1,30 @@
 import { useState, useEffect, RefObject, useRef } from 'react';
 
+const scrollListeners = new Set<() => void>();
+let isWindowScrollBound = false;
+
+const sharedScrollHandler = () => {
+  scrollListeners.forEach((listener) => listener());
+};
+
+const subscribeToScroll = (listener: () => void) => {
+  scrollListeners.add(listener);
+
+  if (!isWindowScrollBound) {
+    window.addEventListener('scroll', sharedScrollHandler, { passive: true });
+    isWindowScrollBound = true;
+  }
+
+  return () => {
+    scrollListeners.delete(listener);
+
+    if (scrollListeners.size === 0 && isWindowScrollBound) {
+      window.removeEventListener('scroll', sharedScrollHandler);
+      isWindowScrollBound = false;
+    }
+  };
+};
+
 /**
  * Optimized scroll-based color shift hook with RAF throttling.
  * Only updates state when the actual color value changes.
@@ -62,10 +87,10 @@ export function useScrollColorShift(
     };
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const unsubscribe = subscribeToScroll(handleScroll);
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      unsubscribe();
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }

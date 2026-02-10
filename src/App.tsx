@@ -1,18 +1,19 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense, useMemo } from "react";
 import { Analytics } from "@vercel/analytics/react";
-import Index from "./pages/Index";
-import Insights from "./pages/Insights";
-import InsightArticle from "./pages/InsightArticle";
-import NotFound from "./pages/NotFound";
 import { SmoothScrollProvider } from "./components/SmoothScrollProvider";
 import CookieConsent from "./components/CookieConsent";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import BottomNavigation from "./components/BottomNavigation";
 import { hasAnalyticsConsent } from "./utils/cookieConsent";
 
+const Index = lazy(() => import("./pages/Index"));
+const Insights = lazy(() => import("./pages/Insights"));
+const InsightArticle = lazy(() => import("./pages/InsightArticle"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 const ContactForm = lazy(() => import("./components/ContactForm"));
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID ?? "";
 const isInternalRoute = (pathname: string) => pathname === "/" || pathname.startsWith("/insights");
+const articlePathRegex = /^\/insights\/(.+?)\/?$/;
 
 const App = () => {
   const [path, setPath] = useState(window.location.pathname);
@@ -39,8 +40,13 @@ const App = () => {
     window.addEventListener("popstate", handleLocationChange);
 
     const originalPushState = window.history.pushState;
+    const originalReplaceState = window.history.replaceState;
     window.history.pushState = function (...args: Parameters<History["pushState"]>) {
       originalPushState.apply(window.history, args);
+      handleLocationChange();
+    };
+    window.history.replaceState = function (...args: Parameters<History["replaceState"]>) {
+      originalReplaceState.apply(window.history, args);
       handleLocationChange();
     };
 
@@ -80,25 +86,28 @@ const App = () => {
       window.removeEventListener("popstate", handleLocationChange);
       window.removeEventListener("click", handleGlobalClick);
       window.history.pushState = originalPushState;
+      window.history.replaceState = originalReplaceState;
     };
   }, []);
 
-  const getPage = () => {
+  const page = useMemo(() => {
     if (path === "/" || path === "") return <Index />;
     if (path === "/insights" || path === "/insights/") return <Insights />;
 
-    const articleMatch = path.match(/^\/insights\/(.+?)\/?$/);
+    const articleMatch = path.match(articlePathRegex);
     if (articleMatch) return <InsightArticle slug={articleMatch[1]} />;
 
     return <NotFound />;
-  };
+  }, [path]);
 
   return (
     <>
       <Analytics />
       {shouldLoadGoogleAnalytics && <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />}
       <SmoothScrollProvider>
-        {getPage()}
+        <Suspense fallback={<main className="min-h-screen bg-background" aria-busy="true" />}>
+          {page}
+        </Suspense>
       </SmoothScrollProvider>
       <BottomNavigation currentPath={path} />
       <CookieConsent onConsentChange={() => setAnalyticsEnabled(hasAnalyticsConsent())} />

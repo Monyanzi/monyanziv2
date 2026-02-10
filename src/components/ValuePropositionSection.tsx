@@ -1,10 +1,20 @@
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { useScrollColorShift, scrollAnimationStyles } from "../utils/useScrollColorShift";
 import { useSVGDraw } from "../utils/useAdvancedScroll";
 
+const dataPoints = [
+  [30, 85], [45, 78], [55, 70], [65, 62], [80, 55],
+  [95, 48], [110, 42], [125, 38], [140, 32], [155, 28],
+  [38, 90], [52, 72], [70, 58], [88, 50], [102, 44],
+  [118, 36], [135, 34], [150, 30], [168, 25], [180, 22],
+] as const;
+
+const dataCellOpacities = [0.28, 0.52, 0.36, 0.44, 0.32, 0.5, 0.4, 0.3, 0.46] as const;
+
 const ValuePropositionSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   // SVG drawing animations
   const regressionDraw = useSVGDraw({ threshold: 0.5, duration: 1500 });
@@ -90,12 +100,7 @@ const ValuePropositionSection = () => {
                 ))}
 
                 {/* Scattered data points - Staggered fade in */}
-                {[
-                  [30, 85], [45, 78], [55, 70], [65, 62], [80, 55],
-                  [95, 48], [110, 42], [125, 38], [140, 32], [155, 28],
-                  [38, 90], [52, 72], [70, 58], [88, 50], [102, 44],
-                  [118, 36], [135, 34], [150, 30], [168, 25], [180, 22],
-                ].map(([x, y], i) => (
+                {dataPoints.map(([x, y], i) => (
                   <motion.circle
                     key={i}
                     cx={x}
@@ -105,7 +110,7 @@ const ValuePropositionSection = () => {
                     fillOpacity="0.8"
                     initial={{ scale: 0, opacity: 0 }}
                     animate={regressionDraw.isInView ? { scale: 1, opacity: 0.8 } : {}}
-                    transition={{ delay: 0.2 + Math.random() * 0.5, duration: 0.4 }}
+                    transition={{ delay: 0.2 + (i % 8) * 0.06, duration: 0.4 }}
                   />
                 ))}
 
@@ -234,29 +239,74 @@ const ValuePropositionSection = () => {
               {/* Data transformation pipeline */}
               <div className="flex items-center gap-3">
                 {/* Raw data */}
-                <div className="relative">
+                <motion.div
+                  className="relative"
+                  animate={
+                    prefersReducedMotion
+                      ? {}
+                      : { y: [0, -2, 0] }
+                  }
+                  transition={
+                    prefersReducedMotion
+                      ? undefined
+                      : { duration: 2.6, repeat: Infinity, ease: "easeInOut" }
+                  }
+                >
                   <div className="w-14 h-14 rounded-lg bg-white/10 flex items-center justify-center overflow-hidden border border-white/10">
                     <div className="grid grid-cols-3 gap-0.5">
-                      {[...Array(9)].map((_, i) => (
-                        <div
+                      {dataCellOpacities.map((opacity, i) => (
+                        <motion.div
                           key={i}
                           className="w-3 h-3 bg-white/30 rounded-sm"
-                          style={{ opacity: 0.2 + Math.random() * 0.4 }}
+                          initial={{ opacity: 0 }}
+                          animate={
+                            prefersReducedMotion
+                              ? { opacity }
+                              : { opacity: [opacity * 0.45, opacity, opacity * 0.65] }
+                          }
+                          transition={{
+                            duration: 1.8,
+                            delay: i * 0.09,
+                            repeat: prefersReducedMotion ? 0 : Infinity,
+                            repeatType: "mirror",
+                          }}
                         />
                       ))}
                     </div>
                   </div>
                   <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] text-white/50">raw</span>
-                </div>
+                </motion.div>
 
                 {/* Arrow 1 */}
-                <div
+                <motion.div
                   className="w-8 h-0.5"
                   style={{ background: "linear-gradient(90deg, rgba(255,255,255,0.3), hsl(var(--forest)))" }}
+                  animate={
+                    prefersReducedMotion
+                      ? {}
+                      : { opacity: [0.4, 1, 0.4], scaleX: [0.85, 1, 0.85] }
+                  }
+                  transition={
+                    prefersReducedMotion
+                      ? undefined
+                      : { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+                  }
                 />
 
                 {/* Process */}
-                <div className="relative">
+                <motion.div
+                  className="relative"
+                  animate={
+                    prefersReducedMotion
+                      ? {}
+                      : { y: [0, -3, 0], rotate: [0, 1.5, 0] }
+                  }
+                  transition={
+                    prefersReducedMotion
+                      ? undefined
+                      : { duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 0.15 }
+                  }
+                >
                   <div className="w-14 h-14 rounded-lg flex items-center justify-center border border-white/20" style={{ background: "hsl(var(--forest))" }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                       <circle cx="12" cy="12" r="3" />
@@ -264,28 +314,55 @@ const ValuePropositionSection = () => {
                     </svg>
                   </div>
                   <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] text-white/50">model</span>
-                </div>
+                </motion.div>
 
                 {/* Arrow 2 */}
-                <div
+                <motion.div
                   className="w-8 h-0.5"
                   style={{ background: "linear-gradient(90deg, hsl(var(--forest)), hsl(var(--gold)))" }}
+                  animate={
+                    prefersReducedMotion
+                      ? {}
+                      : { opacity: [0.45, 1, 0.45], scaleX: [0.85, 1, 0.85] }
+                  }
+                  transition={
+                    prefersReducedMotion
+                      ? undefined
+                      : { duration: 1.4, repeat: Infinity, ease: "easeInOut", delay: 0.25 }
+                  }
                 />
 
                 {/* Output */}
                 <div className="relative">
-                  <div
+                  <motion.div
                     className="w-14 h-14 rounded-lg flex items-center justify-center"
                     style={{
                       background: "linear-gradient(135deg, hsl(var(--gold)), hsl(var(--terracotta)))",
                       boxShadow: "0 0 20px hsl(38 82% 50% / 0.3)"
                     }}
+                    animate={
+                      prefersReducedMotion
+                        ? {}
+                        : {
+                          scale: [1, 1.06, 1],
+                          boxShadow: [
+                            "0 0 16px hsl(38 82% 50% / 0.22)",
+                            "0 0 24px hsl(38 82% 50% / 0.4)",
+                            "0 0 16px hsl(38 82% 50% / 0.22)",
+                          ],
+                        }
+                    }
+                    transition={
+                      prefersReducedMotion
+                        ? undefined
+                        : { duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: 0.35 }
+                    }
                   >
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
                       <path d="M3 20L9 14L13 18L21 10" stroke="hsl(var(--navy))" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M17 10H21V14" stroke="hsl(var(--navy))" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                  </div>
+                  </motion.div>
                   <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] font-medium" style={{ color: "hsl(var(--gold))" }}>insight</span>
                 </div>
               </div>
