@@ -1,4 +1,4 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { useScrollColorShift, scrollAnimationStyles } from "../utils/useScrollColorShift";
 import { springBounceConfig } from "../utils/useAdvancedScroll";
@@ -10,9 +10,14 @@ const services = [
   { name: "Portfolio Review", icon: "∑" }
 ];
 
+const processSteps = [
+  { label: "Analysis" },
+  { label: "Model" },
+  { label: "Decision" },
+] as const;
+
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const prefersReducedMotion = useReducedMotion();
 
   // GTA 6-style dramatic color shift
   const headingColor = useScrollColorShift(sectionRef, {
@@ -240,51 +245,28 @@ const AboutSection = () => {
               style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
             >
 
-              <div className="mb-6 h-16 flex items-center">
-                <svg className="w-full h-12" viewBox="0 0 300 48">
-                  {/* Animated line */}
-                  <motion.line
-                    x1="0" y1="24" x2="300" y2="24"
-                    stroke="hsl(var(--border))"
-                    strokeWidth="2"
-                    strokeDasharray="8 4"
-                    initial={prefersReducedMotion ? { pathLength: 1 } : { pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1 }}
+              <div className="mb-6">
+                <div className="relative pt-1">
+                  <div
+                    className="absolute left-4 right-4 top-[14px] border-t-2 border-dashed"
+                    style={{ borderColor: "rgba(128, 142, 160, 0.8)" }}
                   />
-                  {/* Checkpoints */}
-                  {[50, 150, 250].map((x, i) => (
-                    <motion.g key={i}>
-                      <motion.circle
-                        cx={x} cy="24" r="12"
-                        fill="white"
-                        stroke="hsl(var(--forest))"
-                        strokeWidth="2"
-                        initial={prefersReducedMotion ? { scale: 1 } : { scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 + i * 0.2, type: "spring" }}
-                      />
-                      <motion.path
-                        d={`M${x - 4} 24 L${x - 1} 27 L${x + 5} 21`}
-                        fill="none"
-                        stroke="hsl(var(--forest))"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        initial={prefersReducedMotion ? { pathLength: 1 } : { pathLength: 0 }}
-                        whileInView={{ pathLength: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 + i * 0.2, duration: 0.3 }}
-                      />
-                    </motion.g>
-                  ))}
-                  {/* Labels */}
-                  <text x="50" y="44" textAnchor="middle" fill="hsl(210 10% 45%)" fontSize="9">Analysis</text>
-                  <text x="150" y="44" textAnchor="middle" fill="hsl(210 10% 45%)" fontSize="9">Model</text>
-                  <text x="250" y="44" textAnchor="middle" fill="hsl(210 10% 45%)" fontSize="9">Decision</text>
-                </svg>
+                  <div className="grid grid-cols-3 gap-2 relative">
+                    {processSteps.map((step) => (
+                      <div key={step.label} className="flex flex-col items-center">
+                        <span
+                          className="w-7 h-7 rounded-full border-2 bg-white flex items-center justify-center text-xs font-semibold leading-none"
+                          style={{ borderColor: "#3f6a55", color: "#3f6a55" }}
+                        >
+                          ✓
+                        </span>
+                        <span className="mt-2 text-[10px] text-[#657286] tracking-wide">
+                          {step.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               <h3 className="font-display text-xl font-semibold text-foreground mb-3">

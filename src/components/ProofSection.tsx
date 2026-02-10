@@ -80,11 +80,9 @@ const ProofSection = () => {
     const pulse2 = useScrollPulse(stat2Ref);
     const pulse3 = useScrollPulse(stat3Ref);
 
-    // SVG drawing animation for speedometer
-    const speedometerDraw = useSVGDraw({ threshold: 0.15, duration: 1200, delay: 200 });
+    // Keep draw animation for lower deal-flow card only.
     const dealFlowDraw = useSVGDraw({ threshold: 0.15, duration: 900, delay: 150 });
-    const speedometerProgress = prefersReducedMotion ? 1 : speedometerDraw.progress;
-    const dealFlowProgress = prefersReducedMotion ? 1 : dealFlowDraw.progress;
+    const dealFlowProgress = prefersReducedMotion ? 1 : Math.max(0.9, dealFlowDraw.progress);
 
     // Memoize pulse glow styles to avoid recreation
     const pulse1Style = useMemo(() =>
@@ -135,7 +133,6 @@ const ProofSection = () => {
                         <div className="h-44 p-6 flex items-center justify-center relative" style={forestGradientStyle}>
                             {/* Speedometer gauge with drawing animation */}
                             <svg
-                                ref={speedometerDraw.ref as React.RefObject<SVGSVGElement>}
                                 className="w-32 h-20"
                                 viewBox="0 0 120 70"
                             >
@@ -149,36 +146,22 @@ const ProofSection = () => {
                                     strokeLinecap="round"
                                 />
 
-                                <defs>
-                                    <linearGradient id="speedGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stopColor="hsl(140 18% 50%)" />
-                                        <stop offset="100%" stopColor="hsl(38 82% 50%)" />
-                                    </linearGradient>
-                                </defs>
-
-                                {/* Animated arc - draws on scroll */}
+                                {/* Static foreground arc (iOS Safari-safe) */}
                                 <path
                                     d="M 10 65 A 50 50 0 0 1 110 65"
                                     fill="none"
-                                    stroke="url(#speedGrad)"
+                                    stroke="hsl(38 82% 50%)"
                                     strokeWidth="8"
                                     strokeLinecap="round"
-                                    pathLength="1"
-                                    strokeDasharray="1"
-                                    strokeDashoffset={1 - (speedometerProgress * 0.8)}
                                 />
 
-                                {/* Animated needle - rotates with progress */}
+                                {/* Fixed needle at ~80% */}
                                 <line
                                     x1="60" y1="65" x2="60" y2="25"
                                     stroke="white"
                                     strokeWidth="2"
                                     strokeLinecap="round"
-                                    style={{
-                                        transform: `rotate(${-60 + speedometerProgress * 120}deg)`,
-                                        transformOrigin: "60px 65px",
-                                        transition: "transform 0.1s ease-out"
-                                    }}
+                                    transform="rotate(36 60 65)"
                                 />
 
                                 <circle cx="60" cy="65" r="4" fill="white" />
