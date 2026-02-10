@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { useScrollColorShift, scrollAnimationStyles } from "../utils/useScrollColorShift";
 import { springBounceConfig } from "../utils/useAdvancedScroll";
@@ -12,6 +12,7 @@ const services = [
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   // GTA 6-style dramatic color shift
   const headingColor = useScrollColorShift(sectionRef, {
@@ -247,7 +248,7 @@ const AboutSection = () => {
                     stroke="hsl(var(--border))"
                     strokeWidth="2"
                     strokeDasharray="8 4"
-                    initial={{ pathLength: 0 }}
+                    initial={prefersReducedMotion ? { pathLength: 1 } : { pathLength: 0 }}
                     whileInView={{ pathLength: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1 }}
@@ -260,7 +261,7 @@ const AboutSection = () => {
                         fill="white"
                         stroke="hsl(var(--forest))"
                         strokeWidth="2"
-                        initial={{ scale: 0 }}
+                        initial={prefersReducedMotion ? { scale: 1 } : { scale: 0 }}
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 + i * 0.2, type: "spring" }}
@@ -272,7 +273,7 @@ const AboutSection = () => {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        initial={{ pathLength: 0 }}
+                        initial={prefersReducedMotion ? { pathLength: 1 } : { pathLength: 0 }}
                         whileInView={{ pathLength: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.5 + i * 0.2, duration: 0.3 }}

@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { useRef, useMemo } from "react";
 import { useScrollColorShift, useScrollPulse, scrollAnimationStyles } from "../utils/useScrollColorShift";
 import { useSVGDraw, springBounceConfig } from "../utils/useAdvancedScroll";
@@ -69,6 +69,7 @@ const ProofSection = () => {
     const stat1Ref = useRef<HTMLDivElement>(null);
     const stat2Ref = useRef<HTMLDivElement>(null);
     const stat3Ref = useRef<HTMLDivElement>(null);
+    const prefersReducedMotion = useReducedMotion();
 
     // Scroll-based color shifts
     const headingColor = useScrollColorShift(sectionRef, headingColors);
@@ -80,8 +81,10 @@ const ProofSection = () => {
     const pulse3 = useScrollPulse(stat3Ref);
 
     // SVG drawing animation for speedometer
-    const speedometerDraw = useSVGDraw({ threshold: 0.3, duration: 1200, delay: 200 });
-    const dealFlowDraw = useSVGDraw({ threshold: 0.3, duration: 900, delay: 150 });
+    const speedometerDraw = useSVGDraw({ threshold: 0.15, duration: 1200, delay: 200 });
+    const dealFlowDraw = useSVGDraw({ threshold: 0.15, duration: 900, delay: 150 });
+    const speedometerProgress = prefersReducedMotion ? 1 : speedometerDraw.progress;
+    const dealFlowProgress = prefersReducedMotion ? 1 : dealFlowDraw.progress;
 
     // Memoize pulse glow styles to avoid recreation
     const pulse1Style = useMemo(() =>
@@ -162,7 +165,7 @@ const ProofSection = () => {
                                     strokeLinecap="round"
                                     pathLength="1"
                                     strokeDasharray="1"
-                                    strokeDashoffset={1 - (speedometerDraw.progress * 0.8)}
+                                    strokeDashoffset={1 - (speedometerProgress * 0.8)}
                                 />
 
                                 {/* Animated needle - rotates with progress */}
@@ -172,7 +175,7 @@ const ProofSection = () => {
                                     strokeWidth="2"
                                     strokeLinecap="round"
                                     style={{
-                                        transform: `rotate(${-60 + speedometerDraw.progress * 120}deg)`,
+                                        transform: `rotate(${-60 + speedometerProgress * 120}deg)`,
                                         transformOrigin: "60px 65px",
                                         transition: "transform 0.1s ease-out"
                                     }}
@@ -386,7 +389,7 @@ const ProofSection = () => {
                                         strokeWidth="2"
                                         pathLength="1"
                                         strokeDasharray="1"
-                                        strokeDashoffset={1 - dealFlowDraw.progress}
+                                        strokeDashoffset={1 - dealFlowProgress}
                                     />
                                     <line
                                         x1="156" y1="51" x2="180" y2="51"
@@ -395,7 +398,7 @@ const ProofSection = () => {
                                         strokeWidth="2"
                                         pathLength="1"
                                         strokeDasharray="1"
-                                        strokeDashoffset={1 - dealFlowDraw.progress}
+                                        strokeDashoffset={1 - dealFlowProgress}
                                     />
                                     <line
                                         x1="156" y1="59" x2="176" y2="59"
@@ -404,7 +407,7 @@ const ProofSection = () => {
                                         strokeWidth="2"
                                         pathLength="1"
                                         strokeDasharray="1"
-                                        strokeDashoffset={1 - dealFlowDraw.progress}
+                                        strokeDashoffset={1 - dealFlowProgress}
                                     />
                                     <text x="170" y="74" fill="hsl(var(--gold))" fontSize="8" textAnchor="middle" fontWeight="600">Ready</text>
                                 </g>
