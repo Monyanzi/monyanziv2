@@ -4,11 +4,11 @@ import Navigation from "@/components/Navigation";
 import ArticleCard from "@/components/insights/ArticleCard";
 import CategoryFilter from "@/components/insights/CategoryFilter";
 import SortSelect, { type SortOption } from "@/components/insights/SortSelect";
+import SiteFooter from "@/components/SiteFooter";
 import { articles, categories } from "@/data/articles";
+import { SITE_URL, SOCIAL_IMAGE_URL } from "@/config/site";
 
-const SITE_URL = "https://mosesnyanzi.co.za";
 const INSIGHTS_URL = `${SITE_URL}/insights`;
-const INSIGHTS_OG_IMAGE_URL = `${SITE_URL}/social-share.svg`;
 
 const Insights = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -54,7 +54,7 @@ const Insights = () => {
           property="og:description"
           content="Strategic diagnostics for leaders navigating automation, process design, and organisational change."
         />
-        <meta property="og:image" content={INSIGHTS_OG_IMAGE_URL} />
+        <meta property="og:image" content={SOCIAL_IMAGE_URL} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={INSIGHTS_URL} />
@@ -63,7 +63,7 @@ const Insights = () => {
           name="twitter:description"
           content="Strategic diagnostics for leaders navigating automation, process design, and organisational change."
         />
-        <meta name="twitter:image" content={INSIGHTS_OG_IMAGE_URL} />
+        <meta name="twitter:image" content={SOCIAL_IMAGE_URL} />
       </Helmet>
 
       <Navigation />
@@ -165,6 +165,8 @@ const Insights = () => {
             )}
           </div>
         </section>
+
+        <SiteFooter />
       </main>
     </>
   );

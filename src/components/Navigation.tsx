@@ -2,36 +2,28 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { X } from "lucide-react";
 import { useThrottledScroll } from "@/utils/useThrottledScroll";
-import { useLenis } from "@/components/SmoothScrollProvider";
+import { useLenis } from "@/components/lenisContext";
 
-// Static nav items at module scope - never recreated
 const navItems = [
-  { label: "Who You Work With", href: "#about" },
-  { label: "Expertise", href: "#expertise" },
-  { label: "Track Record", href: "#proof" },
+  { label: "Home", href: "/" },
   { label: "Insights", href: "/insights" },
 ] as const;
 
-// Pre-computed section IDs for scroll tracking
-const sectionIds = navItems
-  .filter(item => item.href.startsWith('#'))
-  .map(item => item.href.slice(1));
 
-// Static spring config
+
 const springConfig = {
   stiffness: 100,
   damping: 30,
   restDelta: 0.001
 } as const;
 
-// Pre-computed styles
 const progressBarStyle = { background: "hsl(var(--gold))" } as const;
 const underlineStyle = { background: "hsl(var(--gold))" } as const;
 
 const Navigation = () => {
   const lenis = useLenis();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isInsightsPage, setIsInsightsPage] = useState(false);
 
@@ -46,23 +38,11 @@ const Navigation = () => {
     setIsScrolled(window.scrollY > 50);
   }, []);
 
-  const updateActiveSection = useCallback(() => {
-    const scrollPosition = window.scrollY + 100;
 
-    for (let i = sectionIds.length - 1; i >= 0; i--) {
-      const section = document.getElementById(sectionIds[i]);
-      if (section && section.offsetTop <= scrollPosition) {
-        setActiveSection(sectionIds[i]);
-        return;
-      }
-    }
-    setActiveSection("");
-  }, []);
 
   useThrottledScroll({
     delay: 100,
     onScroll: updateScrolled,
-    onThrottle: updateActiveSection,
   });
 
   const handleNavClick = useCallback(() => {
@@ -88,10 +68,12 @@ const Navigation = () => {
     if (href === "/insights") {
       return isInsightsPage;
     }
-    return activeSection === href.slice(1);
-  }, [activeSection, isInsightsPage]);
+    if (href === "/") {
+      return !isInsightsPage;
+    }
+    return false;
+  }, [isInsightsPage]);
 
-  // Memoize nav class to avoid string concatenation on every render
   const navClassName = useMemo(() =>
     `fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
       ? "bg-background/90 backdrop-blur-md border-b border-border/50 py-3"
@@ -124,17 +106,14 @@ const Navigation = () => {
               MN
             </a>
 
-            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-12">
               {navItems.map((item) => {
-                const isAnchor = item.href.startsWith('#');
-                const href = isAnchor && isInsightsPage ? `/${item.href}` : item.href;
                 const isActive = isActiveLink(item.href);
 
                 return (
                   <a
                     key={item.label}
-                    href={href}
+                    href={item.href}
                     className={`text-sm tracking-wide transition-colors duration-300 relative group ${isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -154,14 +133,12 @@ const Navigation = () => {
         </div>
       </nav>
 
-      {/* Mobile Overlay */}
       <div
         className={`fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         onClick={closeMenu}
       />
 
-      {/* Mobile Drawer */}
       <div
         className={`fixed top-0 right-0 bottom-0 z-50 w-72 bg-background border-l border-border transition-transform duration-300 ease-out lg:hidden ${isOpen ? "translate-x-0" : "translate-x-full"
           }`}
@@ -180,14 +157,12 @@ const Navigation = () => {
         <nav className="p-6">
           <ul className="space-y-1">
             {navItems.map((item) => {
-              const isAnchor = item.href.startsWith('#');
-              const href = isAnchor && isInsightsPage ? `/${item.href}` : item.href;
               const isActive = isActiveLink(item.href);
 
               return (
                 <li key={item.label}>
                   <a
-                    href={href}
+                    href={item.href}
                     onClick={handleNavClick}
                     className={`block py-3 text-lg transition-colors ${isActive
                       ? "text-foreground font-medium"

@@ -12,6 +12,7 @@ const SortSelect = memo(({ value, onChange }: SortSelectProps) => {
   return (
     <div className="relative">
       <select
+        aria-label="Sort insights"
         value={value}
         onChange={(e) => onChange(e.target.value as SortOption)}
         className="appearance-none bg-muted text-foreground text-sm font-medium px-4 py-2 pr-10 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-[hsl(var(--gold))/0.3] cursor-pointer"

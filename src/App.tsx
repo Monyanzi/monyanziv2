@@ -11,12 +11,14 @@ import BottomNavigation from "./components/BottomNavigation";
 import { hasAnalyticsConsent } from "./utils/cookieConsent";
 
 const ContactForm = lazy(() => import("./components/ContactForm"));
-const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID ?? "";
+const isInternalRoute = (pathname: string) => pathname === "/" || pathname.startsWith("/insights");
 
 const App = () => {
   const [path, setPath] = useState(window.location.pathname);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(hasAnalyticsConsent());
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const shouldLoadGoogleAnalytics = analyticsEnabled && GA_MEASUREMENT_ID.trim().length > 0;
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -36,26 +38,41 @@ const App = () => {
     };
     window.addEventListener("popstate", handleLocationChange);
 
-    // Intercept pushState for internal navigation
     const originalPushState = window.history.pushState;
-    window.history.pushState = function (...args) {
-      originalPushState.apply(this, args);
+    window.history.pushState = function (...args: Parameters<History["pushState"]>) {
+      originalPushState.apply(window.history, args);
       handleLocationChange();
     };
 
     const handleGlobalClick = (e: MouseEvent) => {
-      const anchor = (e.target as HTMLElement).closest("a");
-      if (anchor && anchor.href && anchor.origin === window.location.origin) {
-        const { pathname, hash } = anchor;
-        if (pathname === "/" || pathname.startsWith("/insights")) {
-          if (pathname === window.location.pathname && hash) return;
-
-          e.preventDefault();
-          window.history.pushState(null, "", anchor.href);
-          if (!hash) window.scrollTo(0, 0);
-          else window.dispatchEvent(new HashChangeEvent("hashchange"));
-        }
+      if (
+        e.defaultPrevented ||
+        e.button !== 0 ||
+        e.metaKey ||
+        e.ctrlKey ||
+        e.shiftKey ||
+        e.altKey
+      ) {
+        return;
       }
+
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      const anchor = target.closest("a");
+      if (!anchor || !anchor.href) return;
+      if ((anchor.target && anchor.target !== "_self") || anchor.hasAttribute("download")) return;
+      if (anchor.origin !== window.location.origin) return;
+
+      const { pathname, hash } = anchor;
+      if (!isInternalRoute(pathname)) return;
+      if (hash) return;
+
+      const hasSameLocation = pathname === window.location.pathname && hash === window.location.hash;
+      if (hasSameLocation) return;
+
+      e.preventDefault();
+      window.history.pushState(null, "", anchor.href);
+      window.scrollTo(0, 0);
     };
 
     window.addEventListener("click", handleGlobalClick);
@@ -79,7 +96,7 @@ const App = () => {
   return (
     <>
       <Analytics />
-      {analyticsEnabled && <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />}
+      {shouldLoadGoogleAnalytics && <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />}
       <SmoothScrollProvider>
         {getPage()}
       </SmoothScrollProvider>

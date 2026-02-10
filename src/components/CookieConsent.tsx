@@ -11,7 +11,6 @@ interface CookieConsentProps {
     onConsentChange?: () => void;
 }
 
-// Pre-computed style objects
 const cardStyle = {
     background: "hsl(var(--card) / 0.95)",
     borderColor: "hsl(var(--border))",
@@ -179,22 +178,6 @@ const CookieConsent = ({ onConsentChange }: CookieConsentProps) => {
                 </motion.div>
             )}
         </AnimatePresence>
-    );
-};
-
-export const CookieSettingsLink = () => {
-    const handleOpenSettings = useCallback(() => {
-        localStorage.removeItem('cookie_consent');
-        window.location.reload();
-    }, []);
-
-    return (
-        <button
-            onClick={handleOpenSettings}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
-        >
-            Cookie Settings
-        </button>
     );
 };
 

@@ -1,20 +1,14 @@
 import { useState, useCallback, useMemo } from "react";
-import { Home, User, Briefcase, Trophy, FileText } from "lucide-react";
+import { Home, FileText } from "lucide-react";
 import { useThrottledScroll } from "@/utils/useThrottledScroll";
 
-// Static nav items at module scope
 const navItems = [
   { icon: Home, href: "#", label: "Home" },
-  { icon: User, href: "#about", label: "Who I Am" },
-  { icon: Briefcase, href: "#expertise", label: "Expertise" },
-  { icon: Trophy, href: "#proof", label: "Track Record" },
   { icon: FileText, href: "/insights", label: "Insights" },
 ] as const;
 
-// Section IDs for scroll detection (in priority order)
-const sectionIds = ["proof", "expertise", "about"] as const;
+const sectionIds = [] as const;
 
-// Pre-computed styles
 const activeColor = "hsl(var(--gold))" as const;
 const inactiveColor = "hsl(var(--gold) / 0.6)" as const;
 const mutedColor = "hsl(var(--muted-foreground))" as const;
@@ -49,7 +43,6 @@ const BottomNavigation = ({ currentPath }: { currentPath: string }) => {
   });
 
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // Don't prevent default for external links
     if (href === "/insights") {
       return;
     }
@@ -58,7 +51,6 @@ const BottomNavigation = ({ currentPath }: { currentPath: string }) => {
 
     const isHome = window.location.pathname === "/" || window.location.pathname === "";
 
-    // If clicking Home icon
     if (href === "#") {
       if (isHome) {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -68,7 +60,6 @@ const BottomNavigation = ({ currentPath }: { currentPath: string }) => {
       return;
     }
 
-    // If on home page, scroll to section
     if (isHome) {
       const targetId = href.slice(1);
       const element = document.getElementById(targetId);
@@ -76,7 +67,6 @@ const BottomNavigation = ({ currentPath }: { currentPath: string }) => {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // Navigate to home page with anchor
       window.location.href = "/" + href;
     }
   }, []);
@@ -89,7 +79,6 @@ const BottomNavigation = ({ currentPath }: { currentPath: string }) => {
     return activeSection === href.slice(1);
   }, [activeSection, isInsightsPage]);
 
-  // Memoize nav style to avoid object recreation
   const navStyle = useMemo(() => ({
     paddingBottom: "env(safe-area-inset-bottom)"
   }), []);

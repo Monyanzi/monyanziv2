@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { X, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { X, Send, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useFocusTrap } from "@/utils/useFocusTrap";
 
@@ -8,7 +8,6 @@ interface ContactFormProps {
     onClose: () => void;
 }
 
-// Initial form state - stable reference
 const initialFormData = {
     name: "",
     email: "",
@@ -18,7 +17,7 @@ const initialFormData = {
 
 const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
     const [formData, setFormData] = useState({ ...initialFormData });
-    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+    const [status, setStatus] = useState<"idle" | "success">("idle");
     const dialogRef = useRef<HTMLDivElement | null>(null);
 
     useFocusTrap(isOpen, onClose, dialogRef);
@@ -68,11 +67,11 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
     );
 
     const submitButtonClass = useMemo(() =>
-        `w-full inline-flex items-center justify-center gap-2 font-bold tracking-widest uppercase text-xs py-5 rounded-full transition-all ${isFormValid && status !== "submitting"
+        `w-full inline-flex items-center justify-center gap-2 font-bold tracking-widest uppercase text-xs py-5 rounded-full transition-all ${isFormValid
             ? "bg-[hsl(var(--gold))] text-[hsl(var(--navy))] hover:scale-[1.02] shadow-lg shadow-[hsl(var(--gold)/0.15)]"
             : "bg-muted text-muted-foreground cursor-not-allowed border border-border/50"
         }`,
-        [isFormValid, status]
+        [isFormValid]
     );
 
     return (
@@ -94,7 +93,6 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                         role="dialog"
                         aria-modal="true"
                     >
-                        {/* Header */}
                         <div className="p-6 lg:p-8 border-b border-border/50 flex justify-between items-center">
                             <div>
                                 <h2 className="font-display text-2xl font-semibold text-foreground">Get in Touch</h2>
@@ -176,30 +174,13 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                                         />
                                     </div>
 
-                                    {status === "error" && (
-                                        <div className="flex items-center gap-2 text-red-400 text-sm mt-2">
-                                            <AlertCircle className="w-4 h-4" />
-                                            <span>Something went wrong. Please try again or email directly.</span>
-                                        </div>
-                                    )}
-
                                     <button
                                         type="submit"
                                         className={submitButtonClass}
                                     >
-                                        {status === "submitting" ? (
-                                            <span className="flex items-center gap-2">
-                                                <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24">
-                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                                                </svg>
-                                                Sending...
-                                            </span>
-                                        ) : (
-                                            <>
-                                                Send Message <Send className="w-4 h-4 ml-1" />
-                                            </>
-                                        )}
+                                        <>
+                                            Send Message <Send className="w-4 h-4 ml-1" />
+                                        </>
                                     </button>
                                 </form>
                             )}

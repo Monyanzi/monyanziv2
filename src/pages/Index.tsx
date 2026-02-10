@@ -8,9 +8,7 @@ import ExpertiseSection from "@/components/ExpertiseSection";
 import ProofSection from "@/components/ProofSection";
 import EngagementSection from "@/components/EngagementSection";
 import BackToTop from "@/components/BackToTop";
-
-const SITE_URL = "https://mosesnyanzi.co.za";
-const OG_IMAGE_URL = `${SITE_URL}/social-share.svg`;
+import { SITE_URL, SOCIAL_IMAGE_URL } from "@/config/site";
 
 const Index = () => {
   return (
@@ -29,14 +27,14 @@ const Index = () => {
         <meta property="og:url" content={`${SITE_URL}/`} />
         <meta property="og:title" content="Actuarial Consultant South Africa | Moses Nyanzi" />
         <meta property="og:description" content="Independent actuarial consultant in Johannesburg. Actuary & INSEAD MBA. Solving complex capital, pricing, and M&A problems for insurers and investors." />
-        <meta property="og:image" content={OG_IMAGE_URL} />
+        <meta property="og:image" content={SOCIAL_IMAGE_URL} />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={`${SITE_URL}/`} />
         <meta name="twitter:title" content="Actuarial Consultant South Africa | Moses Nyanzi" />
         <meta name="twitter:description" content="Independent actuarial consultant in Johannesburg. Actuary & INSEAD MBA. Solving complex capital, pricing, and M&A problems for insurers and investors." />
-        <meta name="twitter:image" content={OG_IMAGE_URL} />
+        <meta name="twitter:image" content={SOCIAL_IMAGE_URL} />
       </Helmet>
 
       <div className="min-h-screen bg-background">

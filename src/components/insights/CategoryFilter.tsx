@@ -10,6 +10,7 @@ const CategoryFilter = memo(({ categories, activeCategory, onCategoryChange }: C
   return (
     <div className="flex flex-wrap gap-2">
       <button
+        type="button"
         onClick={() => onCategoryChange(null)}
         className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide uppercase transition-all duration-200 ${
           activeCategory === null
@@ -22,6 +23,7 @@ const CategoryFilter = memo(({ categories, activeCategory, onCategoryChange }: C
       {categories.map((category) => (
         <button
           key={category}
+          type="button"
           onClick={() => onCategoryChange(category)}
           className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide uppercase transition-all duration-200 ${
             activeCategory === category

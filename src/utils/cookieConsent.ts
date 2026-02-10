@@ -1,5 +1,3 @@
-export type ConsentCategory = 'essential' | 'analytics' | 'marketing';
-
 export interface ConsentPreferences {
     essential: boolean;
     analytics: boolean;
@@ -43,19 +41,6 @@ export const hasConsentBeenGiven = (): boolean => {
 export const hasAnalyticsConsent = (): boolean => {
     const prefs = getConsentPreferences();
     return prefs?.analytics ?? false;
-};
-
-export const hasMarketingConsent = (): boolean => {
-    const prefs = getConsentPreferences();
-    return prefs?.marketing ?? false;
-};
-
-export const clearConsent = (): void => {
-    try {
-        localStorage.removeItem(CONSENT_KEY);
-    } catch {
-        return;
-    }
 };
 
 export const acceptAllCookies = (): void => {

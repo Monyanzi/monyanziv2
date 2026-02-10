@@ -2,12 +2,11 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import SiteFooter from "@/components/SiteFooter";
 import { articles } from "@/data/insights";
-import { useLenis } from "@/components/SmoothScrollProvider";
+import { useLenis } from "@/components/lenisContext";
+import { SITE_URL, SITE_NAME } from "@/config/site";
 
-const SITE_URL = "https://mosesnyanzi.co.za";
-
-// Article layout component
 const InsightArticle = ({ slug }: { slug: string }) => {
   const lenis = useLenis();
 
@@ -23,7 +22,6 @@ const InsightArticle = ({ slug }: { slug: string }) => {
   const articlePath = `/insights/${slug}`;
   const articleUrl = `${SITE_URL}${articlePath}`;
 
-  // Get related articles (excluding current)
   const relatedSlugs = Object.keys(articles)
     .filter(s => s !== slug)
     .slice(0, 2);
@@ -63,7 +61,7 @@ const InsightArticle = ({ slug }: { slug: string }) => {
 
         <meta property="og:type" content="article" />
         <meta property="og:url" content={articleUrl} />
-        <meta property="og:title" content={`${article.title} | Moses Nyanzi`} />
+        <meta property="og:title" content={`${article.title} | ${SITE_NAME}`} />
         <meta property="og:description" content={article.description} />
         <meta
           property="og:image"
@@ -72,7 +70,7 @@ const InsightArticle = ({ slug }: { slug: string }) => {
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={articleUrl} />
-        <meta name="twitter:title" content={`${article.title} | Moses Nyanzi`} />
+        <meta name="twitter:title" content={`${article.title} | ${SITE_NAME}`} />
         <meta name="twitter:description" content={article.description} />
         <meta
           name="twitter:image"
@@ -184,6 +182,8 @@ const InsightArticle = ({ slug }: { slug: string }) => {
             </div>
           </div>
         </section>
+
+        <SiteFooter />
       </main>
     </>
   );

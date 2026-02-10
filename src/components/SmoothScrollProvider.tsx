@@ -1,21 +1,17 @@
-import { useEffect, useRef, createContext, useContext, ReactNode } from 'react';
+import { useEffect, useRef, useState, ReactNode } from "react";
 import Lenis from 'lenis';
-
-const LenisContext = createContext<Lenis | null>(null);
-
-export function useLenis() {
-    return useContext(LenisContext);
-}
+import { LenisContext } from "@/components/lenisContext";
 
 interface SmoothScrollProviderProps {
     children: ReactNode;
 }
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
-    const lenisRef = useRef<Lenis | null>(null);
+    const [lenis, setLenis] = useState<Lenis | null>(null);
+    const rafRef = useRef<number>(0);
 
     useEffect(() => {
-        const lenis = new Lenis({
+        const instance = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
@@ -24,23 +20,27 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
             touchMultiplier: 2,
         });
 
-        lenisRef.current = lenis;
+        setLenis(instance);
 
         function raf(time: number) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
+            instance.raf(time);
+            rafRef.current = requestAnimationFrame(raf);
         }
 
-        requestAnimationFrame(raf);
+        rafRef.current = requestAnimationFrame(raf);
 
         return () => {
-            lenis.destroy();
-            lenisRef.current = null;
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current);
+                rafRef.current = 0;
+            }
+            instance.destroy();
+            setLenis(null);
         };
     }, []);
 
     return (
-        <LenisContext.Provider value={lenisRef.current}>
+        <LenisContext.Provider value={lenis}>
             {children}
         </LenisContext.Provider>
     );
