@@ -24,6 +24,7 @@ const AudioBriefingCard = ({ briefing, compact = false, className = "" }: AudioB
     maxTime,
     toggle: handleToggle,
     seek: handleSeek,
+    prime: handlePrime,
   } = usePersistentAudioPlayer(briefing);
   const timeLabel = duration > 0
     ? `${formatAudioTime(currentTime)} / ${formatAudioTime(duration)}`
@@ -50,6 +51,9 @@ const AudioBriefingCard = ({ briefing, compact = false, className = "" }: AudioB
           <button
             type="button"
             onClick={handleToggle}
+            onMouseEnter={handlePrime}
+            onFocus={handlePrime}
+            onTouchStart={handlePrime}
             disabled={!canPlay}
             aria-label={`${isPlaying ? "Pause" : "Play"} ${briefing.shortLabel}`}
             className={`${buttonClass} rounded-full inline-flex items-center justify-center transition-colors shrink-0 ${

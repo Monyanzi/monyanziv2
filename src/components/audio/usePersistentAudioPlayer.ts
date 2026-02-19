@@ -141,6 +141,20 @@ export const usePersistentAudioPlayer = (briefing: AudioBriefing) => {
     setSnapshot((current) => ({ ...current, currentTime: value }));
   };
 
+  const prime = () => {
+    const targetAudio = ensureAudio();
+    if (!targetAudio) return;
+
+    // Prepare metadata (and first bytes) ahead of play on hover/focus.
+    if (!targetAudio.paused || targetAudio.currentTime > 0 || targetAudio.readyState > 0) {
+      return;
+    }
+    if (targetAudio.preload === "none") {
+      targetAudio.preload = "metadata";
+    }
+    targetAudio.load();
+  };
+
   return {
     canPlay,
     isPlaying: snapshot.isPlaying,
@@ -149,5 +163,6 @@ export const usePersistentAudioPlayer = (briefing: AudioBriefing) => {
     maxTime: snapshot.duration > 0 ? snapshot.duration : 1,
     toggle,
     seek,
+    prime,
   };
 };
