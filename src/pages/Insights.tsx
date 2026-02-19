@@ -4,11 +4,44 @@ import Navigation from "@/components/Navigation";
 import ArticleCard from "@/components/insights/ArticleCard";
 import CategoryFilter from "@/components/insights/CategoryFilter";
 import SortSelect, { type SortOption } from "@/components/insights/SortSelect";
+import AudioBriefingCard from "@/components/audio/AudioBriefingCard";
 import SiteFooter from "@/components/SiteFooter";
 import { articles, categories } from "@/data/articles";
-import { SITE_URL, SOCIAL_IMAGE_URL } from "@/config/site";
+import { insightsArticlesBriefing } from "@/data/audioBriefings";
+import { SITE_NAME, SITE_URL, SOCIAL_IMAGE_URL } from "@/config/site";
 
 const INSIGHTS_URL = `${SITE_URL}/insights`;
+
+const insightsItemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Moses Nyanzi Insights",
+  itemListElement: articles.map((article, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: `${INSIGHTS_URL}/${article.id}`,
+    name: article.title,
+  })),
+};
+
+const toIsoDuration = (duration: string) => {
+  const [minutes, seconds] = duration.split(":").map((value) => Number(value));
+  if (Number.isNaN(minutes) || Number.isNaN(seconds)) return undefined;
+  return `PT${minutes}M${seconds}S`;
+};
+
+const readyAudioSchemas = [insightsArticlesBriefing]
+  .filter((briefing) => briefing.isReady)
+  .map((briefing) => ({
+    "@context": "https://schema.org",
+    "@type": "AudioObject",
+    name: briefing.title,
+    description: briefing.subtitle,
+    contentUrl: `${SITE_URL}${briefing.audioSrc}`,
+    duration: toIsoDuration(briefing.duration),
+    dateModified: briefing.updatedOn,
+    inLanguage: "en-ZA",
+  }));
 
 const Insights = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -45,16 +78,21 @@ const Insights = () => {
           name="description"
           content="Strategic diagnostics for leaders navigating automation, process design, and organisational change."
         />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="author" content={SITE_NAME} />
+        <meta name="keywords" content="ai strategy insights, automation strategy articles, organisational change guides, ai implementation checklists, moses nyanzi insights" />
         <link rel="canonical" href={INSIGHTS_URL} />
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content={INSIGHTS_URL} />
+        <meta property="og:locale" content="en_ZA" />
         <meta property="og:title" content="Insights on AI, Automation & Strategy | Moses Nyanzi" />
         <meta
           property="og:description"
           content="Strategic diagnostics for leaders navigating automation, process design, and organisational change."
         />
         <meta property="og:image" content={SOCIAL_IMAGE_URL} />
+        <meta property="og:image:alt" content="Moses Nyanzi insights page" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={INSIGHTS_URL} />
@@ -64,6 +102,13 @@ const Insights = () => {
           content="Strategic diagnostics for leaders navigating automation, process design, and organisational change."
         />
         <meta name="twitter:image" content={SOCIAL_IMAGE_URL} />
+        <meta name="twitter:image:alt" content="Moses Nyanzi insights page" />
+        <script type="application/ld+json">{JSON.stringify(insightsItemListSchema)}</script>
+        {readyAudioSchemas.map((schema, index) => (
+          <script key={`audio-schema-${index}`} type="application/ld+json">
+            {JSON.stringify(schema)}
+          </script>
+        ))}
       </Helmet>
 
       <Navigation />
@@ -112,6 +157,14 @@ const Insights = () => {
                 </span>
               </h1>
             </header>
+          </div>
+        </section>
+
+        <section className="pb-8 lg:pb-10">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="flex justify-start">
+              <AudioBriefingCard briefing={insightsArticlesBriefing} />
+            </div>
           </div>
         </section>
 

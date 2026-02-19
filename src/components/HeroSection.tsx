@@ -1,20 +1,20 @@
-import { ArrowRight, MapPin, Linkedin, TrendingUp, Settings, Search, Users } from "lucide-react";
+import { ArrowRight, MapPin, Linkedin, TrendingUp, Settings, Users, Pause, Play } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import heroProfile from "../assets/hero-profile.webp";
 import { springBounceConfig } from "../utils/useAdvancedScroll";
+import { siteOverviewBriefing } from "@/data/audioBriefings";
+import { usePersistentAudioPlayer } from "@/components/audio/usePersistentAudioPlayer";
 
 // Static data extracted to module scope - prevents recreation on every render
 const coreExpertise = [
   { icon: "settings", title: "Strategic Analysis", subtitle: "& Modeling" },
   { icon: "trending", title: "Process", subtitle: "Optimisation" },
-  { icon: "search", title: "M&A Due", subtitle: "Diligence" },
 ] as const;
 
 // Icon lookup map - stable references
 const IconMap = {
   settings: Settings,
   trending: TrendingUp,
-  search: Search,
 } as const;
 
 // Pre-computed style objects - prevent recreation on every render
@@ -47,8 +47,27 @@ const yearsBadgeStyle = {
   boxShadow: "0 4px 20px hsl(38 82% 50% / 0.4)"
 } as const;
 
+const formatAudioTime = (value: number) => {
+  if (!Number.isFinite(value) || value < 0) return "00:00";
+  const mins = Math.floor(value / 60);
+  const secs = Math.floor(value % 60);
+  return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+};
+
 const HeroSection = () => {
   const prefersReducedMotion = useReducedMotion();
+  const {
+    canPlay: canPlayProfileAudio,
+    isPlaying: isProfilePlaying,
+    currentTime: profileCurrentTime,
+    duration: profileDuration,
+    maxTime: profileMaxTime,
+    toggle: handleProfileAudioToggle,
+    seek: handleProfileSeek,
+  } = usePersistentAudioPlayer(siteOverviewBriefing);
+  const profileTimeLabel = profileDuration > 0
+    ? `${formatAudioTime(profileCurrentTime)} / ${formatAudioTime(profileDuration)}`
+    : siteOverviewBriefing.duration;
 
   return (
     <>
@@ -134,6 +153,64 @@ const HeroSection = () => {
               >
                 Helping senior leaders get clarity on complex decisions, quickly.
               </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.66 }}
+                className="pt-1"
+              >
+                <div className="flex items-center">
+                  <div
+                    className={`inline-flex items-center gap-2 rounded-full px-2 py-1.5 border shadow-sm transition-all ${
+                      canPlayProfileAudio
+                        ? "bg-white/95 border-border hover:border-[hsl(38_82%_50%)]/40 hover:shadow-md"
+                        : "bg-muted/70 border-border/60"
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      onClick={handleProfileAudioToggle}
+                      disabled={!canPlayProfileAudio}
+                      aria-label="Listen to profile audio overview"
+                      className={`w-8 h-8 rounded-full inline-flex items-center justify-center transition-colors shrink-0 ${
+                        canPlayProfileAudio ? "text-white" : "bg-muted text-muted-foreground cursor-not-allowed"
+                      }`}
+                      style={canPlayProfileAudio ? iconContainerStyle : undefined}
+                    >
+                      {isProfilePlaying ? (
+                        <Pause className="w-3.5 h-3.5" />
+                      ) : (
+                        <Play className="w-3.5 h-3.5 ml-0.5" />
+                      )}
+                    </button>
+
+                    <span className="text-[11px] font-semibold tracking-[0.08em] uppercase text-foreground/80 whitespace-nowrap">
+                      Listen
+                    </span>
+
+                    <div className="h-7 w-[7.5rem] lg:w-[10.5rem] rounded-full bg-muted/60 px-2 inline-flex items-center">
+                      <input
+                        type="range"
+                        min={0}
+                        max={profileMaxTime}
+                        step={0.01}
+                        value={Math.min(profileCurrentTime, profileMaxTime)}
+                        onChange={(e) => handleProfileSeek(Number(e.target.value))}
+                        disabled={!canPlayProfileAudio}
+                        aria-label="Seek profile audio overview"
+                        className={`w-full h-1.5 appearance-none rounded-full ${
+                          canPlayProfileAudio ? "accent-[hsl(var(--forest))] cursor-pointer" : "accent-muted cursor-not-allowed"
+                        }`}
+                      />
+                    </div>
+
+                    <span className="text-[11px] text-muted-foreground whitespace-nowrap pr-0.5 tabular-nums">
+                      {profileTimeLabel}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
 
               {/* Core Expertise Cards */}
               <motion.div

@@ -67,7 +67,7 @@ const ValuePropositionSection = () => {
             Problems I Solve
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Complex challenges that require analytical precision and strategic clarity.
+            When the stakes are high, I bring signal, structure, and a defensible path forward.
           </p>
         </div>
 
@@ -142,10 +142,10 @@ const ValuePropositionSection = () => {
 
             <div className="p-6">
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-                Find the signal in the noise
+                Strategic Clarity
               </h3>
-              <p className="text-sm text-muted-foreground">
-                M&A Due Diligence • Equity Valuation • Capital Allocation
+              <p className="text-sm text-muted-foreground mb-3">
+                I cut through conflicting data so leaders can move with confidence.
               </p>
             </div>
           </motion.div>
@@ -218,10 +218,10 @@ const ValuePropositionSection = () => {
 
             <div className="p-6">
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-                Quantify the uncertainty
+                Risk Intelligence
               </h3>
-              <p className="text-sm text-muted-foreground">
-                Scenario Modelling • Stress Testing • Portfolio Optimisation
+              <p className="text-sm text-muted-foreground mb-3">
+                I turn uncertain risk into clear evidence leaders can act on.
               </p>
             </div>
           </motion.div>
@@ -378,10 +378,10 @@ const ValuePropositionSection = () => {
 
             <div className="p-6">
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-                From noise to decision
+                Defensible Decisions
               </h3>
-              <p className="text-sm text-muted-foreground">
-                Equity Analysis • Derivative Valuation • Strategic Pricing
+              <p className="text-sm text-muted-foreground mb-3">
+                I turn raw data into analysis leaders can defend and execute.
               </p>
             </div>
           </motion.div>
@@ -393,3 +393,4 @@ const ValuePropositionSection = () => {
 };
 
 export default ValuePropositionSection;
+

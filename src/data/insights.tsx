@@ -1,17 +1,21 @@
 import automationTrapHero from "@/assets/insights/automation-trap-hero.webp";
-import phoneboothImage from "@/assets/insights/phonebooth.webp";
 import aiWarningSignsHero from "@/assets/insights/ai-warning-signs-hero.webp";
+import phoneboothImage from "@/assets/insights/phonebooth.webp";
+import aiMistakesChecklistHero from "@/assets/insights/10-ai-agent-implementation-mistakes-checklist.webp";
+import aiPowerWorkflowHero from "@/assets/insights/2026-ai-power-workflow.webp";
+import blackMirrorLessonsHero from "@/assets/insights/black-mirror-lessons-ai-leaders.webp";
+import wrongQuestionHero from "@/assets/insights/wrong-question-ai-leader.webp";
 
 // Tech Stack logos
 import chatgptLogo from "@/assets/insights/tech-stack/chatgpt-logo.png";
-import claudeLogo from "@/assets/insights/tech-stack/claude-logo.png";
-import geminiLogo from "@/assets/insights/tech-stack/gemini-logo.png";
+import claudeLogo from "@/assets/insights/tech-stack/claude-logo.webp";
+import geminiLogo from "@/assets/insights/tech-stack/gemini-logo.webp";
 import grokLogo from "@/assets/insights/tech-stack/grok-logo.png";
 import kimiLogo from "@/assets/insights/tech-stack/kimi-logo.png";
-import antigravityLogo from "@/assets/insights/tech-stack/antigravity-logo.png";
-import claudeCodeLogo from "@/assets/insights/tech-stack/claude-code-logo.png";
+import antigravityLogo from "@/assets/insights/tech-stack/gemini-logo.webp";
+import claudeCodeLogo from "@/assets/insights/tech-stack/claude-logo.webp";
 import codexLogo from "@/assets/insights/tech-stack/codex-logo.png";
-import geminiCliLogo from "@/assets/insights/tech-stack/gemini-cli-logo.png";
+import geminiCliLogo from "@/assets/insights/tech-stack/gemini-logo.webp";
 import githubLogo from "@/assets/insights/tech-stack/github-logo.png";
 import lovableLogo from "@/assets/insights/tech-stack/lovable-logo.png";
 import replitLogo from "@/assets/insights/tech-stack/replit-logo.png";
@@ -25,9 +29,642 @@ export interface ArticleContent {
     content: React.ReactNode;
 }
 
+const implementationChecklistItems = [
+    {
+        order: "10",
+        title: "Starting with tools, not business outcomes",
+        problem: "Teams buy platforms first and define value later.",
+        check: "Document two measurable outcomes with owners and target dates before any procurement decision.",
+    },
+    {
+        order: "09",
+        title: "Running pilots with no path to daily use",
+        problem: "Pilots look good in demos and disappear in operations.",
+        check: "Define launch conditions, who owns delivery, and how the team will run it after the pilot.",
+    },
+    {
+        order: "08",
+        title: "Ignoring data readiness",
+        problem: "Incomplete, inaccessible, or inconsistent data breaks trust quickly.",
+        check: "Confirm data quality thresholds, access controls, and where the data came from before sharing output with business users.",
+    },
+    {
+        order: "07",
+        title: "No human oversight design",
+        problem: "Automation is deployed without clear review and escalation boundaries.",
+        check: "Define exactly when humans review, approve, override, and escalate agent outputs.",
+    },
+    {
+        order: "06",
+        title: "Treating security and compliance as a late step",
+        problem: "Controls are bolted on after workflows are already built.",
+        check: "Complete privacy, policy, and audit-trail requirements before production design is signed off.",
+    },
+    {
+        order: "05",
+        title: "Measuring activity instead of impact",
+        problem: "Teams track prompts and usage but not business improvement.",
+        check: "Track cycle time, quality, risk reduction, and financial impact against a pre-launch baseline.",
+    },
+    {
+        order: "04",
+        title: "Poor fit with existing workflows",
+        problem: "Agent output sits in a side tool and never reaches operational systems.",
+        check: "Map how data moves from source systems to the people making decisions, end to end.",
+    },
+    {
+        order: "03",
+        title: "Weak change management and training",
+        problem: "People are asked to adopt new behaviour with no practical support.",
+        check: "Create role-specific training, practical guides, and adoption targets with line manager accountability.",
+    },
+    {
+        order: "02",
+        title: "No operating rhythm for improvement",
+        problem: "After launch, teams stop reviewing failures and performance drift.",
+        check: "Run a weekly improvement loop covering errors, exceptions, user feedback, and model changes.",
+    },
+    {
+        order: "01",
+        title: "Diffused ownership across departments",
+        problem: "Everyone is involved but no one is accountable for outcomes.",
+        check: "Assign one accountable leader for delivery outcomes, risk posture, and value delivery.",
+    },
+] as const;
+
+const wrongQuestionReframes = [
+    {
+        order: "09",
+        wrongQuestion: "Which AI tool should we buy first?",
+        betterQuestion: "Where are we losing margin, speed, or trust first?",
+        note: "Start with business pain, not product demos.",
+    },
+    {
+        order: "08",
+        wrongQuestion: "Can this model fix our department?",
+        betterQuestion: "Which workflow are we redesigning end to end?",
+        note: "A better model cannot rescue a broken operating model.",
+    },
+    {
+        order: "07",
+        wrongQuestion: "How fast can we deploy AI?",
+        betterQuestion: "What must improve besides speed?",
+        note: "Faster bad work is still bad work.",
+    },
+    {
+        order: "06",
+        wrongQuestion: "Can we run a quick pilot?",
+        betterQuestion: "What goes live in operations after this pilot?",
+        note: "If nothing changes on Monday morning, it was theatre.",
+    },
+    {
+        order: "05",
+        wrongQuestion: "Can IT, Data, and Ops co-own this?",
+        betterQuestion: "Who is directly accountable for outcomes?",
+        note: "Shared ownership often turns into no ownership.",
+    },
+    {
+        order: "04",
+        wrongQuestion: "Can we sort data quality later?",
+        betterQuestion: "What minimum data standard is non-negotiable now?",
+        note: "Polished dashboards cannot rescue weak inputs.",
+    },
+    {
+        order: "03",
+        wrongQuestion: "Will teams just adapt?",
+        betterQuestion: "What friction disappears for frontline staff in week one?",
+        note: "If people keep side spreadsheets, adoption has failed.",
+    },
+    {
+        order: "02",
+        wrongQuestion: "Can we track general improvement?",
+        betterQuestion: "Which two KPIs move, by how much, by when?",
+        note: "If success is vague, failure hides in plain sight.",
+    },
+    {
+        order: "01",
+        wrongQuestion: "Can we add AI on top of current work?",
+        betterQuestion: "What are we stopping this quarter to create capacity?",
+        note: "Transformation needs subtraction, not just addition.",
+    },
+] as const;
+
+const blackMirrorLessons = [
+    {
+        order: "01",
+        title: "Nosedive (Season 3, Episode 1)",
+        premise: "Every interaction becomes a score.",
+        lesson: "Any score or rating your AI uses can be biased; don’t let a single number quietly decide people’s future.",
+    },
+    {
+        order: "02",
+        title: "Common People (Season 7, Episode 1)",
+        premise: "Life-changing tech is packaged like a subscription tier.",
+        lesson: "How you price and package matters; if it feels exploitative, people will turn against you.",
+    },
+    {
+        order: "03",
+        title: "Joan Is Awful (Season 6, Episode 1)",
+        premise: "Consent buried in terms and conditions becomes a weapon at scale.",
+        lesson: "If people don’t truly understand what they’re agreeing to with their data or likeness, you’re burning long‑term trust.",
+    },
+    {
+        order: "04",
+        title: "The Entire History of You (Season 1, Episode 3)",
+        premise: "Perfect recall sounds useful, then quickly becomes unbearable.",
+        lesson: "Don’t record everything just because you can; choose what really needs to be stored and what should fade.",
+    },
+    {
+        order: "05",
+        title: "Hang the DJ (Season 4, Episode 4)",
+        premise: "People outsource decisions because the system feels safer than their own judgement.",
+        lesson: "Treat algorithms as advice, not orders; if you stop thinking for yourself, the system is really in charge.",
+    },
+    {
+        order: "06",
+        title: "USS Callister (Season 4, Episode 1)",
+        premise: "One talented person with unchecked control creates a dangerous private system.",
+        lesson: "No one person should have unchecked control over powerful tech or data; even your smartest talent needs boundaries.",
+    },
+    {
+        order: "07",
+        title: "Fifteen Million Merits (Season 1, Episode 2)",
+        premise: "Attention becomes currency and people become inputs.",
+        lesson: "If you pay your systems to chase attention, they’ll ignore what actually matters, like safety, trust, and wellbeing.",
+    },
+    {
+        order: "08",
+        title: "Be Right Back (Season 2, Episode 1)",
+        premise: "A synthetic version of someone feels impressive, then deeply wrong.",
+        lesson: "Don't rush to replace human interaction with AI (e.g. customer support). Automation can copy a script, but it can't replace the relationship.",
+    },
+    {
+        order: "09",
+        title: "Hated in the Nation (Season 3, Episode 6)",
+        premise: "Digital outrage and autonomous systems combine into real-world harm.",
+        lesson: "Once you connect automated systems to the real world, small online problems can turn into big real‑life damage very fast.",
+    },
+    {
+        order: "10",
+        title: "Smithereens (Season 5, Episode 2)",
+        premise: "Product choices feel abstract in HQ and brutal in real life.",
+        lesson: "The way you design notifications, feeds, and workflows changes how people behave; “just a feature” can become a safety issue.",
+    },
+] as const;
+
+const largeNumberStyle = {
+    background: "linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--gold) / 0.3) 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+} as const;
+
 export const articles: Record<string, ArticleContent> = {
+    "10-ai-agent-implementation-mistakes-checklist": {
+        title: "10 AI Agent Implementation Mistakes Leaders Make: A Practical Checklist",
+        category: "AI STRATEGY",
+        description: "A field-tested checklist to avoid the most expensive AI agent rollout mistakes across scope, data, risk, governance, and adoption.",
+        image: aiMistakesChecklistHero,
+        content: (
+            <>
+                <section className="mb-16 lg:mb-24">
+                    <p className="text-foreground/85 mb-4 text-lg text-justify">
+                        Most AI agent rollouts do not fail because the model is weak. They fail because implementation discipline is weak.
+                    </p>
+                    <p className="text-foreground/85 mb-4 text-lg text-justify">
+                        This checklist gives leaders a practical way to spot failure patterns early and correct them before cost, trust, and momentum are lost.
+                    </p>
+                    <p className="text-foreground/85 text-justify">
+                        If your team is moving from pilot activity to scaled operations, use this as a working review guide in weekly delivery meetings.
+                    </p>
+                    <p className="text-foreground/70 text-sm lg:text-base text-justify leading-relaxed mt-4">
+                        Pair this with{" "}
+                        <a href="/insights/2026-ai-power-workflow" className="text-[hsl(var(--gold))] hover:underline">
+                            3-Step 2026 AI Power Workflow
+                        </a>{" "}
+                        for workflow design and{" "}
+                        <a href="/insights/the-automation-trap" className="text-[hsl(var(--gold))] hover:underline">
+                            12 Signs You're About to Automate the Wrong Thing
+                        </a>{" "}
+                        for pre-investment risk checks.
+                    </p>
+                </section>
+
+                <section className="mb-16 lg:mb-24">
+                    <h2 className="inline-block px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase mb-6" style={{ background: "hsl(var(--gold) / 0.15)", color: "hsl(var(--gold))" }}>
+                        Top 10 Implementation Mistakes and Checks
+                    </h2>
+
+                    <div className="space-y-20 lg:space-y-32">
+                        {implementationChecklistItems.map((item, index) => (
+                            <section key={item.order} className="group">
+                                <div className={`flex flex-col ${index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"} lg:items-center gap-6 lg:gap-12`}>
+                                    <div className={`flex-shrink-0 ${index % 2 === 1 ? "lg:text-right" : ""}`}>
+                                        <span
+                                            className="block font-display text-8xl lg:text-[10rem] font-bold leading-none opacity-20 group-hover:opacity-40 transition-opacity duration-500"
+                                            style={largeNumberStyle}
+                                        >
+                                            {item.order}
+                                        </span>
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-4">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-foreground/70 text-lg leading-relaxed mb-4">
+                                            {item.problem}
+                                        </p>
+                                        <p className="text-foreground/85 leading-relaxed">
+                                            <span className="font-semibold text-[hsl(var(--gold))]">Check: </span>
+                                            {item.check}
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="mt-24 mb-10 lg:mb-14 p-8 lg:p-12 rounded-3xl text-center relative overflow-hidden group/cta" style={{ background: "hsl(var(--gold) / 0.05)", border: "1px solid hsl(var(--gold) / 0.15)" }}>
+                    <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+                        Use This Checklist in Your Next Steering Meeting
+                    </h2>
+                    <p className="text-foreground/85 mb-8 max-w-2xl mx-auto">
+                        The fastest way to improve implementation quality is to pressure-test one active initiative against these 10 checks this week.
+                    </p>
+                    <a
+                        href="/#contact"
+                        className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-sm transition-all hover:gap-3"
+                        style={{ background: "hsl(var(--gold))", color: "hsl(var(--navy))" }}
+                    >
+                        Book an AI Implementation Review
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </section>
+            </>
+        ),
+    },
+    "2026-ai-power-workflow": {
+        title: "3-Step 2026 AI Power Workflow: From Rough Idea to Studio-Ready Content",
+        category: "AI & TECHNOLOGY",
+        description: "One workflow to rule them all. How to combine OpenAI's Prompt Optimizer, Deep Research (Perplexity/Gemini/ChatGPT), and NotebookLM into a single insight engine.",
+        image: aiPowerWorkflowHero,
+        content: (
+            <>
+                <section className="mb-16 lg:mb-24">
+                    <p className="text-foreground/85 text-lg lg:text-xl leading-relaxed mb-4 text-justify">
+                        Most people use one AI tool for everything. They ask ChatGPT to write a report, get a generic average, and then spend hours editing it.
+                    </p>
+                    <p className="text-foreground text-xl lg:text-2xl font-display leading-tight mb-4 text-justify">
+                        <strong>The real power of AI in 2026 is not in one model, but in the handoffs between tools.</strong>
+                    </p>
+                    <p className="text-foreground/85 text-lg leading-relaxed text-justify">
+                        This is the workflow I use to go from a rough idea to high-quality content in under 30 minutes. It combines specialist tools, OpenAI, Perplexity, and NotebookLM, into one clear process.
+                    </p>
+                </section>
+
+                <section className="mb-16 lg:mb-24">
+                    <div className="group p-8 lg:p-10 rounded-3xl border border-border/50 bg-card/60 backdrop-blur-xl relative overflow-hidden shadow-[0_20px_40px_-30px_rgba(0,0,0,0.5)] ring-1 ring-white/10 hover:-translate-y-0.5 hover:border-[hsl(var(--gold)/0.35)] hover:shadow-[0_28px_58px_-20px_rgba(212,175,55,0.28)] transition-all duration-500">
+                        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ background: "linear-gradient(135deg, hsl(var(--gold)), transparent)" }} />
+                        <div className="absolute -inset-x-20 -top-24 h-40 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-25 pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--gold)) 0%, transparent 70%)" }} />
+
+                        <h3 className="font-display text-xl lg:text-2xl font-semibold mb-6 flex items-center gap-3">
+                            <span className="w-8 h-8 rounded-lg bg-[hsl(var(--gold))] text-[hsl(var(--navy))] flex items-center justify-center font-bold text-sm">⚡</span>
+                            The Logic Chain
+                        </h3>
+
+                        <div className="flex flex-col md:flex-row gap-4 items-center justify-between text-sm font-medium">
+                            <div className="group/logic-card relative overflow-hidden flex-1 p-4 rounded-xl bg-background border border-border text-center w-full transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--gold)/0.45)] hover:shadow-[0_12px_30px_-20px_rgba(212,175,55,0.55)]">
+                                <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/logic-card:opacity-100 pointer-events-none" style={{ background: "linear-gradient(180deg, hsl(var(--gold)/0.08), transparent 55%)" }} />
+                                <div className="relative z-10 text-[hsl(var(--gold))] mb-1 text-xs uppercase tracking-wider">Step 1</div>
+                                <div className="relative z-10 font-semibold text-base">Optimize</div>
+                                <div className="relative z-10 text-muted-foreground text-xs mt-1">OpenAI Prompt Optimizer</div>
+                            </div>
+
+                            <div className="hidden md:block text-muted-foreground transition-transform duration-300 group-hover:translate-x-0.5">→</div>
+
+                            <div className="group/logic-card relative overflow-hidden flex-1 p-4 rounded-xl bg-background border border-border text-center w-full transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--forest)/0.45)] hover:shadow-[0_12px_30px_-20px_rgba(45,106,79,0.45)]">
+                                <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/logic-card:opacity-100 pointer-events-none" style={{ background: "linear-gradient(180deg, hsl(var(--forest)/0.08), transparent 55%)" }} />
+                                <div className="relative z-10 text-[hsl(var(--forest))] mb-1 text-xs uppercase tracking-wider">Step 2</div>
+                                <div className="relative z-10 font-semibold text-base">Research</div>
+                                <div className="relative z-10 text-muted-foreground text-xs mt-1">Perplexity / Deep Research</div>
+                            </div>
+
+                            <div className="hidden md:block text-muted-foreground transition-transform duration-300 group-hover:translate-x-0.5">→</div>
+
+                            <div className="group/logic-card relative overflow-hidden flex-1 p-4 rounded-xl bg-background border border-border text-center w-full transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--terracotta)/0.45)] hover:shadow-[0_12px_30px_-20px_rgba(196,106,79,0.45)]">
+                                <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/logic-card:opacity-100 pointer-events-none" style={{ background: "linear-gradient(180deg, hsl(var(--terracotta)/0.09), transparent 55%)" }} />
+                                <div className="relative z-10 text-[hsl(var(--terracotta))] mb-1 text-xs uppercase tracking-wider">Step 3</div>
+                                <div className="relative z-10 font-semibold text-base">Synthesize</div>
+                                <div className="relative z-10 text-muted-foreground text-xs mt-1">NotebookLM</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="space-y-12 lg:space-y-16">
+                    {/* Step 1 */}
+                    <div className="group">
+                        <div className="flex items-start gap-4 mb-4">
+                            <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white bg-[hsl(var(--gold))]">1</span>
+                            <h2 className="font-display text-2xl lg:text-3xl font-semibold mt-0.5">The Setup: OpenAI Prompt Optimizer</h2>
+                        </div>
+                        <div className="pl-12">
+                            <p className="text-foreground/80 text-base lg:text-lg leading-relaxed mb-4">
+                                Most prompts fail because they are vague. "Write me a strategy for X" gets you a Wikipedia summary.
+                            </p>
+                            <p className="text-foreground/80 text-base lg:text-lg leading-relaxed mb-6">
+                                Instead of guessing, use <strong><a href="https://platform.openai.com/chat/edit?models=gpt-5&optimize=true" className="text-[hsl(var(--gold))] hover:underline" target="_blank" rel="noopener noreferrer">OpenAI's Prompt Optimizer</a></strong>. It uses goal-based prompt customisation and A/B testing to rewrite your instruction before you start.
+                            </p>
+                            <div className="p-5 lg:p-6 rounded-2xl border border-border/60 bg-card/40">
+                                <p className="font-mono text-sm text-foreground/70 mb-2">// Input</p>
+                                <p className="text-foreground italic mb-4">"I need to know about AI agents in finance."</p>
+                                <div className="h-px bg-border/50 mb-4" />
+                                <p className="font-mono text-sm text-[hsl(var(--gold))] mb-2">// Optimized Output</p>
+                                <p className="text-foreground/90 font-medium leading-relaxed">"Act as a Senior Fintech Analyst. Create a comparative analysis of autonomous AI agent adoption in Tier 1 investment banks versus fintech challengers. Focus on three specific workflows: fraud detection, trade reconciliation, and personalized wealth management. Citations required."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Step 2 */}
+                    <div className="group">
+                        <div className="flex items-start gap-4 mb-4">
+                            <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white bg-[hsl(var(--forest))]">2</span>
+                            <h2 className="font-display text-2xl lg:text-3xl font-semibold mt-0.5">The Hunt: Deep Research</h2>
+                        </div>
+                        <div className="pl-12">
+                            <p className="text-foreground/80 text-base lg:text-lg leading-relaxed mb-4">
+                                Do not ask a standard chatbot for facts. It can invent details. Use a tool built for <strong>deep research</strong>.
+                            </p>
+                            <p className="text-foreground/80 text-base lg:text-lg leading-relaxed mb-6">
+                                Take your optimised prompt from Step 1 and run it through one of the leading deep research tools. This step is about depth, citations, and evidence, not creative writing.
+                            </p>
+
+                            <div className="grid md:grid-cols-2 gap-4">
+                                {[
+                                    { name: "Perplexity Pro", url: "https://www.perplexity.ai/", color: "bg-blue-400", desc: "Best for verified, academic-grade citations and quick fact-checking." },
+                                    { name: "Gemini Deep Research", url: "https://gemini.google.com/", color: "bg-green-400", desc: "Best for complex reasoning and integration with your Google Drive docs." },
+                                    { name: "ChatGPT Deep Research", url: "https://chatgpt.com/", color: "bg-purple-400", desc: "Best for creative synthesis and broad-trend identification." },
+                                    { name: "Kimi (Moonshot AI)", url: "https://www.kimi.com/", color: "bg-gray-400", desc: "Best for massive context windows (reading 100+ PDFs at once)." }
+                                ].map((tool) => (
+                                    <div key={tool.name} className="group/card relative overflow-hidden p-5 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/60 hover:-translate-y-1.5 hover:border-[hsl(var(--gold)/0.35)] hover:shadow-[0_16px_36px_-20px_rgba(212,175,55,0.45)] transition-all duration-300">
+                                        <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/card:opacity-100 pointer-events-none" style={{ background: "linear-gradient(170deg, hsl(var(--gold)/0.08), transparent 60%)" }} />
+                                        <h4 className="relative z-10 font-semibold mb-2 flex items-center gap-2">
+                                            <span className={`w-2 h-2 rounded-full ${tool.color} group-hover/card:scale-125 transition-transform`}></span>
+                                            <a href={tool.url} target="_blank" rel="noopener noreferrer" className="hover:text-[hsl(var(--gold))] transition-colors">
+                                                {tool.name}
+                                            </a>
+                                        </h4>
+                                        <p className="text-sm text-foreground/70 leading-relaxed relative z-10">{tool.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div className="group">
+                        <div className="flex items-start gap-4 mb-4">
+                            <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white bg-[hsl(var(--terracotta))]">3</span>
+                            <h2 className="font-display text-2xl lg:text-3xl font-semibold mt-0.5">The Synthesis: NotebookLM</h2>
+                        </div>
+                        <div className="pl-12">
+                            <p className="text-foreground/80 text-base lg:text-lg leading-relaxed mb-4">
+                                You now have a dense, factual report. But reading 50 pages of research is friction. <strong><a href="https://notebooklm.google/" target="_blank" rel="noopener noreferrer" className="text-[hsl(var(--gold))] hover:underline">NotebookLM</a> turns research into conversation.</strong>
+                            </p>
+                            <p className="text-foreground/80 text-base lg:text-lg leading-relaxed mb-6">
+                                Upload your Deep Research report (PDF/Doc) directly into NotebookLM.
+                            </p>
+                            <ul className="space-y-3 mb-8">
+                                <li className="flex items-start gap-3">
+                                    <span className="text-[hsl(var(--terracotta))] mt-1">●</span>
+                                    <span><strong>Audio Overview:</strong> Generate a "Deep Dive" podcast. Two AI hosts discuss your exact research. Listen to it on your commute to absorb the strategy.</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-[hsl(var(--terracotta))] mt-1">●</span>
+                                    <span><strong>Study Guide:</strong> Ask it to create a briefing note or FAQ based <em>only</em> on the sources you uploaded, without making things up.</span>
+                                </li>
+                            </ul>
+
+                            <div className="mt-12 p-6 rounded-2xl bg-card/30 backdrop-blur-md border border-[hsl(var(--gold)/0.3)] shadow-[0_8px_32px_rgba(0,0,0,0.12)] relative overflow-hidden group/tip">
+                                <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--gold)/0.05)] to-transparent pointer-events-none" />
+                                <div className="relative z-10">
+                                    <strong className="text-[hsl(var(--gold))] font-display uppercase tracking-wider text-xs block mb-2">Pro Tip</strong>
+                                    <p className="text-foreground/90 leading-relaxed italic">
+                                        As of Feb 2026, NotebookLM includes built-in deep research tools. If you prefer staying in one place, you can skip Step 2 and let NotebookLM find sources for you.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="mt-24 mb-10 lg:mb-14 p-10 lg:p-14 rounded-3xl text-center relative overflow-hidden group/cta" style={{ background: "hsl(var(--gold) / 0.04)", border: "1px solid hsl(var(--gold) / 0.15)" }}>
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[hsl(var(--gold)/0.03)] pointer-events-none" />
+                    <h2 className="font-display text-2xl lg:text-4xl font-semibold text-foreground mb-6 relative z-10">
+                        Build Your Own Insight Engine
+                    </h2>
+                    <p className="text-foreground/85 mb-10 max-w-2xl mx-auto text-lg lg:text-xl leading-relaxed relative z-10">
+                        Tools are widely available. The workflow is where strategy shows. If you need help designing AI workflows that deliver business value, let's talk.
+                    </p>
+                    <a
+                        href="/#contact"
+                        className="relative z-10 inline-flex items-center gap-3 px-12 py-5 rounded-full font-medium text-base transition-all hover:gap-5 hover:shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:scale-[1.02] active:scale-[0.98]"
+                        style={{ background: "hsl(var(--gold))", color: "hsl(var(--navy))" }}
+                    >
+                        Book a Workflow Strategy Session
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </section>
+            </>
+        ),
+    },
+    "wrong-question-ai-leader": {
+        title: "9 Reasons \"What Can AI Do for Me?\" Is the Wrong Question for Leaders",
+        category: "AI STRATEGY",
+        description: "A practical guide with 9 better questions that turn AI talk into clear ownership and measurable outcomes.",
+        image: wrongQuestionHero,
+        content: (
+            <>
+                <section className="mb-16 lg:mb-24">
+                    <p className="text-foreground/85 mb-4 text-lg text-justify">
+                        Most leadership teams start AI planning with the wrong brief: <strong>&quot;What can this tool do for us?&quot;</strong>
+                    </p>
+                    <p className="text-foreground/85 mb-4 text-lg text-justify">
+                        Better results come when you start with business constraints, accountability, and measurable outcomes, then pick tools second.
+                    </p>
+                    <p className="text-foreground/85 text-justify">
+                        If your roof is leaking, a ladder, hammer, and sealant are tools. The real problem is still the leak. AI is exactly the same.
+                    </p>
+                </section>
+
+                <section className="mb-16 lg:mb-24">
+                    <div className="space-y-20 lg:space-y-32">
+                        {wrongQuestionReframes.map((item, index) => (
+                            <section key={item.order} className="group">
+                                <div className={`flex flex-col ${index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"} lg:items-center gap-6 lg:gap-12`}>
+                                    <div className={`flex-shrink-0 ${index % 2 === 1 ? "lg:text-right" : ""}`}>
+                                        <span
+                                            className="block font-display text-8xl lg:text-[10rem] font-bold leading-none opacity-20 group-hover:opacity-40 transition-opacity duration-500"
+                                            style={largeNumberStyle}
+                                        >
+                                            {item.order}
+                                        </span>
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-4">
+                                            Wrong question: &quot;{item.wrongQuestion}&quot;
+                                        </h3>
+                                        <p className="text-foreground/85 text-lg leading-relaxed mb-4">
+                                            <span className="font-semibold text-[hsl(var(--gold))]">Better question: </span>
+                                            {item.betterQuestion}
+                                        </p>
+                                        <p className="text-foreground/70 text-lg leading-relaxed">
+                                            {item.note}
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="mb-10 lg:mb-14 p-8 lg:p-12 rounded-2xl text-center" style={{ background: "hsl(var(--gold) / 0.08)", border: "1px solid hsl(var(--gold) / 0.2)" }}>
+                    <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+                        The Bottom Line
+                    </h2>
+                    <p className="text-foreground/85 mb-8 max-w-2xl mx-auto">
+                        AI can absolutely be part of strategy. Buying tools on its own is not a strategy. Leaders who ask better questions get outcomes. Everyone else gets expensive motion.
+                    </p>
+                    <a
+                        href="/#contact"
+                        className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-sm transition-all hover:gap-3"
+                        style={{ background: "hsl(var(--gold))", color: "hsl(var(--navy))" }}
+                    >
+                        Book a Strategy Session
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </section>
+            </>
+        ),
+    },
+    "black-mirror-lessons-ai-leaders": {
+        title: "10 Black Mirror AI Lessons Every Business Leader Should Know",
+        category: "AI & SOCIETY",
+        description: "A practical watchlist linking 10 Black Mirror episodes to real AI governance, risk, and strategy decisions.",
+        image: blackMirrorLessonsHero,
+        content: (
+            <>
+                <section className="mb-16 lg:mb-24">
+                    <p className="text-foreground/85 mb-4 text-lg text-justify">
+                        <strong>Black Mirror</strong> is useful for leaders because it shows how technical choices become commercial, legal, and trust failures.
+                    </p>
+                    <p className="text-foreground/85 mb-4 text-lg text-justify">
+                        Treat each episode as a practical check on incentives, governance, and accountability before your own AI rollout scales.
+                    </p>
+                    <p className="text-foreground/85 text-justify">
+                        This is a practical watchlist for business leaders who want clearer AI strategy decisions, not just interesting dystopian stories.
+                    </p>
+                    <p className="text-foreground/70 text-sm lg:text-base text-justify leading-relaxed mt-4">
+                        Pair this with{" "}
+                        <a href="/insights/wrong-question-ai-leader" className="text-[hsl(var(--gold))] hover:underline">
+                            9 Reasons &quot;What Can AI Do for Me?&quot; Is the Wrong Question for Leaders
+                        </a>{" "}
+                        and{" "}
+                        <a href="/insights/why-ai-projects-fail" className="text-[hsl(var(--gold))] hover:underline">
+                            Why Your AI Project Is Failing
+                        </a>{" "}
+                        to move from warning signs to action.
+                    </p>
+                </section>
+
+                <section className="mb-16 lg:mb-24">
+                    <h2 className="inline-block px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase mb-6" style={{ background: "hsl(var(--gold) / 0.15)", color: "hsl(var(--gold))" }}>
+                        10 Black Mirror AI Lessons for Business Leaders
+                    </h2>
+
+                    <div className="space-y-20 lg:space-y-32">
+                        {blackMirrorLessons.map((item, index) => (
+                            <section key={item.order} className="group">
+                                <div className={`flex flex-col ${index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"} lg:items-center gap-6 lg:gap-12`}>
+                                    <div className={`flex-shrink-0 ${index % 2 === 1 ? "lg:text-right" : ""}`}>
+                                        <span
+                                            className="block font-display text-8xl lg:text-[10rem] font-bold leading-none opacity-20 group-hover:opacity-40 transition-opacity duration-500"
+                                            style={largeNumberStyle}
+                                        >
+                                            {item.order}
+                                        </span>
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-4">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-foreground/70 text-lg leading-relaxed mb-4">
+                                            {item.premise}
+                                        </p>
+                                        <p className="text-foreground/85 leading-relaxed">
+                                            <span className="font-semibold text-[hsl(var(--gold))]">Lesson: </span>
+                                            {item.lesson}
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="mt-24 mb-16 lg:mb-24">
+                    <div className="relative p-8 lg:p-12 rounded-3xl border border-[hsl(var(--gold)/0.3)] bg-card/40 backdrop-blur-md overflow-hidden group shadow-[0_8px_32px_rgba(0,0,0,0.15)]">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--gold)/0.05)] to-transparent pointer-events-none" />
+
+                        <div className="relative z-10 text-center mb-8">
+                            <h2 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-4 leading-tight">
+                                Governance is a key part of the strategy
+                            </h2>
+                            <p className="text-foreground/85 max-w-2xl mx-auto text-lg leading-relaxed">
+                                In almost every Black Mirror episode, the technology worked perfectly. The failure was not code; it was a lack of clear governance. True AI leadership means defining the boundaries <em>before</em> you scale.
+                                <br /><br />
+                                <strong className="text-[hsl(var(--gold))]">If your governance cannot stop a feature that generates short-term profit but destroys long-term trust, you do not have a strategy. You have a roadmap to a crisis.</strong>
+                            </p>
+                        </div>
+
+
+                    </div>
+                </section>
+
+                <section className="mt-24 mb-10 lg:mb-14 p-10 lg:p-14 rounded-3xl text-center relative overflow-hidden group/cta" style={{ background: "hsl(var(--gold) / 0.05)", border: "1px solid hsl(var(--gold) / 0.15)" }}>
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[hsl(var(--gold)/0.03)] pointer-events-none" />
+                    <h2 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-4">
+                        Turn Strategy into Safeguards
+                    </h2>
+                    <p className="text-foreground/85 mb-8 max-w-2xl mx-auto">
+                        We help leaders build AI governance that enables speed, not blocks it.
+                    </p>
+                    <a
+                        href="/#contact"
+                        className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-sm transition-all hover:gap-3 bg-foreground text-background hover:bg-foreground/90"
+                    >
+                        Discuss AI Ethics & Strategy
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </section>
+            </>
+        ),
+    },
     "the-automation-trap": {
-        title: "The Automation Trap: 12 Signs You're About to Automate the Wrong Thing",
+        title: "12 Signs You're About to Automate the Wrong Thing: The Automation Trap",
         category: "AUTOMATION & PROCESS",
         description: "Automation promises speed, but speed in the wrong direction is expensive failure.",
         image: automationTrapHero,
@@ -209,7 +846,7 @@ export const articles: Record<string, ArticleContent> = {
         ),
     },
     "why-ai-projects-fail": {
-        title: "Why Your AI Project Is Failing: 8 Warning Signs",
+        title: "8 Warning Signs Your AI Project Is Failing",
         category: "AI STRATEGY",
         description: "AI projects do not crash. They fade quietly while everyone stays busy.",
         image: aiWarningSignsHero,
@@ -531,7 +1168,7 @@ export const articles: Record<string, ArticleContent> = {
                                         New Starters Learn "How We Really Do It"
                                     </h2>
                                     <p className="text-foreground/70 text-lg leading-relaxed">
-                                        Training shows the SOP. Week two, someone shows them the real way.
+                                        Training shows the official process. In week two, someone shows them the real way.
                                     </p>
                                 </div>
                             </div>
@@ -658,26 +1295,37 @@ export const articles: Record<string, ArticleContent> = {
         ),
     },
     "12-ai-tools-in-my-tech-stack": {
-        title: "12 AI Tools That Power My Entire Workflow (2026 Edition)",
+        title: "12 AI Tools for Productivity in My 2026 Tech Stack",
         category: "AI & TECHNOLOGY",
-        description: "From intelligent chatbots to autonomous coding agents, these 12 tools define how I work. Here's my complete AI tech stack.",
+        description: "My practical list of 12 AI tools for productivity in 2026, covering chatbots, coding agents, and developer platforms I use in real workflows.",
         image: techStackHero,
         content: (
             <>
                 <section className="mb-12 lg:mb-16">
                     <p className="text-foreground/85 text-lg lg:text-xl text-justify leading-relaxed mb-4">
-                        The AI landscape moves fast. Every week brings a new tool, a new model, a new promise. <strong>But which ones actually deliver?</strong>
+                        The AI landscape moves fast. Every week brings a new launch, a new model, and a new claim. <strong>But which AI tools actually improve day-to-day productivity?</strong>
                     </p>
                     <p className="text-foreground/85 text-lg text-justify leading-relaxed">
-                        After months of testing, iterating, and building, these are the 12 AI tools that power my entire workflow: from research to development to deployment.
+                        After months of testing, keeping what works, and replacing what does not, these are the 12 AI tools in my current stack for research, coding, and shipping.
+                    </p>
+                    <p className="text-foreground/70 text-sm lg:text-base text-justify leading-relaxed mt-4">
+                        If you are planning adoption across teams, pair this list with{" "}
+                        <a href="/insights/why-ai-projects-fail" className="text-[hsl(var(--gold))] hover:underline">
+                            Why Your AI Project Is Failing
+                        </a>{" "}
+                        and{" "}
+                        <a href="/insights/the-automation-trap" className="text-[hsl(var(--gold))] hover:underline">
+                            The Automation Trap
+                        </a>{" "}
+                        for implementation risks and rollout decisions.
                     </p>
                 </section>
 
                 {/* AI Chatbots Section */}
                 <section className="mb-12 lg:mb-16">
-                    <div className="inline-block px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase mb-6" style={{ background: "hsl(var(--gold) / 0.15)", color: "hsl(var(--gold))" }}>
-                        AI Chatbots
-                    </div>
+                    <h2 className="inline-block px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase mb-6" style={{ background: "hsl(var(--gold) / 0.15)", color: "hsl(var(--gold))" }}>
+                        Best AI Chatbots for Productivity
+                    </h2>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                         {/* ChatGPT */}
@@ -749,9 +1397,9 @@ export const articles: Record<string, ArticleContent> = {
 
                 {/* AI Coding Assistants Section */}
                 <section className="mb-12 lg:mb-16">
-                    <div className="inline-block px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase mb-6" style={{ background: "hsl(var(--gold) / 0.15)", color: "hsl(var(--gold))" }}>
-                        AI Coding Assistants
-                    </div>
+                    <h2 className="inline-block px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase mb-6" style={{ background: "hsl(var(--gold) / 0.15)", color: "hsl(var(--gold))" }}>
+                        Best AI Coding Assistants for Developers
+                    </h2>
 
                     <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
                         {/* Antigravity */}
@@ -810,9 +1458,9 @@ export const articles: Record<string, ArticleContent> = {
 
                 {/* Developer Platforms Section */}
                 <section className="mb-12 lg:mb-16">
-                    <div className="inline-block px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase mb-6" style={{ background: "hsl(var(--gold) / 0.15)", color: "hsl(var(--gold))" }}>
-                        Developer Platforms
-                    </div>
+                    <h2 className="inline-block px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase mb-6" style={{ background: "hsl(var(--gold) / 0.15)", color: "hsl(var(--gold))" }}>
+                        AI Developer Platforms for Shipping Faster
+                    </h2>
 
                     <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
                         {/* GitHub */}
