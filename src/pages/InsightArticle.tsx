@@ -31,6 +31,8 @@ const ARTICLE_SEO: Record<string, ArticleSeoMeta> = {
       "ai governance checklist",
       "ai change management",
     ],
+    publishedTime: "2026-02-15T09:00:00+02:00",
+    modifiedTime: "2026-02-18T09:00:00+02:00",
   },
   "wrong-question-ai-leader": {
     metaTitle: "9 Reasons \"What Can AI Do for Me?\" Is the Wrong Question for Leaders | Moses Nyanzi",
@@ -44,6 +46,8 @@ const ARTICLE_SEO: Record<string, ArticleSeoMeta> = {
       "leadership ai decisions",
       "ai implementation leadership",
     ],
+    publishedTime: "2026-02-14T09:00:00+02:00",
+    modifiedTime: "2026-02-18T09:00:00+02:00",
   },
   "black-mirror-lessons-ai-leaders": {
     metaTitle: "10 Black Mirror AI Lessons Every Business Leader Should Know | Moses Nyanzi",
@@ -57,6 +61,8 @@ const ARTICLE_SEO: Record<string, ArticleSeoMeta> = {
       "ai governance lessons",
       "ai risk leadership",
     ],
+    publishedTime: "2026-02-13T09:00:00+02:00",
+    modifiedTime: "2026-02-18T09:00:00+02:00",
   },
   "2026-ai-power-workflow": {
     metaTitle: "3-Step 2026 AI Power Workflow: From Rough Idea to Studio-Ready Content | Moses Nyanzi",
@@ -70,6 +76,8 @@ const ARTICLE_SEO: Record<string, ArticleSeoMeta> = {
       "ai content workflow",
       "executive ai workflow",
     ],
+    publishedTime: "2026-02-12T09:00:00+02:00",
+    modifiedTime: "2026-02-18T09:00:00+02:00",
   },
   "12-ai-tools-in-my-tech-stack": {
     metaTitle: "12 AI Tools for Productivity in My 2026 Tech Stack | Moses Nyanzi",
@@ -98,6 +106,8 @@ const ARTICLE_SEO: Record<string, ArticleSeoMeta> = {
       "process automation mistakes",
       "automation strategy",
     ],
+    publishedTime: "2026-02-07T09:00:00+02:00",
+    modifiedTime: "2026-02-18T09:00:00+02:00",
   },
   "why-ai-projects-fail": {
     metaTitle: "8 Warning Signs Your AI Project Is Failing | Moses Nyanzi",
@@ -111,6 +121,8 @@ const ARTICLE_SEO: Record<string, ArticleSeoMeta> = {
       "ai governance execution",
       "ai project turnaround",
     ],
+    publishedTime: "2026-02-05T09:00:00+02:00",
+    modifiedTime: "2026-02-18T09:00:00+02:00",
   },
   "5-signs-always-done-this-way": {
     metaTitle: "5 Signs Your Organisation Is Trapped in \"We Have Always Done It This Way\" | Moses Nyanzi",
@@ -124,6 +136,8 @@ const ARTICLE_SEO: Record<string, ArticleSeoMeta> = {
       "operating model inertia",
       "business transformation blockers",
     ],
+    publishedTime: "2026-02-03T09:00:00+02:00",
+    modifiedTime: "2026-02-18T09:00:00+02:00",
   },
 };
 
@@ -349,6 +363,7 @@ const InsightArticle = ({ slug }: { slug: string }) => {
         <meta name="author" content={SITE_NAME} />
         <meta name="keywords" content={seo.keywords.join(", ")} />
         <link rel="canonical" href={articleUrl} />
+        <link rel="alternate" hrefLang="en-za" href={articleUrl} />
 
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content={SITE_NAME} />

@@ -5,6 +5,18 @@ const SITE_URL = "https://mosesnyanzi.co.za";
 const ARTICLES_SOURCE_PATH = path.join("src", "data", "articles.ts");
 const SITEMAP_OUTPUT_PATH = path.join("public", "sitemap.xml");
 
+/** Per-slug last-modified dates.  Unmapped slugs fall back to today. */
+const SLUG_LASTMOD = {
+  "5-signs-always-done-this-way": "2026-02-03",
+  "why-ai-projects-fail": "2026-02-05",
+  "the-automation-trap": "2026-02-07",
+  "12-ai-tools-in-my-tech-stack": "2026-02-18",
+  "2026-ai-power-workflow": "2026-02-12",
+  "black-mirror-lessons-ai-leaders": "2026-02-13",
+  "wrong-question-ai-leader": "2026-02-14",
+  "10-ai-agent-implementation-mistakes-checklist": "2026-02-18",
+};
+
 const readArticleSlugs = () => {
   const source = fs.readFileSync(ARTICLES_SOURCE_PATH, "utf8");
   const slugMatches = [...source.matchAll(/id:\s*"([^"]+)"/g)];
@@ -15,12 +27,13 @@ const readArticleSlugs = () => {
 const buildSitemap = (slugs) => {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
-    { loc: `${SITE_URL}/`, changefreq: "monthly", priority: "1.0" },
-    { loc: `${SITE_URL}/insights`, changefreq: "weekly", priority: "0.8" },
+    { loc: `${SITE_URL}/`, changefreq: "monthly", priority: "1.0", lastmod: today },
+    { loc: `${SITE_URL}/insights`, changefreq: "weekly", priority: "0.8", lastmod: today },
     ...slugs.map((slug) => ({
       loc: `${SITE_URL}/insights/${slug}`,
       changefreq: "monthly",
       priority: "0.7",
+      lastmod: SLUG_LASTMOD[slug] ?? today,
     })),
   ];
 
@@ -29,7 +42,7 @@ const buildSitemap = (slugs) => {
       (url) => [
         "  <url>",
         `    <loc>${url.loc}</loc>`,
-        `    <lastmod>${today}</lastmod>`,
+        `    <lastmod>${url.lastmod}</lastmod>`,
         `    <changefreq>${url.changefreq}</changefreq>`,
         `    <priority>${url.priority}</priority>`,
         "  </url>",

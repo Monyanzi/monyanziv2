@@ -24,6 +24,15 @@ const insightsItemListSchema = {
   })),
 };
 
+const insightsBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+    { "@type": "ListItem", position: 2, name: "Insights", item: INSIGHTS_URL },
+  ],
+};
+
 const toIsoDuration = (duration: string) => {
   const [minutes, seconds] = duration.split(":").map((value) => Number(value));
   if (Number.isNaN(minutes) || Number.isNaN(seconds)) return undefined;
@@ -82,6 +91,7 @@ const Insights = () => {
         <meta name="author" content={SITE_NAME} />
         <meta name="keywords" content="ai strategy insights, automation strategy articles, organisational change guides, ai implementation checklists, moses nyanzi insights" />
         <link rel="canonical" href={INSIGHTS_URL} />
+        <link rel="alternate" hrefLang="en-za" href={INSIGHTS_URL} />
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content={INSIGHTS_URL} />
@@ -104,6 +114,7 @@ const Insights = () => {
         <meta name="twitter:image" content={SOCIAL_IMAGE_URL} />
         <meta name="twitter:image:alt" content="Moses Nyanzi insights page" />
         <script type="application/ld+json">{JSON.stringify(insightsItemListSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(insightsBreadcrumbSchema)}</script>
         {readyAudioSchemas.map((schema, index) => (
           <script key={`audio-schema-${index}`} type="application/ld+json">
             {JSON.stringify(schema)}

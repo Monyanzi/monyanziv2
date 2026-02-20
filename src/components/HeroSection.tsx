@@ -76,10 +76,12 @@ const HeroSection = () => {
         <div className="lg:hidden absolute inset-0 z-0">
           <img
             src={heroProfile}
-            alt="Moses Nyanzi"
+            alt="Moses Nyanzi — actuarial consultant in Johannesburg"
             loading="eager"
             fetchPriority="high"
             decoding="async"
+            width={800}
+            height={1067}
             className="w-full h-full object-cover object-top"
           />
           {/* Enhanced gradient overlay for better text contrast while preserving face visibility */}
@@ -132,6 +134,7 @@ const HeroSection = () => {
                     className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white lg:text-foreground tracking-tight"
                   >
                     Moses<br className="hidden sm:block" /> Nyanzi
+                    <span className="sr-only"> — Actuarial Consultant South Africa</span>
                   </motion.h1>
                   <motion.span
                     initial={{ opacity: 0 }}
@@ -162,20 +165,18 @@ const HeroSection = () => {
               >
                 <div className="flex items-center">
                   <div
-                    className={`inline-flex items-center gap-2 rounded-full px-2 py-1.5 border shadow-sm transition-all ${
-                      canPlayProfileAudio
+                    className={`inline-flex items-center gap-2 rounded-full px-2 py-1.5 border shadow-sm transition-all ${canPlayProfileAudio
                         ? "bg-white/95 border-border hover:border-[hsl(38_82%_50%)]/40 hover:shadow-md"
                         : "bg-muted/70 border-border/60"
-                    }`}
+                      }`}
                   >
                     <button
                       type="button"
                       onClick={handleProfileAudioToggle}
                       disabled={!canPlayProfileAudio}
                       aria-label="Listen to profile audio overview"
-                      className={`w-8 h-8 rounded-full inline-flex items-center justify-center transition-colors shrink-0 ${
-                        canPlayProfileAudio ? "text-white" : "bg-muted text-muted-foreground cursor-not-allowed"
-                      }`}
+                      className={`w-8 h-8 rounded-full inline-flex items-center justify-center transition-colors shrink-0 ${canPlayProfileAudio ? "text-white" : "bg-muted text-muted-foreground cursor-not-allowed"
+                        }`}
                       style={canPlayProfileAudio ? iconContainerStyle : undefined}
                     >
                       {isProfilePlaying ? (
@@ -199,9 +200,8 @@ const HeroSection = () => {
                         onChange={(e) => handleProfileSeek(Number(e.target.value))}
                         disabled={!canPlayProfileAudio}
                         aria-label="Seek profile audio overview"
-                        className={`w-full h-1.5 appearance-none rounded-full ${
-                          canPlayProfileAudio ? "accent-[hsl(var(--forest))] cursor-pointer" : "accent-muted cursor-not-allowed"
-                        }`}
+                        className={`w-full h-1.5 appearance-none rounded-full ${canPlayProfileAudio ? "accent-[hsl(var(--forest))] cursor-pointer" : "accent-muted cursor-not-allowed"
+                          }`}
                       />
                     </div>
 
@@ -317,10 +317,12 @@ const HeroSection = () => {
                 >
                   <img
                     src={heroProfile}
-                    alt="Moses Nyanzi"
+                    alt="Moses Nyanzi — actuarial consultant in Johannesburg"
                     loading="eager"
                     fetchPriority="high"
                     decoding="async"
+                    width={800}
+                    height={1067}
                     className="w-full h-full object-cover object-top"
                   />
                   {/* Gradient overlay */}
