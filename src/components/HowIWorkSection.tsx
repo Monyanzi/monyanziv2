@@ -14,7 +14,7 @@ const engagementSteps = [
     {
         number: "02",
         title: "Analyse",
-        description: "Gather data, stress-test assumptions, identify what others have missed.",
+        description: "Gather data and stress-test assumptions",
         accent: "hsl(var(--gold))",
     },
     {
