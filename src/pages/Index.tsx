@@ -2,12 +2,12 @@ import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import MarqueeTicker from "@/components/MarqueeTicker";
-import AboutSection from "@/components/AboutSection";
 import ValuePropositionSection from "@/components/ValuePropositionSection";
-import ExpertiseSection from "@/components/ExpertiseSection";
+import HowIWorkSection from "@/components/HowIWorkSection";
 import ProofSection from "@/components/ProofSection";
 import EngagementSection from "@/components/EngagementSection";
 import BackToTop from "@/components/BackToTop";
+import StatsCounter from "@/components/StatsCounter";
 import { SITE_NAME, SITE_URL, SOCIAL_IMAGE_URL } from "@/config/site";
 
 const HOME_URL = `${SITE_URL}/`;
@@ -173,9 +173,9 @@ const Index = () => {
         <Navigation />
         <HeroSection />
         <MarqueeTicker />
+        <StatsCounter />
         <ValuePropositionSection />
-        <AboutSection />
-        <ExpertiseSection />
+        <HowIWorkSection />
         <ProofSection />
         <EngagementSection />
         <BackToTop />

@@ -1,9 +1,11 @@
 import { useState, useEffect, lazy, Suspense, useMemo } from "react";
+import { AnimatePresence } from "motion/react";
 import { Analytics } from "@vercel/analytics/react";
 import { SmoothScrollProvider } from "./components/SmoothScrollProvider";
 import CookieConsent from "./components/CookieConsent";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import BottomNavigation from "./components/BottomNavigation";
+import PageTransition from "./components/PageTransition";
 import { hasAnalyticsConsent } from "./utils/cookieConsent";
 
 const Index = lazy(() => import("./pages/Index"));
@@ -90,14 +92,14 @@ const App = () => {
     };
   }, []);
 
-  const page = useMemo(() => {
-    if (path === "/" || path === "") return <Index />;
-    if (path === "/insights" || path === "/insights/") return <Insights />;
+  const { page, pageKey } = useMemo(() => {
+    if (path === "/" || path === "") return { page: <Index />, pageKey: "home" };
+    if (path === "/insights" || path === "/insights/") return { page: <Insights />, pageKey: "insights" };
 
     const articleMatch = path.match(articlePathRegex);
-    if (articleMatch) return <InsightArticle slug={articleMatch[1]} />;
+    if (articleMatch) return { page: <InsightArticle slug={articleMatch[1]} />, pageKey: `article-${articleMatch[1]}` };
 
-    return <NotFound />;
+    return { page: <NotFound />, pageKey: "404" };
   }, [path]);
 
   return (
@@ -106,7 +108,11 @@ const App = () => {
       {shouldLoadGoogleAnalytics && <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />}
       <SmoothScrollProvider>
         <Suspense fallback={<main className="min-h-screen bg-background" aria-busy="true" />}>
-          {page}
+          <AnimatePresence mode="wait">
+            <PageTransition pageKey={pageKey}>
+              {page}
+            </PageTransition>
+          </AnimatePresence>
         </Suspense>
       </SmoothScrollProvider>
       <BottomNavigation currentPath={path} />

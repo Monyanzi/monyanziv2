@@ -1,29 +1,5 @@
 import { useState, useEffect, RefObject, useRef } from 'react';
-
-const scrollListeners = new Set<() => void>();
-let isWindowScrollBound = false;
-
-const sharedScrollHandler = () => {
-  scrollListeners.forEach((listener) => listener());
-};
-
-const subscribeToScroll = (listener: () => void) => {
-  scrollListeners.add(listener);
-
-  if (!isWindowScrollBound) {
-    window.addEventListener('scroll', sharedScrollHandler, { passive: true });
-    isWindowScrollBound = true;
-  }
-
-  return () => {
-    scrollListeners.delete(listener);
-
-    if (scrollListeners.size === 0 && isWindowScrollBound) {
-      window.removeEventListener('scroll', sharedScrollHandler);
-      isWindowScrollBound = false;
-    }
-  };
-};
+import { subscribeToScroll } from './scrollBus';
 
 /**
  * Optimized scroll-based color shift hook with RAF throttling.
@@ -40,7 +16,7 @@ export function useScrollColorShift(
   const [currentColor, setCurrentColor] = useState(colors.start);
   const rafRef = useRef<number>(0);
   const lastColorRef = useRef(colors.start);
-  
+
   // Store latest colors in ref to avoid stale closures
   const colorsRef = useRef(colors);
   colorsRef.current = colors;
@@ -52,10 +28,10 @@ export function useScrollColorShift(
     const handleScroll = () => {
       // Skip if RAF already scheduled
       if (rafRef.current) return;
-      
+
       rafRef.current = requestAnimationFrame(() => {
         rafRef.current = 0;
-        
+
         const rect = section.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         const sectionTop = rect.top;
@@ -88,7 +64,7 @@ export function useScrollColorShift(
 
     handleScroll();
     const unsubscribe = subscribeToScroll(handleScroll);
-    
+
     return () => {
       unsubscribe();
       if (rafRef.current) {
@@ -140,6 +116,7 @@ export function useScrollPulse(elementRef: RefObject<HTMLElement | null>) {
 // Pre-computed style factory functions - creates objects only when parameters change
 const colorShiftStyleCache = new Map<string, React.CSSProperties>();
 const pulseGlowStyleCache = new Map<string, React.CSSProperties>();
+const PULSE_CACHE_MAX = 64;
 
 export const scrollAnimationStyles = {
   colorShift: (color: string): React.CSSProperties => {
@@ -155,6 +132,11 @@ export const scrollAnimationStyles = {
   pulseGlow: (isPulsing: boolean, intensity: number, glowColor: string): React.CSSProperties => {
     const key = `${isPulsing}-${intensity.toFixed(2)}-${glowColor}`;
     if (!pulseGlowStyleCache.has(key)) {
+      // Evict oldest entry when cache is full
+      if (pulseGlowStyleCache.size >= PULSE_CACHE_MAX) {
+        const oldest = pulseGlowStyleCache.keys().next().value!;
+        pulseGlowStyleCache.delete(oldest);
+      }
       pulseGlowStyleCache.set(key, {
         transform: isPulsing ? `scale(${1 + intensity * 0.08})` : 'scale(1)',
         boxShadow: isPulsing

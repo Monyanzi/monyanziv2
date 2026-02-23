@@ -4,10 +4,10 @@ import fs from "node:fs";
 
 const vercel = JSON.parse(fs.readFileSync("vercel.json", "utf8"));
 const siteConfig = fs.readFileSync("src/config/site.ts", "utf8");
-const articlesSource = fs.readFileSync("src/data/articles.ts", "utf8");
+const articlesSource = fs.readFileSync("src/data/insights.tsx", "utf8");
 const insightArticleSource = fs.readFileSync("src/pages/InsightArticle.tsx", "utf8");
 
-const articleSlugs = [...new Set([...articlesSource.matchAll(/id:\s*"([^"]+)"/g)].map((match) => match[1]))];
+const articleSlugs = [...new Set([...articlesSource.matchAll(/"([^"]+)":\s*\{/g)].map((match) => match[1]))];
 const seoBlockStart = insightArticleSource.indexOf("const ARTICLE_SEO");
 const seoBlockEnd = insightArticleSource.indexOf("const RELATED_SLUGS_BY_ARTICLE");
 const seoBlock =

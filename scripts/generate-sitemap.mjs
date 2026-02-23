@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SITE_URL = "https://mosesnyanzi.co.za";
-const ARTICLES_SOURCE_PATH = path.join("src", "data", "articles.ts");
+const ARTICLES_SOURCE_PATH = path.join("src", "data", "insights.tsx");
 const SITEMAP_OUTPUT_PATH = path.join("public", "sitemap.xml");
 
 /** Per-slug last-modified dates.  Unmapped slugs fall back to today. */
@@ -19,7 +19,8 @@ const SLUG_LASTMOD = {
 
 const readArticleSlugs = () => {
   const source = fs.readFileSync(ARTICLES_SOURCE_PATH, "utf8");
-  const slugMatches = [...source.matchAll(/id:\s*"([^"]+)"/g)];
+  // Match Record keys: "slug-name": {
+  const slugMatches = [...source.matchAll(/"([^"]+)":\s*\{/g)];
   const slugs = slugMatches.map((match) => match[1].trim()).filter(Boolean);
   return [...new Set(slugs)];
 };
@@ -55,7 +56,7 @@ const buildSitemap = (slugs) => {
 
 const slugs = readArticleSlugs();
 if (!slugs.length) {
-  throw new Error("No article slugs found in src/data/articles.ts");
+  throw new Error("No article slugs found in src/data/insights.tsx");
 }
 
 const sitemapXml = buildSitemap(slugs);

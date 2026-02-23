@@ -42,7 +42,7 @@ const ValuePropositionSection = () => {
   const gradientY = useTransform(scrollYProgress, [0, 1], [200, -200]);
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "hsl(40 35% 98%)" }}>
+    <section ref={sectionRef} className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "hsl(var(--section-bg))" }}>
 
       <motion.div
         style={{ y: gradientY }}
@@ -81,7 +81,7 @@ const ValuePropositionSection = () => {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5 }}
             whileHover={{ y: -8, transition: { duration: 0.2 } }}
-            className="group rounded-2xl bg-white border border-border overflow-hidden hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
+            className="group rounded-2xl bg-card border border-border overflow-hidden hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
           >
             {/* Visual area */}
             <div className="h-56 p-6 relative overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 30%) 100%)" }}>
@@ -157,7 +157,7 @@ const ValuePropositionSection = () => {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
             whileHover={{ y: -8, transition: { duration: 0.2 } }}
-            className="group rounded-2xl bg-white border border-border overflow-hidden hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
+            className="group rounded-2xl bg-card border border-border overflow-hidden hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
           >
             <div className="h-56 p-6 relative overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(210 45% 55%) 0%, hsl(210 45% 45%) 100%)" }}>
               {/* Distribution visual */}
@@ -233,7 +233,7 @@ const ValuePropositionSection = () => {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
             whileHover={{ y: -8, transition: { duration: 0.2 } }}
-            className="group rounded-2xl bg-white border border-border overflow-hidden hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
+            className="group rounded-2xl bg-card border border-border overflow-hidden hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
           >
             <div className="h-56 p-6 relative overflow-hidden flex items-center justify-center" style={{ background: "linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(210 55% 20%) 100%)" }}>
               {/* Data transformation pipeline */}

@@ -15,10 +15,10 @@ import kimiLogo from "@/assets/insights/tech-stack/kimi-logo.png";
 import antigravityLogo from "@/assets/insights/tech-stack/gemini-logo.webp";
 import claudeCodeLogo from "@/assets/insights/tech-stack/claude-logo.webp";
 import codexLogo from "@/assets/insights/tech-stack/codex-logo.png";
-import geminiCliLogo from "@/assets/insights/tech-stack/gemini-logo.webp";
 import githubLogo from "@/assets/insights/tech-stack/github-logo.png";
 import lovableLogo from "@/assets/insights/tech-stack/lovable-logo.png";
 import replitLogo from "@/assets/insights/tech-stack/replit-logo.png";
+import notebookLmLogo from "@/assets/insights/tech-stack/notebooklm-logo.svg";
 import techStackHero from "@/assets/insights/tech-stack/tech-stack-hero.jpg";
 
 export interface ArticleContent {
@@ -1395,10 +1395,10 @@ export const articles: Record<string, ArticleContent> = {
                     </div>
                 </section>
 
-                {/* AI Coding Assistants Section */}
+                {/* AI Coding + Research Tools Section */}
                 <section className="mb-12 lg:mb-16">
                     <h2 className="inline-block px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase mb-6" style={{ background: "hsl(var(--gold) / 0.15)", color: "hsl(var(--gold))" }}>
-                        Best AI Coding Assistants for Developers
+                        AI Coding & Research Tools for Builders
                     </h2>
 
                     <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
@@ -1441,16 +1441,16 @@ export const articles: Record<string, ArticleContent> = {
                             </div>
                         </a>
 
-                        {/* Gemini CLI */}
-                        <a href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener noreferrer" className="group block">
+                        {/* NotebookLM */}
+                        <a href="https://notebooklm.google/" target="_blank" rel="noopener noreferrer" className="group block">
                             <div className="p-5 lg:p-6 rounded-xl border border-border/50 bg-card/30 hover:border-[hsl(var(--gold)/0.3)] hover:bg-card/50 transition-all duration-300 h-full">
                                 <div className="flex items-center gap-4 mb-4">
-                                    <div className="w-12 h-12 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center p-2">
-                                        <img src={geminiCliLogo} alt="Gemini CLI" className="w-full h-full object-contain" />
+                                    <div className="w-12 h-12 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1.5">
+                                        <img src={notebookLmLogo} alt="NotebookLM" className="w-full h-full object-contain" />
                                     </div>
-                                    <h3 className="font-display font-semibold text-foreground group-hover:text-[hsl(var(--gold))] transition-colors">Gemini CLI</h3>
+                                    <h3 className="font-display font-semibold text-foreground group-hover:text-[hsl(var(--gold))] transition-colors">NotebookLM</h3>
                                 </div>
-                                <p className="text-sm text-foreground/70">Google's open-source terminal assistant. Understands your code, automates repetitive tasks, and supports custom add-ons.</p>
+                                <p className="text-sm text-foreground/70">Google's research workspace that grounds responses in your sources, can ingest web pages, YouTube videos, and PDFs, and uses Audio Overviews to turn them into a podcast-style briefing.</p>
                             </div>
                         </a>
                     </div>

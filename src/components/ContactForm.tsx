@@ -8,6 +8,13 @@ interface ContactFormProps {
     onClose: () => void;
 }
 
+const FIELD_IDS = {
+    name: "contact-name",
+    email: "contact-email",
+    subject: "contact-subject",
+    message: "contact-message",
+} as const;
+
 const initialFormData = {
     name: "",
     email: "",
@@ -128,8 +135,9 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                                 <form onSubmit={handleSubmit} className="space-y-5">
                                     <div className="grid sm:grid-cols-2 gap-5">
                                         <div>
-                                            <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Name *</label>
+                                            <label htmlFor={FIELD_IDS.name} className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Name *</label>
                                             <input
+                                                id={FIELD_IDS.name}
                                                 type="text"
                                                 required
                                                 value={formData.name}
@@ -139,8 +147,9 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Email *</label>
+                                            <label htmlFor={FIELD_IDS.email} className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Email *</label>
                                             <input
+                                                id={FIELD_IDS.email}
                                                 type="email"
                                                 required
                                                 value={formData.email}
@@ -152,8 +161,9 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Subject</label>
+                                        <label htmlFor={FIELD_IDS.subject} className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Subject</label>
                                         <input
+                                            id={FIELD_IDS.subject}
                                             type="text"
                                             value={formData.subject}
                                             onChange={handleSubjectChange}
@@ -163,8 +173,9 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Message *</label>
+                                        <label htmlFor={FIELD_IDS.message} className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Message *</label>
                                         <textarea
+                                            id={FIELD_IDS.message}
                                             required
                                             value={formData.message}
                                             onChange={handleMessageChange}

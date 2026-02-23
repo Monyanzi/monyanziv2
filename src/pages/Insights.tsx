@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
 import ArticleCard from "@/components/insights/ArticleCard";
@@ -6,11 +6,23 @@ import CategoryFilter from "@/components/insights/CategoryFilter";
 import SortSelect, { type SortOption } from "@/components/insights/SortSelect";
 import AudioBriefingCard from "@/components/audio/AudioBriefingCard";
 import SiteFooter from "@/components/SiteFooter";
-import { articles, categories } from "@/data/articles";
+import { articles as articlesRecord } from "@/data/insights";
 import { insightsArticlesBriefing } from "@/data/audioBriefings";
 import { SITE_NAME, SITE_URL, SOCIAL_IMAGE_URL } from "@/config/site";
+import SearchModal from "@/components/SearchModal";
 
 const INSIGHTS_URL = `${SITE_URL}/insights`;
+
+// Derive flat array from the Record for listing/filtering
+const articles = Object.entries(articlesRecord).map(([id, a]) => ({
+  id,
+  title: a.title,
+  category: a.category,
+  description: a.description,
+  image: a.image,
+}));
+
+const categories = [...new Set(articles.map((a) => a.category))];
 
 const insightsItemListSchema = {
   "@context": "https://schema.org",
@@ -55,6 +67,19 @@ const readyAudioSchemas = [insightsArticlesBriefing]
 const Insights = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [sortOption, setSortOption] = useState<SortOption>("default");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  // Cmd+K / Ctrl+K to open search
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
 
   const handleCategoryChange = useCallback((category: string | null) => {
     setActiveCategory(category);
@@ -130,7 +155,7 @@ const Insights = () => {
           <div
             className="absolute inset-0 -z-10"
             style={{
-              background: "linear-gradient(135deg, hsl(40 35% 98%) 0%, hsl(210 45% 98%) 50%, hsl(40 35% 98%) 100%)"
+              background: "hsl(var(--section-bg))"
             }}
           />
 
@@ -158,15 +183,27 @@ const Insights = () => {
             </a>
 
             <header className="max-w-3xl">
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-[1.1] mb-5">
-                <span className="relative inline-block">
-                  <span className="relative z-10">Insights</span>
-                  <span
-                    className="absolute bottom-2 left-0 right-0 h-3 -z-0"
-                    style={{ background: "hsl(var(--gold) / 0.25)" }}
-                  />
-                </span>
-              </h1>
+              <div className="flex items-center gap-4">
+                <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-[1.1]">
+                  <span className="relative inline-block">
+                    <span className="relative z-10">Insights</span>
+                    <span
+                      className="absolute bottom-2 left-0 right-0 h-3 -z-0"
+                      style={{ background: "hsl(var(--gold) / 0.25)" }}
+                    />
+                  </span>
+                </h1>
+                <button
+                  onClick={() => setIsSearchOpen(true)}
+                  aria-label="Search articles (Ctrl+K)"
+                  className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all mt-2"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                  </svg>
+                </button>
+              </div>
             </header>
           </div>
         </section>
@@ -232,6 +269,7 @@ const Insights = () => {
 
         <SiteFooter />
       </main>
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>
   );
 };

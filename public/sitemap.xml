@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mosesnyanzi.co.za/</loc>
-    <lastmod>2026-02-20</lastmod>
+    <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://mosesnyanzi.co.za/insights</loc>
-    <lastmod>2026-02-20</lastmod>
+    <lastmod>2026-02-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mosesnyanzi.co.za/insights/10-ai-agent-implementation-mistakes-checklist</loc>
     <lastmod>2026-02-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mosesnyanzi.co.za/insights/2026-ai-power-workflow</loc>
+    <lastmod>2026-02-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -27,18 +33,6 @@
   <url>
     <loc>https://mosesnyanzi.co.za/insights/black-mirror-lessons-ai-leaders</loc>
     <lastmod>2026-02-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mosesnyanzi.co.za/insights/2026-ai-power-workflow</loc>
-    <lastmod>2026-02-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mosesnyanzi.co.za/insights/12-ai-tools-in-my-tech-stack</loc>
-    <lastmod>2026-02-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -57,6 +51,12 @@
   <url>
     <loc>https://mosesnyanzi.co.za/insights/5-signs-always-done-this-way</loc>
     <lastmod>2026-02-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mosesnyanzi.co.za/insights/12-ai-tools-in-my-tech-stack</loc>
+    <lastmod>2026-02-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -9,7 +9,7 @@ const EngagementSection = () => {
     <>
       {/* Light navy background */}
       <section id="contact" className="py-20 lg:py-28 relative overflow-hidden"
-        style={{ background: 'hsl(210 45% 96%)' }}>
+        style={{ background: 'hsl(var(--section-bg-alt))' }}>
         {/* Organic floating shapes */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <motion.div
@@ -73,7 +73,7 @@ const EngagementSection = () => {
                 transition={{ delay: 0.3 }}
                 className="text-lg text-muted-foreground text-center mx-auto"
               >
-                Clear analysis. Actionable recommendations. Decisions you can defend.
+                Reach out for a conversation. No obligation, no sales pitch.
               </motion.p>
             </div>
 
@@ -84,7 +84,7 @@ const EngagementSection = () => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
               whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="p-10 lg:p-12 rounded-3xl relative overflow-hidden group cursor-default bg-white border border-border"
+              className="p-10 lg:p-12 rounded-3xl relative overflow-hidden group cursor-default bg-card border border-border"
               style={{ boxShadow: "0 8px 32px -12px rgba(0,0,0,0.1)" }}
             >
               {/* Gradient accent top */}

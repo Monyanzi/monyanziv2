@@ -1,5 +1,6 @@
-import { memo } from "react";
-import { ArrowRight } from "lucide-react";
+import { memo, useCallback, useState } from "react";
+import { ArrowRight, Linkedin, Link2, Check } from "lucide-react";
+import { SITE_URL } from "@/config/site";
 
 interface ArticleCardProps {
   id: string;
@@ -10,7 +11,51 @@ interface ArticleCardProps {
   featured?: boolean;
 }
 
+const ShareOverlay = ({ articleUrl }: { articleUrl: string }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(articleUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(() => { /* ignore */ });
+  }, [articleUrl]);
+
+  const handleLinkedIn = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }, [articleUrl]);
+
+  return (
+    <div className="absolute top-3 right-3 z-10 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+      <button
+        onClick={handleLinkedIn}
+        aria-label="Share on LinkedIn"
+        className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-foreground/70 hover:text-[hsl(var(--gold))] hover:bg-white transition-all shadow-sm"
+      >
+        <Linkedin className="w-3.5 h-3.5" />
+      </button>
+      <button
+        onClick={handleCopy}
+        aria-label="Copy link"
+        className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-foreground/70 hover:text-[hsl(var(--gold))] hover:bg-white transition-all shadow-sm"
+      >
+        {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Link2 className="w-3.5 h-3.5" />}
+      </button>
+    </div>
+  );
+};
+
 const ArticleCard = memo(({ id, category, title, description, image, featured = false }: ArticleCardProps) => {
+  const articleUrl = `${SITE_URL}/insights/${id}`;
+
   if (featured) {
     return (
       <article className="group">
@@ -24,6 +69,7 @@ const ArticleCard = memo(({ id, category, title, description, image, featured = 
                 decoding="async"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
+              <ShareOverlay articleUrl={articleUrl} />
             </div>
 
             <div className="lg:py-6">
@@ -67,6 +113,7 @@ const ArticleCard = memo(({ id, category, title, description, image, featured = 
             decoding="async"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
+          <ShareOverlay articleUrl={articleUrl} />
         </div>
 
         <span
@@ -99,3 +146,4 @@ const ArticleCard = memo(({ id, category, title, description, image, featured = 
 ArticleCard.displayName = "ArticleCard";
 
 export default ArticleCard;
+

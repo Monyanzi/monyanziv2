@@ -8,6 +8,7 @@ import { articles } from "@/data/insights";
 import { insightsArticlesBriefing } from "@/data/audioBriefings";
 import { useLenis } from "@/components/lenisContext";
 import { SITE_URL, SITE_NAME, SOCIAL_IMAGE_URL } from "@/config/site";
+import ShareBar from "@/components/ShareBar";
 
 interface ArticleSeoMeta {
   metaTitle: string;
@@ -202,7 +203,7 @@ const ARTICLE_TOOL_ITEM_LIST: Record<string, string[]> = {
     "Antigravity",
     "Claude Code",
     "Codex",
-    "Gemini CLI",
+    "NotebookLM",
     "GitHub",
     "Lovable",
     "Replit",
@@ -421,6 +422,10 @@ const InsightArticle = ({ slug }: { slug: string }) => {
                 {article.description}
               </p>
             </header>
+
+            <div className="mt-5">
+              <ShareBar url={articleUrl} title={article.title} />
+            </div>
           </div>
         </section>
 
@@ -431,7 +436,6 @@ const InsightArticle = ({ slug }: { slug: string }) => {
               alt={`${article.title} cover image`}
               loading="eager"
               decoding="async"
-              fetchPriority="high"
               className="w-full h-full object-cover"
             />
           </div>
@@ -450,7 +454,7 @@ const InsightArticle = ({ slug }: { slug: string }) => {
             {article.content}
           </article>
 
-          <div className="mt-12 pt-8 border-t border-border">
+          <div className="mt-12 pt-8 border-t border-border flex items-center justify-between flex-wrap gap-4">
             <a
               href="/insights"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group"
@@ -458,6 +462,7 @@ const InsightArticle = ({ slug }: { slug: string }) => {
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               <span className="text-sm font-medium">Back to All Insights</span>
             </a>
+            <ShareBar url={articleUrl} title={article.title} />
           </div>
         </section>
 

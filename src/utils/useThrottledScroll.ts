@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from "react";
+import { subscribeToScroll } from "./scrollBus";
 
 interface ThrottledScrollOptions {
   delay?: number;
@@ -6,31 +7,6 @@ interface ThrottledScrollOptions {
   onThrottle?: () => void;
   runOnMount?: boolean;
 }
-
-const listeners = new Set<() => void>();
-let isListening = false;
-
-const sharedScrollHandler = () => {
-  listeners.forEach((listener) => listener());
-};
-
-const subscribeToSharedScroll = (listener: () => void) => {
-  listeners.add(listener);
-
-  if (!isListening) {
-    window.addEventListener("scroll", sharedScrollHandler, { passive: true });
-    isListening = true;
-  }
-
-  return () => {
-    listeners.delete(listener);
-
-    if (listeners.size === 0 && isListening) {
-      window.removeEventListener("scroll", sharedScrollHandler);
-      isListening = false;
-    }
-  };
-};
 
 /**
  * Optimized throttled scroll hook.
@@ -75,7 +51,7 @@ export const useThrottledScroll = ({
   useEffect(() => {
     mountedRef.current = true;
 
-    const unsubscribe = subscribeToSharedScroll(handler);
+    const unsubscribe = subscribeToScroll(handler);
 
     if (runOnMount) {
       handler();

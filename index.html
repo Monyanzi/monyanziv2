@@ -22,6 +22,10 @@
 </head>
 
 <body>
+  <script>
+    // Prevent FOUC: apply dark class before first paint
+    (function () { var t; try { t = localStorage.getItem("mn-theme") } catch (e) { } if (!t) t = window.matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light"; if (t === "dark") document.documentElement.classList.add("dark") })();
+  </script>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { useThrottledScroll } from "@/utils/useThrottledScroll";
 import { useLenis } from "@/components/lenisContext";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -111,6 +112,7 @@ const Navigation = () => {
                   </a>
                 );
               })}
+              <ThemeToggle />
             </div>
           </div>
         </div>

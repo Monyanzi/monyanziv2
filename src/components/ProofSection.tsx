@@ -3,9 +3,10 @@ import { useRef, useMemo } from "react";
 import { useScrollColorShift, useScrollPulse, scrollAnimationStyles } from "../utils/useScrollColorShift";
 import { useSVGDraw, springBounceConfig } from "../utils/useAdvancedScroll";
 
-// Pre-computed static styles
-const sectionBgStyle = { background: "hsl(40 35% 98%)" } as const;
+const sectionBgStyle = { background: "hsl(var(--section-bg))" } as const;
 const forestGradientStyle = { background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 30%) 100%)" } as const;
+
+
 const navyGradientStyle = { background: "linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(210 55% 20%) 100%)" } as const;
 const forestGradient2Style = { background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 28%) 100%)" } as const;
 
@@ -30,7 +31,6 @@ const automatedBoxStyle = {
 
 const insightsCardStyle = { boxShadow: "0 8px 32px -12px rgba(0,0,0,0.08)" } as const;
 
-// Treemap blocks data - static
 const treemapBlocks = [
     { span: "col-span-2 row-span-2", color: "hsl(var(--forest))", label: "Property" },
     { span: "col-span-2 row-span-1", color: "hsl(var(--navy-rich))", label: "Motor" },
@@ -40,7 +40,6 @@ const treemapBlocks = [
     { span: "col-span-2 row-span-1", color: "hsl(var(--forest-light))", label: "Other" },
 ] as const;
 
-// Color configs for scroll hooks
 const headingColors = {
     start: "hsl(20 55% 53%)",
     mid: "hsl(38 82% 50%)",
@@ -53,7 +52,6 @@ const subtitleColors = {
     end: "hsl(20 55% 53%)",
 } as const;
 
-// Chaos dots for AI section - static
 const chaosDots = [
     { x: 5, y: 8, size: 10 },
     { x: 35, y: 5, size: 8 },
@@ -71,20 +69,16 @@ const ProofSection = () => {
     const stat3Ref = useRef<HTMLDivElement>(null);
     const prefersReducedMotion = useReducedMotion();
 
-    // Scroll-based color shifts
     const headingColor = useScrollColorShift(sectionRef, headingColors);
     const subtitleColor = useScrollColorShift(sectionRef, subtitleColors);
 
-    // Pulsing effects for stat badges
     const pulse1 = useScrollPulse(stat1Ref);
     const pulse2 = useScrollPulse(stat2Ref);
     const pulse3 = useScrollPulse(stat3Ref);
 
-    // Keep draw animation for lower deal-flow card only.
     const dealFlowDraw = useSVGDraw({ threshold: 0.15, duration: 900, delay: 150 });
     const dealFlowProgress = prefersReducedMotion ? 1 : Math.max(0.9, dealFlowDraw.progress);
 
-    // Memoize pulse glow styles to avoid recreation
     const pulse1Style = useMemo(() =>
         scrollAnimationStyles.pulseGlow(pulse1.isPulsing, pulse1.pulseIntensity, "hsl(38 82% 50% / 0.5)"),
         [pulse1.isPulsing, pulse1.pulseIntensity]
@@ -107,7 +101,7 @@ const ProofSection = () => {
                         className="text-xs font-medium tracking-[0.2em] uppercase mb-4 mx-auto w-fit"
                         style={scrollAnimationStyles.colorShift(subtitleColor)}
                     >
-                        Why Clients Trust My Judgement
+                        Proof, Not Promises
                     </p>
                     <h2
                         className="font-display text-3xl lg:text-4xl font-semibold tracking-tight mb-6"
@@ -118,10 +112,7 @@ const ProofSection = () => {
                     <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[hsl(var(--terracotta))] to-transparent mx-auto" />
                 </div>
 
-                {/* Achievement Cards - Top Row with enhanced stagger */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-
-                    {/* 80% Faster - with SVG drawing animation */}
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -131,12 +122,10 @@ const ProofSection = () => {
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-6 flex items-center justify-center relative" style={forestGradientStyle}>
-                            {/* Speedometer gauge with drawing animation */}
                             <svg
                                 className="w-32 h-20"
                                 viewBox="0 0 120 70"
                             >
-                                {/* Background arc (static) */}
                                 <path
                                     d="M 10 65 A 50 50 0 0 1 110 65"
                                     fill="none"
@@ -146,7 +135,6 @@ const ProofSection = () => {
                                     strokeLinecap="round"
                                 />
 
-                                {/* Static foreground arc (iOS Safari-safe) */}
                                 <path
                                     d="M 10 65 A 50 50 0 0 1 110 65"
                                     fill="none"
@@ -155,7 +143,6 @@ const ProofSection = () => {
                                     strokeLinecap="round"
                                 />
 
-                                {/* Fixed needle at ~80% */}
                                 <line
                                     x1="60" y1="65" x2="60" y2="25"
                                     stroke="white"
@@ -167,8 +154,6 @@ const ProofSection = () => {
                                 <circle cx="60" cy="65" r="4" fill="white" />
                             </svg>
 
-
-                            {/* Spring bounce stat badge */}
                             <motion.div
                                 ref={stat1Ref}
                                 className="absolute bottom-4 right-4 text-right rounded-lg px-2 py-1"
@@ -193,7 +178,6 @@ const ProofSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* 6 Months -> 24 Hours */}
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -204,7 +188,6 @@ const ProofSection = () => {
                     >
                         <div className="h-44 p-6 flex items-center justify-center relative" style={navyGradientStyle}>
                             <div className="flex items-center gap-4">
-                                {/* Before: Multiple calendar pages */}
                                 <div className="relative w-16 h-16">
 
                                     {[0, 1, 2, 3, 4].map((i) => (
@@ -228,7 +211,6 @@ const ProofSection = () => {
                                     →
                                 </div>
 
-                                {/* After: Spring bounce glowing circle */}
                                 <motion.div
                                     ref={stat2Ref}
                                     className="relative"
@@ -259,7 +241,6 @@ const ProofSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* $100M+ Managed */}
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -269,7 +250,6 @@ const ProofSection = () => {
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-4 flex items-center justify-center relative" style={forestGradientStyle}>
-                            {/* Treemap */}
                             <div className="grid grid-cols-4 grid-rows-3 gap-1 w-full h-full max-w-[180px]">
                                 {treemapBlocks.map((block, i) => (
                                     <div
@@ -308,10 +288,7 @@ const ProofSection = () => {
                     </motion.div>
                 </div>
 
-                {/* Achievement Cards - Bottom Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
-
-                    {/* M&A Ready */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -321,7 +298,6 @@ const ProofSection = () => {
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
                         <div className="h-44 p-6 flex items-center justify-center" style={navyGradientStyle}>
-                            {/* Deal flow funnel */}
                             <svg
                                 ref={dealFlowDraw.ref as React.RefObject<SVGSVGElement>}
                                 className="w-full h-full max-w-[240px]"
@@ -407,7 +383,6 @@ const ProofSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* AI That Delivers */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -418,7 +393,6 @@ const ProofSection = () => {
                     >
                         <div className="h-44 p-6 flex items-center justify-center relative" style={forestGradient2Style}>
                             <div className="flex items-center gap-6">
-                                {/* Before: Chaos */}
                                 <div className="relative w-20 h-20" style={{ opacity: 0.5 }}>
                                     {chaosDots.map((dot, i) => (
                                         <div
@@ -439,7 +413,6 @@ const ProofSection = () => {
                                     →
                                 </div>
 
-                                {/* After: Clean system */}
                                 <div className="relative w-20 h-20 flex items-center justify-center">
                                     <div
                                         className="w-16 h-16 rounded-xl flex items-center justify-center"
@@ -460,7 +433,6 @@ const ProofSection = () => {
                                 </div>
                             </div>
 
-                            {/* Label */}
                             <div
                                 className="absolute top-3 right-3 px-2 py-1 rounded text-[10px] font-medium text-white/80 bg-white/10"
                             >
@@ -484,7 +456,118 @@ const ProofSection = () => {
                     Results from leadership roles and independent consulting. Client details confidential.
                 </p>
 
-                {/* Insights CTA */}
+                <div className="mt-20 mb-4">
+                    <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center text-xs font-semibold tracking-[0.3em] uppercase mb-3 text-foreground/50"
+                    >
+                        The Data Modernisation Playbook
+                    </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.08 }}
+                        className="text-center text-sm text-muted-foreground max-w-xl mx-auto mb-12"
+                    >
+                        How I took a treaty reinsurance division from spreadsheet chaos to live strategic dashboards.
+                    </motion.p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 relative">
+                        <div
+                            className="absolute top-[2.5rem] left-[20%] right-[20%] h-px hidden sm:block"
+                            style={{
+                                backgroundImage: "repeating-linear-gradient(90deg, hsl(var(--border)) 0, hsl(var(--border)) 6px, transparent 6px, transparent 12px)",
+                            }}
+                        />
+
+                        {[
+                            {
+                                number: "01",
+                                title: "De-Silo",
+                                description: "Consolidated every treaty type and fiscal year from isolated spreadsheets into a unified SQL Server architecture.",
+                                accent: "hsl(var(--forest))",
+                            },
+                            {
+                                number: "02",
+                                title: "Automate",
+                                description: "Replaced manual reporting with triggered data pipelines. Financial reporting now runs on its own.",
+                                accent: "hsl(var(--gold))",
+                            },
+                            {
+                                number: "03",
+                                title: "Synthesize",
+                                description: "Deployed Power BI dashboards connecting Reinsurance and Underwriting. First-ever consolidated Gross-to-Net visibility.",
+                                accent: "hsl(var(--terracotta))",
+                            },
+                        ].map((step, i) => (
+                            <motion.div
+                                key={step.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{
+                                    duration: 0.5,
+                                    delay: i * 0.12,
+                                    ease: [0.34, 1.56, 0.64, 1],
+                                }}
+                                className="relative text-center"
+                            >
+                                <div
+                                    className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center text-sm font-bold text-white relative z-10"
+                                    style={{ background: step.accent }}
+                                >
+                                    {step.number}
+                                </div>
+
+                                <h4 className="font-display text-lg font-semibold text-foreground mb-2">
+                                    {step.title}
+                                </h4>
+                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                    {step.description}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
+                        {[
+                            { value: "30%", label: "capacity freed" },
+                            { value: "80%", label: "faster turnarounds" },
+                            { value: "1st", label: "consolidated view" },
+                        ].map((metric, i) => (
+                            <motion.div
+                                key={metric.label}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
+                                className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card"
+                            >
+                                <span
+                                    className="font-display text-sm font-bold"
+                                    style={{
+                                        background: `linear-gradient(135deg, ${goldColor}, hsl(var(--terracotta)))`,
+                                        WebkitBackgroundClip: "text",
+                                        WebkitTextFillColor: "transparent",
+                                    }}
+                                >
+                                    {metric.value}
+                                </span>
+                                <span className="text-xs text-muted-foreground">{metric.label}</span>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    <p className="text-center text-[10px] text-foreground/40 mt-4">
+                        Treaty Reinsurance Division · Old Mutual Insure
+                    </p>
+                </div>
+
+
+
                 <motion.a
                     href="/insights"
                     initial={{ opacity: 0, y: 20 }}
@@ -492,7 +575,7 @@ const ProofSection = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3, duration: 0.4 }}
                     whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                    className="block max-w-md mx-auto mt-12 p-6 rounded-2xl border border-border bg-white text-center group cursor-pointer"
+                    className="block max-w-md mx-auto mt-12 p-6 rounded-2xl border border-border bg-card text-center group cursor-pointer"
                     style={insightsCardStyle}
                 >
                     <p
@@ -505,7 +588,7 @@ const ProofSection = () => {
                         Insights & Articles
                     </p>
                     <p className="text-sm text-muted-foreground">
-                        Frameworks, case studies, and strategic thinking →
+                        Frameworks, case studies and strategic thinking →
                     </p>
                 </motion.a>
             </div>

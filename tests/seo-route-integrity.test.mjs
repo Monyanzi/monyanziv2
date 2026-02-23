@@ -5,10 +5,10 @@ import fs from "node:fs";
 const indexHtml = fs.readFileSync("index.html", "utf8");
 const vercel = JSON.parse(fs.readFileSync("vercel.json", "utf8"));
 const sitemapXml = fs.readFileSync("public/sitemap.xml", "utf8");
-const articlesSource = fs.readFileSync("src/data/articles.ts", "utf8");
+const articlesSource = fs.readFileSync("src/data/insights.tsx", "utf8");
 
 const sitemapLocs = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-const articleSlugs = [...new Set([...articlesSource.matchAll(/id:\s*"([^"]+)"/g)].map((match) => match[1]))];
+const articleSlugs = [...new Set([...articlesSource.matchAll(/"([^"]+)":\s*\{/g)].map((match) => match[1]))];
 
 const cspHeader = (vercel.headers || [])
   .flatMap((entry) => entry?.headers || [])
