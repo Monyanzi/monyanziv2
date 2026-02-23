@@ -90,6 +90,11 @@ const Navigation = () => {
               MN
             </a>
 
+            {/* Mobile-only theme toggle */}
+            <div className="lg:hidden">
+              <ThemeToggle />
+            </div>
+
             <div className="hidden lg:flex items-center gap-12">
               {navItems.map((item) => {
                 const isActive = isActiveLink(item.href);
