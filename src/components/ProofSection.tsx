@@ -6,9 +6,16 @@ import { useSVGDraw, springBounceConfig } from "../utils/useAdvancedScroll";
 const sectionBgStyle = { background: "hsl(var(--section-bg))" } as const;
 const forestGradientStyle = { background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 30%) 100%)" } as const;
 
-
 const navyGradientStyle = { background: "linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(210 55% 20%) 100%)" } as const;
-const forestGradient2Style = { background: "linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(140 18% 28%) 100%)" } as const;
+
+/* Card 3: deep slate — neutral backdrop so the colourful treemap pops without clashing */
+const slateGradientStyle = { background: "linear-gradient(135deg, hsl(225 18% 20%) 0%, hsl(220 15% 16%) 100%)" } as const;
+
+/* Card 4: teal — visually distinct from the navy used in card 2 */
+const tealGradientStyle = { background: "linear-gradient(135deg, hsl(190 35% 22%) 0%, hsl(185 30% 18%) 100%)" } as const;
+
+/* Card 5: warm charcoal — pairs well with gold accents in the automation icon */
+const charcoalGradientStyle = { background: "linear-gradient(135deg, hsl(30 15% 20%) 0%, hsl(25 12% 16%) 100%)" } as const;
 
 const goldColor = "hsl(var(--gold))" as const;
 const navyColor = "hsl(var(--navy))" as const;
@@ -25,19 +32,19 @@ const statBadgeStyle = {
 } as const;
 
 const automatedBoxStyle = {
-    background: "linear-gradient(135deg, hsl(var(--forest)), hsl(var(--gold)))",
+    background: "linear-gradient(135deg, hsl(43 85% 45%), hsl(30 70% 40%))",
     boxShadow: "0 0 30px hsl(38 82% 50% / 0.3)"
 } as const;
 
 const insightsCardStyle = { boxShadow: "0 8px 32px -12px rgba(0,0,0,0.08)" } as const;
 
 const treemapBlocks = [
-    { span: "col-span-2 row-span-2", color: "hsl(var(--forest))", label: "Property" },
-    { span: "col-span-2 row-span-1", color: "hsl(var(--navy-rich))", label: "Motor" },
-    { span: "col-span-1 row-span-1", color: "hsl(var(--gold))", label: "" },
-    { span: "col-span-1 row-span-1", color: "hsl(var(--terracotta))", label: "" },
-    { span: "col-span-2 row-span-1", color: "hsl(210 35% 45%)", label: "Liability" },
-    { span: "col-span-2 row-span-1", color: "hsl(var(--forest-light))", label: "Other" },
+    { span: "col-span-2 row-span-2", color: "hsl(200 30% 35%)", label: "Property" },
+    { span: "col-span-2 row-span-1", color: "hsl(var(--navy))", label: "Motor" },
+    { span: "col-span-1 row-span-1", color: "hsl(43 80% 45%)", label: "" },
+    { span: "col-span-1 row-span-1", color: "hsl(15 50% 45%)", label: "" },
+    { span: "col-span-2 row-span-1", color: "hsl(240 15% 35%)", label: "Liability" },
+    { span: "col-span-2 row-span-1", color: "hsl(210 20% 30%)", label: "Other" },
 ] as const;
 
 const headingColors = {
@@ -141,6 +148,8 @@ const ProofSection = () => {
                                     stroke="hsl(38 82% 50%)"
                                     strokeWidth="8"
                                     strokeLinecap="round"
+                                    pathLength="1"
+                                    strokeDasharray="0.8 0.2"
                                 />
 
                                 <line
@@ -148,7 +157,7 @@ const ProofSection = () => {
                                     stroke="white"
                                     strokeWidth="2"
                                     strokeLinecap="round"
-                                    transform="rotate(36 60 65)"
+                                    transform="rotate(54 60 65)"
                                 />
 
                                 <circle cx="60" cy="65" r="4" fill="white" />
@@ -172,7 +181,7 @@ const ProofSection = () => {
                             <p className="text-sm text-foreground font-medium mb-1">
                                 Portfolio analytics migration
                             </p>
-                            <p className="text-xs text-muted-foreground">
+                            <p className="text-xs text-muted-foreground text-justify">
                                 Excel → SQL & Power BI • Major insurance group
                             </p>
                         </div>
@@ -235,7 +244,7 @@ const ProofSection = () => {
                             <p className="text-sm text-foreground font-medium mb-1">
                                 Pricing platform rollout
                             </p>
-                            <p className="text-xs text-muted-foreground">
+                            <p className="text-xs text-muted-foreground text-justify">
                                 Real-time rate deployment • Leading insurer
                             </p>
                         </div>
@@ -249,7 +258,7 @@ const ProofSection = () => {
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
-                        <div className="h-44 p-4 flex items-center justify-center relative" style={forestGradientStyle}>
+                        <div className="h-44 p-4 flex items-center justify-center relative" style={slateGradientStyle}>
                             <div className="grid grid-cols-4 grid-rows-3 gap-1 w-full h-full max-w-[180px]">
                                 {treemapBlocks.map((block, i) => (
                                     <div
@@ -281,7 +290,7 @@ const ProofSection = () => {
                             <p className="text-sm text-foreground font-medium mb-1">
                                 Reinsurance portfolio optimisation
                             </p>
-                            <p className="text-xs text-muted-foreground">
+                            <p className="text-xs text-muted-foreground text-justify">
                                 Treaty effectiveness • Old Mutual Insure
                             </p>
                         </div>
@@ -297,7 +306,7 @@ const ProofSection = () => {
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
-                        <div className="h-44 p-6 flex items-center justify-center" style={navyGradientStyle}>
+                        <div className="h-44 p-6 flex items-center justify-center" style={tealGradientStyle}>
                             <svg
                                 ref={dealFlowDraw.ref as React.RefObject<SVGSVGElement>}
                                 className="w-full h-full max-w-[240px]"
@@ -377,8 +386,8 @@ const ProofSection = () => {
                             <p className="text-sm text-foreground font-medium mb-1">
                                 Cash flow valuations & capital structuring
                             </p>
-                            <p className="text-xs text-muted-foreground">
-                                Board-ready analysis • Financial services M&A
+                            <p className="text-xs text-muted-foreground text-justify">
+                                Leader-ready analysis • Financial services M&A
                             </p>
                         </div>
                     </motion.div>
@@ -391,7 +400,7 @@ const ProofSection = () => {
                         whileHover={{ y: -8, transition: { duration: 0.2 } }}
                         className="group rounded-2xl border bg-card border-border overflow-hidden gradient-border-top hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] cursor-default"
                     >
-                        <div className="h-44 p-6 flex items-center justify-center relative" style={forestGradient2Style}>
+                        <div className="h-44 p-6 flex items-center justify-center relative" style={charcoalGradientStyle}>
                             <div className="flex items-center gap-6">
                                 <div className="relative w-20 h-20" style={{ opacity: 0.5 }}>
                                     {chaosDots.map((dot, i) => (
@@ -444,7 +453,7 @@ const ProofSection = () => {
                             <p className="text-sm text-foreground font-medium mb-1">
                                 Automation that actually works
                             </p>
-                            <p className="text-xs text-muted-foreground">
+                            <p className="text-xs text-muted-foreground text-justify">
                                 Deployed systems, not strategy decks • Enterprise
                             </p>
                         </div>
@@ -476,6 +485,7 @@ const ProofSection = () => {
                     </motion.p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 relative">
+                        {/* Connecting line (desktop only) */}
                         <div
                             className="absolute top-[2.5rem] left-[20%] right-[20%] h-px hidden sm:block"
                             style={{
@@ -515,6 +525,7 @@ const ProofSection = () => {
                                 }}
                                 className="relative text-center"
                             >
+                                {/* Number circle */}
                                 <div
                                     className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center text-sm font-bold text-white relative z-10"
                                     style={{ background: step.accent }}
@@ -525,7 +536,7 @@ const ProofSection = () => {
                                 <h4 className="font-display text-lg font-semibold text-foreground mb-2">
                                     {step.title}
                                 </h4>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                <p className="text-sm text-muted-foreground leading-relaxed text-justify">
                                     {step.description}
                                 </p>
                             </motion.div>

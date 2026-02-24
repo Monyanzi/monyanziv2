@@ -144,7 +144,7 @@ const ValuePropositionSection = () => {
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">
                 Strategic Clarity
               </h3>
-              <p className="text-sm text-muted-foreground mb-3">
+              <p className="text-sm text-muted-foreground mb-3 text-justify">
                 I cut through conflicting data so leaders can move with confidence.
               </p>
             </div>
@@ -220,7 +220,7 @@ const ValuePropositionSection = () => {
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">
                 Risk Intelligence
               </h3>
-              <p className="text-sm text-muted-foreground mb-3">
+              <p className="text-sm text-muted-foreground mb-3 text-justify">
                 I turn uncertain risk into clear evidence leaders can act on.
               </p>
             </div>
@@ -380,7 +380,7 @@ const ValuePropositionSection = () => {
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">
                 Defensible Decisions
               </h3>
-              <p className="text-sm text-muted-foreground mb-3">
+              <p className="text-sm text-muted-foreground mb-3 text-justify">
                 I turn raw data into analysis leaders can defend and execute.
               </p>
             </div>

@@ -25,7 +25,7 @@ const SiteFooter = ({ className = "" }: SiteFooterProps) => {
             >
               Strategy. Logic. Results.
             </p>
-            <p className="text-xs text-muted-foreground mt-4 max-w-xs">
+            <p className="text-xs text-muted-foreground mt-4 max-w-xs text-justify">
               Independent consulting for senior leaders who need clarity, speed, and
               results.
             </p>

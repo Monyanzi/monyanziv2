@@ -49,7 +49,7 @@ const expertiseCategories: ExpertiseCategory[] = [
         title: "Strategy & Growth",
         tagline: "Navigate complexity, capture opportunity",
         skills: ["Blue Ocean Strategy", "Business Model Innovation", "M&A Due Diligence", "Strategic Pricing"],
-        detail: "I help leadership teams think bigger. From finding new market opportunities to full M&A due diligence, I use structured analytical frameworks to turn murky strategy questions into clear, defensible decisions. Whether you're evaluating an acquisition target, rethinking pricing, or reassessing market position, I provide the quantitative rigour that gives boards confidence to act.",
+        detail: "I help leadership teams think bigger. From finding new market opportunities to full M&A due diligence, I use structured analytical frameworks to turn murky strategy questions into clear, defensible decisions. Whether you're evaluating an acquisition target, rethinking pricing, or reassessing market position, I provide the quantitative rigour that gives leaders confidence to act.",
         bgColor: "linear-gradient(135deg, hsl(38 82% 50%) 0%, hsl(38 75% 45%) 100%)",
         accentColor: "hsl(38 82% 50%)",
         visual: (
@@ -151,7 +151,7 @@ const expertiseCategories: ExpertiseCategory[] = [
         title: "Analytics & Modelling",
         tagline: "Data -> Decisions you can defend",
         skills: ["SQL, Python, Power BI", "Cash Flow Modelling", "Equity Analysis", "Scenario Modelling"],
-        detail: "I build models that boards trust. From Python-driven cash flow projections to Power BI dashboards that surface anomalies in real time, my work turns raw data into decisions you can defend. Every model comes with documented assumptions, sensitivity analysis and scenario frameworks that make uncertainty manageable.",
+        detail: "I build models that leaders trust. From Python-driven cash flow projections to Power BI dashboards that surface anomalies in real time, my work turns raw data into decisions you can defend. Every model comes with documented assumptions, sensitivity analysis and scenario frameworks that make uncertainty manageable.",
         bgColor: "linear-gradient(135deg, hsl(210 45% 55%) 0%, hsl(210 45% 48%) 100%)",
         accentColor: "hsl(210 45% 55%)",
         visual: (
@@ -392,7 +392,7 @@ const HowIWorkSection = () => {
                                     <h4 className="font-display text-lg font-semibold text-foreground mb-2">
                                         {step.title}
                                     </h4>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                    <p className="text-sm text-muted-foreground leading-relaxed text-justify">
                                         {step.description}
                                     </p>
                                 </motion.div>

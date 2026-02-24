@@ -92,7 +92,7 @@ const ExpertiseModal = ({
                                 ))}
                             </div>
 
-                            <div className="prose prose-sm text-muted-foreground leading-relaxed">
+                            <div className="prose prose-sm text-muted-foreground leading-relaxed text-justify">
                                 <p>{detail}</p>
                             </div>
 
