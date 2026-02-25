@@ -13,7 +13,6 @@ import SearchModal from "@/components/SearchModal";
 
 const INSIGHTS_URL = `${SITE_URL}/insights`;
 
-// Derive flat array from the Record for listing/filtering
 const articles = Object.entries(articlesRecord).map(([id, a]) => ({
   id,
   title: a.title,
@@ -69,7 +68,6 @@ const Insights = () => {
   const [sortOption, setSortOption] = useState<SortOption>("default");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  // Cmd+K / Ctrl+K to open search
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -122,20 +120,14 @@ const Insights = () => {
         <meta property="og:url" content={INSIGHTS_URL} />
         <meta property="og:locale" content="en_ZA" />
         <meta property="og:title" content="Insights on AI, Automation & Strategy | Moses Nyanzi" />
-        <meta
-          property="og:description"
-          content="Strategic diagnostics for leaders navigating automation, process design, and organisational change."
-        />
+        <meta property="og:description" content="Strategic diagnostics for leaders navigating automation, process design, and organisational change." />
         <meta property="og:image" content={SOCIAL_IMAGE_URL} />
         <meta property="og:image:alt" content="Moses Nyanzi insights page" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={INSIGHTS_URL} />
         <meta name="twitter:title" content="Insights on AI, Automation & Strategy | Moses Nyanzi" />
-        <meta
-          name="twitter:description"
-          content="Strategic diagnostics for leaders navigating automation, process design, and organisational change."
-        />
+        <meta name="twitter:description" content="Strategic diagnostics for leaders navigating automation, process design, and organisational change." />
         <meta name="twitter:image" content={SOCIAL_IMAGE_URL} />
         <meta name="twitter:image:alt" content="Moses Nyanzi insights page" />
         <script type="application/ld+json">{JSON.stringify(insightsItemListSchema)}</script>
@@ -150,32 +142,16 @@ const Insights = () => {
       <Navigation />
 
       <main className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <section className="pt-28 pb-4 lg:pt-36 lg:pb-6 relative overflow-hidden">
-          <div
-            className="absolute inset-0 -z-10"
-            style={{
-              background: "hsl(var(--section-bg))"
-            }}
-          />
+        {/* Hero */}
+        <section className="pt-28 pb-6 lg:pt-36 lg:pb-8 relative overflow-hidden">
+          <div className="absolute inset-0 -z-10 bg-[hsl(var(--section-bg))]" />
 
           <div className="container mx-auto px-6 lg:px-12">
             <a
               href="/"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 group"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="group-hover:-translate-x-1 transition-transform"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-x-1 transition-transform">
                 <path d="m12 19-7-7 7-7" />
                 <path d="M19 12H5" />
               </svg>
@@ -184,14 +160,8 @@ const Insights = () => {
 
             <header className="max-w-3xl">
               <div className="flex items-center gap-4">
-                <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-[1.1]">
-                  <span className="relative inline-block">
-                    <span className="relative z-10">Insights</span>
-                    <span
-                      className="absolute bottom-2 left-0 right-0 h-3 -z-0"
-                      style={{ background: "hsl(var(--gold) / 0.25)" }}
-                    />
-                  </span>
+                <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-[1.08] tracking-tight">
+                  Insights
                 </h1>
                 <button
                   onClick={() => setIsSearchOpen(true)}
@@ -204,6 +174,9 @@ const Insights = () => {
                   </svg>
                 </button>
               </div>
+              <p className="text-base lg:text-lg text-muted-foreground mt-3 max-w-xl leading-relaxed">
+                Strategic diagnostics for leaders navigating automation, AI, and organisational change.
+              </p>
             </header>
           </div>
         </section>
@@ -217,21 +190,18 @@ const Insights = () => {
         </section>
 
         {/* Articles */}
-        <section className="pb-16 pt-4 lg:pb-20 lg:pt-6">
+        <section className="pb-16 pt-4 lg:pb-24 lg:pt-6">
           <div className="container mx-auto px-6 lg:px-12">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10 pb-6 border-b border-border">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-12 pb-6 border-b border-border/50">
               <div>
-                <span
-                  className="inline-block text-xs font-semibold tracking-[0.25em] uppercase mb-3"
-                  style={{ color: "hsl(var(--gold))" }}
-                >
+                <span className="inline-block text-[11px] font-semibold tracking-[0.25em] uppercase mb-2 text-accent">
                   Articles
                 </span>
-                <h2 className="font-display text-2xl md:text-3xl font-semibold text-foreground">
+                <h2 className="font-display text-2xl md:text-3xl font-semibold text-foreground tracking-tight">
                   Written Perspectives
                 </h2>
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                 <CategoryFilter
                   categories={categories}
                   activeCategory={activeCategory}
@@ -248,16 +218,16 @@ const Insights = () => {
             ) : (
               <>
                 {featuredArticle && (
-                  <div className="mb-12 lg:mb-16">
+                  <div className="mb-14 lg:mb-18">
                     <ArticleCard {...featuredArticle} featured />
                   </div>
                 )}
 
                 {remainingArticles.length > 0 && (
-                  <div className="border-t border-border mb-10 lg:mb-14" />
+                  <div className="border-t border-border/40 mb-12 lg:mb-16" />
                 )}
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 lg:gap-x-10 lg:gap-y-14">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 lg:gap-x-10 lg:gap-y-16">
                   {remainingArticles.map((article) => (
                     <ArticleCard key={article.id} {...article} />
                   ))}
@@ -275,4 +245,3 @@ const Insights = () => {
 };
 
 export default Insights;
-

@@ -12,10 +12,10 @@ const CategoryFilter = memo(({ categories, activeCategory, onCategoryChange }: C
       <button
         type="button"
         onClick={() => onCategoryChange(null)}
-        className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide uppercase transition-all duration-200 ${
+        className={`px-4 py-2 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-all duration-200 border ${
           activeCategory === null
-            ? "bg-[hsl(var(--gold))] text-[hsl(var(--navy))]"
-            : "bg-muted text-muted-foreground hover:bg-muted/80"
+            ? "bg-accent text-accent-foreground border-accent shadow-subtle"
+            : "bg-transparent text-muted-foreground border-border hover:border-foreground/20 hover:text-foreground"
         }`}
       >
         All
@@ -25,10 +25,10 @@ const CategoryFilter = memo(({ categories, activeCategory, onCategoryChange }: C
           key={category}
           type="button"
           onClick={() => onCategoryChange(category)}
-          className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide uppercase transition-all duration-200 ${
+          className={`px-4 py-2 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-all duration-200 border ${
             activeCategory === category
-              ? "bg-[hsl(var(--gold))] text-[hsl(var(--navy))]"
-              : "bg-muted text-muted-foreground hover:bg-muted/80"
+              ? "bg-accent text-accent-foreground border-accent shadow-subtle"
+              : "bg-transparent text-muted-foreground border-border hover:border-foreground/20 hover:text-foreground"
           }`}
         >
           {category}
