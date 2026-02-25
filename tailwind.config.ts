@@ -61,34 +61,17 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        navy: {
-          950: "hsl(var(--navy-950))",
-          900: "hsl(var(--navy-900))",
-          800: "hsl(var(--navy-800))",
-          700: "hsl(var(--navy-700))",
-          600: "hsl(var(--navy-600))",
-        },
-        charcoal: {
-          900: "hsl(var(--charcoal-900))",
-          800: "hsl(var(--charcoal-800))",
-          700: "hsl(var(--charcoal-700))",
-          600: "hsl(var(--charcoal-600))",
-        },
-        slate: {
-          50: "hsl(var(--slate-50))",
-          100: "hsl(var(--slate-100))",
-          200: "hsl(var(--slate-200))",
-          300: "hsl(var(--slate-300))",
-        },
-        gold: {
-          600: "hsl(var(--gold-600))",
-          500: "hsl(var(--gold-500))",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        subtle: "var(--shadow-subtle)",
+        card: "var(--shadow-card)",
+        elevated: "var(--shadow-elevated)",
+        dramatic: "var(--shadow-dramatic)",
       },
       keyframes: {
         "float-slow": {
@@ -113,4 +96,3 @@ export default {
   },
   plugins: [],
 } satisfies Config;
-

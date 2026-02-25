@@ -7,46 +7,38 @@ interface SiteFooterProps {
 
 const SiteFooter = ({ className = "" }: SiteFooterProps) => {
   return (
-    <footer className={`pt-10 border-t border-border/50 ${className}`.trim()}>
+    <footer className={`pt-12 border-t border-border/40 ${className}`.trim()}>
       <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid md:grid-cols-3 gap-10 mb-10">
           <div>
-            <p className="font-display text-2xl font-semibold text-foreground">
+            <p className="font-display text-xl font-semibold text-foreground tracking-tight">
               Moses Nyanzi
             </p>
-            <p
-              className="text-sm mt-1"
-              style={{
-                background:
-                  "linear-gradient(135deg, hsl(var(--gold)), hsl(var(--terracotta)))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
+            <p className="text-sm mt-1.5 font-medium text-accent">
               Strategy. Logic. Results.
             </p>
-            <p className="text-xs text-muted-foreground mt-4 max-w-xs text-justify">
+            <p className="text-xs text-muted-foreground mt-4 max-w-xs leading-relaxed text-justify">
               Independent consulting for senior leaders who need clarity, speed, and
               results.
             </p>
           </div>
 
           <div>
-            <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-4">
+            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-muted-foreground mb-4">
               Credentials
             </p>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li>Associate, Actuarial Society of South Africa</li>
-              <li>Executive MBA</li>
+              <li>Executive MBA, INSEAD</li>
               <li>9+ Years Experience</li>
             </ul>
           </div>
 
           <div>
-            <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-4">
+            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-muted-foreground mb-4">
               Connect
             </p>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2.5">
               <a
                 href="https://www.linkedin.com/in/moses-nyanzi/"
                 target="_blank"
@@ -58,7 +50,7 @@ const SiteFooter = ({ className = "" }: SiteFooterProps) => {
               </a>
               <a
                 href={`mailto:${getEmail()}`}
-                className="text-sm text-foreground hover:text-[hsl(var(--terracotta))] transition-colors"
+                className="text-sm text-foreground hover:text-accent transition-colors"
               >
                 {getEmail()}
               </a>
@@ -67,7 +59,7 @@ const SiteFooter = ({ className = "" }: SiteFooterProps) => {
         </div>
 
         <div className="pt-6 pb-20 border-t border-border/30">
-          <p className="text-xs text-muted-foreground text-center">
+          <p className="text-[11px] text-muted-foreground text-center tracking-wide">
             © {new Date().getFullYear()} Moses Nyanzi. All rights reserved.
           </p>
         </div>

@@ -15,12 +15,12 @@ const FIELD_IDS = {
     message: "contact-message",
 } as const;
 
-const initialFormData = {
+const initialFormData: { name: string; email: string; subject: string; message: string } = {
     name: "",
     email: "",
     subject: "",
     message: "",
-} as const;
+};
 
 const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
     const [formData, setFormData] = useState({ ...initialFormData });

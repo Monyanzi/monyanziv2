@@ -11,14 +11,13 @@ const NotFound = () => {
       <Navigation />
       <div className="min-h-screen flex items-center justify-center bg-background pt-20">
         <div className="text-center">
-          <h1 className="text-6xl font-display font-bold text-foreground mb-4">404</h1>
-          <p className="text-lg text-muted-foreground mb-6">Page not found</p>
+          <h1 className="text-7xl font-display font-bold text-foreground mb-3 tracking-tight">404</h1>
+          <p className="text-lg text-muted-foreground mb-8">This page does not exist.</p>
           <a
             href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-105"
-            style={{ background: 'linear-gradient(135deg, hsl(20 55% 53%), hsl(38 82% 50%))' }}
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold bg-accent text-accent-foreground transition-all duration-200 hover:scale-[1.02] shadow-card"
           >
-            <span className="text-white">Go Home</span>
+            Go Home
           </a>
         </div>
       </div>
