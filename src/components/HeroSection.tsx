@@ -61,7 +61,7 @@ interface Tool {
   logo?: string;
   icon?: LucideIcon;
   iconColor?: string;
-  customIcon?: "antigravity" | "n8n";
+  customIcon?: "antigravity" | "n8n" | "claudeCode" | "notebookLm";
   href: string;
   description: string;
   tooltip: string;
@@ -76,9 +76,9 @@ const tools: Tool[] = [
   { name: "Grok", logo: grokLogo, href: "https://grok.com", description: "Real-time X/web search", tooltip: "Fast real-time answers", delay: 0.12 },
   { name: "Kimi", logo: kimiLogo, href: "https://kimi.moonshot.cn", description: "Massive context windows", tooltip: "Handles enormous documents", delay: 0.16 },
   { name: "Antigravity", customIcon: "antigravity", href: "https://antigravity.google", description: "Agentic code editor", tooltip: "Full codebase AI editing", delay: 0.2 },
-  { name: "Claude Code", logo: claudeCodeLogo, href: "https://docs.anthropic.com/en/docs/claude-code", description: "Terminal coding agent", tooltip: "My go-to coding agent", delay: 0.24, primary: true },
+  { name: "Claude Code", customIcon: "claudeCode", href: "https://docs.anthropic.com/en/docs/claude-code", description: "Terminal coding agent", tooltip: "My go-to coding agent", delay: 0.24, primary: true },
   { name: "Codex", logo: codexLogo, href: "https://openai.com/codex", description: "Cloud-based coding agent", tooltip: "Async background coding", delay: 0.28 },
-  { name: "NotebookLM", logo: notebookLmLogo, href: "https://notebooklm.google/", description: "Research synthesis & audio", tooltip: "Turns docs into podcasts", delay: 0.32, primary: true },
+  { name: "NotebookLM", customIcon: "notebookLm", href: "https://notebooklm.google/", description: "Research synthesis & audio", tooltip: "Turns docs into podcasts", delay: 0.32, primary: true },
   { name: "GitHub", logo: githubLogo, href: "https://github.com", description: "Version control & CI/CD", tooltip: "Where it all ships", delay: 0.36 },
   { name: "Lovable", logo: lovableLogo, href: "https://lovable.dev", description: "AI-native app builder", tooltip: "Built this site with it", delay: 0.4, primary: true },
   { name: "n8n", customIcon: "n8n", href: "https://n8n.io", description: "Cloud-based automation", tooltip: "Automation workflow builder", delay: 0.44 },
