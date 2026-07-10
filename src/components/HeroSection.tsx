@@ -13,7 +13,7 @@ import lovableLogo from "@/assets/insights/tech-stack/lovable-logo.png";
 // CDN + inline replacements for previously incorrect or low-quality marks
 const grokLogo = "https://cdn.simpleicons.org/x/000000";
 const codexLogo = "https://cdn.simpleicons.org/openai/0A0A0A";
-const n8nCdnLogo = "https://cdn.simpleicons.org/n8n/EA4B71";
+
 
 /** Inline brand SVG — Antigravity: terminal/code in Google green */
 const AntigravityIcon = () => (
@@ -136,6 +136,10 @@ const ToolCard = ({
           <AntigravityIcon />
         ) : tool.customIcon === "n8n" ? (
           <N8nIcon />
+        ) : tool.customIcon === "claudeCode" ? (
+          <ClaudeCodeIcon />
+        ) : tool.customIcon === "notebookLm" ? (
+          <NotebookLmIcon />
         ) : tool.logo ? (
           <img src={tool.logo} alt={`${tool.name} logo`} className="h-7 w-7 object-contain" loading="eager" />
         ) : Icon ? (
