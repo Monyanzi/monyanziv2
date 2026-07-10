@@ -11,7 +11,7 @@ import { insightsArticlesBriefing } from "@/data/audioBriefings";
 import { SITE_NAME, SITE_URL, SOCIAL_IMAGE_URL } from "@/config/site";
 import SearchModal from "@/components/SearchModal";
 import { Search } from "lucide-react";
-import { LiquidEffectAnimation } from "@/components/ui/liquid-effect-animation";
+
 
 const INSIGHTS_URL = `${SITE_URL}/insights`;
 const INSIGHTS_TITLE = `AI Tools, Automation & Founder Field Notes | ${SITE_NAME}`;
