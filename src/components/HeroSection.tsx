@@ -6,13 +6,14 @@ import type { LucideIcon } from "lucide-react";
 import chatgptLogo from "@/assets/insights/tech-stack/chatgpt-logo.png";
 import claudeLogo from "@/assets/insights/tech-stack/claude-logo.webp";
 import geminiLogo from "@/assets/insights/tech-stack/gemini-logo.webp";
-import grokLogo from "@/assets/insights/tech-stack/grok-logo.png";
 import kimiLogo from "@/assets/insights/tech-stack/kimi-logo.png";
-import claudeCodeLogo from "@/assets/insights/tech-stack/claude-logo.webp";
-import codexLogo from "@/assets/insights/tech-stack/codex-logo.png";
 import githubLogo from "@/assets/insights/tech-stack/github-logo.png";
 import lovableLogo from "@/assets/insights/tech-stack/lovable-logo.png";
-import notebookLmLogo from "@/assets/insights/tech-stack/notebooklm-logo.svg";
+
+// CDN + inline replacements for previously incorrect or low-quality marks
+const grokLogo = "https://cdn.simpleicons.org/x/000000";
+const codexLogo = "https://cdn.simpleicons.org/openai/0A0A0A";
+const n8nCdnLogo = "https://cdn.simpleicons.org/n8n/EA4B71";
 
 /** Inline brand SVG — Antigravity green diamond */
 const AntigravityIcon = () => (
