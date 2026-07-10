@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { motion } from "motion/react";
 
 interface CategoryFilterProps {
   categories: string[];
@@ -7,46 +6,68 @@ interface CategoryFilterProps {
   onCategoryChange: (category: string | null) => void;
 }
 
+const ACCENT = "#5B4BF5";
+
+const pillBase: React.CSSProperties = {
+  borderRadius: 9999,
+  border: "1px solid rgba(91,75,245,0.10)",
+  background: "rgba(255,255,255,0.55)",
+  backdropFilter: "blur(8px)",
+  WebkitBackdropFilter: "blur(8px)",
+  transition: "all 200ms ease",
+};
+
+const pillActive: React.CSSProperties = {
+  ...pillBase,
+  background: ACCENT,
+  color: "white",
+  border: "1px solid transparent",
+  boxShadow: "0 4px 14px rgba(91,75,245,0.28)",
+};
+
+const Pill = ({
+  active,
+  children,
+  onClick,
+}: {
+  active: boolean;
+  children: React.ReactNode;
+  onClick: () => void;
+}) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="shrink-0 px-4 py-2 text-[12px] font-semibold tracking-wide outline-none min-h-11"
+    style={active ? pillActive : { ...pillBase, color: "#111" }}
+    onMouseEnter={(e) => {
+      if (active) return;
+      e.currentTarget.style.background = "rgba(91,75,245,0.07)";
+      e.currentTarget.style.color = ACCENT;
+    }}
+    onMouseLeave={(e) => {
+      if (active) return;
+      e.currentTarget.style.background = "rgba(255,255,255,0.55)";
+      e.currentTarget.style.color = "#111";
+    }}
+  >
+    <span className="whitespace-nowrap">{children}</span>
+  </button>
+);
+
 const CategoryFilter = memo(({ categories, activeCategory, onCategoryChange }: CategoryFilterProps) => {
   return (
-    <div className="inline-flex flex-nowrap items-center gap-1.5 rounded-full border border-border bg-surface p-1 overflow-x-auto scrollbar-none max-w-full">
-      <button
-        type="button"
-        onClick={() => onCategoryChange(null)}
-        className="relative shrink-0 rounded-full px-4 py-1.5 text-[12px] font-semibold tracking-wide outline-none transition-colors duration-200"
-      >
-        {activeCategory === null && (
-          <motion.div
-            layoutId="activeCategory"
-            className="absolute inset-0 rounded-full bg-foreground"
-            initial={false}
-            transition={{ type: "spring", stiffness: 500, damping: 35 }}
-          />
-        )}
-        <span className={`relative z-10 ${activeCategory === null ? "text-background" : "text-foreground-muted hover:text-foreground"}`}>
-          All
-        </span>
-      </button>
-
+    <div className="inline-flex flex-nowrap items-center gap-1.5 overflow-x-auto scrollbar-none max-w-full">
+      <Pill active={activeCategory === null} onClick={() => onCategoryChange(null)}>
+        All
+      </Pill>
       {categories.map((category) => (
-        <button
+        <Pill
           key={category}
-          type="button"
+          active={activeCategory === category}
           onClick={() => onCategoryChange(category)}
-          className="relative shrink-0 rounded-full px-4 py-1.5 text-[12px] font-semibold tracking-wide outline-none transition-colors duration-200"
         >
-          {activeCategory === category && (
-            <motion.div
-              layoutId="activeCategory"
-              className="absolute inset-0 rounded-full bg-foreground"
-              initial={false}
-              transition={{ type: "spring", stiffness: 500, damping: 35 }}
-            />
-          )}
-          <span className={`relative z-10 whitespace-nowrap ${activeCategory === category ? "text-background" : "text-foreground-muted hover:text-foreground"}`}>
-            {category}
-          </span>
-        </button>
+          {category}
+        </Pill>
       ))}
     </div>
   );

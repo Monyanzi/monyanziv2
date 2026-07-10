@@ -58,10 +58,10 @@ const AudioBriefingCard = ({ briefing, compact = false, className = "" }: AudioB
             aria-label={`${isPlaying ? "Pause" : "Play"} ${briefing.shortLabel}`}
             className={`${buttonClass} rounded-full inline-flex items-center justify-center transition-transform hover:scale-105 active:scale-95 shrink-0 ${
               canPlay
-                ? "text-white shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
+                ? "text-white"
                 : "bg-slate-100 text-slate-400 cursor-not-allowed"
             }`}
-            style={canPlay ? { background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary)/0.8))" } : undefined}
+            style={canPlay ? { background: "#5B4BF5", boxShadow: "0 4px 16px rgba(91,75,245,0.32)" } : undefined}
           >
             {isPlaying ? (
               <Pause className={compact ? "w-3.5 h-3.5" : "w-4 h-4"} />
@@ -85,8 +85,9 @@ const AudioBriefingCard = ({ briefing, compact = false, className = "" }: AudioB
               onChange={(e) => handleSeek(Number(e.target.value))}
               aria-label={`Seek ${briefing.shortLabel}`}
               className={`w-full h-1.5 appearance-none rounded-full bg-slate-200 ${
-                canPlay ? "accent-[hsl(var(--accent))] cursor-pointer" : "accent-slate-300 cursor-not-allowed"
+                canPlay ? "cursor-pointer" : "accent-slate-300 cursor-not-allowed"
               }`}
+              style={canPlay ? { accentColor: "#5B4BF5" } : undefined}
             />
           </div>
 

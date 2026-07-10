@@ -61,20 +61,22 @@ const ArticleCard = memo(({ id, category, title, image, featured = false }: Arti
     return (
       <article className="group">
         <a href={`/insights/${id}`} className="block transition-all duration-300 active:scale-[0.99]">
-          {/* Full-width editorial card with image background */}
-          <div className="relative overflow-hidden rounded-[2rem] min-h-[380px] lg:min-h-[440px] flex items-end">
+          <div className="relative overflow-hidden min-h-[380px] lg:min-h-[440px] flex items-end" style={{ borderRadius: 20 }}>
             {image ? (
               <img
                 src={image}
                 alt={`${title} cover`}
                 loading="eager"
                 decoding="async"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
               />
             ) : (
               <div className="absolute inset-0" style={{ background: FALLBACK_GRADIENT }} />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            <div
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)" }}
+            />
             <ShareButtons articleUrl={articleUrl} />
 
             <div className="relative z-10 p-8 lg:p-12 max-w-3xl">
@@ -109,9 +111,24 @@ const ArticleCard = memo(({ id, category, title, image, featured = false }: Arti
     <article className="group h-full">
       <a
         href={`/insights/${id}`}
-        className="card-premium flex h-full flex-col overflow-hidden transition-all duration-300 active:scale-[0.98] hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(0,0,0,0.07)]"
+        className="flex h-full flex-col overflow-hidden transition-all duration-300 active:scale-[0.98]"
+        style={{
+          background: "rgba(255,255,255,0.66)",
+          border: "1px solid rgba(91,75,245,0.09)",
+          borderRadius: 20,
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
+          boxShadow: "0 2px 24px rgba(19,19,31,0.06)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = "translateY(-4px)";
+          e.currentTarget.style.boxShadow = "0 16px 48px rgba(91,75,245,0.12)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = "";
+          e.currentTarget.style.boxShadow = "0 2px 24px rgba(19,19,31,0.06)";
+        }}
       >
-        {/* Image — consistent 16:9 aspect ratio */}
         <div className="relative aspect-[16/9] overflow-hidden">
           {image ? (
             <img
@@ -119,7 +136,7 @@ const ArticleCard = memo(({ id, category, title, image, featured = false }: Arti
               alt={`${title} cover`}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+              className="h-full w-full object-cover transition-transform duration-[400ms] ease-out group-hover:scale-[1.04]"
             />
           ) : (
             <div className="h-full w-full" style={{ background: FALLBACK_GRADIENT }} />
@@ -131,7 +148,6 @@ const ArticleCard = memo(({ id, category, title, image, featured = false }: Arti
           <ShareButtons articleUrl={articleUrl} />
         </div>
 
-        {/* Body — no description copy */}
         <div className="flex flex-1 flex-col p-5">
           {readingTime && (
             <span className="mb-2.5 inline-flex items-center gap-1.5 text-[11px] font-medium text-foreground-subtle">
@@ -139,10 +155,10 @@ const ArticleCard = memo(({ id, category, title, image, featured = false }: Arti
               {readingTime} min read
             </span>
           )}
-          <h2 className="mb-4 text-[1rem] font-bold leading-snug tracking-tight text-foreground transition-colors duration-200 group-hover:text-accent flex-1 line-clamp-2">
+          <h2 className="mb-4 text-[1rem] font-bold leading-snug tracking-tight text-foreground transition-colors duration-200 flex-1 line-clamp-2" style={{ color: "#111" }}>
             {title}
           </h2>
-          <div className="mt-auto flex items-center gap-1.5 text-[13px] font-semibold text-accent">
+          <div className="mt-auto flex items-center gap-1.5 text-[13px] font-semibold" style={{ color: "#5B4BF5" }}>
             Read →
           </div>
         </div>

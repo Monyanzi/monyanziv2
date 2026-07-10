@@ -11,7 +11,7 @@ import { insightsArticlesBriefing } from "@/data/audioBriefings";
 import { SITE_NAME, SITE_URL, SOCIAL_IMAGE_URL } from "@/config/site";
 import SearchModal from "@/components/SearchModal";
 import { Search } from "lucide-react";
-import { LiquidEffectAnimation } from "@/components/ui/liquid-effect-animation";
+
 
 const INSIGHTS_URL = `${SITE_URL}/insights`;
 const INSIGHTS_TITLE = `AI Tools, Automation & Founder Field Notes | ${SITE_NAME}`;
@@ -134,20 +134,35 @@ const Insights = () => {
         ))}
       </Helmet>
 
-      <main className="min-h-screen">
-        <LiquidEffectAnimation text={[]} textColor="#111111" />
+      <main id="main" className="min-h-screen relative" style={{ backgroundColor: "#F0EDE6" }}>
+        {/* Ambient radial glow mesh */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(600px circle at 12% 10%, rgba(139,92,246,0.07), transparent 60%), radial-gradient(600px circle at 88% 12%, rgba(91,75,245,0.07), transparent 60%), radial-gradient(500px circle at 50% 100%, rgba(245,158,11,0.07), transparent 60%)",
+          }}
+        />
         <div className="relative z-10">
       <Navigation />
 
         {/* Hero */}
-        <section className="relative overflow-hidden border-b border-border pt-28 pb-16 lg:pt-36 lg:pb-20">
-          <div className="pointer-events-none absolute inset-x-0 -top-20 h-80 bg-[radial-gradient(ellipse_50%_50%_at_50%_0%,hsl(38_55%_42%/0.06),transparent)]" />
-
+        <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-20">
           <div className="page-container relative z-10">
             <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
               {/* Left — title */}
               <div>
-                <h1 className="text-display-lg text-balance text-foreground">
+                <h1
+                  className="text-balance text-foreground"
+                  style={{
+                    fontFamily: "'Instrument Serif', serif",
+                    fontWeight: 400,
+                    fontSize: "clamp(3.5rem, 8vw, 7rem)",
+                    lineHeight: 1,
+                    letterSpacing: "-0.03em",
+                  }}
+                >
                   Articles
                 </h1>
 
@@ -158,24 +173,50 @@ const Insights = () => {
 
               {/* Right — compact search */}
               <div className="flex flex-col gap-3">
-                {/* Compact search button */}
                 <button
                   aria-label="Search articles (Ctrl+K)"
                   onClick={() => setIsSearchOpen(true)}
-                  className="group inline-flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 text-left transition-all duration-200 hover:border-border-strong hover:shadow-card focus:outline-none"
+                  className="group inline-flex items-center gap-3 px-5 py-3 text-left transition-all duration-200 focus:outline-none"
+                  style={{
+                    borderRadius: 9999,
+                    border: "1px solid rgba(91,75,245,0.10)",
+                    background: "rgba(255,255,255,0.62)",
+                    backdropFilter: "blur(14px)",
+                    WebkitBackdropFilter: "blur(14px)",
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(91,75,245,0.25)";
+                    e.currentTarget.style.boxShadow = "0 0 0 3px rgba(91,75,245,0.10)";
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(91,75,245,0.10)";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
                 >
-                  <Search className="h-4 w-4 text-foreground-subtle transition-colors duration-200 group-hover:text-foreground-muted" />
+                  <Search className="h-4 w-4" style={{ color: "#5B4BF5" }} />
                   <span className="flex-1 text-sm text-foreground-subtle">Search articles</span>
-                  <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded-md border border-border bg-surface-2 px-1.5 py-0.5 font-mono text-[10px] font-medium text-foreground-subtle">
+                  <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded-md border border-border bg-white/70 px-1.5 py-0.5 font-mono text-[10px] font-medium text-foreground-subtle">
                     ⌘K
                   </kbd>
                 </button>
               </div>
             </div>
 
-            {/* Audio briefing — full-width, below header */}
-            <div className="mt-8 audio-card-purple">
-              <p className="mb-3 inline-flex items-center rounded-full bg-[#6D28D9]/10 border border-[#6D28D9]/20 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#6D28D9]">
+            {/* Audio briefing */}
+            <div
+              className="mt-8 p-4"
+              style={{
+                background: "rgba(255,255,255,0.60)",
+                border: "1px solid rgba(91,75,245,0.09)",
+                borderRadius: 20,
+                backdropFilter: "blur(18px)",
+                WebkitBackdropFilter: "blur(18px)",
+              }}
+            >
+              <p
+                className="mb-3 inline-flex items-center px-3 py-1 text-[10px] font-bold uppercase"
+                style={{ color: "#5B4BF5", letterSpacing: "0.14em" }}
+              >
                 Listen
               </p>
               <AudioBriefingCard briefing={insightsArticlesBriefing} className="w-full" />
@@ -244,24 +285,45 @@ const Insights = () => {
               </p>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-3">
+            <div className="flex flex-col">
               {entrepreneurResources.map((resource, i) => (
                 <a
                   key={i}
                   href={resource.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group card-premium flex flex-col p-7 lg:p-8"
+                  className="group flex flex-col gap-2 px-3 py-4 transition-colors duration-200"
+                  style={{
+                    borderBottom: "1px solid rgba(91,75,245,0.08)",
+                    background: "transparent",
+                    borderRadius: 12,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(91,75,245,0.04)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                  }}
                 >
-                  <p className={`label-mono mb-5 ${i % 2 === 0 ? "text-accent" : "text-jacarta"}`}>{resource.category}</p>
-                  <h3 className={`mb-3 text-[1.125rem] font-bold text-foreground transition-colors duration-200 ${i % 2 === 0 ? "group-hover:text-accent" : "group-hover:text-jacarta"}`}>
+                  <p
+                    style={{
+                      color: "#5B4BF5",
+                      fontSize: "0.68rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {resource.category}
+                  </p>
+                  <h3 className="text-[1.125rem] font-bold text-foreground">
                     {resource.title}
                   </h3>
-                  <p className="mb-8 flex-grow text-[0.875rem] leading-relaxed text-foreground-muted">
+                  <p className="text-[0.9rem] leading-relaxed text-foreground-muted max-w-3xl">
                     {resource.description}
                   </p>
-                  <div className={`mt-auto inline-flex items-center gap-2 text-[12px] font-bold tracking-wide text-foreground transition-all duration-300 group-hover:gap-3 ${i % 2 === 0 ? "group-hover:text-accent" : "group-hover:text-jacarta"}`}>
-                    {resource.ctaText}
+                  <div className="mt-1 inline-flex items-center gap-2 text-[12px] font-bold tracking-wide transition-all duration-300 group-hover:gap-3" style={{ color: "#5B4BF5" }}>
+                    {resource.ctaText} →
                   </div>
                 </a>
               ))}

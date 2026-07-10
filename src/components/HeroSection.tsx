@@ -6,37 +6,53 @@ import type { LucideIcon } from "lucide-react";
 import chatgptLogo from "@/assets/insights/tech-stack/chatgpt-logo.png";
 import claudeLogo from "@/assets/insights/tech-stack/claude-logo.webp";
 import geminiLogo from "@/assets/insights/tech-stack/gemini-logo.webp";
-import grokLogo from "@/assets/insights/tech-stack/grok-logo.png";
 import kimiLogo from "@/assets/insights/tech-stack/kimi-logo.png";
-import claudeCodeLogo from "@/assets/insights/tech-stack/claude-logo.webp";
-import codexLogo from "@/assets/insights/tech-stack/codex-logo.png";
 import githubLogo from "@/assets/insights/tech-stack/github-logo.png";
 import lovableLogo from "@/assets/insights/tech-stack/lovable-logo.png";
-import notebookLmLogo from "@/assets/insights/tech-stack/notebooklm-logo.svg";
 
-/** Inline brand SVG — Antigravity green diamond */
+// CDN + inline replacements for previously incorrect or low-quality marks
+const grokLogo = "https://cdn.simpleicons.org/x/000000";
+const codexLogo = "https://cdn.simpleicons.org/openai/0A0A0A";
+
+
+/** Inline brand SVG — Antigravity: terminal/code in Google green */
 const AntigravityIcon = () => (
   <svg viewBox="0 0 28 28" className="h-7 w-7" aria-hidden="true">
-    <defs>
-      <linearGradient id="ag-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#34d399" />
-        <stop offset="100%" stopColor="#059669" />
-      </linearGradient>
-    </defs>
-    <path d="M14 2 L26 14 L14 26 L2 14 Z" fill="url(#ag-grad)" />
-    <path d="M14 8 L20 14 L14 20 L8 14 Z" fill="white" fillOpacity="0.55" />
+    <rect x="2" y="4" width="24" height="20" rx="4" fill="#34A853" />
+    <path d="M8 11 L12 14 L8 17" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <line x1="14" y1="18" x2="20" y2="18" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
   </svg>
 );
 
-/** Inline brand SVG — n8n logo */
+/** Inline brand SVG — Claude Code: `>_` terminal prompt in Anthropic orange */
+const ClaudeCodeIcon = () => (
+  <svg viewBox="0 0 28 28" className="h-7 w-7" aria-hidden="true">
+    <rect x="2" y="4" width="24" height="20" rx="4" fill="#D4622A" />
+    <path d="M8 11 L12 14 L8 17" stroke="white" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    <line x1="14" y1="18" x2="20" y2="18" stroke="white" strokeWidth="1.9" strokeLinecap="round" />
+  </svg>
+);
+
+/** Inline brand SVG — NotebookLM: notebook in Google blue */
+const NotebookLmIcon = () => (
+  <svg viewBox="0 0 28 28" className="h-7 w-7" aria-hidden="true">
+    <rect x="5" y="3" width="18" height="22" rx="2.5" fill="#4285F4" />
+    <rect x="5" y="3" width="4" height="22" fill="#1A73E8" />
+    <line x1="12" y1="9" x2="20" y2="9" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
+    <line x1="12" y1="13" x2="20" y2="13" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
+    <line x1="12" y1="17" x2="18" y2="17" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
+  </svg>
+);
+
+/** Inline brand SVG — n8n orange nodes */
 const N8nIcon = () => (
   <svg viewBox="0 0 28 28" className="h-7 w-7" aria-hidden="true">
-    <rect x="2" y="8" width="8" height="12" rx="2" fill="#ff3f7f" />
-    <rect x="10" y="4" width="8" height="20" rx="2" fill="#ea2f6c" />
-    <rect x="18" y="8" width="8" height="12" rx="2" fill="#ff3f7f" />
-    <circle cx="6" cy="14" r="1.5" fill="white" />
-    <circle cx="14" cy="14" r="1.5" fill="white" />
-    <circle cx="22" cy="14" r="1.5" fill="white" />
+    <circle cx="6" cy="14" r="3" fill="#EA4B71" />
+    <circle cx="14" cy="8" r="3" fill="#EA4B71" />
+    <circle cx="14" cy="20" r="3" fill="#EA4B71" />
+    <circle cx="22" cy="14" r="3" fill="#EA4B71" />
+    <line x1="9" y1="14" x2="19" y2="14" stroke="#EA4B71" strokeWidth="1.6" />
+    <line x1="14" y1="11" x2="14" y2="17" stroke="#EA4B71" strokeWidth="1.6" />
   </svg>
 );
 
@@ -45,7 +61,7 @@ interface Tool {
   logo?: string;
   icon?: LucideIcon;
   iconColor?: string;
-  customIcon?: "antigravity" | "n8n";
+  customIcon?: "antigravity" | "n8n" | "claudeCode" | "notebookLm";
   href: string;
   description: string;
   tooltip: string;
@@ -60,9 +76,9 @@ const tools: Tool[] = [
   { name: "Grok", logo: grokLogo, href: "https://grok.com", description: "Real-time X/web search", tooltip: "Fast real-time answers", delay: 0.12 },
   { name: "Kimi", logo: kimiLogo, href: "https://kimi.moonshot.cn", description: "Massive context windows", tooltip: "Handles enormous documents", delay: 0.16 },
   { name: "Antigravity", customIcon: "antigravity", href: "https://antigravity.google", description: "Agentic code editor", tooltip: "Full codebase AI editing", delay: 0.2 },
-  { name: "Claude Code", logo: claudeCodeLogo, href: "https://docs.anthropic.com/en/docs/claude-code", description: "Terminal coding agent", tooltip: "My go-to coding agent", delay: 0.24, primary: true },
+  { name: "Claude Code", customIcon: "claudeCode", href: "https://docs.anthropic.com/en/docs/claude-code", description: "Terminal coding agent", tooltip: "My go-to coding agent", delay: 0.24, primary: true },
   { name: "Codex", logo: codexLogo, href: "https://openai.com/codex", description: "Cloud-based coding agent", tooltip: "Async background coding", delay: 0.28 },
-  { name: "NotebookLM", logo: notebookLmLogo, href: "https://notebooklm.google/", description: "Research synthesis & audio", tooltip: "Turns docs into podcasts", delay: 0.32, primary: true },
+  { name: "NotebookLM", customIcon: "notebookLm", href: "https://notebooklm.google/", description: "Research synthesis & audio", tooltip: "Turns docs into podcasts", delay: 0.32, primary: true },
   { name: "GitHub", logo: githubLogo, href: "https://github.com", description: "Version control & CI/CD", tooltip: "Where it all ships", delay: 0.36 },
   { name: "Lovable", logo: lovableLogo, href: "https://lovable.dev", description: "AI-native app builder", tooltip: "Built this site with it", delay: 0.4, primary: true },
   { name: "n8n", customIcon: "n8n", href: "https://n8n.io", description: "Cloud-based automation", tooltip: "Automation workflow builder", delay: 0.44 },
@@ -120,6 +136,10 @@ const ToolCard = ({
           <AntigravityIcon />
         ) : tool.customIcon === "n8n" ? (
           <N8nIcon />
+        ) : tool.customIcon === "claudeCode" ? (
+          <ClaudeCodeIcon />
+        ) : tool.customIcon === "notebookLm" ? (
+          <NotebookLmIcon />
         ) : tool.logo ? (
           <img src={tool.logo} alt={`${tool.name} logo`} className="h-7 w-7 object-contain" loading="eager" />
         ) : Icon ? (
