@@ -285,24 +285,45 @@ const Insights = () => {
               </p>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-3">
+            <div className="flex flex-col">
               {entrepreneurResources.map((resource, i) => (
                 <a
                   key={i}
                   href={resource.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group card-premium flex flex-col p-7 lg:p-8"
+                  className="group flex flex-col gap-2 px-3 py-4 transition-colors duration-200"
+                  style={{
+                    borderBottom: "1px solid rgba(91,75,245,0.08)",
+                    background: "transparent",
+                    borderRadius: 12,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(91,75,245,0.04)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                  }}
                 >
-                  <p className={`label-mono mb-5 ${i % 2 === 0 ? "text-accent" : "text-jacarta"}`}>{resource.category}</p>
-                  <h3 className={`mb-3 text-[1.125rem] font-bold text-foreground transition-colors duration-200 ${i % 2 === 0 ? "group-hover:text-accent" : "group-hover:text-jacarta"}`}>
+                  <p
+                    style={{
+                      color: "#5B4BF5",
+                      fontSize: "0.68rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {resource.category}
+                  </p>
+                  <h3 className="text-[1.125rem] font-bold text-foreground">
                     {resource.title}
                   </h3>
-                  <p className="mb-8 flex-grow text-[0.875rem] leading-relaxed text-foreground-muted">
+                  <p className="text-[0.9rem] leading-relaxed text-foreground-muted max-w-3xl">
                     {resource.description}
                   </p>
-                  <div className={`mt-auto inline-flex items-center gap-2 text-[12px] font-bold tracking-wide text-foreground transition-all duration-300 group-hover:gap-3 ${i % 2 === 0 ? "group-hover:text-accent" : "group-hover:text-jacarta"}`}>
-                    {resource.ctaText}
+                  <div className="mt-1 inline-flex items-center gap-2 text-[12px] font-bold tracking-wide transition-all duration-300 group-hover:gap-3" style={{ color: "#5B4BF5" }}>
+                    {resource.ctaText} →
                   </div>
                 </a>
               ))}
