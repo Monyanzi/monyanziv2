@@ -7,22 +7,24 @@ interface CategoryFilterProps {
 }
 
 const ACCENT = "#5B4BF5";
+const ACCENT_SOFT = "#B8B2FF";
 
 const pillBase: React.CSSProperties = {
   borderRadius: 9999,
-  border: "1px solid rgba(91,75,245,0.10)",
-  background: "rgba(255,255,255,0.55)",
-  backdropFilter: "blur(8px)",
-  WebkitBackdropFilter: "blur(8px)",
+  border: "1px solid rgba(255,255,255,0.10)",
+  background: "rgba(255,255,255,0.05)",
+  backdropFilter: "blur(12px)",
+  WebkitBackdropFilter: "blur(12px)",
   transition: "all 200ms ease",
+  color: "rgba(232,230,245,0.85)",
 };
 
 const pillActive: React.CSSProperties = {
   ...pillBase,
-  background: ACCENT,
+  background: `linear-gradient(135deg, ${ACCENT}, #7C6BFF)`,
   color: "white",
-  border: "1px solid transparent",
-  boxShadow: "0 4px 14px rgba(91,75,245,0.28)",
+  border: "1px solid rgba(255,255,255,0.18)",
+  boxShadow: "0 6px 20px rgba(91,75,245,0.45), inset 0 1px 0 rgba(255,255,255,0.25)",
 };
 
 const Pill = ({
@@ -38,16 +40,18 @@ const Pill = ({
     type="button"
     onClick={onClick}
     className="shrink-0 px-4 py-2 text-[12px] font-semibold tracking-wide outline-none min-h-11"
-    style={active ? pillActive : { ...pillBase, color: "#111" }}
+    style={active ? pillActive : pillBase}
     onMouseEnter={(e) => {
       if (active) return;
-      e.currentTarget.style.background = "rgba(91,75,245,0.07)";
-      e.currentTarget.style.color = ACCENT;
+      e.currentTarget.style.background = "rgba(139,124,255,0.14)";
+      e.currentTarget.style.color = ACCENT_SOFT;
+      e.currentTarget.style.borderColor = "rgba(139,124,255,0.3)";
     }}
     onMouseLeave={(e) => {
       if (active) return;
-      e.currentTarget.style.background = "rgba(255,255,255,0.55)";
-      e.currentTarget.style.color = "#111";
+      e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+      e.currentTarget.style.color = "rgba(232,230,245,0.85)";
+      e.currentTarget.style.borderColor = "rgba(255,255,255,0.10)";
     }}
   >
     <span className="whitespace-nowrap">{children}</span>

@@ -10,7 +10,7 @@ import { articleSummaries, entrepreneurResources } from "@/data/articleSummaries
 import { insightsArticlesBriefing } from "@/data/audioBriefings";
 import { SITE_NAME, SITE_URL, SOCIAL_IMAGE_URL } from "@/config/site";
 import SearchModal from "@/components/SearchModal";
-import { Search } from "lucide-react";
+import { Search, ArrowUpRight } from "lucide-react";
 
 
 const INSIGHTS_URL = `${SITE_URL}/insights`;
@@ -134,92 +134,140 @@ const Insights = () => {
         ))}
       </Helmet>
 
-      <main id="main" className="min-h-screen relative" style={{ backgroundColor: "#F0EDE6" }}>
-        {/* Ambient radial glow mesh */}
+      <main id="main" className="min-h-screen relative overflow-hidden" style={{ backgroundColor: "#0A0A1F", color: "#E8E6F5" }}>
+        {/* Aurora / mesh backdrop */}
         <div
           aria-hidden="true"
           className="pointer-events-none fixed inset-0 z-0"
           style={{
             backgroundImage:
-              "radial-gradient(600px circle at 12% 10%, rgba(139,92,246,0.07), transparent 60%), radial-gradient(600px circle at 88% 12%, rgba(91,75,245,0.07), transparent 60%), radial-gradient(500px circle at 50% 100%, rgba(245,158,11,0.07), transparent 60%)",
+              "radial-gradient(900px circle at 8% 0%, rgba(91,75,245,0.35), transparent 55%), radial-gradient(800px circle at 100% 10%, rgba(168,85,247,0.28), transparent 55%), radial-gradient(700px circle at 50% 100%, rgba(59,130,246,0.22), transparent 60%), radial-gradient(500px circle at 0% 100%, rgba(236,72,153,0.15), transparent 60%)",
+          }}
+        />
+        {/* Subtle grain */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-0 opacity-[0.06] mix-blend-overlay"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>\")",
           }}
         />
         <div className="relative z-10">
       <Navigation />
 
-        {/* Hero */}
-        <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-20">
+        {/* Hero — glass panel */}
+        <section className="relative pt-28 pb-14 lg:pt-36 lg:pb-16">
           <div className="page-container relative z-10">
-            <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
-              {/* Left — title */}
-              <div>
-                <h1
-                  className="text-balance text-foreground"
-                  style={{
-                    fontFamily: "'Instrument Serif', serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(3.5rem, 8vw, 7rem)",
-                    lineHeight: 1,
-                    letterSpacing: "-0.03em",
-                  }}
-                >
-                  Articles
-                </h1>
-
-                <p className="mt-4 max-w-lg text-body-lg" style={{ color: '#6B7280' }}>
-                  Practical advice on using AI and automation without wasting time or money.
-                </p>
-              </div>
-
-              {/* Right — compact search */}
-              <div className="flex flex-col gap-3">
-                <button
-                  aria-label="Search articles (Ctrl+K)"
-                  onClick={() => setIsSearchOpen(true)}
-                  className="group inline-flex items-center gap-3 px-5 py-3 text-left transition-all duration-200 focus:outline-none"
-                  style={{
-                    borderRadius: 9999,
-                    border: "1px solid rgba(91,75,245,0.10)",
-                    background: "rgba(255,255,255,0.62)",
-                    backdropFilter: "blur(14px)",
-                    WebkitBackdropFilter: "blur(14px)",
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(91,75,245,0.25)";
-                    e.currentTarget.style.boxShadow = "0 0 0 3px rgba(91,75,245,0.10)";
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(91,75,245,0.10)";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
-                >
-                  <Search className="h-4 w-4" style={{ color: "#5B4BF5" }} />
-                  <span className="flex-1 text-sm text-foreground-subtle">Search articles</span>
-                  <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded-md border border-border bg-white/70 px-1.5 py-0.5 font-mono text-[10px] font-medium text-foreground-subtle">
-                    ⌘K
-                  </kbd>
-                </button>
-              </div>
-            </div>
-
-            {/* Audio briefing */}
             <div
-              className="mt-8 p-4"
+              className="relative overflow-hidden p-6 sm:p-10 lg:p-14"
               style={{
-                background: "rgba(255,255,255,0.60)",
-                border: "1px solid rgba(91,75,245,0.09)",
-                borderRadius: 20,
-                backdropFilter: "blur(18px)",
-                WebkitBackdropFilter: "blur(18px)",
+                borderRadius: 28,
+                background: "linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))",
+                border: "1px solid rgba(255,255,255,0.10)",
+                backdropFilter: "blur(28px) saturate(140%)",
+                WebkitBackdropFilter: "blur(28px) saturate(140%)",
+                boxShadow: "0 30px 80px -20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08)",
               }}
             >
-              <p
-                className="mb-3 inline-flex items-center px-3 py-1 text-[10px] font-bold uppercase"
-                style={{ color: "#5B4BF5", letterSpacing: "0.14em" }}
-              >
-                Listen
-              </p>
-              <AudioBriefingCard briefing={insightsArticlesBriefing} className="w-full" />
+              {/* Sheen highlight */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 top-0 h-40"
+                style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.10), transparent)" }}
+              />
+
+              <div className="grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:items-end relative">
+                <div>
+                  <span
+                    className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold uppercase mb-6"
+                    style={{
+                      letterSpacing: "0.14em",
+                      borderRadius: 9999,
+                      background: "rgba(255,255,255,0.06)",
+                      border: "1px solid rgba(255,255,255,0.10)",
+                      color: "#B8B2FF",
+                    }}
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#8B7CFF", boxShadow: "0 0 10px #8B7CFF" }} />
+                    Field notes · {articles.length} articles
+                  </span>
+                  <h1
+                    className="text-balance"
+                    style={{
+                      fontFamily: "'Instrument Serif', serif",
+                      fontWeight: 400,
+                      fontSize: "clamp(3.25rem, 8vw, 6.5rem)",
+                      lineHeight: 0.95,
+                      letterSpacing: "-0.035em",
+                      color: "#F5F3FF",
+                    }}
+                  >
+                    Articles
+                  </h1>
+                  <p className="mt-5 max-w-lg text-body-lg" style={{ color: "rgba(232,230,245,0.72)" }}>
+                    Practical advice on using AI and automation without wasting time or money.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <button
+                    aria-label="Search articles (Ctrl+K)"
+                    onClick={() => setIsSearchOpen(true)}
+                    className="group inline-flex items-center gap-3 px-5 py-3.5 text-left transition-all duration-200 focus:outline-none"
+                    style={{
+                      borderRadius: 9999,
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      background: "rgba(255,255,255,0.06)",
+                      backdropFilter: "blur(18px)",
+                      WebkitBackdropFilter: "blur(18px)",
+                      color: "rgba(232,230,245,0.9)",
+                    }}
+                    onFocus={(e) => {
+                      e.currentTarget.style.borderColor = "rgba(139,124,255,0.5)";
+                      e.currentTarget.style.boxShadow = "0 0 0 3px rgba(139,124,255,0.18)";
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
+                  >
+                    <Search className="h-4 w-4" style={{ color: "#B8B2FF" }} />
+                    <span className="flex-1 text-sm">Search articles</span>
+                    <kbd
+                      className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 font-mono text-[10px] font-medium"
+                      style={{
+                        borderRadius: 6,
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        background: "rgba(255,255,255,0.05)",
+                        color: "rgba(232,230,245,0.7)",
+                      }}
+                    >
+                      ⌘K
+                    </kbd>
+                  </button>
+
+                  {/* Audio briefing — glass */}
+                  <div
+                    className="p-3"
+                    style={{
+                      borderRadius: 20,
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.10)",
+                      backdropFilter: "blur(18px)",
+                      WebkitBackdropFilter: "blur(18px)",
+                    }}
+                  >
+                    <p
+                      className="mb-2 inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase"
+                      style={{ color: "#B8B2FF", letterSpacing: "0.14em" }}
+                    >
+                      · Listen
+                    </p>
+                    <AudioBriefingCard briefing={insightsArticlesBriefing} className="w-full" compact />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -227,9 +275,20 @@ const Insights = () => {
         {/* Articles section */}
         <section className="py-section">
           <div className="page-container">
-            {/* Controls */}
-            <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="text-[1.375rem] font-bold text-foreground">Latest Articles</h2>
+            {/* Controls — glass toolbar */}
+            <div
+              className="mb-10 flex flex-col gap-4 p-3 sm:flex-row sm:items-center sm:justify-between"
+              style={{
+                borderRadius: 20,
+                background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.09)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+              }}
+            >
+              <h2 className="pl-2 text-[1.125rem] font-bold" style={{ color: "#F5F3FF" }}>
+                Latest <span style={{ color: "rgba(232,230,245,0.5)", fontWeight: 400 }}>· {filteredAndSortedArticles.length}</span>
+              </h2>
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <CategoryFilter
                   categories={categories}
@@ -242,24 +301,39 @@ const Insights = () => {
 
             {/* Article list */}
             {filteredAndSortedArticles.length === 0 ? (
-              <div className="flex flex-col items-center justify-center rounded-3xl border border-border py-24">
-                <p className="text-foreground-muted">No articles found for this category.</p>
+              <div
+                className="flex flex-col items-center justify-center py-24"
+                style={{
+                  borderRadius: 24,
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px dashed rgba(255,255,255,0.14)",
+                }}
+              >
+                <p style={{ color: "rgba(232,230,245,0.6)" }}>No articles found for this category.</p>
+                <button
+                  onClick={() => setActiveCategory(null)}
+                  className="mt-4 px-4 py-2 text-[12px] font-semibold min-h-11"
+                  style={{
+                    borderRadius: 9999,
+                    background: "#5B4BF5",
+                    color: "white",
+                    boxShadow: "0 6px 20px rgba(91,75,245,0.4)",
+                  }}
+                >
+                  Show all articles
+                </button>
               </div>
             ) : (
               <div className="space-y-10 lg:space-y-12">
-                {/* Featured */}
                 {featuredArticle && (
                   <div>
                     <ArticleCard {...featuredArticle} featured />
                   </div>
                 )}
 
-                {/* Grid — 2 columns */}
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {remainingArticles.map((article) => (
-                    <div
-                      key={article.id}
-                    >
+                    <div key={article.id}>
                       <ArticleCard {...article} />
                     </div>
                   ))}
@@ -269,69 +343,97 @@ const Insights = () => {
           </div>
         </section>
 
-        {/* Resources section */}
+        {/* Resources / Ecosystem */}
         <section className="py-section">
           <div className="page-container">
-            {/* Section separator */}
-            <div className="mb-10 border-t border-[#E4E4EF] pt-10 flex items-center gap-3">
-              <span className="inline-flex items-center rounded-full bg-[#6D28D9]/10 border border-[#6D28D9]/20 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#6D28D9]">
+            <div className="mb-8 flex items-center gap-3">
+              <span
+                className="inline-flex items-center px-3 py-1 text-[10px] font-bold uppercase"
+                style={{
+                  letterSpacing: "0.14em",
+                  borderRadius: 9999,
+                  background: "rgba(139,124,255,0.14)",
+                  border: "1px solid rgba(139,124,255,0.28)",
+                  color: "#C6BFFF",
+                }}
+              >
                 Ecosystem
               </span>
+              <div className="h-px flex-1" style={{ background: "linear-gradient(to right, rgba(255,255,255,0.14), transparent)" }} />
             </div>
-            <div className="mb-8">
-              <h2 className="text-display-sm text-foreground mb-4">Tools for builders</h2>
-              <p className="max-w-xl text-body-lg text-foreground-muted">
+            <div className="mb-8 max-w-2xl">
+              <h2 className="text-display-sm mb-3" style={{ color: "#F5F3FF" }}>Tools for builders</h2>
+              <p className="text-body-lg" style={{ color: "rgba(232,230,245,0.65)" }}>
                 A short list of useful tools and ideas to try before you buy another subscription or start a new project.
               </p>
             </div>
 
-            <div className="flex flex-col">
+            {/* Glass panel wrapping rows */}
+            <div
+              className="overflow-hidden"
+              style={{
+                borderRadius: 24,
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                backdropFilter: "blur(22px)",
+                WebkitBackdropFilter: "blur(22px)",
+                boxShadow: "0 20px 60px -20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)",
+              }}
+            >
               {entrepreneurResources.map((resource, i) => (
                 <a
                   key={i}
                   href={resource.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col gap-2 px-3 py-4 transition-colors duration-200"
+                  className="group flex items-start gap-5 px-5 py-5 sm:px-7 sm:py-6 transition-colors duration-200"
                   style={{
-                    borderBottom: "1px solid rgba(91,75,245,0.08)",
-                    background: "transparent",
-                    borderRadius: 12,
+                    borderBottom:
+                      i === entrepreneurResources.length - 1
+                        ? "none"
+                        : "1px solid rgba(255,255,255,0.06)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "rgba(91,75,245,0.04)";
+                    e.currentTarget.style.background = "rgba(139,124,255,0.06)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = "transparent";
                   }}
                 >
-                  <p
-                    style={{
-                      color: "#5B4BF5",
-                      fontSize: "0.68rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {resource.category}
-                  </p>
-                  <h3 className="text-[1.125rem] font-bold text-foreground">
-                    {resource.title}
-                  </h3>
-                  <p className="text-[0.9rem] leading-relaxed text-foreground-muted max-w-3xl">
-                    {resource.description}
-                  </p>
-                  <div className="mt-1 inline-flex items-center gap-2 text-[12px] font-bold tracking-wide transition-all duration-300 group-hover:gap-3" style={{ color: "#5B4BF5" }}>
-                    {resource.ctaText} →
+                  <div className="flex-1 min-w-0">
+                    <p
+                      style={{
+                        color: "#B8B2FF",
+                        fontSize: "0.68rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {resource.category}
+                    </p>
+                    <h3 className="mt-1 text-[1.05rem] sm:text-[1.15rem] font-bold" style={{ color: "#F5F3FF" }}>
+                      {resource.title}
+                    </h3>
+                    <p className="mt-1.5 text-[0.9rem] leading-relaxed max-w-3xl" style={{ color: "rgba(232,230,245,0.62)" }}>
+                      {resource.description}
+                    </p>
+                    <div
+                      className="mt-3 inline-flex items-center gap-2 text-[12px] font-bold tracking-wide transition-all duration-300 group-hover:gap-3"
+                      style={{ color: "#B8B2FF" }}
+                    >
+                      {resource.ctaText} →
+                    </div>
                   </div>
+                  <ArrowUpRight
+                    className="shrink-0 mt-1 h-5 w-5 opacity-40 transition-all duration-200 group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    style={{ color: "#B8B2FF" }}
+                  />
                 </a>
               ))}
             </div>
           </div>
         </section>
-
-
 
         <SiteFooter />
         </div>
