@@ -113,20 +113,22 @@ const ArticleCard = memo(({ id, category, title, image, featured = false }: Arti
         href={`/insights/${id}`}
         className="flex h-full flex-col overflow-hidden transition-all duration-300 active:scale-[0.98]"
         style={{
-          background: "rgba(255,255,255,0.66)",
-          border: "1px solid rgba(91,75,245,0.09)",
-          borderRadius: 20,
-          backdropFilter: "blur(14px)",
-          WebkitBackdropFilter: "blur(14px)",
-          boxShadow: "0 2px 24px rgba(19,19,31,0.06)",
+          background: "linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))",
+          border: "1px solid rgba(255,255,255,0.10)",
+          borderRadius: 22,
+          backdropFilter: "blur(22px) saturate(140%)",
+          WebkitBackdropFilter: "blur(22px) saturate(140%)",
+          boxShadow: "0 12px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08)",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = "translateY(-4px)";
-          e.currentTarget.style.boxShadow = "0 16px 48px rgba(91,75,245,0.12)";
+          e.currentTarget.style.boxShadow = "0 24px 60px rgba(91,75,245,0.28), inset 0 1px 0 rgba(255,255,255,0.12)";
+          e.currentTarget.style.borderColor = "rgba(139,124,255,0.35)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = "";
-          e.currentTarget.style.boxShadow = "0 2px 24px rgba(19,19,31,0.06)";
+          e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08)";
+          e.currentTarget.style.borderColor = "rgba(255,255,255,0.10)";
         }}
       >
         <div className="relative aspect-[16/9] overflow-hidden">
@@ -141,8 +143,19 @@ const ArticleCard = memo(({ id, category, title, image, featured = false }: Arti
           ) : (
             <div className="h-full w-full" style={{ background: FALLBACK_GRADIENT }} />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-foreground/6 to-transparent" />
-          <span className="absolute left-3 top-3 badge-category">
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,31,0.55), transparent 55%)" }} />
+          <span
+            className="absolute left-3 top-3 inline-flex items-center px-2.5 py-1 text-[10px] font-bold uppercase"
+            style={{
+              letterSpacing: "0.12em",
+              borderRadius: 9999,
+              background: "rgba(10,10,31,0.55)",
+              border: "1px solid rgba(255,255,255,0.14)",
+              color: "#E8E6F5",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+            }}
+          >
             {category}
           </span>
           <ShareButtons articleUrl={articleUrl} />
@@ -150,15 +163,15 @@ const ArticleCard = memo(({ id, category, title, image, featured = false }: Arti
 
         <div className="flex flex-1 flex-col p-5">
           {readingTime && (
-            <span className="mb-2.5 inline-flex items-center gap-1.5 text-[11px] font-medium text-foreground-subtle">
+            <span className="mb-2.5 inline-flex items-center gap-1.5 text-[11px] font-medium" style={{ color: "rgba(232,230,245,0.55)" }}>
               <Clock className="h-3 w-3" />
               {readingTime} min read
             </span>
           )}
-          <h2 className="mb-4 text-[1rem] font-bold leading-snug tracking-tight text-foreground transition-colors duration-200 flex-1 line-clamp-2" style={{ color: "#111" }}>
+          <h2 className="mb-4 text-[1rem] font-bold leading-snug tracking-tight flex-1 line-clamp-2" style={{ color: "#F5F3FF" }}>
             {title}
           </h2>
-          <div className="mt-auto flex items-center gap-1.5 text-[13px] font-semibold" style={{ color: "#5B4BF5" }}>
+          <div className="mt-auto flex items-center gap-1.5 text-[13px] font-semibold transition-all duration-300 group-hover:gap-2.5" style={{ color: "#B8B2FF" }}>
             Read →
           </div>
         </div>
